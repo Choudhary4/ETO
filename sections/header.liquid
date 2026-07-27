@@ -286,6 +286,42 @@ html body .shopify-section-group-header-group {
   .eto-announce-bar { padding: 8px 16px; }
   .eto-announce-text { font-size: 10px; line-height: 1.3; }
 }
+
+@media (min-width: 1921px) {
+  .eto-top-unified-bar { height: 6vw; }
+  .eto-nav-bar { height: 2.5vw; }
+  .eto-announce-bar { height: 2.5vw; }
+  .section-header { padding-top: 11vw; }
+  
+  .eto-brand-name { font-size: clamp(32px, 2vw, 64px); }
+  
+  /* Fix SVG scaling on Safari by using height and width instead of width: auto */
+  .eto-logo-img { 
+    height: clamp(60px, 3.5vw, 120px) !important; 
+    width: clamp(106px, 6vw, 212px) !important; 
+  }
+  
+  .eto-utility-link { font-size: clamp(14px, 1vw, 28px); }
+  
+  .eto-utility-icon { font-size: clamp(24px, 1.8vw, 48px); }
+  .eto-utility-icon svg { height: 1em !important; width: 1em !important; }
+  
+  .eto-utility-divider { font-size: clamp(14px, 1vw, 28px); }
+  .eto-top-right { gap: clamp(16px, 1.5vw, 40px); }
+  
+  .eto-menu-item > a { font-size: clamp(16px, 1.1vw, 32px); line-height: 1.5; }
+  .eto-menu > ul { gap: clamp(32px, 2.5vw, 64px); }
+  
+  .eto-announce-text { font-size: clamp(14px, 1vw, 28px); line-height: 1.5; }
+  .eto-desktop-phone { font-size: clamp(15px, 1vw, 30px); padding: 0.5vw 1vw; border-radius: 0.5vw; }
+  
+  .eto-cart-count {
+    top: -0.2vw; right: -0.4vw;
+    min-width: clamp(16px, 1vw, 32px); height: clamp(16px, 1vw, 32px);
+    font-size: clamp(10px, 0.7vw, 20px); line-height: clamp(16px, 1vw, 32px);
+    padding: 0 0.2vw;
+  }
+}
 </style>
 
 <style>
