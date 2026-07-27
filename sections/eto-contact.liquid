@@ -1,0 +1,563 @@
+{% comment %}
+  ETO Doors - Custom Contact Page Section
+  Layout: 2 Columns (Sidebar | Main Content)
+{% endcomment %}
+
+{{ 'component-door-categories.css' | asset_url | stylesheet_tag }}
+
+<style>
+.eto-contact-container {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: var(--eto-container-max);
+  margin: 0 auto;
+  padding: 20px;
+  gap: 30px;
+}
+
+/* Sidebar */
+.eto-contact-sidebar {
+  flex: 0 0 280px;
+  max-width: 280px;
+  display: none; /* Hidden on mobile by default, showed on desktop */
+}
+
+@media (min-width: 990px) {
+  .eto-contact-sidebar {
+    display: block;
+  }
+}
+
+/* Main Content */
+.eto-contact-main {
+  flex: 1;
+  min-width: 0; /* Box model fix */
+}
+
+.eto-contact-header {
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.eto-contact-title {
+  font-size: 28px;
+  color: #333;
+  margin: 0;
+  font-weight: 400;
+}
+
+/* Info Box (Phone/Email) */
+.eto-contact-info-box {
+  border-left: 1px solid #ddd;
+  padding-left: 20px;
+}
+
+@media (min-width: 750px) {
+  .eto-contact-header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  
+  .eto-contact-info-box {
+    text-align: right;
+    min-width: 250px;
+    border-left: none; /* Reset */
+    border-right: 1px solid #ddd;
+    padding-right: 20px;
+    padding-left: 0;
+    order: 2; /* Put it right */
+  }
+  
+  .eto-contact-title {
+    order: 1;
+  }
+}
+
+.eto-info-title {
+  color: #000000; /* Replaced Gold */
+  font-weight: 700;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+.eto-info-text {
+  font-size: 13px;
+  color: #666;
+  line-height: 1.5;
+}
+
+.eto-info-text strong {
+  color: #333;
+}
+
+/* Form Styles */
+.eto-form-row {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+}
+
+.eto-form-col {
+  flex: 1;
+  min-width: 200px;
+}
+
+.eto-form-col label {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.eto-form-col label span {
+  color: red;
+}
+
+.eto-input, .eto-textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  background: #fff;
+}
+
+.eto-input:focus, .eto-textarea:focus {
+  border-color: #000000;
+  outline: none;
+}
+
+/* Phone Inputs */
+.eto-phone-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.eto-phone-part {
+  width: 60px;
+  text-align: center;
+}
+
+.eto-phone-sep {
+  color: #999;
+}
+
+/* Checkbox */
+.eto-checkbox-wrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.eto-checkbox-wrapper input {
+  margin-top: 4px;
+}
+
+.eto-checkbox-label {
+  font-size: 12px;
+  color: #555;
+  line-height: 1.4;
+}
+
+/* Submit Button */
+.eto-submit-btn {
+  background: #000000;
+  color: #fff;
+  border: none;
+  padding: 12px 40px;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 25px; /* Rounded pill */
+  cursor: pointer;
+  transition: background 0.2s;
+  text-transform: capitalize;
+}
+
+.eto-submit-btn:hover {
+  background: #333333;
+}
+
+/* Breadcrumb Styles */
+.eto-breadcrumb-container {
+  max-width: var(--eto-container-max);
+  margin: 0 auto;
+  padding: 15px 20px 0;
+}
+
+.eto-breadcrumb {
+  font-size: 13px;
+  color: #333;
+  font-weight: 700; /* Make bold as per image */
+}
+
+.eto-breadcrumb a {
+  text-decoration: none;
+  color: #333;
+}
+
+.eto-breadcrumb span {
+  margin: 0 5px;
+  color: #999;
+}
+</style>
+
+<div class="eto-breadcrumb-container">
+  <div class="eto-breadcrumb">
+    <a href="/">Home</a> <span>&gt;</span> Contact
+  </div>
+</div>
+
+<div class="eto-contact-container">
+
+
+  <!-- Main Content -->
+  <main class="eto-contact-main">
+    
+    <div class="eto-contact-header">
+       <h1 class="eto-contact-title">Contact Us For A Fast Quote</h1>
+       
+       <div class="eto-contact-info-box">
+         <div class="eto-info-title">Phone and Email</div>
+         <div class="eto-info-text">
+           <strong>(888) DOOR-ETO</strong><br>
+           Alternate: 213-622-2003<br>
+           Fax: (213) 226-4650<br>
+           Email: <strong>contact@etodoors.com</strong>
+         </div>
+       </div>
+    </div>
+
+    {%- form 'contact', id: 'ContactForm' -%}
+      {%- if form.posted_successfully? -%}
+        
+        <div class="eto-success-message">
+          <h2 class="eto-success-title">Your request has been sent!</h2>
+          <p class="eto-success-subtitle">Quote Request Received, Thank You!</p>
+
+          <h3 class="eto-success-heading">So, What Happens Next?</h3>
+          <p class="eto-success-text">
+            An experienced team member will review your request and call you to discuss further. It typically takes one business day to receive a return phone call or email. During the call they will review your request, walk you through any technical questions, and finalize the estimate and price.
+          </p>
+
+          <h3 class="eto-success-heading">That Sounds Great, but I'd Rather Not Wait...</h3>
+          <p class="eto-success-text">
+            No problem, we don’t like waiting either. Please call us at (888) DOOR-ETO or (213) 622-2003 during our business hours: Monday-Friday, 8a-5p PST and we’ll have a LIVE team member available to discuss your door order.
+          </p>
+
+          <h3 class="eto-success-heading">Can I Email You With Questions?</h3>
+          <p class="eto-success-text">
+            Your salesperson will remain your contact throughout the order process, but you can always email <a href="mailto:sales@etodoors.com">sales@etodoors.com</a> for any questions or concerns.
+          </p>
+
+          <p class="eto-success-text">Cheers!</p>
+          
+          <p class="eto-success-text" style="margin-top: 20px;">
+            Become a fan of ETO Doors on facebook:<br>
+            <a href="http://www.facebook.com/etodoors" target="_blank">http://www.facebook.com/etodoors</a>
+          </p>
+        </div>
+
+        <style>
+          .eto-contact-header, .eto-form-row, .contact__button, .eto-checkbox-wrapper, .eto-hq-section {
+            display: none !important;
+          }
+          .eto-success-title { font-size: 24px; font-weight: 400; color: #333; margin-bottom: 5px; }
+          .eto-success-subtitle { font-size: 14px; color: #666; margin-bottom: 25px; }
+          .eto-success-heading { font-size: 14px; font-weight: 700; color: #333; margin-bottom: 5px; margin-top: 20px; }
+          .eto-success-text { font-size: 13px; color: #666; line-height: 1.5; margin-bottom: 10px; }
+          .eto-success-text a { color: #333; text-decoration: none; }
+        </style>
+
+        <script>
+           // Update breadcrumb on success
+           document.querySelector('.eto-breadcrumb').innerHTML = '<a href="/">Home</a> <span>&gt;</span> <strong>Your request has been sent!</strong>';
+        </script>
+
+      {%- elsif form.errors -%}
+        <div class="form__message">
+          <h2 class="form-status caption-large text-body" role="alert" tabindex="-1" autofocus style="color: red; margin-bottom: 10px;">
+            {{ 'templates.contact.form.error_heading' | t }}
+          </h2>
+        </div>
+        <ul class="form-status-list caption-large" role="list">
+          <li>
+            <a href="#ContactForm-email" class="link">
+              {{ form.errors.translated_fields.email | capitalize }}
+              {{ form.errors.messages.email }}
+            </a>
+          </li>
+        </ul>
+      {%- endif -%}
+
+      <div class="eto-form-row">
+        <div class="eto-form-col">
+          <label>Name <span>*</span></label>
+          <div style="display: flex; gap: 10px;">
+            <input type="text" name="contact[First Name]" class="eto-input" placeholder="First" required autocomplete="given-name">
+            <input type="text" name="contact[Last Name]" class="eto-input" placeholder="Last" required autocomplete="family-name">
+          </div>
+        </div>
+      </div>
+
+      <div class="eto-form-row">
+        <div class="eto-form-col">
+          <label>Company Name</label>
+          <input type="text" name="contact[Company Name]" class="eto-input" autocomplete="organization">
+        </div>
+      </div>
+
+      <div class="eto-form-row">
+        <div class="eto-form-col">
+          <label>Email <span>*</span></label>
+          <input type="email" name="contact[email]" id="ContactForm-email" class="eto-input" required value="{{ form.email }}" autocomplete="email" spellcheck="false" autocapitalize="off">
+        </div>
+      </div>
+
+      <div class="eto-form-row">
+        <div class="eto-form-col">
+          <label>Phone <span>*</span></label>
+          <div class="eto-phone-group">
+            <input type="text" class="eto-input eto-phone-part" size="3" maxlength="3" id="phone1" placeholder="###">
+            <span class="eto-phone-sep">-</span>
+            <input type="text" class="eto-input eto-phone-part" size="3" maxlength="3" id="phone2" placeholder="###">
+            <span class="eto-phone-sep">-</span>
+            <input type="text" class="eto-input eto-phone-part" size="4" maxlength="4" id="phone3" placeholder="####">
+          </div>
+          <!-- Hidden real phone input -->
+          <input type="hidden" name="contact[Phone]" id="realPhone">
+          
+          <!-- Hidden Fields for Fast Quote & Tracking -->
+          <input type="hidden" name="contact[Product Name]" id="input_product_name">
+          <input type="hidden" name="contact[Product URL]" id="input_product_url">
+          <input type="hidden" name="contact[OS Info]" id="input_os_info">
+          <input type="hidden" name="contact[Browser Info]" id="input_browser_info">
+          
+          <input type="hidden" name="contact[UTM Source]" id="input_utm_source">
+          <input type="hidden" name="contact[UTM Medium]" id="input_utm_medium">
+          <input type="hidden" name="contact[UTM Term]" id="input_utm_term">
+          <input type="hidden" name="contact[UTM Content]" id="input_utm_content">
+          <input type="hidden" name="contact[UTM Campaign]" id="input_utm_campaign">
+          <input type="hidden" name="contact[Gclid]" id="input_gclid">
+        </div>
+      </div>
+
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          const params = new URLSearchParams(window.location.search);
+          
+          function setVal(id, paramName) {
+            if (params.has(paramName)) {
+              const el = document.getElementById(id);
+              if (el) el.value = params.get(paramName);
+            }
+          }
+
+          setVal('input_product_name', 'product_name');
+          setVal('input_product_url', 'product_url');
+          setVal('input_os_info', 'OS_Info');
+          setVal('input_browser_info', 'Browser_Info');
+          
+          setVal('input_utm_source', 'utm_source');
+          setVal('input_utm_medium', 'utm_medium');
+          setVal('input_utm_term', 'utm_term');
+          setVal('input_utm_content', 'utm_content');
+          setVal('input_utm_campaign', 'utm_campaign');
+          setVal('input_gclid', 'gclid');
+        });
+      </script>
+
+      <div class="eto-checkbox-wrapper">
+        <input type="checkbox" name="contact[SMS Consent]" value="Yes">
+        <label class="eto-checkbox-label">
+          By providing my phone #, I consent to receive text messages from ETODoors regarding my inquiry. I understand that consent is not a condition of purchase and that message and data rates may apply. I can opt-out at any time by replying STOP.
+        </label>
+      </div>
+
+      <div class="eto-form-row">
+        <div class="eto-form-col" style="max-width: 150px;">
+          <label>Shipping Zip <span>*</span></label>
+          <input type="text" name="contact[Shipping Zip]" id="shipping-zip" class="eto-input" required autocomplete="postal-code" pattern="[0-9]*" inputmode="numeric" placeholder="#####">
+          <div id="zip-error" style="color: red; font-size: 13px; margin-top: 5px; display: none;">Maximum limit: 5 digits.</div>
+        </div>
+      </div>
+
+      <div class="eto-form-row">
+         <div class="eto-form-col">
+           <label>Please Let Us Know How We Can Help <span>*</span></label>
+           <textarea name="contact[body]" class="eto-textarea" rows="6" required>{{ form.body }}</textarea>
+         </div>
+      </div>
+
+      <div class="contact__button">
+        <button type="submit" class="eto-submit-btn">
+          Submit
+        </button>
+      </div>
+
+    {%- endform -%}
+
+    <!-- Corporate Headquarters Section -->
+    <div class="eto-hq-section">
+      <div class="eto-hq-col">
+        <img src="https://etodoors.com/uploads/Image/ETO-building.jpg" alt="ETO Doors Corporate Headquarters" class="eto-hq-image">
+      </div>
+      <div class="eto-hq-col eto-hq-text">
+        <h3 class="eto-hq-title">ETO DOORS CORPORATE HEADQUARTERS</h3>
+        <p>
+          1340 E. 6th Street<br>
+          Los Angeles, CA 90021<br>
+          Tel: (888) 366-7386<br>
+          Alternate: 213-622-2003<br>
+          Fax: (213) 226-4650<br>
+          Email: <a href="mailto:contact@etodoors.com">contact@etodoors.com</a>
+        </p>
+        <h4 class="eto-hq-subtitle">HOURS OF OPERATION</h4>
+        <p>Monday - Friday: 8:00AM - 5:00PM (PST)</p>
+      </div>
+      <div class="eto-hq-col">
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3306.014299407386!2d-118.23933908478546!3d34.0435349806085!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2c63a61055555%3A0x6283733076596160!2s1340%20E%206th%20St%2C%20Los%20Angeles%2C%20CA%2090021!5e0!3m2!1sen!2sus!4v1620000000000!5m2!1sen!2sus" 
+          width="100%" 
+          height="100%" 
+          style="border:0; min-height: 200px;" 
+          allowfullscreen="" 
+          loading="lazy">
+        </iframe>
+      </div>
+    </div>
+    
+  </main>
+</div>
+
+<style>
+/* Headquarters Section */
+.eto-hq-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 50px;
+  border-top: 1px solid #ddd;
+  padding-top: 40px;
+}
+
+.eto-hq-col {
+  flex: 1;
+  min-width: 250px;
+}
+
+.eto-hq-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.eto-hq-text {
+  font-size: 13px;
+  color: #555;
+  line-height: 1.6;
+}
+
+.eto-hq-title {
+  color: #000000;
+  font-weight: 800;
+  font-size: 14px;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  margin-top: 0;
+}
+
+.eto-hq-subtitle {
+  color: #000000;
+  font-weight: 800;
+  font-size: 13px;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+}
+
+.eto-hq-text a {
+  color: #333;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+/* Ensure map fills height */
+.eto-hq-col iframe {
+  height: 100%;
+}
+</style>
+
+<script>
+  // Simple script to combine phone parts
+  const p1 = document.getElementById('phone1');
+  const p2 = document.getElementById('phone2');
+  const p3 = document.getElementById('phone3');
+  const realPhone = document.getElementById('realPhone');
+
+  function updatePhone() {
+    realPhone.value = p1.value + '-' + p2.value + '-' + p3.value;
+  }
+
+  // Zip Validation
+  const zipInput = document.getElementById('shipping-zip');
+  const zipError = document.getElementById('zip-error');
+
+  if(zipInput) {
+    zipInput.addEventListener('input', function() {
+      // Allow only numbers
+      this.value = this.value.replace(/[^0-9]/g, '');
+      
+      if (this.value.length > 5) {
+        this.style.border = '1px solid red';
+        zipError.style.display = 'block';
+        this.setCustomValidity('Maximum limit: 5 digits.');
+      } else {
+        this.style.border = '1px solid #ddd';
+        zipError.style.display = 'none';
+        this.setCustomValidity(''); 
+      }
+    });
+
+    zipInput.addEventListener('focus', function() {
+       if (this.value.length <= 5) {
+         this.style.borderColor = '#000000'; // Focus color
+       }
+    });
+    
+    zipInput.addEventListener('blur', function() {
+       if (this.value.length <= 5) {
+         this.style.border = '1px solid #ddd';
+       }
+    });
+  }
+
+  [p1, p2, p3].forEach(el => {
+    el.addEventListener('input', () => {
+       updatePhone();
+       // Auto tab
+       if(el.value.length === el.maxLength) {
+         if(el.id === 'phone1') p2.focus();
+         if(el.id === 'phone2') p3.focus();
+       }
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "ETO Contact Section",
+  "settings": [],
+  "presets": [
+    {
+      "name": "ETO Contact Section"
+    }
+  ]
+}
+{% endschema %}

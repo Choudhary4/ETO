@@ -1,0 +1,87 @@
+{% comment %}
+  Zoho Callback Page
+  Handles the redirect from Zoho Creator.
+  URL format: /pages/finalize-order?estimate_id=12345
+{% endcomment %}
+
+<div class="page-width zoho-callback-container">
+  <div class="zoho-loader-wrapper">
+    <div class="loading-spinner"></div>
+    <h2 class="h2">Finalizing Your Configuration...</h2>
+    <p>Please wait while we sync your custom door details from our workshop.</p>
+    <div id="ZohoStatus" class="status-message"></div>
+  </div>
+</div>
+
+<style>
+  .zoho-callback-container {
+    padding: 6rem 2rem;
+    text-align: center;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .loading-spinner {
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #2f9c3f; /* ETO Green */
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 2rem;
+  }
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  .status-message {
+    margin-top: 2rem;
+    color: #666;
+    font-size: 1.4rem;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // 1. Check for standard Shopify "checkout_url" param
+    // The Zoho Creator script will redirect to: /pages/zoho-callback?checkout_url=https://...
+    const urlParams = new URLSearchParams(window.location.search);
+    const checkoutUrl = urlParams.get('checkout_url');
+    const statusDiv = document.getElementById('ZohoStatus');
+
+    if (checkoutUrl) {
+      statusDiv.innerHTML = "Configuration Saved! Redirecting to Secure Checkout...";
+      statusDiv.style.color = "#2f9c3f"; // ETO Green
+      statusDiv.style.fontWeight = "bold";
+
+      // Slight delay to allow user to read message (optional)
+      setTimeout(() => {
+        window.location.href = checkoutUrl;
+      }, 1500);
+
+    } else {
+      // If we land here without a checkout_url, it means Zoho didn't send it or user visited directly
+      document.querySelector('.loading-spinner').style.display = 'none';
+      statusDiv.innerHTML = "Error: No checkout link received. Please try again.";
+      statusDiv.style.color = "red";
+      
+      const errorMsg = urlParams.get('error');
+      if (errorMsg) {
+         statusDiv.innerHTML = "Error: " + decodeURIComponent(errorMsg);
+      }
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Zoho Callback",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Zoho Callback Page"
+    }
+  ]
+}
+{% endschema %}

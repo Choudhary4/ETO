@@ -1,0 +1,85 @@
+/* Door Categories Sidebar Styles */
+.door-categories {
+	background: #fff;
+	border-radius: 4px;
+	padding: 18px 18px 12px 18px;
+	margin-bottom: 24px;
+	box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.door-categories__title {
+	color: #000000;
+	font-size: 1.6rem;
+	font-weight: 700;
+	margin-bottom: 16px;
+	letter-spacing: 0.01em;
+}
+.door-categories__list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+.door-categories__item {
+	margin-bottom: 8px;
+	border-bottom: 1px solid #e0e0e0;
+	padding-bottom: 8px;
+}
+.door-categories__item:last-child {
+	border-bottom: none;
+}
+.door-categories__label {
+	color: #000000;
+	font-weight: 600;
+	font-size: 1.08rem;
+}
+.door-categories__link {
+	text-decoration: none;
+	color: #222;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 8px;
+}
+.door-categories__link:hover .door-categories__label {
+	text-decoration: underline;
+}
+.door-categories__plus, .door-categories__subtoggle {
+	background: none;
+	border: none;
+	color: #000000;
+	font-size: 1.2rem;
+	font-weight: 700;
+	cursor: pointer;
+	margin-left: 6px;
+}
+.door-categories__subcategories {
+	list-style: none;
+	margin: 8px 0 0 18px;
+	padding: 0;
+	display: none;
+}
+.door-categories__item .door-categories__subcategories.is-open,
+.door-categories__subitem--has-children .door-categories__subcategories--inner.is-open {
+	display: block;
+}
+.door-categories__subitem {
+	margin-bottom: 6px;
+}
+.door-categories__sublink {
+	color: #222;
+	text-decoration: none;
+	font-size: 1rem;
+	padding-left: 2px;
+}
+.door-categories__sublink:hover {
+	text-decoration: underline;
+	color: #000000;
+}
+.door-categories__subrow {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+}
+.is-current > .door-categories__link .door-categories__label {
+	color: #000000;
+    font-weight: 800;
+}

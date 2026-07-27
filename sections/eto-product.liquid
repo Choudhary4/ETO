@@ -1,0 +1,4131 @@
+{% comment %}
+ETO Doors - Custom Product Page Layout
+3-column: Gallery | Size Grid | Sticky Sidebar
+{% endcomment %}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:wght@500;600&display=swap" rel="stylesheet">
+<style>
+/* ETO Product Page Styles */
+.eto-product-page, main.wrap {
+  max-width: var(--eto-container-max);
+  margin: 0 auto;
+  padding: 0 var(--eto-margin-edge);
+}
+
+/* Breadcrumb */
+.eto-breadcrumb {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #666;
+  margin-top: 24px;
+  margin-bottom: 60px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.eto-breadcrumb a {
+  color: #666;
+  text-decoration: none;
+}
+
+.eto-breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.eto-breadcrumb span.separator {
+  margin: 0 8px;
+  color: #666;
+}
+
+.eto-breadcrumb span.current {
+  color: #000;
+  font-weight: 600;
+}
+
+/* Product Title */
+.eto-product-title {
+  grid-column: 2 / 4;
+  grid-row: 1;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #000;
+  margin-top: 0;
+  margin-bottom: 30px;
+  line-height: 1.3;
+}
+
+/* Main Layout */
+.eto-product-layout {
+  display: grid;
+  grid-template-columns: minmax(240px, 320px) minmax(400px, 1fr) 240px;
+  grid-template-rows: max-content 1fr;
+  gap: 12px;
+  align-items: start;
+  justify-content: space-between;
+}
+
+/* Left Column - Gallery */
+.eto-gallery {
+  grid-column: 1;
+  grid-row: 1 / 3;
+  position: sticky;
+  top: 20px;
+  align-self: start;
+}
+
+.eto-gallery-main {
+  margin-bottom: 10px;
+  background: transparent;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.eto-zoom-lens {
+  position: absolute;
+  border: 2px solid rgba(0, 0, 0, 0.15);
+  width: 180px;
+  height: 200px;
+  background-color: rgba(255, 255, 255, 0.3);
+  cursor: crosshair;
+  display: none;
+  pointer-events: none;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.5) inset;
+}
+
+.eto-zoom-result {
+  border: 1px solid #ddd;
+  width: 450px;
+  height: 500px;
+  background-color: white;
+  position: absolute;
+  top: 0;
+  left: 520px;
+  z-index: 1000;
+  display: none;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  background-repeat: no-repeat;
+  border-radius: 3px;
+}
+
+.eto-gallery-main img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+  mix-blend-mode: multiply;
+}
+
+.eto-gallery-zoom-text {
+  text-align: center;
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.eto-gallery-thumbnails {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.eto-gallery-thumb {
+  width: calc(33.333% - 6px);
+  aspect-ratio: 1;
+  border: 1px solid transparent;
+  cursor: pointer;
+  padding: 0;
+}
+
+.eto-gallery-thumb:hover,
+.eto-gallery-thumb.active {
+  border-color: var(--eto-natural-wood);
+}
+
+.eto-gallery-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  mix-blend-mode: multiply;
+}
+
+.eto-product-sku {
+  color: var(--eto-natural-wood);
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+/* Customer Photos */
+.eto-customer-photos {
+  margin-top: 20px;
+}
+
+.eto-customer-photos-title {
+  color: var(--eto-natural-wood);
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.eto-customer-photos-grid {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.eto-customer-photo {
+  width: 50px;
+  height: 50px;
+  border: 1px solid #ddd;
+}
+
+.eto-customer-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Center Column - Size Grid */
+.eto-size-section {
+  grid-column: 2;
+  grid-row: 2;
+  padding: 0;
+}
+
+.eto-size-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  line-height: 25px;
+  margin-bottom: 30px;
+  color: #000000;
+}
+
+.eto-size-header p {
+  margin: 0;
+  font-weight: 700;
+}
+
+.eto-size-header strong {
+  color: #c00;
+}
+
+.eto-size-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.eto-size-selected-label {
+  color: #000000;
+  font-weight: 400;
+}
+
+.eto-clear-config {
+  font-size: 13px;
+  color: #555;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.eto-clear-config:hover {
+  text-decoration: underline;
+}
+
+.eto-size-divider {
+  border: 0;
+  border-top: 1px solid #e0e0e0;
+  margin: 6px 0 14px;
+}
+
+.eto-size-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.eto-dynamic-options-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.eto-has-images {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 10px;
+  width: 100%;
+}
+
+.eto-no-images {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 10px;
+  width: 100%;
+}
+
+@media screen and (max-width: 749px) {
+  .eto-has-images, .eto-no-images {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.eto-size-option {
+  border: 1px solid #C6BEB5;
+  border-radius: 0;
+  min-height: 34px;
+  padding: 8px 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  text-align: center;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.4;
+  background: #ffffff;
+  color: #000000;
+  transition: all 0.2s;
+}
+
+.eto-size-option:hover {
+  border-color: #999999;
+}
+
+.eto-size-option.selected {
+  border-color: #000000;
+  border-width: 1px;
+}
+
+.eto-size-option .size {
+  font-weight: 400;
+  color: #000000;
+}
+
+.eto-size-option .price {
+  font-weight: 400;
+  color: #000000;
+}
+
+.eto-custom-sizes {
+  text-align: center;
+  font-size: 18px;
+  color: #333;
+  margin-top: 15px;
+}
+
+.eto-custom-sizes p {
+  margin: 0;
+  padding: 0;
+  line-height: 1.3;
+}
+
+.eto-custom-sizes a {
+  color: #000000;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.eto-custom-sizes a:hover {
+  text-decoration: underline;
+}
+
+/* Door Configuration / Pre-hanging */
+.eto-config-section {
+  margin-top: 18px;
+}
+
+.eto-config-card {
+  background: #FAFAFA;
+  border-radius: 12px;
+  border: 1px solid #EBEBEB;
+  padding: 20px;
+  margin-bottom: 24px;
+}
+.eto-config-row {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  margin: 0;
+  padding: 16px 0;
+  background-color: transparent !important;
+}
+.eto-dynamic-option-row {
+  border-bottom: 1px solid #EBEBEB;
+}
+.eto-dynamic-option-row:last-child {
+  border-bottom: none;
+}
+.eto-config-icon-placeholder {
+  width: 54px;
+  height: 54px;
+  margin-right: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 1px solid #EBEBEB;
+  border-radius: 8px;
+  background: #ffffff;
+}
+.eto-config-row-label {
+  color: #111;
+  font-weight: 700;
+  font-size: 14px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: transparent !important;
+  margin-right: 6px;
+}
+.eto-config-value {
+  color: #111;
+  font-weight: 700;
+  font-size: 14px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: transparent !important;
+}
+.eto-config-edit {
+  margin-left: auto;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border: 1px solid #B98E54;
+  border-radius: 6px;
+  background: transparent;
+  color: #B98E54;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.eto-config-edit:hover {
+  background: #B98E54;
+  color: #fff;
+  border-color: #B98E54;
+}
+.eto-config-complete-box {
+  background: #FFF9F0;
+  border: 1px solid #F0E6D2;
+  border-radius: 8px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 10px;
+  margin-bottom: 16px;
+}
+.eto-config-complete-icon {
+  width: 40px;
+  height: 40px;
+  background: #D87732;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.eto-config-complete-text {
+  flex-grow: 1;
+}
+.eto-config-complete-text strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: #111;
+  margin-bottom: 2px;
+}
+.eto-config-complete-text p {
+  font-size: 13px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: #555;
+  margin: 0;
+}
+.eto-notes-input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #EBEBEB;
+  border-radius: 8px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+.sizes-head {
+  display: flex;
+  align-items: center;
+  padding: 16px 0;
+  border-bottom: 1px solid #EBEBEB;
+  margin-bottom: 16px;
+}
+.sizes-head .label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: normal;
+  text-transform: uppercase;
+  color: #1F1D1A;
+  flex-wrap: wrap;
+}
+.sizes-head .label #eto-selected-size {
+  color: #B98E54;
+  font-weight: 700;
+  background: #FCF9F5;
+  border: 1px solid #E6D5B8;
+  padding: 2px 8px;
+  border-radius: 6px;
+  text-transform: none;
+  white-space: nowrap;
+}
+.sizes-head .label #eto-selected-size:empty {
+  display: none;
+}
+.sizes-head .eto-clear-config {
+  font-size: 11px;
+  color: #888;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.sizes-head .eto-clear-config:hover {
+  color: #1F1D1A;
+}
+
+.eto-door-options,
+.eto-prehang-options {
+  display: flex;
+  gap: 40px;
+  margin: 22px 0 10px;
+  align-items: flex-start;
+}
+
+.eto-door-option,
+.eto-prehang-option {
+  cursor: pointer;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Single door image */
+.eto-door-image {
+  width: 55px;
+  height: 100px;
+  border: 3px solid #888;
+  background: #e8e8e8;
+  margin-bottom: 8px;
+  position: relative;
+  box-sizing: border-box;
+  display: block;
+}
+
+.eto-door-image::after {
+  content: '';
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  right: 6px;
+  bottom: 6px;
+  border: 2px solid #aaa;
+  background: #f0f0f0;
+}
+
+/* Double door container */
+.eto-door-image-double-wrapper {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.eto-door-image-double-wrapper .panel {
+  width: 55px;
+  height: 100px;
+  border: 3px solid #888;
+  background: #e8e8e8;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.eto-door-image-double-wrapper .panel::after {
+  content: '';
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  right: 6px;
+  bottom: 6px;
+  border: 2px solid #aaa;
+  background: #f0f0f0;
+}
+
+.eto-door-caption,
+.eto-prehang-caption {
+  border: 2px solid #d0d0d0;
+  padding: 6px 14px;
+  background: #ffffff;
+  font-size: 18px;
+  color: #454545;
+}
+
+.eto-door-option.selected .eto-door-caption,
+.eto-prehang-option.selected .eto-prehang-caption {
+  border-color: #e38a41;
+}
+
+/* Right Column - Sticky Sidebar */
+.eto-sidebar {
+  grid-column: 3;
+  grid-row: 2;
+  position: sticky;
+  top: 100px;
+  background: #E6E2DF;
+  border-radius: 0;
+  padding: 20px;
+  height: auto;
+  min-height: 284px;
+  margin-top: 55px;
+}
+
+.eto-sidebar-header {
+  display: none;
+}
+
+.eto-sidebar-content {
+  padding: 0;
+}
+
+.eto-sidebar-rating {
+  display: none;
+}
+
+.eto-stars {
+  color: #ffd700;
+  font-size: 16px;
+}
+
+.eto-write-review {
+  font-size: 13px;
+  color: var(--eto-dark-charcoal);
+  text-decoration: underline;
+}
+
+.eto-write-review:hover {
+  color: var(--eto-natural-wood);
+  text-decoration: none;
+}
+
+.eto-sidebar-price {
+  margin-bottom: 15px;
+}
+
+.eto-price-regular {
+  font-size: 13px;
+  color: #999;
+  margin-bottom: 5px;
+}
+
+.eto-price-regular s {
+  color: #999;
+}
+
+.eto-price-sale {
+  font-size: 13px;
+  color: #333;
+}
+
+.eto-price-sale .amount {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 25px;
+  color: #000000;
+}
+
+.eto-sidebar-qty {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.eto-sidebar-qty label {
+  font-size: 13px;
+  color: #333;
+}
+
+.eto-qty-controls {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.eto-qty-btn {
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: #e0e0e0;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+}
+
+.eto-qty-btn:hover {
+  background: #ccc;
+}
+
+.eto-qty-input {
+  width: 40px;
+  height: 28px;
+  border: none;
+  text-align: center;
+  font-size: 14px;
+}
+
+/* Action Buttons */
+.eto-action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.eto-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  border-radius: 28px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s;
+  width: 100%;
+}
+
+.eto-btn-cart {
+  background: linear-gradient(to bottom, #ffd45b, #f0a932);
+  color: #333;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.eto-btn-cart:hover {
+  background: linear-gradient(to bottom, #f5d858, #d4b040);
+}
+
+.eto-btn-green {
+  background: #ffffff;
+  color: var(--eto-dark-charcoal);
+  border: 1px solid var(--eto-light-border);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.eto-btn-green:hover {
+  background: #f5f5f5;
+}
+.eto-btn-inner {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 14px;
+  padding: 10px 22px;
+  width: 100%;
+}
+
+.eto-btn-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #f0f0f0;
+}
+
+.eto-btn-icon-cart {
+  background: #f6c64b;
+}
+
+.eto-btn-text {
+  flex: 1;
+  text-align: center;
+}
+
+.eto-btn svg,
+.eto-btn img {
+  width: 20px;
+  height: 20px;
+}
+
+/* ============================
+   Reviews & Q&A Sub-tabs
+   ============================ */
+
+/* Reviews Summary (Overall Rating) */
+.eto-reviews-summary {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 0;
+  border-bottom: 1px solid #e8e8e8;
+  margin-bottom: 20px;
+}
+
+.eto-reviews-avg-score {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 48px;
+  font-weight: 800;
+  color: #000;
+  line-height: 1;
+}
+
+.eto-reviews-avg-right {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.eto-reviews-count-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  color: #777;
+}
+
+/* Stars */
+.eto-stars-row {
+  display: flex;
+  gap: 2px;
+}
+
+.eto-star {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.eto-star-full {
+  color: #000;
+}
+
+.eto-star-empty {
+  color: #ccc;
+}
+
+/* Review Cards */
+.eto-reviews-list {
+  margin-bottom: 20px;
+}
+
+.eto-review-card {
+  padding: 20px 0;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.eto-review-card-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 10px;
+}
+
+.eto-review-card-meta {
+  flex: 1;
+}
+
+.eto-review-name {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.eto-review-date {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  color: #999;
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+.eto-review-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 6px;
+}
+
+.eto-review-body {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  line-height: 20px;
+  color: #333;
+}
+
+/* Star Rating Input (Write a Review form) */
+.eto-star-rating-input {
+  display: flex;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.eto-star-input {
+  font-size: 28px;
+  color: #ccc;
+  transition: color 0.15s;
+  cursor: pointer;
+}
+
+.eto-star-input.selected,
+.eto-star-input.hovered {
+  color: #000;
+}
+
+/* ============================
+   Judge.me CSS Overrides
+   Match our Montserrat theme
+   ============================ */
+#judgeme_product_reviews .jdgm-rev-widg {
+  font-family: 'Montserrat', sans-serif !important;
+}
+
+/* Summary header */
+#judgeme_product_reviews .jdgm-widget .jdgm-summary {
+  border-bottom: 1px solid #e8e8e8;
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+}
+
+#judgeme_product_reviews .jdgm-summary__score {
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 48px !important;
+  font-weight: 800 !important;
+  color: #000 !important;
+}
+
+#judgeme_product_reviews .jdgm-summary__stars .jdgm-star {
+  color: #000 !important;
+  font-size: 20px !important;
+}
+
+#judgeme_product_reviews .jdgm-summary__rating-count,
+#judgeme_product_reviews .jdgm-summary__reviews-count {
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 12px !important;
+  color: #777 !important;
+}
+
+/* Write a Review button */
+#judgeme_product_reviews .jdgm-write-rev-link,
+#judgeme_product_reviews .jdgm--btn {
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  background: #f5f3f1 !important;
+  border: 1px solid #ccc !important;
+  color: #222 !important;
+  border-radius: 0 !important;
+  padding: 10px 24px !important;
+}
+
+/* Individual review cards */
+#judgeme_product_reviews .jdgm-rev {
+  border-bottom: 1px solid #e8e8e8 !important;
+  padding: 20px 0 !important;
+}
+
+#judgeme_product_reviews .jdgm-rev__author {
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  color: #000 !important;
+}
+
+#judgeme_product_reviews .jdgm-rev__timestamp {
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 12px !important;
+  color: #999 !important;
+}
+
+#judgeme_product_reviews .jdgm-rev__title {
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  color: #000 !important;
+}
+
+#judgeme_product_reviews .jdgm-rev__body {
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 13px !important;
+  line-height: 20px !important;
+  color: #333 !important;
+}
+
+#judgeme_product_reviews .jdgm-rev__rating .jdgm-star {
+  color: #000 !important;
+  font-size: 16px !important;
+}
+
+/* Reviewer avatar */
+#judgeme_product_reviews .jdgm-rev__pic-wrap {
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 50% !important;
+  background: #e0e0e0 !important;
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 15px !important;
+  color: #555 !important;
+}
+
+/* Pagination */
+#judgeme_product_reviews .jdgm-paginate .jdgm-paginate__page {
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 13px !important;
+  color: #000 !important;
+}
+
+/* Re-initialize Judge.me when tab is shown */
+
+/* Sub-tabs nav */
+
+.eto-review-subtabs-nav {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.eto-review-subtab-btn {
+  padding: 16px 40px;
+  background: #ffffff;
+  border: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #000;
+  cursor: pointer;
+  transition: all 0.2s;
+  width: auto;
+}
+
+.eto-review-subtab-btn:hover {
+  background: #f5f5f5;
+}
+
+.eto-review-subtab-btn.active {
+  background: #e6e4e0;
+  color: #000;
+  font-weight: 500;
+}
+
+/* Sub-tab panes */
+.eto-review-subtab-pane {
+  display: none;
+}
+
+.eto-review-subtab-pane.active {
+  display: block;
+}
+
+/* Q&A List */
+.eto-qa-list {
+  margin-bottom: 30px;
+}
+
+.eto-qa-item {
+  padding: 20px 0;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.eto-qa-question-row {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.eto-qa-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #e6e4e0;
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.eto-qa-avatar-store {
+  background: #e6e4e0;
+  color: #000;
+}
+
+.eto-qa-content {
+  flex: 1;
+}
+
+.eto-qa-meta {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.eto-qa-badge {
+  font-size: 11px;
+  color: #777;
+  font-weight: 400;
+}
+
+.eto-qa-text {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  line-height: 20px;
+  color: #222;
+}
+
+.eto-qa-answers-toggle {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  color: #b0b0b0;
+  margin: 10px 0;
+  cursor: pointer;
+}
+
+.eto-qa-answer-row {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #f0f0f0;
+}
+
+/* Empty state */
+.eto-qa-empty {
+  padding: 30px 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  color: #888;
+}
+
+/* Action Buttons */
+.eto-qa-form-section {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.eto-qa-form-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.eto-qa-write-btn {
+  padding: 14px 24px;
+  width: 250px;
+  background: #e6e4e0;
+  border: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #000;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.eto-qa-write-btn:hover {
+  background: #d8d6d2;
+}
+
+/* Ask a Question Form */
+.eto-qa-form-wrapper {
+  display: none;
+  background: #f9f9f8;
+  border: 1px solid #e0e0e0;
+  padding: 24px;
+  margin-top: 10px;
+}
+
+.eto-qa-form-wrapper.eto-qa-form-open {
+  display: block;
+}
+
+.eto-qa-form-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 20px;
+  margin-top: 0;
+}
+
+.eto-qa-form-row {
+  margin-bottom: 14px;
+}
+
+.eto-qa-label {
+  display: block;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 6px;
+}
+
+.eto-qa-input,
+.eto-qa-textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  background: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  color: #333;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.eto-qa-input:focus,
+.eto-qa-textarea:focus {
+  border-color: #888;
+}
+
+.eto-qa-textarea {
+  resize: vertical;
+}
+
+.eto-qa-submit-btn {
+  padding: 10px 28px;
+  background: #000;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.eto-qa-submit-btn:hover {
+  background: #333;
+}
+
+/* Tabs Section */
+
+.eto-tabs-section {
+  margin-top: 60px;
+  background: #F9F9F8;
+}
+
+.eto-tabs-nav {
+  display: flex;
+  background: #E6E2DF;
+}
+
+.eto-tab-btn {
+  flex: 1;
+  padding: 16px 20px;
+  background: transparent;
+  border: none;
+  border-right: 1px solid #FFFFFF;
+  color: #000000;
+  font-size: 16px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  line-height: 29px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.eto-tab-btn:hover {
+  background: #DCD8D3;
+}
+
+.eto-tab-btn.active {
+  background: #F9F9F8;
+  font-weight: 600;
+  border-right: none;
+}
+
+/* Judge.me App Overrides */
+.jdgm-widget .jdgm-write-rev-link,
+.jdgm-widget .jdgm-submit-rev {
+  padding: 14px 24px !important;
+  width: 250px !important;
+  max-width: 100% !important;
+  background: #e6e4e0 !important;
+  border: none !important;
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  color: #000 !important;
+  cursor: pointer !important;
+  transition: background 0.2s !important;
+  border-radius: 0 !important;
+  text-transform: none !important;
+  display: inline-flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  line-height: normal !important;
+  box-shadow: none !important;
+  box-sizing: border-box !important;
+}
+
+.jdgm-widget .jdgm-write-rev-link:hover,
+.jdgm-widget .jdgm-submit-rev:hover {
+  background: #d8d6d2 !important;
+  color: #000 !important;
+}
+
+.eto-tabs-content {
+  padding: 40px;
+}
+
+.eto-tab-pane {
+  display: none;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.eto-tab-pane.active {
+  display: block;
+}
+
+.eto-tab-pane h3 {
+  font-size: 14px;
+  font-weight: 800;
+  color: #000000;
+  margin-bottom: 8px;
+}
+
+.eto-tab-pane p {
+  font-size: 13px;
+  color: #000000;
+  line-height: 20px;
+  margin-bottom: 8px;
+}
+
+.eto-tab-pane strong {
+  font-weight: 800;
+  color: #000000;
+}
+
+.eto-tab-pane ul {
+  padding-left: 20px;
+  margin-bottom: 8px;
+  margin-top: 0;
+}
+
+.eto-tab-pane li {
+  font-size: 13px;
+  color: #000000;
+  line-height: 20px;
+  margin-bottom: 4px;
+}
+
+/* Collapse empty &nbsp; paragraphs and excessive gaps from Magento HTML */
+.eto-tab-pane p:empty,
+.eto-tab-pane div:empty {
+  display: none;
+}
+.eto-tab-pane p br:only-child {
+  display: none;
+}
+.eto-tab-pane > div > p,
+.eto-tab-pane > div > div {
+  margin-top: 2px;
+  margin-bottom: 4px;
+}
+.eto-tab-pane > div {
+  /* Inherit fonts from .eto-tab-pane */
+}
+/* Tighten spacing on br-heavy Magento content */
+.eto-tab-pane br + br {
+  display: none;
+}
+
+/* Lead Time tab specific fixes */
+#tab-leadtime .product-specs,
+#tab-leadtime .product_tabs_custom4_contents,
+#tab-leadtime > div {
+  /* Inherit fonts from .eto-tab-pane */
+}
+#tab-leadtime p {
+  margin: 0 0 8px 0 !important;
+}
+/* Hide &nbsp;-only paragraphs via max-height trick */
+#tab-leadtime p:not(:has(strong)):not(:has(span)):not(:has(a)):not(:has(em)) {
+  max-height: 0;
+  overflow: hidden;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+/* Ensure paragraphs with real content show */
+#tab-leadtime p:has(strong),
+#tab-leadtime p:has(span),
+#tab-leadtime p:has(a),
+#tab-leadtime p:has(em) {
+  max-height: none;
+  margin: 0 0 6px 0 !important;
+}
+
+/* Shipping info text improvement */
+#tab-leadtime span[style*="text-decoration: underline"],
+#tab-leadtime p:first-of-type {
+  font-size: 14px;
+}
+#tab-leadtime span[style*="background-color"] {
+  padding: 3px 8px !important;
+  border-radius: 3px;
+  display: inline-block;
+  margin-bottom: 4px;
+}
+#tab-leadtime a:not(.eto-btn-green):not(.eto-fast-quote-link) {
+  text-decoration: none !important;
+  color: #000 !important;
+  font-weight: bold;
+}
+
+/* Overview tab — collapse &nbsp;-only paragraphs */
+#tab-overview p {
+  margin: 0 0 12px 0;
+}
+#tab-overview p:empty {
+  display: none;
+}
+#tab-overview div:empty {
+  display: none;
+}
+
+.eto-please-note {
+  font-style: italic;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+/* ===== Product Image Lightbox ===== */
+.eto-lightbox-overlay {
+  display: none;
+  position: fixed;
+  z-index: 99999;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  align-items: center;
+  justify-content: center;
+}
+.eto-lightbox-overlay.active {
+  display: flex;
+}
+.eto-lightbox-modal {
+  background: #fff;
+  border-radius: 6px;
+  width: 90%;
+  max-width: 850px;
+  max-height: 85vh;
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.3);
+}
+.eto-lightbox-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 13px;
+  color: #555;
+  cursor: pointer;
+  z-index: 10;
+  font-family: Arial, sans-serif;
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.eto-lightbox-close:hover {
+  color: #000;
+}
+.eto-lightbox-close svg {
+  width: 14px;
+  height: 14px;
+}
+.eto-lightbox-main-img {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  min-height: 400px;
+  background: #fafafa;
+}
+.eto-lightbox-main-img img {
+  max-width: 100%;
+  max-height: 70vh;
+  object-fit: contain;
+}
+.eto-lightbox-sidebar {
+  width: 200px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 15px 20px;
+  border-left: 1px solid #eee;
+  overflow-y: auto;
+}
+.eto-lightbox-title {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  text-align: center;
+  color: #333;
+  margin-bottom: 15px;
+  line-height: 1.4;
+}
+.eto-lightbox-thumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+}
+.eto-lightbox-thumb {
+  width: 55px;
+  height: 55px;
+  border: 2px solid #ddd;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 2px;
+}
+.eto-lightbox-thumb.active {
+  border-color: #e67e22;
+}
+.eto-lightbox-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+@media (max-width: 768px) {
+  .eto-lightbox-modal {
+    flex-direction: column;
+    max-height: 90vh;
+  }
+  .eto-lightbox-sidebar {
+    width: 100%;
+    border-left: none;
+    border-top: 1px solid #eee;
+    padding: 15px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+  .eto-lightbox-title {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+  .eto-lightbox-main-img {
+    min-height: 250px;
+    padding: 20px;
+  }
+  .eto-lightbox-main-img img {
+    max-height: 40vh;
+  }
+}
+
+/* Responsive */
+@media (max-width: 1100px) {
+  .eto-product-layout {
+    grid-template-columns: 1fr 1fr;
+  }
+  .eto-gallery {
+    grid-column: 1;
+    grid-row: 1 / 3;
+  }
+  .eto-product-title {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .eto-size-section {
+    grid-column: 2;
+    grid-row: 2;
+  }
+  .eto-sidebar {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    position: static;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .eto-product-layout {
+    display: flex;
+    flex-direction: column;
+  }
+  .eto-product-title {
+    order: 1;
+    text-align: center;
+  }
+  .eto-gallery {
+    order: 2;
+  }
+  .eto-size-section {
+    order: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .eto-size-header {
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    text-align: center;
+  }
+  .eto-sidebar {
+    order: 4;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+  
+  .eto-size-grid {
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+    max-width: 350px;
+    margin: 0 auto;
+  }
+  
+  .eto-tabs-nav {
+    flex-wrap: wrap;
+  }
+  
+  .eto-tab-btn {
+    flex: 1 1 50%;
+    text-align: center;
+  }
+}
+
+/* Cart Popup Styles */
+.eto-cart-popup-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.3);
+  z-index: 9998;
+}
+
+.eto-cart-popup {
+  display: none;
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  left: auto;
+  transform: none;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 0;
+  width: 380px;
+  max-width: 90%;
+  max-height: 80vh;
+  overflow: visible;
+  z-index: 9999;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+.eto-cart-popup-close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  background: #c0392b;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  font-size: 14px;
+  line-height: 26px;
+  text-align: center;
+  cursor: pointer;
+  padding: 0;
+  z-index: 10;
+}
+.eto-cart-popup-close:hover { background: #e74c3c; }
+
+.eto-cart-popup-header {
+  padding: 18px 20px;
+  border-bottom: none;
+}
+
+.eto-cart-popup-header .cart-subtotal-row {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.eto-cart-popup-header .cart-subtotal-label {
+  font-weight: 400;
+}
+
+.eto-cart-popup-header .cart-subtotal-price {
+  font-weight: 700;
+  color: #4a7c2a;
+}
+
+.eto-cart-popup-header .cart-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #333;
+}
+
+.eto-cart-popup-items {
+  padding: 10px 20px;
+  max-height: none;
+  overflow: visible;
+}
+
+.eto-cart-item {
+  display: flex;
+  gap: 12px;
+  padding: 15px 0;
+  border-bottom: 1px solid #e5e5e5;
+  position: relative;
+}
+
+.eto-cart-item:last-child {
+  border-bottom: none;
+}
+
+.eto-cart-item-img {
+  width: 50px;
+  height: 70px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.eto-cart-item-info {
+  flex: 1;
+  padding-right: 25px;
+}
+
+.eto-cart-item-title {
+  font-size: 14px;
+  color: #333;
+  line-height: 1.4;
+  margin-bottom: 0;
+  max-width: 160px;
+}
+
+.eto-cart-item-qty-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  margin-top: 2px;
+}
+
+.eto-cart-item-qty-num {
+  font-weight: 400;
+}
+
+.eto-cart-item-qty-x {
+  font-weight: 700;
+}
+
+.eto-cart-item-qty-row select {
+  padding: 2px 4px;
+  border: 1px solid #333;
+  font-size: 13px;
+  width: 45px;
+}
+
+.eto-cart-item-price {
+  font-weight: 400;
+  color: #333;
+  margin-left: 8px;
+}
+
+.eto-cart-item-details {
+  font-size: 13px;
+  color: #333;
+  text-decoration: underline;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+.eto-main-image-container {
+  position: relative;
+  background-color: transparent;
+  width: 100%;
+  max-width: 500px;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.eto-cart-item-details-wrapper {
+  position: relative;
+  display: inline-block;
+  margin-top: 6px;
+}
+
+.eto-cart-details-popup {
+  position: absolute;
+  top: 22px;
+  left: -10px;
+  background: #f7f7f7;
+  border: 1px solid #e0e0e0;
+  padding: 18px 22px;
+  min-width: 340px;
+  z-index: 10000;
+  display: none;
+}
+
+.eto-cart-item-details-wrapper:hover .eto-cart-details-popup {
+  display: block;
+}
+
+.eto-cart-details-row {
+  display: flex;
+  gap: 0;
+  font-size: 15px;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.eto-cart-details-label {
+  font-style: italic;
+  font-weight: 700;
+  min-width: 150px;
+  padding-right: 10px;
+  border-right: 1px dotted #ccc;
+}
+
+.eto-cart-details-value {
+  font-weight: 400;
+  padding-left: 10px;
+}
+
+.eto-cart-details-divider {
+  border: 0;
+  border-left: 1px dotted #ccc;
+  margin: 4px 0;
+}
+
+.eto-cart-item-remove {
+  position: absolute;
+  top: 15px;
+  right: 0;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+}
+
+.eto-cart-item-remove img {
+  width: 16px;
+  height: 16px;
+}
+
+.eto-cart-popup-footer {
+  padding: 15px 20px;
+  border-top: 1px solid #ddd;
+}
+
+.eto-cart-checkout-btn {
+  display: block;
+  width: 100%;
+  background: #4a7c2a;
+  color: #fff;
+  text-align: center;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+}
+
+.eto-cart-checkout-btn:hover {
+  background: #3d6823;
+}
+
+
+.eto-gallery-main {
+  position: relative; /* Needed for absolute positioning of lens */
+}
+
+.eto-zoom-lens {
+  position: absolute;
+  border: 2px solid rgba(0, 0, 0, 0.15);
+  width: 180px;
+  height: 200px;
+  background-color: rgba(255, 255, 255, 0.3);
+  cursor: crosshair;
+  display: none;
+  pointer-events: none;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.5) inset;
+}
+
+.eto-zoom-result {
+  border: 1px solid #ddd;
+  width: 450px;
+  height: 500px;
+  background-color: white;
+  position: absolute;
+  top: 0;
+  left: calc(100% + 20px);
+  z-index: 1000;
+  display: none;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  background-repeat: no-repeat;
+  border-radius: 3px;
+}  /* Buybox */
+  main.wrap .buybox{position:sticky !important;top:32px !important;align-self:start !important;font-family:'Inter', sans-serif;}
+  .buybox .card{background:#F3F0EA !important;border:1px solid #E7E2D8 !important;border-radius:14px !important;padding:18px !important;margin:0 !important;}
+  .buybox .price{font-family:'Lora', Georgia, 'Times New Roman', serif;font-weight:600;font-size:33px;color:#1F1D1A;line-height:1;}
+  .buybox .selected{display:flex;align-items:center;gap:7px;font-size:13px;color:#1F1D1A;font-weight:700 !important;margin-top:10px;}
+  .buybox .selected *{font-weight:700 !important;}
+  .buybox .selected .icon{width:16px;height:16px;color:#1F1D1A;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
+  .buybox .ships{display:flex;align-items:center;gap:8px;font-size:13px;color:#3F7D4F;font-weight:700 !important;margin-top:14px;}
+  .buybox .ships *{font-weight:700 !important;}
+  .buybox .ships .icon{width:18px;height:18px;color:#3F7D4F;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
+  .buybox .customnote{font-size:12px;color:#8A8378;margin-top:7px;}
+
+  .buybox .qty-label{font-size:13px;color:#1F1D1A;margin:20px 0 8px;}
+  .buybox .stepper{display:inline-flex;align-items:center;gap:8px;}
+  .buybox .step{width:34px;height:34px;border:1px solid #E0D9CC !important;background:#fff !important;border-radius:8px !important;font-size:16px;color:#1F1D1A;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0 !important;box-shadow:none !important;}
+  .buybox .step:hover{border-color:#B98E54 !important;}
+  .buybox .qty-val{font-size:15px;font-weight:500;width:32px !important;min-width:32px;text-align:center;color:#1F1D1A;border:none !important;background:transparent !important;box-shadow:none !important;padding:0 !important;outline:none !important;}
+
+  .buybox .btn{width:100% !important;border-radius:9px !important;padding:13px !important;font-size:14px !important;font-weight:600 !important;display:flex !important;align-items:center !important;justify-content:center !important;gap:8px !important;cursor:pointer;text-decoration:none !important;line-height:1.2 !important;border:none !important;box-shadow:none !important;}
+  .buybox .btn-primary{background:#D87732 !important;color:#fff !important;margin-top:20px !important; border:none !important;}
+  .buybox .btn-primary:hover{background:#c26a2c !important;}
+  .buybox .btn-outline{border:1px solid #E0D9CC !important;background:#fff !important;color:#1F1D1A !important;margin-top:10px !important;}
+  .buybox .btn-outline:hover{border-color:#B98E54 !important;}
+  .buybox .btn-outline .icon{width:16px;height:16px;color:#B98E54 !important;fill:currentColor !important;stroke:none !important;flex-shrink:0;overflow:visible;}
+  .buybox .btn-outline:hover .icon{color:#B98E54 !important;}
+
+  .buybox .callout{text-align:center;margin-top:20px;}
+  .buybox .callout .num{display:flex;align-items:center;justify-content:center;gap:8px;font-size:19px;font-weight:600;color:#1F1D1A;}
+  .buybox .callout .num .icon{width:18px;height:18px;color:#B98E54 !important;fill:currentColor !important;stroke:none !important;flex-shrink:0;overflow:visible;}
+  .buybox .callout .hours{font-size:12px;color:#8A8378;margin-top:4px;}
+
+  .buybox .assurance{display:flex;align-items:center;gap:14px;border:1px solid #E7E2D8;border-radius:12px;padding:15px 16px;margin-top:16px;}
+  .buybox .assurance .icon{width:40px;height:40px;padding:7px;border:2px dashed #000000 !important;border-radius:50%;color:#000000 !important;stroke:currentColor;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
+  .buybox .assurance p{font-size:13px;color:#4A453E;line-height:1.4;margin:0;font-weight:500;}
+  
+  /* NEW UI CSS */
+  :root{
+    --page:#FFFFFF; --bar:#EFEBE3; --banner:#E9E4DB; --card:#F3F0EA; --tile:#FFFFFF;
+    --line:#E7E2D8; --tile-line:#E0D9CC; --ink:#1F1D1A; --body:#4A453E; --muted:#8A8378;
+    --oak:#9A6B2F; --oak-soft:#B98E54; --oak-tint:#FBF6EE; --green:#3F7D4F;
+    --serif:'Lora', Georgia, 'Times New Roman', serif; --sans:'Inter', system-ui, -apple-system, sans-serif;
+  }
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px;font-family:var(--sans);color:var(--body);line-height:1.5;}
+  .crumb{display:flex;align-items:center;gap:9px;font-size:13px;color:var(--muted);padding:20px 0;flex-wrap:wrap;}
+  .crumb a{color:inherit;text-decoration:none;}
+  .crumb a:hover{color:var(--oak);}
+  .crumb .sep{color:#C7BFB1;}
+  .crumb .current{color:var(--body);}
+
+  main.wrap .eto-new-product-grid{display:grid !important;grid-template-columns:minmax(0,0.9fr) minmax(0,1.35fr) 275px !important;gap:24px !important;align-items:start !important;padding-bottom:48px !important;}
+  main.wrap .eto-new-product-grid > .gallery { grid-column: 1 !important; grid-row: 1 !important; position: sticky !important; top: 170px !important; align-self: start !important; z-index: 2 !important; }
+  main.wrap .eto-new-product-grid > .details { grid-column: 2 !important; grid-row: 1 !important; min-width: 0 !important; }
+  main.wrap .eto-new-product-grid > .buybox { grid-column: 3 !important; grid-row: 1 !important; position: sticky !important; top: 170px !important; align-self: start !important; z-index: 2 !important; }
+
+  .gallery .hero{aspect-ratio:4/5;border-radius:12px;overflow:hidden;background:#ECE5DA;position:relative;display:flex;align-items:center;justify-content:center;padding:24px;}
+  .thumbs{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:12px;}
+  .thumb{aspect-ratio:1/1;border-radius:8px;border:1px solid var(--tile-line);background:#EAE1D2;overflow:hidden;cursor:pointer;}
+  .thumb.active{border-color:var(--oak);box-shadow:0 0 0 1px var(--oak);}
+  .thumb.more{background:#EFE9DF;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--ink);font-size:13px;font-weight:600;gap:1px;cursor:pointer;}
+  .thumb.more span{font-weight:400;font-size:12px;color:var(--muted);}
+  .zoomhint{display:flex;align-items:center;justify-content:center;gap:7px;font-size:14px;color:#7A7264;margin-top:18px;font-weight:500;}
+  .zoomhint .icon{width:16px;height:16px;stroke:currentColor;stroke-width:1.6;fill:none;color:#7A7264;}
+
+  .eyebrow{display:inline-block;background:var(--banner);color:#6B6357;font-size:11px;font-weight:600;letter-spacing:.1em;padding:5px 10px;border-radius:5px;margin-bottom:14px;text-transform:uppercase;}
+  .title{font-family:var(--serif);font-weight:600;font-size:30px;line-height:1.25;color:var(--ink);margin-bottom:12px;margin-top:0;}
+  .lede{font-size:15px;color:var(--body);max-width:46ch;margin-bottom:26px;}
+
+  /* sizes-head styling moved */
+
+  .size-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;}
+  .size-tile{position:relative;text-align:left;background:var(--tile);border:1px solid var(--tile-line);border-radius:9px;padding:11px 11px;display:flex;flex-direction:column;gap:2px;transition:border-color .12s ease, box-shadow .12s ease;cursor:pointer;min-width:0;}
+  .size-tile:hover{border-color:var(--oak-soft);}
+  .size-tile.selected{border-color:var(--oak);box-shadow:0 0 0 1px var(--oak);background:var(--oak-tint);}
+  .size-tile .dim{font-size:14px;font-weight:500;color:var(--ink);white-space:nowrap;}
+  .size-tile .price{font-size:13px;font-weight:500;color:var(--oak);}
+  .size-tile .check{position:absolute;top:-7px;right:-7px;width:20px;height:20px;border-radius:50%;background:var(--oak);color:#fff;display:none;align-items:center;justify-content:center;}
+  .size-tile.selected .check{display:flex;}
+  .size-tile .check .icon{width:12px;height:12px;stroke:#fff;stroke-width:2.4;fill:none;stroke-linecap:round;stroke-linejoin:round;}
+
+  .helper{display:flex;align-items:center;gap:18px;background:#EAE1D2 !important;border:1px solid #D8CDBA !important;border-radius:12px;padding:18px 20px;margin-top:20px;}
+  .helper .badge{width:56px;height:56px;border-radius:50%;background:#fff !important;color:#9A6B2F;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 2px 6px rgba(0,0,0,0.05);}
+  .helper .badge .icon{width:22px;height:22px;stroke:currentColor;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round;}
+  .helper .copy{flex:1;}
+  .helper .copy strong{display:block;font-size:16px;color:#1F1D1A;font-weight:700;margin-bottom:4px;}
+  .helper .copy span{display:block;font-size:14px;color:#4A453E;line-height:1.45;max-width:none;}
+  .helper .check-btn{border:1px solid #D8CDBA;background:#fff;border-radius:8px;padding:12px 18px;font-size:14px;font-weight:600;color:#1F1D1A;white-space:nowrap;cursor:default;text-decoration:none;box-shadow:0 2px 6px rgba(0,0,0,0.05);pointer-events:none;}
+  .helper .check-btn:hover{border-color:#D8CDBA;}
+
+  .features{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:20px;background:#F3F0EA !important;border:1px solid #E7E2D8;border-radius:12px;padding:32px 16px;}
+  .feature{display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;padding:0;}
+  .feature .ficon{width:40px;height:40px;display:flex;align-items:center;justify-content:center;}
+  .feature .ficon img{max-width:100%;max-height:100%;object-fit:contain;}
+  .feature .ficon .icon{width:28px;height:28px;stroke:currentColor;stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round;}
+  .feature p{font-size:13px;color:#4A453E;line-height:1.4;white-space:nowrap;margin:0;font-weight:500;}
+
+  /* Tabs */
+  .tabs{background:#F3F0EA !important;border:1px solid #E7E2D8;border-radius:12px;padding:24px 32px;margin-top:20px;}
+  .tablist{display:flex;width:100%;border-bottom:1px solid #E7E2D8;overflow-x:auto;}
+  .tab{flex:1;display:flex;justify-content:center;align-items:center;gap:8px;padding:20px 10px;font-size:14px;font-weight:500;color:#8A8378;background:none;border:none;border-bottom:2px solid transparent;white-space:nowrap;cursor:pointer;margin:0;transition:color 0.2s, border-color 0.2s;}
+  .tab .icon{width:16px;height:16px;stroke:currentColor;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round;}
+  .tab.active{color:#1F1D1A;border-bottom-color:#9A6B2F;}
+  .tabpanel{display:none;padding:28px 0 56px;}
+  .tabpanel.active{display:block;}
+  .tabpanel.grid-layout{display:none;}
+  .tabpanel.grid-layout.active{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:40px;}
+  .product-description-container { max-width: 100%; font-size: 13px; color: #7A7264; line-height: 1.6; }
+  .product-description-container [style], .eto-clean-tab [style] { font-family: inherit !important; color: inherit !important; font-size: inherit !important; background: transparent !important; box-shadow: none !important; text-shadow: none !important; }
+  .product-description-container strong, .product-description-container b { font-size: 14px !important; font-weight: 700 !important; color: #1F1D1A !important; display: inline; margin-bottom: 0; }
+  .product-description-container h3, .product-description-container h4 { font-size: 14px !important; font-weight: 700 !important; color: #1F1D1A !important; display: block; margin-bottom: 12px; }
+  .eto-clean-tab { font-family: var(--sans), sans-serif !important; font-size: 14px; color: #4A453E; line-height: 1.6; }
+  .eto-clean-tab *, .eto-clean-tab [style] { font-family: inherit !important; }
+  .eto-clean-tab [style] { color: inherit !important; font-size: inherit !important; background: transparent !important; box-shadow: none !important; text-shadow: none !important; }
+  .eto-clean-tab strong, .eto-clean-tab b, .eto-clean-tab strong *, .eto-clean-tab b * { font-weight: 600 !important; color: #1F1D1A !important; font-style: normal !important; text-decoration: none !important; }
+  .eto-clean-tab span[style*="yellow"] { background: #EFEBE3 !important; color: #1F1D1A !important; padding: 4px 8px !important; border-radius: 4px !important; display: inline-block; font-size: 12px !important; font-weight: 600 !important; letter-spacing: 0.05em; margin-bottom: 8px; }
+  .eto-clean-tab a.eto-fast-quote-link { background: #1F1D1A !important; color: #fff !important; font-size: 14px !important; font-weight: 600 !important; padding: 13px !important; border-radius: 9px !important; text-decoration: none !important; display: inline-flex !important; align-items: center; justify-content: center; margin-top: 20px; }
+  .eto-clean-tab a.eto-fast-quote-link:hover { background: #33302B !important; }
+  .eto-clean-tab li p, .eto-clean-tab li div { margin: 0 !important; padding: 0 !important; }
+  .product-description-container > div, .product-description-container > p, .product-description-container .product-description > div, .product-description-container .product-description > p { margin-bottom: 16px; max-width: 100%; }
+  .product-description-container .eto-please-note, .product-description-container .eto-please-note * { font-weight: 700 !important; font-size: 14px !important; color: #1F1D1A !important; line-height: 1.5 !important; margin-bottom: 24px; }
+  .tabpanel p{font-size:14px;color:var(--body);max-width:100%;line-height:1.5;}
+  .tabpanel ul{list-style:none;display:flex;flex-direction:column;gap:10px;padding:0;margin:0;}
+  .tabpanel li{font-size:14px;color:var(--body);display:flex;gap:9px;}
+  .tabpanel li::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--oak);margin-top:8px;flex-shrink:0;}
+
+  /* Responsive */
+  @media (max-width:960px){
+    main.wrap .eto-new-product-grid{grid-template-columns:1fr 1fr !important;}
+    main.wrap .eto-new-product-grid > .gallery { grid-column: 1 !important; grid-row: 1 !important; }
+    main.wrap .eto-new-product-grid > .details { grid-column: 2 !important; grid-row: 1 !important; }
+    main.wrap .eto-new-product-grid > .buybox { grid-column: 1 / -1 !important; grid-row: 2 !important; position:static !important; margin-top: 20px; }
+    .buybox .card{max-width:420px;margin:0 auto;}
+    .tabpanel.grid-layout.active{grid-template-columns:1fr;}
+  }
+  @media (max-width:768px){
+    .wrap { padding: 0 16px; }
+    main.wrap .eto-new-product-grid{grid-template-columns:1fr !important; gap: 24px !important;}
+    main.wrap .eto-new-product-grid > .gallery { grid-column: 1 !important; grid-row: 1 !important; }
+    main.wrap .eto-new-product-grid > .details { grid-column: 1 !important; grid-row: 2 !important; }
+    main.wrap .eto-new-product-grid > .buybox { grid-column: 1 !important; grid-row: 3 !important; margin-top: 0; }
+    .buybox .card{max-width:100%;}
+    .size-grid{grid-template-columns:repeat(2,1fr);}
+    .features{grid-template-columns:repeat(2,1fr); padding: 20px 12px; gap: 12px;}
+    .feature p{white-space:normal; font-size:12px;}
+    .title{font-size:24px; line-height: 1.3;}
+    .helper { flex-direction: column; text-align: center; padding: 16px; align-items: center; }
+    .helper .copy span { max-width: 100%; }
+    .tabs { padding: 16px; }
+    .tablist { justify-content: flex-start; scrollbar-width: none; -webkit-overflow-scrolling: touch; padding-bottom: 2px; }
+    .tablist::-webkit-scrollbar { display: none; }
+    .tab { flex: 0 0 auto; padding: 15px 16px; font-size: 13px; }
+    .thumbs { gap: 6px; }
+    .gallery .hero{padding:12px; border-radius: 8px;}
+  }
+</style>
+
+<!-- Cart Popup -->
+<div class="eto-cart-popup-overlay" id="eto-cart-overlay" onclick="etoCloseCartPopup()"></div>
+<div class="eto-cart-popup" id="eto-cart-popup">
+  <button class="eto-cart-popup-close" onclick="etoCloseCartPopup()" aria-label="Close cart popup">&#10005;</button>
+  <div class="eto-cart-popup-header">
+    <div class="cart-subtotal-row">
+      <span class="cart-subtotal-label">Cart Subtotal:</span> <span class="cart-subtotal-price" id="eto-popup-subtotal">$0.00</span>
+    </div>
+    <div class="cart-title">Recently added item(s)</div>
+  </div>
+  <div class="eto-cart-popup-items" id="eto-cart-items">
+    <!-- Items will be populated by JavaScript -->
+  </div>
+  <div class="eto-cart-popup-footer">
+    <form action="{{ routes.cart_url }}" method="post">
+      <button type="submit" name="checkout" class="eto-cart-checkout-btn">CHECKOUT</button>
+    </form>
+  </div>
+</div>
+
+<main class="wrap">
+  <!-- Breadcrumb -->
+  <nav class="crumb" id="eto-dynamic-breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Home</a>
+    <span class="sep">&rsaquo;</span>
+    {% assign bc_shown = false %}
+    {% assign first_category = blank %}
+    {% assign breadcrumb_category = "" %}
+    
+    {% if product.metafields.custom.product_category.value %}
+      {% assign first_category = product.metafields.custom.product_category.value | first %}
+    {% elsif product.metafields.custom.product_category != blank %}
+      {% assign first_category = product.metafields.custom.product_category | remove: '[' | remove: ']' | remove: '"' | split: ',' | first %}
+    {% endif %}
+
+    {% if first_category != blank %}
+      <a href="/collections/all?filter.p.m.custom.product_category={{ first_category | url_encode }}">{{ first_category }} Home</a>
+      {% assign bc_shown = true %}
+      {% assign breadcrumb_category = first_category %}
+    {% elsif collection %}
+      <a href="{{ collection.url }}">{{ collection.title }} Home</a>
+      {% assign bc_shown = true %}
+      {% assign breadcrumb_category = collection.title %}
+    {% else %}
+      {% for col in product.collections %}
+        {% unless col.handle == 'all' or col.handle == 'frontpage' %}
+          {% if bc_shown == false %}
+            <a href="{{ col.url }}">{{ col.title }} Home</a>
+            {% assign bc_shown = true %}
+            {% assign breadcrumb_category = col.title %}
+          {% endif %}
+        {% endunless %}
+      {% endfor %}
+    {% endif %}
+    {% if bc_shown == false and product.type != blank %}
+      <a href="/collections/all">{{ product.type }} Home</a>
+      {% assign bc_shown = true %}
+      {% assign breadcrumb_category = product.type %}
+    {% endif %}
+    {% if bc_shown %}
+      <span class="sep">&rsaquo;</span>
+    {% endif %}
+    <span class="current">{{ product.title }}</span>
+  </nav>
+
+  <script>
+    window.etoCategoryDescriptions = {};
+    {% for collection in product.collections %}
+      {% assign temp_cat = collection.title | replace: " Home", "" | replace: " home", "" | replace: " HOME", "" %}
+      {% assign temp_cat_down = temp_cat | downcase %}
+      {% if temp_cat_down contains "door" %}
+        {% assign temp_cat = temp_cat | replace: " Doors", "" | replace: " doors", "" | replace: " Door", "" | replace: " door", "" | replace: "Doors", "" | replace: "doors", "" | replace: "Door", "" | replace: "door", "" %}
+      {% endif %}
+      
+      {% assign category_name = temp_cat %}
+      {% capture cat_desc %}{% include 'category-description-mapping' %}{% endcapture %}
+      {% assign cat_desc = cat_desc | strip %}
+      {% if cat_desc == blank %}
+        {% capture cat_desc %}<p><strong>Find the Perfect {{ temp_cat }} Door for Your Space.</strong> Explore our premium selection of {{ temp_cat | downcase }} doors, designed to combine style, durability, and exceptional craftsmanship to elevate any home or office.</p>{% endcapture %}
+      {% endif %}
+      
+      {% assign temp_title = temp_cat | upcase %}
+      {% unless temp_title contains "DOOR" %}
+        {% assign temp_title = temp_title | append: " DOORS" %}
+      {% endunless %}
+      
+      window.etoCategoryDescriptions[{{ temp_cat | json }}] = { title: {{ temp_title | json }}, desc: {{ cat_desc | json }} };
+      window.etoCategoryDescriptions[{{ collection.title | json }}] = { title: {{ temp_title | json }}, desc: {{ cat_desc | json }} };
+    {% endfor %}
+    
+    {% if product.metafields.custom.product_category.value %}
+      {% for cat in product.metafields.custom.product_category.value %}
+        {% assign temp_cat = cat %}
+        {% assign category_name = temp_cat %}
+        {% capture cat_desc %}{% include 'category-description-mapping' %}{% endcapture %}
+        {% assign cat_desc = cat_desc | strip %}
+        {% if cat_desc == blank %}
+          {% capture cat_desc %}<p><strong>Find the Perfect {{ temp_cat }} Door for Your Space.</strong> Explore our premium selection of {{ temp_cat | downcase }} doors, designed to combine style, durability, and exceptional craftsmanship to elevate any home or office.</p>{% endcapture %}
+        {% endif %}
+        
+        {% assign temp_title = temp_cat | upcase %}
+        {% unless temp_title contains "DOOR" %}
+          {% assign temp_title = temp_title | append: " DOORS" %}
+        {% endunless %}
+        
+        window.etoCategoryDescriptions[{{ temp_cat | json }}] = { title: {{ temp_title | json }}, desc: {{ cat_desc | json }} };
+      {% endfor %}
+    {% elsif product.metafields.custom.product_category != blank %}
+      {% assign cat_list = product.metafields.custom.product_category | remove: '[' | remove: ']' | remove: '"' | split: ',' %}
+      {% for cat in cat_list %}
+        {% assign temp_cat = cat | strip %}
+        {% assign category_name = temp_cat %}
+        {% capture cat_desc %}{% include 'category-description-mapping' %}{% endcapture %}
+        {% assign cat_desc = cat_desc | strip %}
+        {% if cat_desc == blank %}
+          {% capture cat_desc %}<p><strong>Find the Perfect {{ temp_cat }} Door for Your Space.</strong> Explore our premium selection of {{ temp_cat | downcase }} doors, designed to combine style, durability, and exceptional craftsmanship to elevate any home or office.</p>{% endcapture %}
+        {% endif %}
+        
+        {% assign temp_title = temp_cat | upcase %}
+        {% unless temp_title contains "DOOR" %}
+          {% assign temp_title = temp_title | append: " DOORS" %}
+        {% endunless %}
+        
+        window.etoCategoryDescriptions[{{ temp_cat | json }}] = { title: {{ temp_title | json }}, desc: {{ cat_desc | json }} };
+      {% endfor %}
+    {% endif %}
+
+    document.addEventListener("DOMContentLoaded", function() {
+      try {
+        const referrer = document.referrer;
+        if (referrer && referrer.includes("filter.p.m.custom.product_category=")) {
+          const url = new URL(referrer);
+          const category = url.searchParams.get("filter.p.m.custom.product_category");
+          if (category) {
+            const breadcrumb = document.getElementById("eto-dynamic-breadcrumb");
+            if (breadcrumb) {
+              const links = breadcrumb.querySelectorAll("a");
+              if (links.length >= 2) {
+                // Update the category link
+                links[1].textContent = category + " Home";
+                links[1].href = "/collections/all?filter.p.m.custom.product_category=" + encodeURIComponent(category);
+              }
+            }
+            
+            // Sync bottom category description with the JS breadcrumb
+            if (window.etoCategoryDescriptions && window.etoCategoryDescriptions[category]) {
+              const descTitle = document.querySelector(".eto-product-category-desc h3");
+              const descContent = document.querySelector(".eto-product-category-desc .eto-category-desc-content");
+              if (descTitle && descContent) {
+                descTitle.textContent = window.etoCategoryDescriptions[category].title;
+                descContent.innerHTML = window.etoCategoryDescriptions[category].desc;
+              }
+            }
+          }
+        }
+      } catch (e) {
+        console.error("Error updating breadcrumb:", e);
+      }
+    });
+  </script>
+
+  <!-- Product Title Moved to Center Column -->
+
+  <!-- Image Lightbox Modal -->
+  <div class="eto-lightbox-overlay" id="eto-lightbox" onclick="if(event.target===this) etoCloseLightbox()">
+    <div class="eto-lightbox-modal">
+      <button class="eto-lightbox-close" onclick="etoCloseLightbox()">
+        Close <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+      </button>
+      <div class="eto-lightbox-main-img">
+        <img id="eto-lightbox-img" src="" alt="{{ product.title }}">
+      </div>
+      <div class="eto-lightbox-sidebar">
+        <div class="eto-lightbox-title">{{ product.title }}</div>
+        <div class="eto-lightbox-thumbs" id="eto-lightbox-thumbs">
+          {% if product.metafields.custom.product_image_url != blank %}
+            <div class="eto-lightbox-thumb active" onclick="etoLightboxSelect('{{ product.metafields.custom.product_image_url }}', this)">
+              <img src="{{ product.metafields.custom.product_image_url }}" alt="{{ product.title }}">
+            </div>
+          {% endif %}
+          {% for image in product.images %}
+            <div class="eto-lightbox-thumb" onclick="etoLightboxSelect('{{ image | image_url: width: 1200 }}', this)">
+              <img src="{{ image | image_url: width: 100 }}" alt="{{ product.title }}">
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Layout -->
+  <div class="eto-new-product-grid">
+    <!-- Gallery -->
+    <section class="gallery" aria-label="Product images">
+      <!-- Zoom Result Window (Hidden by default) -->
+      <div id="eto-zoom-result" class="eto-zoom-result"></div>
+      
+      <div class="hero" id="eto-main-image-container">
+          <!-- Zoom Lens (Hidden by default) -->
+          <div id="eto-zoom-lens" class="eto-zoom-lens"></div>
+
+          {% if product.metafields.custom.product_image_url != blank %}
+            <img id="eto-featured-img" src="{{ product.metafields.custom.product_image_url }}" alt="{{ product.title }}" style="width: 100%; height: 100%; object-fit: contain; cursor: zoom-in;" onclick="etoOpenLightbox(this.src)">
+          {% elsif product.featured_image %}
+            <img id="eto-featured-img" src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title }}" style="width: 100%; height: 100%; object-fit: contain; cursor: zoom-in;" onclick="etoOpenLightbox(this.src)">
+          {% else %}
+            {{ 'product-1' | placeholder_svg_tag }}
+          {% endif %}
+      </div>
+      
+      <div class="thumbs" id="eto-lightbox-thumbs">
+        {% if product.metafields.custom.product_image_url != blank %}
+          <div class="thumb active" onclick="etoChangeImage('{{ product.metafields.custom.product_image_url }}', this)">
+            <img src="{{ product.metafields.custom.product_image_url }}" alt="{{ product.title }}" style="width: 100%; height: 100%; object-fit: contain;">
+          </div>
+        {% endif %}
+        
+        {% for image in product.images limit: 4 %}
+          <div class="thumb {% if forloop.first and product.metafields.custom.product_image_url == blank %}active{% endif %}" onclick="etoChangeImage('{{ image | image_url: width: 600 }}', this)">
+            <img src="{{ image | image_url: width: 100 }}" alt="{{ product.title }}" style="width: 100%; height: 100%; object-fit: contain; mix-blend-mode: darken; padding: 4px;">
+          </div>
+        {% endfor %}
+        {% if product.images.size > 4 %}
+          <div class="thumb more" onclick="etoOpenLightbox('{{ product.images[4] | image_url: width: 1200 }}');">
+            +{{ product.images.size | minus: 4 }}<span>More</span>
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="zoomhint">
+        <svg class="icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+        Click image to zoom
+      </div>
+    </section>
+
+    <!-- Details -->
+    <section class="details" aria-label="Product details">
+      {% assign product_type_display = "INTERIOR DOORS" %}
+      {% assign first_category = blank %}
+      {% if product.metafields.custom.product_category.value %}
+        {% assign first_category = product.metafields.custom.product_category.value | first %}
+      {% elsif product.metafields.custom.product_category != blank %}
+        {% assign first_category = product.metafields.custom.product_category | remove: '[' | remove: ']' | remove: '"' | split: ',' | first %}
+      {% endif %}
+      
+      {% if first_category != blank %}
+        {% assign first_category = first_category | strip %}
+        {% assign product_type_display = first_category | append: " Home" %}
+      {% elsif collection and collection.handle != 'all' %}
+        {% assign product_type_display = collection.title | append: " Home" %}
+      {% else %}
+        {% assign col = product.collections | first %}
+        {% if col and col.handle != 'all' %}
+          {% assign product_type_display = col.title | append: " Home" %}
+        {% elsif product.type != blank %}
+          {% assign product_type_display = product.type | append: " Home" %}
+        {% endif %}
+      {% endif %}
+      <div class="eto-config-card">
+        <span class="eyebrow">{{ product_type_display }}</span>
+        <h1 class="title">{{ product.title }}</h1>
+        <div class="lede">{{ product.description | strip_html | truncatewords: 30 }}</div>
+
+        <div class="sizes-head" style="border-top: 1px solid #EBEBEB; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+          <span class="label">CHOOSE A SIZE <span id="eto-selected-size"></span></span>
+          <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
+            <button type="button" class="eto-config-edit" id="eto-size-edit-btn" style="display:none; margin-left: 0; white-space: nowrap;" onclick="etoEditSize()">EDIT</button>
+            <a href="javascript:void(0)" class="eto-clear-config" onclick="etoClearConfigurator()" style="white-space: nowrap;">Clear Configuration</a>
+          </div>
+        </div>
+
+      <!-- Size grid - powered natively by Shopify Variants -->
+      <div class="size-grid" id="eto-size-grid">
+        {% for variant in product.variants %}
+          {%- capture variant_display_title -%}
+            {%- if variant.title == 'Default Title' -%}
+                {%- if product.metafields.custom.spec_width != blank and product.metafields.custom.spec_height != blank -%}
+                    {{ product.metafields.custom.spec_width }}" X {{ product.metafields.custom.spec_height }}"
+                {%- else -%}
+                    {{ variant.title }}
+                {%- endif -%}
+            {%- else -%}
+                {%- assign t_parts = variant.title | split: ' X ' -%}
+                {%- if t_parts.size < 2 -%}{%- assign t_parts = variant.title | split: ' x ' -%}{%- endif -%}
+                {%- if t_parts.size < 2 -%}{%- assign t_parts = variant.title | split: 'X' -%}{%- endif -%}
+                {%- if t_parts.size < 2 -%}{%- assign t_parts = variant.title | split: 'x' -%}{%- endif -%}
+                
+                {%- if t_parts.size >= 2 -%}
+                  {%- for part in t_parts -%}{{ part | strip }}{% unless forloop.last %} X {% endunless %}{%- endfor -%}
+                {%- else -%}
+                  {{ variant.title }}
+                {%- endif -%}
+            {%- endif -%}
+          {%- endcapture -%}
+          
+          <button type="button" class="size-tile eto-size-option" 
+               data-variant-id="{{ variant.id }}" 
+               data-price="{{ variant.price | money }}"
+               data-price-cents="{{ variant.price }}"
+               data-title="{{ variant_display_title | strip | escape }}"
+               onclick="etoSelectVariant(this)">
+            <span class="dim">{{ variant_display_title | strip }}</span>
+            <span class="price">{{ variant.price | money }}</span>
+            <span class="check"><svg class="icon" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+          </button>
+        {% endfor %}
+      </div>
+
+      <!-- Dynamic config options container (Door Config, Pre Hanging, Jamb, Handing, etc.) -->
+      <div id="eto-config-container" class="eto-config-section" style="display:none;">
+        <!-- All dynamic option rows will be injected here by JS -->
+        <div id="eto-dynamic-options-container"></div>
+
+        <!-- Configured Section - shows after all required selections are made -->
+        <div id="eto-configured-section" style="display:none;">
+          <div class="eto-config-complete-box">
+            <div class="eto-config-complete-icon">
+              <svg class="icon" viewBox="0 0 24 24" style="width:20px; height:20px; stroke:#fff; stroke-width:3; fill:none; stroke-linecap:round; stroke-linejoin:round;"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="eto-config-complete-text">
+              <strong>Configuration Complete</strong>
+              <p>Review your selections above, then add your configured door to cart.</p>
+            </div>
+            <button type="button" id="eto-center-add-cart" onclick="etoAddToCart()" style="background:#D87732;color:#fff;border:none;padding:12px 24px;border-radius:6px;font-size:14px;font-weight:700;cursor:pointer;text-transform:uppercase;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;letter-spacing:0.5px;white-space:nowrap;">ADD TO CART</button>
+          </div>
+        </div>
+      </div>
+      </div>
+      
+      <div id="eto-notes-container" style="display:none; margin-top:16px;">
+        <input type="text" id="eto-notes" placeholder="Notes" class="eto-notes-input">
+      </div>
+
+      <!-- JSON data from metafield for JS to consume -->
+      {% if product.metafields.custom.door_options != blank %}
+        <script type="application/json" id="door-options-json">
+          {{ product.metafields.custom.door_options }}
+        </script>
+      {% endif %}
+
+      <!-- Variant data for JS to map sizes to variant IDs -->
+      <script type="application/json" id="variant-data-json">
+        [
+          {% for variant in product.variants %}
+            {
+              "id": {{ variant.id }},
+              "title": {{ variant.title | json }},
+              "price": {{ variant.price }},
+              "price_formatted": {{ variant.price | money | json }},
+              "available": {{ variant.available }}
+            }{% unless forloop.last %},{% endunless %}
+          {% endfor %}
+        ]
+      </script>
+
+      <div class="helper">
+        <div class="badge"><svg class="icon" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="8" rx="1"/><line x1="7" y1="8" x2="7" y2="12"/><line x1="11" y1="8" x2="11" y2="13"/><line x1="15" y1="8" x2="15" y2="12"/><line x1="19" y1="8" x2="19" y2="13"/></svg></div>
+        <div class="copy">
+          <strong>Not sure which size you need?</strong>
+          <span>Send us your rough opening measurements and we'll help confirm the right fit.</span>
+        </div>
+        <a href="javascript:void(0);" class="check-btn" style="text-decoration:none;cursor:default;pointer-events:none;" onclick="return false;">Check My Size</a>
+      </div>
+
+      <div class="features">
+        <div class="feature">
+          <div class="ficon"><img src="{{ 'icon-white-oak.png' | asset_url }}" alt="Engineered White Oak Veneer" loading="lazy"></div>
+          <p>Engineered<br>White Oak Veneer</p>
+        </div>
+        <div class="feature">
+          <div class="ficon"><img src="{{ 'icon-interior-use.png' | asset_url }}" alt="Interior Use" loading="lazy"></div>
+          <p>Interior<br>Use</p>
+        </div>
+        <div class="feature">
+          <div class="ficon"><img src="{{ 'icon-thickness.png' | asset_url }}" alt="1-3/4 in. Thickness" loading="lazy"></div>
+          <p>1-3/4 in.<br>Thickness</p>
+        </div>
+        <div class="feature">
+          <div class="ficon"><img src="{{ 'icon-custom-sizes.png' | asset_url }}" alt="Custom Sizes & Volume Discounts" loading="lazy"></div>
+          <p>Custom Sizes &amp;<br>Volume Discounts</p>
+        </div>
+      </div>
+    </section>
+
+    <aside class="buybox" aria-label="Purchase">
+      <div class="card">
+        <div class="price" id="boxPrice"><span id="eto-current-price">{{ product.price | money }}</span></div>
+        <div class="selected"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="8 12 11 15 16 9"/></svg><span id="boxSelected">{{ product.selected_or_first_available_variant.title }} selected</span></div>
+        <div class="ships"><svg class="icon" viewBox="0 0 24 24"><rect x="1" y="6" width="13" height="11" rx="1"/><path d="M14 9h4l3 3v5h-7z"/><circle cx="6" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg>Ships in 7–10 business days</div>
+        <p class="customnote">Custom sizes available</p>
+
+        <p class="qty-label">Quantity</p>
+        <div class="stepper">
+          <button type="button" class="step" aria-label="Decrease quantity" onclick="etoUpdateQty(-1)">&minus;</button>
+          <input type="text" class="qty-val" id="eto-quantity" value="1" min="1" readonly>
+          <button type="button" class="step" aria-label="Increase quantity" onclick="etoUpdateQty(1)">+</button>
+        </div>
+
+        {% if product.tags contains 'zoho_configurable' %}
+          {% render 'zoho-config-button', product: product %}
+        {% else %}
+        <form id="eto-product-form" action="/cart/add" method="post" onsubmit="return etoSidebarAddToCart(event)" style="margin: 0;">
+          <input type="hidden" name="id" id="eto-variant-id" value="{{ product.selected_or_first_available_variant.id }}">
+          <input type="hidden" name="quantity" id="eto-form-qty" value="1">
+          <button type="submit" class="btn btn-primary">Add to Cart</button>
+        </form>
+        {% endif %}
+
+        <a href="/pages/contact?product_name={{ product.title | url_encode }}&product_url={{ shop.url | append: product.url | url_encode }}" class="btn btn-outline">Request Volume Quote</a>
+        <a href="tel:{{ section.settings.phone | default: '(213) 622-2003' }}" class="btn btn-outline"><svg class="icon" viewBox="0 0 512 512" style="overflow:visible; fill:currentColor; stroke:none;"><path d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C12.1 30.2 0 46 0 64 0 311.4 200.6 512 448 512c18 0 33.8-12.1 38.6-29.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z"/></svg>Talk to a Door Expert</a>
+
+        <div class="callout">
+          <div class="num"><svg class="icon" viewBox="0 0 512 512" style="overflow:visible; fill:currentColor; stroke:none;"><path d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C12.1 30.2 0 46 0 64 0 311.4 200.6 512 448 512c18 0 33.8-12.1 38.6-29.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z"/></svg>{{ section.settings.phone | default: '(213) 622-2003' }}</div>
+          <div class="hours">Monday – Friday, 8am – 5pm PST</div>
+        </div>
+      </div>
+
+      <div class="assurance">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><polyline points="9 12 11 14 15 10"/></svg>
+        <p>Built for lasting performance and backed by expert support.</p>
+      </div>
+    </aside>
+  </div>
+
+
+  <!-- ============ TABS ============ -->
+  <section class="tabs" aria-label="More information">
+    <div class="tablist" role="tablist">
+      <button class="tab eto-tab-btn active" data-tab="details" role="tab" onclick="etoShowTab('overview', this)"><svg class="icon" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><line x1="8" y1="8" x2="16" y2="8"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="8" y1="16" x2="13" y2="16"/></svg>Product Details</button>
+      <button class="tab eto-tab-btn" data-tab="fit" role="tab" onclick="etoShowTab('specification', this)"><svg class="icon" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="18" rx="1"/><line x1="9" y1="9" x2="15" y2="9"/><line x1="9" y1="15" x2="15" y2="15"/></svg>Size &amp; Fit Guide</button>
+      <button class="tab eto-tab-btn" data-tab="shipping" role="tab" onclick="etoShowTab('leadtime', this)"><svg class="icon" viewBox="0 0 24 24"><rect x="1" y="6" width="13" height="11" rx="1"/><path d="M14 9h4l3 3v5h-7z"/><circle cx="6" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg>Shipping &amp; Lead Time</button>
+      <button class="tab" data-tab="faq" role="tab" onclick="document.getElementById('eto-reviews-section').scrollIntoView({behavior: 'smooth'})"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.8.4-1 .8-1 1.7"/><line x1="12" y1="17" x2="12" y2="17"/></svg>FAQ</button>
+    </div>
+    
+    <div>
+      <div id="tab-overview" class="tabpanel eto-tab-pane active" role="tabpanel">
+        <div class="product-description-container">
+          {% if product.metafields.custom.tab_overview != blank %}
+            {{ product.metafields.custom.tab_overview.value }}
+          {% else %}
+            <p class="eto-please-note"><strong>Please note: Doors are unfinished (the pictures may depict a finished door)<br>Request a Free Corner Sample to See the ETO Quality Difference</strong></p>
+            
+            <h3>{{ product.title }}</h3>
+            <div class="product-description">
+              {{ product.description }}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+      
+      <div id="tab-specification" class="tabpanel eto-tab-pane" role="tabpanel">
+        <div class="eto-clean-tab">
+        {% if product.metafields.custom.tab_specification != blank %}
+          <div class="eto-specs-list" style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; line-height: 1.8; color: #000;">
+            <style>
+              .eto-specs-list ul { list-style: disc; padding-left: 20px; margin: 6px 0; }
+              .eto-specs-list li { display: list-item !important; float: none !important; width: auto !important; padding: 2px 0; }
+              .eto-specs-list p  { display: block !important; margin: 4px 0; }
+              .eto-specs-list ul[type="disc"] > li > ul,
+              .eto-specs-list ul[type="disc"] > li > p { display: block !important; }
+            </style>
+            {{ product.metafields.custom.tab_specification.value }}
+          </div>
+        {% else %}
+          <div class="eto-specs-list" style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; line-height: 1.5; color: #000;">
+            <!-- Zoho Import Specs -->
+            {% if product.metafields.custom.spec_door_model != blank %}
+              <p style="margin: 0 0 2px 0;"><strong>Door Model:</strong> {{ product.metafields.custom.spec_door_model }}</p>
+            {% endif %}
+            
+            {% if product.metafields.custom.spec_species != blank %}
+              <p style="margin: 0 0 2px 0;"><strong>Species:</strong> {{ product.metafields.custom.spec_species }}</p>
+            {% endif %}
+  
+            {% if product.metafields.custom.spec_width != blank %}
+               <p style="margin: 0 0 2px 0;"><strong>Width:</strong> {{ product.metafields.custom.spec_width }}"</p>
+            {% endif %}
+  
+            {% if product.metafields.custom.spec_height != blank %}
+               <p style="margin: 0 0 2px 0;"><strong>Height:</strong> {{ product.metafields.custom.spec_height }}"</p>
+            {% endif %}
+  
+            {% if product.metafields.custom.spec_thickness != blank %}
+               <p style="margin: 0 0 2px 0;"><strong>Thickness:</strong> {{ product.metafields.custom.spec_thickness }}"</p>
+            {% endif %}
+  
+            {% if product.metafields.custom.spec_application != blank %}
+              <p style="margin: 0 0 2px 0;"><strong>Applicaton:</strong> {{ product.metafields.custom.spec_application }}</p>
+            {% endif %}
+  
+            {% if product.metafields.custom.spec_fire_rated != blank %}
+              <p style="margin: 0 0 2px 0;"><strong>Fire Rated:</strong> {{ product.metafields.custom.spec_fire_rated }}</p>
+            {% endif %}
+  
+            {% if product.metafields.custom.spec_impact_rated != blank %}
+              <p style="margin: 0 0 2px 0;"><strong>Impact Rated:</strong> {{ product.metafields.custom.spec_impact_rated }}</p>
+            {% endif %}
+  
+            {% if product.metafields.custom.spec_arch != blank %}
+              <p style="margin: 0 0 2px 0;"><strong>Arch:</strong> {{ product.metafields.custom.spec_arch }}</p>
+            {% endif %}
+  
+            {% if product.metafields.custom.spec_mega != blank %}
+              <p style="margin: 0 0 2px 0;"><strong>Mega Door (2-1/4):</strong> {{ product.metafields.custom.spec_mega }}</p>
+            {% endif %}
+  
+            {% if product.metafields.custom.spec_oversize != blank %}
+              <p style="margin: 0 0 2px 0;"><strong>Oversize (Taller than 96"):</strong> {{ product.metafields.custom.spec_oversize }}</p>
+            {% endif %}
+  
+            {% if product.metafields.custom.spec_weight != blank %}
+              <p style="margin: 0 0 2px 0;"><strong>Weight:</strong> {{ product.metafields.custom.spec_weight }} lbs</p>
+            {% endif %}
+            
+            <hr style="border:0; border-top:1px solid #eee; margin:10px 0;">
+  
+            <!-- Existing Specs -->
+            {% if product.metafields.custom.finish != blank %}
+              <p style="margin: 0 0 2px 0;"><strong>Finish:</strong> {{ product.metafields.custom.finish }}</p>
+            {% endif %}
+            
+            {% if product.metafields.custom.pre_hanging != blank %}
+              <p style="margin: 0 0 2px 0;"><strong>Pre-Hanging Available:</strong> {{ product.metafields.custom.pre_hanging }}</p>
+            {% endif %}
+            
+            {% if product.metafields.custom.wood_species != blank %}
+              <p style="margin: 0 0 2px 0;"><strong>Wood Species:</strong> {{ product.metafields.custom.wood_species }}</p>
+            {% endif %}
+            
+            {% if product.metafields.custom.construction != blank %}
+              <p style="margin: 0 0 2px 0;"><strong>Construction:</strong> {{ product.metafields.custom.construction }}</p>
+            {% endif %}
+            
+            {% if product.metafields.custom.fire_rated != blank %}
+              <p style="margin: 0 0 2px 0;"><strong>Fire Rated:</strong> {{ product.metafields.custom.fire_rated }}</p>
+            {% endif %}
+            
+            {% if product.metafields.custom.impact_rated != blank %}
+              <p style="margin: 0 0 2px 0;"><strong>Impact Rated:</strong> {{ product.metafields.custom.impact_rated }}</p>
+            {% endif %}
+            
+            {% if product.metafields.custom.custom_capabilities != blank %}
+              <p style="margin: 0 0 2px 0;"><strong>Custom Capabilities:</strong> {{ product.metafields.custom.custom_capabilities }}</p>
+            {% endif %}
+            
+            {% if product.metafields.custom.warranty != blank %}
+              <p style="margin: 0 0 2px 0;"><strong>Warranty:</strong> {{ product.metafields.custom.warranty }}</p>
+            {% endif %}
+            
+            {% if product.metafields.custom.project_application != blank %}
+              <p style="margin: 0 0 2px 0;"><strong>Project Application:</strong> {{ product.metafields.custom.project_application }}</p>
+            {% endif %}
+            
+            {% if product.metafields.custom.u_factor != blank %}
+              <p style="margin: 0 0 2px 0;"><strong>NFRC Rated U-Factor:</strong> {{ product.metafields.custom.u_factor }}</p>
+            {% endif %}
+            
+            {% if product.metafields.custom.shgc != blank %}
+              <p style="margin: 0 0 2px 0;"><strong>NFRC Rated SHGC:</strong> {{ product.metafields.custom.shgc }}</p>
+            {% endif %}
+            
+            {% if product.metafields.custom.stc_rating != blank %}
+              <p style="margin: 0 0 2px 0;"><strong>STC Rating:</strong> {{ product.metafields.custom.stc_rating }}</p>
+            {% endif %}
+            
+            {% if product.metafields.custom.oitc_rating != blank %}
+              <p style="margin: 0 0 2px 0;"><strong>OITC Rating:</strong> {{ product.metafields.custom.oitc_rating }}</p>
+            {% endif %}
+            
+            {% if product.metafields.custom.r_value != blank %}
+              <p style="margin: 0 0 2px 0;"><strong>R-Value:</strong> {{ product.metafields.custom.r_value }}</p>
+            {% endif %}
+          </div>
+        {% endif %}
+        
+        <div class="eto-specs-action" style="margin-top: 25px;">
+          <a href="/pages/contact?product_name={{ product.title | url_encode }}&product_url={{ shop.url | append: product.url | url_encode }}" class="eto-btn-green eto-fast-quote-link" style="display: inline-block; padding: 8px 15px; font-size: 14px; font-weight: bold; color: white; background-color: var(--eto-dark-charcoal); border-radius: 4px; text-decoration: none; box-shadow: 0 2px 4px rgba(0,0,0,0.2); font-family: Arial, sans-serif; text-shadow: 1px 1px 1px rgba(0,0,0,0.3);">Click for Fast Quote</a>
+        </div>
+        </div>
+      </div>
+      
+      <div id="tab-leadtime" class="tabpanel eto-tab-pane" role="tabpanel">
+        <div class="eto-clean-tab">
+        {% if product.metafields.custom.tab_lead_time != blank %}
+          {{ product.metafields.custom.tab_lead_time.value }}
+        {% else %}
+          <div style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; line-height: 1.5; color: #000;">
+            <p style="margin-bottom: 15px; text-decoration: underline;"><strong>Approximate Shipping Lead Times:</strong></p>
+            
+            <p style="margin-bottom: 15px;">
+              <span style="background-color: yellow; font-weight: bold; padding: 2px 0;">VENDOR PRODUCT</span>
+            </p>
+            
+            <p style="margin-bottom: 5px;">
+              <strong style="color: #000080;">SLAB ORDERS</strong> (Door Only): <strong style="color: #008f20; font-style: italic;">7-10 Business days</strong> (to ship out from our warehouse)
+            </p>
+            
+            <p style="margin-bottom: 20px;">
+              <strong style="color: #000080;">PRE-HUNG ORDERS:</strong> <strong style="color: #008f20; font-style: italic;">4-5 weeks</strong> (to ship out from our warehouse)
+            </p>
+            
+            <p style="margin-bottom: 20px;">
+              This product is being shipped from our warehouse in Los Angeles, California. Please understand, that lead times stated above represent the date the products will ship out from our facility. Once the product(s) ship, a tracking number will be forwarded to you and the shipment can be tracked with the carrier. It will take a few additional days for the common carrier to deliver the product to you.
+            </p>
+            
+            <p style="margin-bottom: 0;">
+              Read more: <strong><a href="javascript:void(0)" onclick="document.getElementById('eto-shipping-modal').style.display='block'" style="color: inherit; text-decoration: none;">Shipping Policy</a></strong>
+            </p>
+          </div>
+        {% endif %}
+        </div>
+        <!-- Shipping Policy Modal -->
+        <div id="eto-shipping-modal" style="display:none; position:fixed; z-index:9999; left:0; top:0; width:100%; height:100%; overflow:auto; background-color:rgba(0,0,0,0.6);" onclick="if(event.target===this) document.getElementById('eto-shipping-modal').style.display='none';">
+          <div style="background-color:#fff; margin:5% auto; padding:30px; border:1px solid #888; width:90%; max-width:800px; border-radius:4px; position:relative; max-height:85vh; overflow-y:auto; line-height:1.6; text-align:left;">
+            <span onclick="document.getElementById('eto-shipping-modal').style.display='none'" style="color:#aaa; position:absolute; right:20px; top:15px; font-size:28px; font-weight:bold; cursor:pointer; line-height:1;">&times;</span>
+            <div class="col-main">
+            <div class="std"><div style="font-size: 13px;"><strong>Shipping Fees and Methods: </strong> <br> <br> <strong>Truck Deliveries: </strong>Truck deliveries are shipped via common carrier. Shipping fees are based on the destination, size and weight of your item(s). We are contracted with many of the largest freight companies in the U.S. and we will use the best rate and fastest lead-time for your area! You may request a shipping quote for any of our product(s) simply by providing us with your shipping zip-code and the list of products you are interested in purchasing.<br> <br> Customers will be contacted by the shipping company to schedule delivery. Customers are solely responsible for any fees or costs (including, but not limited to, storage and re-delivery) resulting from customer's failure to take delivery on the scheduled time. Once your order ships, you will be provided with all delivery information, including a tracking number and the common carrier's contact information. <br> <br> Truck delivery is "Curbside Delivery" only. In most cases, curbside delivery means the item will be delivered to the closest manageable street curb location to your home or office. If there are steps leading to your front door the item will be placed in your garage or delivered to your dock. When delivering to an apartment building delivery will be to a curbside location closest to the central lobby only. Delivery personnel will not unpack or setup the item for you and will not place it in a specific room. We recommend that 2 to 3 individuals be present to assist in taking delivery. Normal delivery hours for large item shipping are from 8 a.m. to 5 p.m. local time. The delivery company will contact you at the number you provided to arrange a delivery time. Truck delivery transit time is generally between 3-9 business days and varies depending on delivery location and conditions. We do not provide deliveries to Alaska, Hawaii and Puerto Rico.</div>
+            <div style="font-size: 13px;"></div>
+            <div style="font-size: 13px;">*Please note that the flat rate shipping does not apply if a 53" trailer cannot easily and directly access your location. If you are in a difficult to reach location (e.g. narrow roads, island, etc.) flat rate shipping will not apply and you will need to receive a custom quote from your salesperson.<br> <br> <strong>Small Packages: </strong>ETODOORS.com uses UPS and Fed-Ex as the primary carriers for most small items. The Shopping Cart application will allow you to calculate your estimated shipping costs. The shipping calculator is also available upon checkout so that you will be able to calculate the standard shipping costs for your full order, before completing your purchase. If you select a different shipping method during checkout, additional charges may apply. All UPS and Fed-Ex deliveries require the customer's presence and signature upon delivery of the package. <br> <br> ETODoors.com is responsible for making payments to the shipping and delivery vendors directly. You, the customer, do NOT have to pay anything to the truckers at the time of delivery or at any other time. Any and all such payments, if made by the customer to the carrier company or its representatives, for any additional or existing services, will be at your sole discretion and cost. You agree that ETODoors.com will not refund such payments under any circumstances. <br> <br> <strong>Will Call Service: </strong>"Will Call" service is available at our Los Angeles facility located at: 1340 E. 6th Street, Los Angeles, CA 90021. Please make sure to contact us to confirm your order is ready for pick up prior to arriving. <br> <br> <strong>Shipping Destinations: </strong>We ship to almost any residential or commercial address in the contiguous United States. Any change of delivery date or address must be received in writing and to our office no less than 1 week before your order is to ship. All of our doors are shipped safely in a secure pallet system, specifically designed to protect your products. <br> <br> <strong>All Other Countries: </strong>For international shipments please call or email us for details and shipping rates. Brokerage fees, import tariffs, customs duties, customs clearance fees and value added taxes, as well as other local taxes, may apply to international orders and are assessed by customs authorities at the time of delivery. ETODoors.com does not calculate these fees at the time of order, and they are the sole responsibility of the purchaser. Please inquire with local customs authorities for more information regarding applicable fees. Return shipping costs are the responsibility of the purchaser on all returned orders. Refunds will be for the merchandise amount only. ETODoors.com cannot refund any duties, taxes or fees paid on the order. <br> <br> <strong>Processing Times: </strong>Orders are processed and shipped Monday through Friday. ETO Doors Corp. ships from a state-of-the-art warehouse center in Los Angeles, California. Your order is thoroughly reviewed by ETO's Accounting Department to ensure that the order is accurate, the payment method is valid, and you are authorized to use this payment method. Once your order has passed the review by our Accounting Department, it is sent to our warehouse for shipment. Please note, credit card processing can take up to 3 business days (depending on the accuracy of the information given to us by the customer.). For security reasons, voice confirmation may be required before we can process your credit card for payment. If the item(s) on your order are in-stock, we will ship them as soon as possible from our main Los Angeles, California warehouse. If the item(s) on your order are out of stock, they will not be shipped until we have received and processed the backordered inventory in our warehouse. <br> <br> <strong>Time for Delivery:</strong> Total time is based on the amount of time to get payment authorization, order processing, and the transit time from the carrier. You can check the status of your order at anytime by calling ETO Doors' Customer Service Department at (213) 622-2003 OR e-mailing us at cs@etodoors.com. <br> <br> <strong>Inspection and Claims: </strong>Customer is solely responsible to inspect the freight for shortages or signs of damage upon receipt of goods while the driver is still there. If there is any freight damage the customer must refuse the freight and note it (type and location) on the freight company’s paperwork. If the customer finds any freight damage after the driver has left the property it is the customer’s responsibility to file a freight claim with the freight company. <strong>When receiving package please check doors before releasing driver and note any damage on the delivery receipt. If the driver cannot wait on inspection, please note on the delivery receipt "potential damage subject to inspection." Please contact us immediately if you notice any damage to your product at (213) 622-2003. <br> <br> Shipping Disclaimers: </strong>ETODoors.com assumes no responsibility or liability for damage to the product and/or personal injury to an individual or any other issue that may arise from the delivery process. <br> <br> IF THE DELIVERY ADDRESS IS INACCESSIBLE OR INVALID, CUSTOMER AGREES TO PAY THE PURCHASE ORDER AMOUNT AND THE ADDITIONAL DELIVERY CHARGES. WE STRONGLY ADVISE AGAINST PICKING UP THE ORDER FROM THE FREIGHT COMPANY`S TERMINAL OR ANY LOCATION OTHER THAN THE DELIVERY ADDRESS, SINCE ETODOORS.COM WILL NOT BE LIABLE FOR ANY DAMAGES. <br> <br> ETODOORS.COM IS NOT LIABLE FOR DAMAGES OTHER THAN THOSE MENTIONED ON THE FREIGHT COMPANY`S DELIVERY RECEIPT. PLEASE ENSURE YOU INSPECT THE CONTENT OF YOUR ORDER BEFORE SIGNING THE DELIVERY FREIGHT RECEIPT. THE TRUCKER WILL NOT UNCRATE OR OPEN THE PACKAGE. THEREFORE, THE CUSTOMER WILL HAVE TO OPEN THE BOXES AND INSPECT THE CONTENTS. <br> <span style="text-decoration: underline;"><br> Installation and/or use of any door product constitutes customer's acceptance. No damage or shortage claim can be made once a door/unit has been installed! </span><br> <br> <strong>Inquiries: </strong>If you have a question concerning our Shipping Policy please e-mail us at shipping@etodoors.com OR write to us at:<br>
+            <ul style="margin:10px 0; padding-left:20px;">
+            <li>ETO Doors Corp.</li>
+            <li>Attn: Shipping Department</li>
+            <li>1340 E. 6th. Street #105</li>
+            <li>Los Angeles, CA 90021</li>
+            </ul>
+            <br> We will investigate your question, respond to your inquiry and attempt to resolve any concern regarding your shipping question. <br> <br> ETO DOORS SHIPPING DEPARTMENT</div>
+            <div>&nbsp;</div>
+            <div style="font-size: 13px;"><strong>*SHIPPING RATES: <span style="color: #800000;">First Door $299 every additional $49. $85 Crating fee for every 5 doors up to 10 doors. For more than 10 Doors please contact us for a custom quote.</span></strong></div>
+            <p>&nbsp;</p>
+            <p style="font-size: 13px;">*Please note that the above applies only for standard wood doors. A standard wood door is no larger than 42" wide and 94" tall. Flat rate shipping does not apply for oversized doors, overweight (e.g. iron) doors, and non-standard doors. Please contact your salesperson for a custom shipping quote for your order.</p></div> 
+            </div>
+          </div>
+        </div>
+        
+        <div class="eto-specs-action" style="margin-top: 25px;">
+          <a href="/pages/contact?product_name={{ product.title | url_encode }}&product_url={{ shop.url | append: product.url | url_encode }}" class="eto-btn-green eto-fast-quote-link" style="display: inline-block; padding: 8px 15px; font-size: 14px; font-weight: bold; color: white; background-color: var(--eto-dark-charcoal); border-radius: 4px; text-decoration: none; box-shadow: 0 2px 4px rgba(0,0,0,0.2); font-family: Arial, sans-serif; text-shadow: 1px 1px 1px rgba(0,0,0,0.3);">Click for Fast Quote</a>
+        </div>
+      </div>
+      
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ==============================================
+     Reviews & Q&A Section (Always Visible at Bottom)
+     ============================================== -->
+<div id="eto-reviews-section" class="eto-reviews-section-container" style="max-width: var(--eto-container-max); margin: 40px auto; padding: 40px var(--eto-margin-edge); border-top: 1px solid #e0e0e0;">
+
+  <!-- Reviews/Questions Sub-tabs Nav -->
+  {% capture judgeme_badge_html %}{{ product.metafields.judgeme.badge }}{% endcapture %}
+  {% assign review_count = 0 %}
+  {% if judgeme_badge_html != blank %}
+    {% assign badge_parts = judgeme_badge_html | split: "data-number-of-reviews='" %}
+    {% assign badge_parts_size = badge_parts | size %}
+    {% if badge_parts_size > 1 %}
+      {% assign review_count = badge_parts[1] | split: "'" | first | plus: 0 %}
+    {% endif %}
+  {% endif %}
+
+  <div class="eto-custom-stars" style="margin-bottom: 15px; min-height: 28px;">
+    {% if review_count > 0 %}
+      <style>
+        .eto-custom-stars .jdgm-prev-badge__text { display: none !important; }
+        .eto-custom-stars .jdgm-star { color: #000 !important; font-size: 28px !important; }
+        .eto-custom-stars .jdgm-widget { text-align: left !important; display: block !important; }
+      </style>
+      <div class='jdgm-widget jdgm-preview-badge' data-id='{{ product.id }}' data-auto-install='false'>
+        {{ product.metafields.judgeme.badge }}
+      </div>
+    {% else %}
+      <div style="font-size: 28px; color: #a0a0a0; letter-spacing: 2px;">
+        &#9734;&#9734;&#9734;&#9734;&#9734;
+      </div>
+    {% endif %}
+  </div>
+
+
+
+  {% assign qa_list_val = product.metafields.custom.qa_list.value %}
+  {% assign qa_count = qa_list_val | size | default: 0 %}
+  <div class="eto-review-subtabs-nav">
+    <button class="eto-review-subtab-btn active" data-subtab="subtab-reviews" id="btn-subtab-reviews">
+      Reviews ({{ review_count }})
+    </button>
+    <button class="eto-review-subtab-btn" data-subtab="subtab-questions" id="btn-subtab-questions">
+      Questions ({{ qa_count }})
+    </button>
+  </div>
+
+  <!-- SUBTAB 1: Judge.me Reviews Widget -->
+  <div id="subtab-reviews" class="eto-review-subtab-pane active">
+    <div style="clear:both"></div>
+    <div id="judgeme_product_reviews" class="jdgm-widget jdgm-review-widget"
+         data-product-title="{{ product.title | escape }}"
+         data-id="{{ product.id }}"
+         data-product-id="{{ product.id }}"
+         data-widget="review"
+         data-auto-install="false"
+         data-shop-reviews-count="{{ shop.metafields.judgeme.shop_reviews_count | default: 0 | escape }}"
+         data-entry-point="review_widget.js"
+         data-entry-key="review-widget/main.js">
+      {% if product.metafields.judgeme.widget.size > 20 %}
+        <div class="jdgm-legacy-widget-content" style="display: none;">{{ product.metafields.judgeme.widget }}</div>
+      {% endif %}
+    </div>
+    {% if product.metafields.judgeme.review_widget_data %}
+      <script>jdgm.data ||= {}; jdgm.data.reviewWidget ||= {}; jdgm.data.reviewWidget[{{ product.id }}] = {{ product.metafields.judgeme.review_widget_data }}</script>
+    {% endif %}
+  </div>
+
+  <!-- SUBTAB 2: Questions & Answers -->
+  <div id="subtab-questions" class="eto-review-subtab-pane">
+
+    <!-- Q&A List from Metafields -->
+    {% assign qa_list = product.metafields.custom.qa_list.value %}
+    {% if qa_list and qa_list.size > 0 %}
+      <div class="eto-qa-list">
+        {% for qa in qa_list %}
+          <div class="eto-qa-item">
+            <div class="eto-qa-question-row">
+              <div class="eto-qa-avatar eto-qa-avatar-customer">{{ qa.customer_name | slice: 0 | upcase }}</div>
+              <div class="eto-qa-content">
+                <div class="eto-qa-meta"><strong>{{ qa.customer_name }}</strong> <span class="eto-qa-badge">Verified Buyer</span></div>
+                <div class="eto-qa-text"><strong>Q:</strong> {{ qa.question }}</div>
+                {% if qa.answer and qa.answer != '' %}
+                  <div class="eto-qa-answers-toggle">↓ Answers (1)</div>
+                  <div class="eto-qa-answer-row">
+                    <div class="eto-qa-avatar eto-qa-avatar-store">S</div>
+                    <div class="eto-qa-content">
+                      <div class="eto-qa-meta"><strong>Store Owner</strong></div>
+                      <div class="eto-qa-text"><strong>A:</strong> {{ qa.answer }}</div>
+                    </div>
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="eto-qa-empty">
+        <p>No questions yet. Be the first to ask!</p>
+      </div>
+    {% endif %}
+
+  </div>
+  <!-- End Subtab Questions -->
+
+  <style>
+    /* Force Judge.me Write Review Button to match ETO buttons */
+    body #judgeme_product_reviews.jdgm-widget .jdgm-write-rev-link,
+    body #judgeme_product_reviews.jdgm-widget .jdgm-submit-rev,
+    body .jdgm-rev-widg .jdgm-empty-state .jdgm-write-rev-link {
+      padding: 14px 24px !important;
+      width: 250px !important;
+      max-width: 100% !important;
+      background-color: #e6e4e0 !important;
+      color: #000000 !important;
+      border-radius: 0px !important;
+      font-family: 'Montserrat', sans-serif !important;
+      font-size: 14px !important;
+      font-weight: 500 !important;
+      border: none !important;
+      display: inline-flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+      box-shadow: none !important;
+      text-transform: none !important;
+      line-height: normal !important;
+      margin: 15px auto !important;
+    }
+    body #judgeme_product_reviews.jdgm-widget .jdgm-write-rev-link:hover,
+    body #judgeme_product_reviews.jdgm-widget .jdgm-submit-rev:hover,
+    body .jdgm-rev-widg .jdgm-empty-state .jdgm-write-rev-link:hover {
+      background-color: #d8d6d2 !important;
+      color: #000000 !important;
+    }
+  </style>
+
+  <!-- Ask a Question / Write Review Buttons (Always visible) -->
+  <div class="eto-qa-form-section">
+    <div class="eto-qa-form-actions" style="justify-content: center;">
+      <button class="eto-qa-write-btn" id="eto-ask-question-btn" onclick="document.getElementById('eto-qa-form-wrapper').classList.toggle('eto-qa-form-open')">Ask a Question</button>
+    </div>
+
+    <div id="eto-qa-form-wrapper" class="eto-qa-form-wrapper">
+      <h4 class="eto-qa-form-title">Ask a Question about {{ product.title }}</h4>
+      {% form 'contact' %}
+        <input type="hidden" name="contact[product]" value="{{ product.title }}">
+        <input type="hidden" name="contact[product_url]" value="{{ shop.url }}{{ product.url }}">
+        <input type="hidden" name="contact[type]" value="Product Question">
+        <div class="eto-qa-form-row">
+          <label class="eto-qa-label">Your Name *</label>
+          <input type="text" name="contact[name]" class="eto-qa-input" placeholder="Enter your name" required>
+        </div>
+        <div class="eto-qa-form-row">
+          <label class="eto-qa-label">Your Email *</label>
+          <input type="email" name="contact[email]" class="eto-qa-input" placeholder="Enter your email" required>
+        </div>
+        <div class="eto-qa-form-row">
+          <label class="eto-qa-label">Your Question *</label>
+          <textarea name="contact[body]" class="eto-qa-textarea" placeholder="Type your question here..." rows="4" required></textarea>
+        </div>
+        <button type="submit" class="eto-qa-submit-btn">Submit Question</button>
+      {% endform %}
+    </div>
+  </div>
+
+</div>
+
+<!-- ==============================================
+     Category Description Section (Unified Layout)
+     ============================================== -->
+{% assign raw_collection = breadcrumb_category %}
+
+<!-- Fallback to first non-generic collection if nothing matched in breadcrumb -->
+{% if raw_collection == blank %}
+  {% for collection in product.collections %}
+    {% assign col_title = collection.title | downcase %}
+    {% if col_title != "all" and col_title != "frontpage" and col_title != "front page" %}
+      {% assign raw_collection = collection.title %}
+      {% break %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+<!-- Fallback to product type -->
+{% if raw_collection == blank %}
+  {% assign ptype = product.type | downcase %}
+  {% if ptype != blank and ptype != "door" and ptype != "doors" %}
+    {% assign raw_collection = product.type %}
+  {% endif %}
+{% endif %}
+
+{% assign clean_category = raw_collection | replace: " Home", "" | replace: " home", "" | replace: " HOME", "" %}
+
+<!-- Clean up "Door" or "Doors" to avoid duplication like "Door Door" -->
+{% assign clean_category_down = clean_category | downcase %}
+{% if clean_category_down contains "door" %}
+  {% assign clean_category = clean_category | replace: " Doors", "" | replace: " doors", "" | replace: " Door", "" | replace: " door", "" | replace: "Doors", "" | replace: "doors", "" | replace: "Door", "" | replace: "door", "" %}
+{% endif %}
+
+{% if clean_category == blank or clean_category == "" %}
+  {% assign clean_category = "Interior" %}
+{% endif %}
+
+{% assign category_name = clean_category %}
+{% capture snippet_output %}
+  {% include 'category-description-mapping' %}
+{% endcapture %}
+
+{% assign final_desc = snippet_output | strip %}
+{% if final_desc == blank %}
+  {% assign final_desc = product.collections.first.description | strip %}
+{% endif %}
+
+{% if final_desc == blank %}
+  {% capture final_desc %}
+    <p><strong>Find the Perfect {{ clean_category }} Door for Your Space.</strong> Explore our premium selection of {{ clean_category | downcase }} doors, designed to combine style, durability, and exceptional craftsmanship to elevate any home or office.</p>
+  {% endcapture %}
+{% endif %}
+{% assign display_name = clean_category | upcase %}
+{% unless display_name contains "DOOR" %}
+  {% assign display_name = display_name | append: " DOORS" %}
+{% endunless %}
+
+<!-- ==============================================
+     Bottom Call To Action Section
+     ============================================== -->
+  <div class="eto-bottom-cta-section" style="width: 100vw !important; max-width: none !important; position: relative !important; left: 50% !important; right: 50% !important; margin-left: -50vw !important; margin-right: -50vw !important; box-sizing: border-box !important; padding: 25px 0; border-top: 1px solid #a89f95; border-bottom: 1px solid #a89f95; background: transparent;">
+    <div style="max-width: var(--eto-container-max); margin: 0 auto; padding: 0 var(--eto-margin-edge); text-align: center;">
+      <p style="margin: 0; font-size: 21px; line-height: 31px; font-weight: 400; text-transform: uppercase; color: #000; font-family: 'Montserrat', sans-serif;">CAN'T FIND WHAT YOU'RE LOOKING FOR? WE HAVE IT!!!</p>
+      <p style="margin: 0; font-size: 21px; line-height: 31px; font-weight: 700; text-transform: uppercase; color: #000; font-family: 'Montserrat', sans-serif;">CALL OUR DOOR PROFESSIONALS (213) 622-2003</p>
+    </div>
+  </div>
+
+
+
+<script>
+var etoCurrentUnitPriceCents = {{ product.selected_or_first_available_variant.price }};
+
+function etoUpdateTotalPrice() {
+  var qtyInput = document.getElementById('eto-quantity');
+  var qty = parseInt(qtyInput.value);
+  if (isNaN(qty) || qty < 1) qty = 1;
+
+  var totalCents = etoCurrentUnitPriceCents * qty;
+  var dollars = (totalCents / 100).toFixed(2);
+  // Using $ hardcoded as per site style, or could use Shopify.formatMoney if available
+  var formattedPrice = '$' + dollars; 
+  
+  var priceEl = document.getElementById('eto-current-price');
+  if (priceEl) priceEl.textContent = formattedPrice;
+}
+
+// Change main image on thumbnail click
+function etoChangeImage(src, thumb) {
+  document.getElementById('eto-featured-img').src = src;
+  document.querySelectorAll('.eto-gallery-thumb').forEach(t => t.classList.remove('active'));
+  thumb.classList.add('active');
+}
+
+
+// ============================
+// DYNAMIC DOOR CONFIGURATOR
+// Reads all options from product.metafields.custom.door_options JSON
+// ============================
+
+// Parse JSON data
+let doorOptionsData = [];
+let variantsData = [];
+const doorJsonEl = document.getElementById('door-options-json');
+const variantJsonEl = document.getElementById('variant-data-json');
+
+try {
+  if (doorJsonEl) {
+    const raw = JSON.parse(doorJsonEl.textContent);
+    doorOptionsData = typeof raw === 'string' ? JSON.parse(raw) : raw;
+  }
+  if (variantJsonEl) {
+    variantsData = JSON.parse(variantJsonEl.textContent);
+  }
+} catch(e) {
+  console.error('Door Configurator: JSON parse error', e);
+}
+
+// State tracking for all options
+const etoConfigState = {};
+let etoDoorConfig = ''; // 'single' or 'double'
+
+// ── De-duplicate options (same title = context-dependent) ──
+const etoOptionGroups = [];
+const etoSeenTitles = {};
+
+if (Array.isArray(doorOptionsData)) {
+  doorOptionsData.forEach(opt => {
+    if (!opt.title || opt.title === 'Your product is now configured') return;
+    if (opt.type === 'field') return;
+    
+    const normalizedTitle = opt.title.trim().toLowerCase();
+    
+    if (etoSeenTitles[normalizedTitle] !== undefined) {
+      const idx = etoSeenTitles[normalizedTitle];
+      if (normalizedTitle === 'handing' || normalizedTitle === 'size') {
+        etoOptionGroups[idx].doubleValues = opt.values || [];
+      }
+    } else {
+      etoSeenTitles[normalizedTitle] = etoOptionGroups.length;
+      etoOptionGroups.push({
+        title: opt.title,
+        normalizedTitle: normalizedTitle,
+        type: opt.type,
+        required: opt.required,
+        order: opt.order,
+        singleValues: opt.values || [],
+        doubleValues: null
+      });
+    }
+  });
+  etoOptionGroups.sort((a, b) => a.order - b.order);
+}
+
+// (etoPopulateSizeGrid and etoMatchVariant removed - Size is now handled natively via Liquid variant loop)
+
+// ── Build dynamic option rows (everything EXCEPT Size) ──
+function etoBuildDynamicOptions() {
+  const container = document.getElementById('eto-dynamic-options-container');
+  if (!container) return;
+  container.innerHTML = '';
+
+  etoOptionGroups.forEach((group, index) => {
+    if (group.title === 'Size') return; // Size is already in the grid above
+
+    const rowDiv = document.createElement('div');
+    rowDiv.className = 'eto-dynamic-option-row';
+    rowDiv.id = 'eto-dynopt-' + index;
+    rowDiv.style.display = 'none'; // Hidden until previous step is done
+
+    // Label row
+    const labelRow = document.createElement('div');
+    labelRow.className = 'eto-config-row';
+
+    const iconPlaceholder = document.createElement('div');
+    iconPlaceholder.className = 'eto-config-icon-placeholder';
+    
+    let iconFilename = '';
+    const groupTitleLow = group.title.toLowerCase();
+    if (groupTitleLow.includes('door config') || groupTitleLow.includes('door type') || groupTitleLow.includes('configuration')) iconFilename = 'icon-1-door-configuration.png';
+    else if (groupTitleLow.includes('pre hanging') || groupTitleLow.includes('pre-hanging')) iconFilename = 'icon-2-pre-hanging.png';
+    else if (groupTitleLow.includes('jamb species')) iconFilename = 'icon-3-jamb-species.png';
+    else if (groupTitleLow.includes('handing')) iconFilename = 'icon-4-handing.png';
+    else if (groupTitleLow.includes('jamb width')) iconFilename = 'icon-5-jamb-width.png';
+    else if (groupTitleLow.includes('hinge') || groupTitleLow.includes('hinges')) iconFilename = 'icon-6-hinge-finish.png';
+    else if (groupTitleLow.includes('handle')) iconFilename = 'icon-7-handle-prep.png';
+    
+    if (iconFilename) {
+      const baseAssetUrl = "{{ 'PLACEHOLDER' | asset_url }}";
+      iconPlaceholder.innerHTML = `<img src="${baseAssetUrl.replace('PLACEHOLDER', iconFilename)}" style="width:38px;height:38px;object-fit:contain;filter:drop-shadow(0.5px 0px 0px #333) drop-shadow(0px 0.5px 0px #333);" />`;
+    } else {
+      iconPlaceholder.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" style="width:38px;height:38px;opacity:0.7;"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="12" r="1.5"></circle><line x1="13" y1="12" x2="16.5" y2="12"></line></svg>`;
+    }
+    
+    labelRow.appendChild(iconPlaceholder);
+    
+    const labelSpan = document.createElement('span');
+    labelSpan.className = 'eto-config-row-label';
+    labelSpan.textContent = group.title + ': ';
+    labelRow.appendChild(labelSpan);
+
+    const valueSpan = document.createElement('span');
+    valueSpan.className = 'eto-config-value';
+    valueSpan.id = 'eto-dynopt-label-' + index;
+    valueSpan.textContent = 'Not Selected';
+    labelRow.appendChild(valueSpan);
+
+    const editBtn = document.createElement('button');
+    editBtn.type = 'button';
+    editBtn.className = 'eto-config-edit';
+    editBtn.id = 'eto-dynopt-edit-' + index;
+    editBtn.style.display = 'none';
+    editBtn.textContent = 'EDIT';
+    editBtn.onclick = function() { etoEditDynamicOption(index); };
+    labelRow.appendChild(editBtn);
+
+    rowDiv.appendChild(labelRow);
+
+    // Options container (dropdown-style list)
+    const optionsDiv = document.createElement('div');
+    optionsDiv.className = 'eto-dynamic-options-list';
+    optionsDiv.id = 'eto-dynopt-list-' + index;
+    optionsDiv.style.cssText = 'margin-bottom:12px;';
+
+    // Populate values
+    const values = group.singleValues; // Default to single door values
+    etoPopulateDynamicOptionValues(optionsDiv, values, index, group.title);
+    rowDiv.appendChild(optionsDiv);
+
+    container.appendChild(rowDiv);
+  });
+}
+
+function etoPopulateDynamicOptionValues(container, values, groupIndex, groupTitle) {
+  container.innerHTML = `
+    <style>
+      .eto-img-opt-btn { border: none !important; background: transparent !important; padding: 0 !important; }
+      .eto-img-opt-btn:hover .eto-img-opt-text { border-color: #999; }
+      .eto-size-option.selected .eto-img-opt-text { border-color: #278f27 !important; color: #278f27; }
+      .eto-size-option.selected .eto-img-opt-text span { color: #278f27 !important; }
+    </style>
+  `;
+
+  let closetDoorCount = 0;
+  (values || []).forEach((val, valIdx) => {
+    const btn = document.createElement('div');
+    btn.className = 'eto-size-option'; 
+    
+    let priceText = '';
+    if (parseFloat(val.price) > 0) {
+      priceText = ' (+$' + Number(val.price).toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2}) + ')';
+    }
+    
+    let hasImage = false;
+    let imageUrl = '';
+    
+    if (val.title === 'Single Door') {
+        hasImage = true; imageUrl = 'https://cdn.shopify.com/s/files/1/0672/8781/0188/files/Single_Door.png?v=1773067930';
+    } else if (val.title === 'Double Door') {
+        hasImage = true; imageUrl = 'https://cdn.shopify.com/s/files/1/0672/8781/0188/files/Double_Doors.png?v=1773067925';
+    } else if (val.title.includes('Yes (w/ Frame)')) {
+        hasImage = true; imageUrl = 'https://cdn.shopify.com/s/files/1/0672/8781/0188/files/Frame.png?v=1773069447';
+    } else if (val.title.includes('No (Door Only)')) {
+        hasImage = true; imageUrl = 'https://cdn.shopify.com/s/files/1/0672/8781/0188/files/No_Frame.png?v=1773069444';
+    } else if (val.title.includes('Mahogany')) {
+        hasImage = true; imageUrl = 'https://cdn.shopify.com/s/files/1/0672/8781/0188/files/MA_Exterior.jpg?v=1773070240';
+    } else if (val.title.includes('Douglas Fir')) {
+        hasImage = true; imageUrl = 'https://cdn.shopify.com/s/files/1/0672/8781/0188/files/Exterior_Doug_Fir.jpg?v=1773235885';
+    } else if (val.title.includes('Paint Grade')) {
+        hasImage = true; imageUrl = 'https://cdn.shopify.com/s/files/1/0672/8781/0188/files/WP_Exterior.jpg?v=1773070236'; 
+    } else if (val.title.includes('Oak')) {
+        hasImage = true; imageUrl = 'https://cdn.shopify.com/s/files/1/0672/8781/0188/files/Interior_White_Oak_Jamb_2_1.png?v=1773241871';
+    } else if (val.title.includes('Active Left Inswing')) {
+        hasImage = true; imageUrl = 'https://cdn.shopify.com/s/files/1/0672/8781/0188/files/LH-A.png?v=1773078325';
+    } else if (val.title.includes('Active Right Inswing')) {
+        hasImage = true; imageUrl = 'https://cdn.shopify.com/s/files/1/0672/8781/0188/files/RH-A.png?v=1773078422';
+    } else if (val.title.includes('Active Left Outswing')) {
+        hasImage = true; imageUrl = 'https://cdn.shopify.com/s/files/1/0672/8781/0188/files/LHR-A.png?v=1773078492';
+    } else if (val.title.includes('Active Right Outswing')) {
+        hasImage = true; imageUrl = 'https://cdn.shopify.com/s/files/1/0672/8781/0188/files/RHR-A.png?v=1773078639';
+    } else if (val.title.includes('Left') && val.title.includes('Inswing')) {
+        hasImage = true; imageUrl = 'https://cdn.shopify.com/s/files/1/0672/8781/0188/files/LH.png?v=1773070873';
+    } else if (val.title.includes('Right') && val.title.includes('Inswing')) {
+        hasImage = true; imageUrl = 'https://cdn.shopify.com/s/files/1/0672/8781/0188/files/RH.png?v=1773070966';
+    } else if (val.title.includes('Right') && val.title.includes('Outswing')) {
+        hasImage = true; imageUrl = 'https://cdn.shopify.com/s/files/1/0672/8781/0188/files/LHR.png?v=1773071056';
+    } else if (val.title.includes('Left') && val.title.includes('Outswing')) {
+        hasImage = true; imageUrl = 'https://cdn.shopify.com/s/files/1/0672/8781/0188/files/RHR.png?v=1773071164';
+    } else if (val.title.includes('Closet Door')) {
+        hasImage = true; 
+        if (closetDoorCount % 2 === 1) {
+            imageUrl = 'https://cdn.shopify.com/s/files/1/0672/8781/0188/files/RHR_1.png?v=1773071489';
+        } else {
+            imageUrl = 'https://cdn.shopify.com/s/files/1/0672/8781/0188/files/LHR_1.png?v=1773071274';
+        }
+        closetDoorCount++;
+    } else if (val.title.includes('Aluminum Bronze')) {
+        hasImage = true; imageUrl = 'https://cdn.shopify.com/s/files/1/0672/8781/0188/files/Aluminum_Bronze.jpg?v=1773235886';
+    } else if (val.title.includes('Aluminum Satin Nickel')) {
+        hasImage = true; imageUrl = 'https://cdn.shopify.com/s/files/1/0672/8781/0188/files/Aluminum_Satin_Nickel.jpg?v=1773235887';
+    } else if (val.title.includes('Aluminum Brass')) {
+        hasImage = true; imageUrl = 'https://cdn.shopify.com/s/files/1/0672/8781/0188/files/Aluminum_Brass.jpg?v=1773235889';
+    } else if (val.title.includes('Solid Oak Sill')) {
+        hasImage = true; imageUrl = 'https://cdn.shopify.com/s/files/1/0672/8781/0188/files/Oak_Sill_2_4-9-13.jpg?v=1773235890';
+    } else if (val.title.includes('ADA Handicap')) {
+        hasImage = true; imageUrl = 'https://cdn.shopify.com/s/files/1/0672/8781/0188/files/ADA_Handicap_Bronze_Aluminum.jpg?v=1773235892';
+    } else if (val.title.includes('Oil Rubbed Bronze')) {
+        hasImage = true; imageUrl = 'https://cdn.shopify.com/s/files/1/0672/8781/0188/files/Bronze.jpg?v=1773078788';
+    } else if (val.title.includes('Satin Nickel')) {
+        hasImage = true; imageUrl = 'https://cdn.shopify.com/s/files/1/0672/8781/0188/files/Satin_Nickel.jpg?v=1773078865';
+    } else if (val.title.includes('Brass')) {
+        hasImage = true; imageUrl = 'https://cdn.shopify.com/s/files/1/0672/8781/0188/files/Brass.jpg?v=1773078952';
+    } else if (val.title.includes('Double (2-3/8')) {
+        hasImage = true; imageUrl = 'https://cdn.shopify.com/s/files/1/0672/8781/0188/files/Double_Bore.png?v=1773235893';
+    } else if (val.title.includes('Mortise Prep')) {
+        hasImage = true; imageUrl = 'https://cdn.shopify.com/s/files/1/0672/8781/0188/files/Mortise.png?v=1773235895';
+    } else if (val.title.includes('Single (2-3/8\" backset)')) {
+        hasImage = true; imageUrl = 'https://cdn.shopify.com/s/files/1/0672/8781/0188/files/Single_Bore.png?v=1773079290';
+    } else if (val.title === 'No Bore') {
+        hasImage = true; imageUrl = 'https://cdn.shopify.com/s/files/1/0672/8781/0188/files/No_Bore.png?v=1773079341';
+    } else if (val.title.includes('FD1L') && val.title.includes('Clear')) {
+        hasImage = true; imageUrl = 'https://cdn.shopify.com/s/files/1/0672/8781/0188/files/FD1L-Clear.jpg?v=1773242536';
+    } else if (val.title.includes('FD1L') && val.title.includes('White Lami')) {
+        hasImage = true; imageUrl = 'https://cdn.shopify.com/s/files/1/0672/8781/0188/files/FD1L-LAMI.jpg?v=1773242537';
+    } else if (val.title.includes('ESF1')) {
+        hasImage = true; imageUrl = 'https://cdn.shopify.com/s/files/1/0672/8781/0188/files/FD1L-ESF1.jpg?v=1773242539';
+    } else if (val.title.includes('KA1L')) {
+        hasImage = true; imageUrl = 'https://cdn.shopify.com/s/files/1/0672/8781/0188/files/KA1L-Clear.jpg?v=1773243239';
+    } else if (val.title.includes('Monte Carlo')) {
+        hasImage = true; imageUrl = 'https://cdn.shopify.com/s/files/1/0672/8781/0188/files/FD1L-MonteCarloL.jpg?v=1773244060';
+    } else if (val.title.includes('FD1LPB')) {
+        hasImage = true; imageUrl = 'https://cdn.shopify.com/s/files/1/0672/8781/0188/files/FD1LPB-Clear.jpg?v=1773244061';
+    } else if (val.title.includes('FD3LPB')) {
+        hasImage = true; imageUrl = 'https://cdn.shopify.com/s/files/1/0672/8781/0188/files/FD3LPB-Clear.jpg?v=1773244062';
+    } else if (val.title.includes('FD5LPB')) {
+        hasImage = true; imageUrl = 'https://cdn.shopify.com/s/files/1/0672/8781/0188/files/FD5LPB-Clear.jpg?v=1773244064';
+    } else if (val.title.includes('Tuscany')) {
+        hasImage = true; imageUrl = 'https://cdn.shopify.com/s/files/1/0672/8781/0188/files/TUSCANY.jpg?v=1773244065';
+    } else if (val.title.includes('AB1501')) {
+        hasImage = true; imageUrl = 'https://cdn.shopify.com/s/files/1/0672/8781/0188/files/ab150l_sl.jpg?v=1773235896';
+    } else if (val.title.includes('AB1510')) {
+        hasImage = true; imageUrl = 'https://cdn.shopify.com/s/files/1/0672/8781/0188/files/ab1510_sl.jpg?v=1773235898';
+    } else if (val.title.includes('Left Side')) {
+        hasImage = true; imageUrl = 'https://cdn.shopify.com/s/files/1/0672/8781/0188/files/Left_Sidelite.png?v=1773235899';
+    } else if (val.title.includes('Right Side')) {
+        hasImage = true; imageUrl = 'https://cdn.shopify.com/s/files/1/0672/8781/0188/files/Right_Sidelite.png?v=1773235900';
+    } else if (val.title.includes('Both Sides')) {
+        hasImage = true; imageUrl = 'https://cdn.shopify.com/s/files/1/0672/8781/0188/files/2_Sidelites.png?v=1773235902';
+    } else if (val.title.includes('Double')) {
+        hasImage = true; imageUrl = 'https://cdn.shopify.com/s/files/1/0672/8781/0188/files/Double_Doors_e66af815-09cb-491c-83ab-d57ab1a3530f.png?v=1773241733';
+    } else if (val.title.includes('White Laminate') || val.title.includes('White Lami') || val.title.includes('Whie Laminate')) {
+        hasImage = true; imageUrl = 'https://cdn.shopify.com/s/files/1/0672/8781/0188/files/lami_glass.png?v=1773240563';
+    } else if (val.title.includes('Rain')) {
+        hasImage = true; imageUrl = 'https://cdn.shopify.com/s/files/1/0672/8781/0188/files/RAIN_ec8e6da6-7236-4a94-91da-727732532355.png?v=1773239973';
+    } else if (val.title.includes('Clear')) {
+        hasImage = true; imageUrl = 'https://cdn.shopify.com/s/files/1/0672/8781/0188/files/clear_glass.png?v=1773240564';
+    } else if (val.title.includes('GlueChip') || val.title.includes('Gluechip')) {
+        hasImage = true; imageUrl = 'https://cdn.shopify.com/s/files/1/0672/8781/0188/files/GLUE_CHIP_1889ae7d-22ce-4b65-ac2b-51869366d43a.png?v=1773244059';
+    }
+    
+    // Strip existing price tags from the string like ` (+$199)` so it doesn't double print
+    let displayTitle = val.title.replace(/\s*\(\+\$?\d+(?:\.\d+)?\)\s*/g, '').trim();
+    
+    let innerHTML = '';
+    if (hasImage) {
+        container.classList.add('eto-has-images');
+        btn.classList.add('eto-img-opt-btn');
+        btn.style.cssText = 'cursor:pointer;font-size:12px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;width:100%;height:100%;';
+        innerHTML = `<img src="${imageUrl}" alt="${displayTitle}" style="display:block;margin:0 auto 6px;height:auto;max-height:72px;width:auto;mix-blend-mode:multiply;max-width:100%;object-fit:contain;">`;
+        innerHTML += `<div class="eto-img-opt-text" style="padding:6px 8px;border:1px solid #ccc;width:100%;transition:all 0.2s;flex-grow:1;display:flex;align-items:center;justify-content:center;"><span style="font-weight:600;color:#333;transition:all 0.2s;line-height:1.2;">${displayTitle}${priceText}</span></div>`;
+    } else {
+        container.classList.add('eto-no-images');
+        btn.style.cssText = 'cursor:pointer;padding:8px 12px;border:1px solid #ccc;font-size:12px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:100px;width:100%;height:100%;';
+        innerHTML = `<span style="font-weight:600;line-height:1.2;">${displayTitle}${priceText}</span>`;
+    }
+    
+    btn.innerHTML = innerHTML;
+    btn.dataset.value = val.title;
+    btn.dataset.price = val.price || 0;
+    btn.dataset.groupIndex = groupIndex;
+    btn.onclick = function() { etoSelectDynamicOption(groupIndex, val.title, this); };
+    container.appendChild(btn);
+  });
+}
+
+// ── Select a dynamic option ──
+function etoSelectDynamicOption(groupIndex, value, el) {
+  const group = etoOptionGroups.filter(g => g.title !== 'Size')[groupIndex - etoOptionGroups.findIndex(g => g.title !== 'Size')];
+  
+  // Find actual index in etoOptionGroups
+  let actualIndex = -1;
+  let nonSizeCount = 0;
+  for (let i = 0; i < etoOptionGroups.length; i++) {
+    if (etoOptionGroups[i].title === 'Size') continue;
+    if (i === groupIndex) { actualIndex = i; break; }
+  }
+
+  const groupObj = etoOptionGroups[groupIndex];
+  if (!groupObj) return;
+
+  // Remove selection from siblings
+  const listEl = document.getElementById('eto-dynopt-list-' + groupIndex);
+  if (listEl) listEl.querySelectorAll('.eto-size-option').forEach(o => o.classList.remove('selected'));
+  if (el) el.classList.add('selected');
+
+  // Update label
+  const label = document.getElementById('eto-dynopt-label-' + groupIndex);
+  if (label) label.textContent = value;
+
+  // Store state
+  etoConfigState[groupObj.title] = value;
+
+  // If this is "Door Configuration", update context-dependent options
+  if (groupObj.title === 'Door Configuration') {
+    etoDoorConfig = value === 'Double Door' ? 'double' : 'single';
+    etoUpdateContextDependentOptions();
+  }
+
+  // Hide this option list, show EDIT button
+  if (listEl) listEl.style.display = 'none';
+  const editBtn = document.getElementById('eto-dynopt-edit-' + groupIndex);
+  if (editBtn) editBtn.style.display = 'inline-block';
+
+  // Show next option or show configured section
+  etoShowNextOption(groupIndex);
+  
+  // Update price
+  etoRecalculatePrice();
+}
+
+// ── Update context-dependent options when Door Config changes ──
+function etoUpdateContextDependentOptions() {
+  const isDouble = etoDoorConfig === 'double';
+  etoOptionGroups.forEach((group, index) => {
+    if (group.title === 'Size') return;
+    if (group.doubleValues) {
+      const values = isDouble ? group.doubleValues : group.singleValues;
+      const listEl = document.getElementById('eto-dynopt-list-' + index);
+      if (listEl) {
+        etoPopulateDynamicOptionValues(listEl, values, index, group.title);
+      }
+      // Reset this option's state
+      delete etoConfigState[group.title];
+      const label = document.getElementById('eto-dynopt-label-' + index);
+      if (label) label.textContent = 'Not Selected';
+    }
+  });
+}
+
+// ── Show next available option step ──
+function etoShowNextOption(currentGroupIndex) {
+  // Check if Pre-hanging was declined
+  let prehangDeclined = false;
+  let prehangIndex = -1;
+  const prehangKey = Object.keys(etoConfigState).find(k => k.toLowerCase() === 'pre hanging');
+  if (prehangKey && etoConfigState[prehangKey] && etoConfigState[prehangKey].includes('No (Door Only)')) {
+    prehangDeclined = true;
+  }
+  
+  // Find the exact index of the Pre-hanging option so we only skip options AFTER it
+  for (let i = 0; i < etoOptionGroups.length; i++) {
+     if (etoOptionGroups[i].title.toLowerCase() === 'pre hanging') {
+         prehangIndex = i;
+         break;
+     }
+  }
+
+  // Find next valid option index after current
+  let found = false;
+  for (let i = 0; i < etoOptionGroups.length; i++) {
+    const groupTitle = etoOptionGroups[i].title;
+    if (groupTitle === 'Size') continue;
+    if (i <= currentGroupIndex) continue;
+    
+    // If pre-hanging is NO, skip ALL options that come after Pre-hanging
+    if (prehangDeclined && prehangIndex !== -1 && i > prehangIndex) {
+      // Ensure it stays hidden and state is cleared
+      const rowEl = document.getElementById('eto-dynopt-' + i);
+      if (rowEl) rowEl.style.display = 'none';
+      delete etoConfigState[groupTitle];
+      continue;
+    }
+    
+    // If we land here, this is a valid option that SHOULD be shown
+    const rowEl = document.getElementById('eto-dynopt-' + i);
+    if (rowEl) {
+      rowEl.style.display = 'block';
+      
+      // Also ensure its corresponding list is visible so the user can interact
+      const listEl = document.getElementById('eto-dynopt-list-' + i);
+      if (listEl) listEl.style.display = '';
+      
+      // Ensure the EDIT button is hidden initially
+      const editBtn = document.getElementById('eto-dynopt-edit-' + i);
+      if (editBtn) editBtn.style.display = 'none';
+      
+      found = true;
+      break;
+    }
+  }
+
+  // Hide the configured section by default until we prove everything is done
+  const configuredSection = document.getElementById('eto-configured-section');
+  const notesContainer = document.getElementById('eto-notes-container');
+  if (configuredSection) {
+      if (!found) {
+        // All non-skipped options are done, show configured section
+        configuredSection.style.display = 'block';
+        if (notesContainer) notesContainer.style.display = 'block';
+      } else {
+        configuredSection.style.display = 'none';
+        if (notesContainer) notesContainer.style.display = 'none';
+      }
+  }
+}
+
+// ── Edit a dynamic option ──
+function etoEditDynamicOption(groupIndex) {
+  const listEl = document.getElementById('eto-dynopt-list-' + groupIndex);
+  const editBtn = document.getElementById('eto-dynopt-edit-' + groupIndex);
+  if (listEl) listEl.style.display = '';
+  if (editBtn) editBtn.style.display = 'none';
+
+  // Reset state for THIS option too (so its cost is removed from price)
+  delete etoConfigState[etoOptionGroups[groupIndex].title];
+  const thisLabel = document.getElementById('eto-dynopt-label-' + groupIndex);
+  if (thisLabel) thisLabel.textContent = 'Not Selected';
+
+  // Also deselect any visually selected item in this list
+  if (listEl) listEl.querySelectorAll('.eto-config-option.selected, .eto-size-option.selected').forEach(el => el.classList.remove('selected'));
+
+  // Hide all options after this one and reset their state too
+  for (let i = groupIndex + 1; i < etoOptionGroups.length; i++) {
+    if (etoOptionGroups[i].title === 'Size') continue;
+    const rowEl = document.getElementById('eto-dynopt-' + i);
+    if (rowEl) rowEl.style.display = 'none';
+    // Reset state
+    delete etoConfigState[etoOptionGroups[i].title];
+    const label = document.getElementById('eto-dynopt-label-' + i);
+    if (label) label.textContent = 'Not Selected';
+    const eb = document.getElementById('eto-dynopt-edit-' + i);
+    if (eb) eb.style.display = 'none';
+    const list = document.getElementById('eto-dynopt-list-' + i);
+    if (list) list.style.display = '';
+  }
+
+  // Hide configured section
+  const configuredSection = document.getElementById('eto-configured-section');
+  if (configuredSection) configuredSection.style.display = 'none';
+  const notesContainer = document.getElementById('eto-notes-container');
+  if (notesContainer) notesContainer.style.display = 'none';
+
+  // ← IMPORTANT: recalculate price after clearing selections
+  etoRecalculatePrice();
+}
+
+// ── Recalculate total price ──
+var etoAddonCents = 0; // Track add-on cost separately for cart submit
+
+function etoRecalculatePrice() {
+  let addons = 0;
+  
+  // Check if Pre-hanging was declined
+  let prehangDeclined = false;
+  let prehangIndex = -1;
+  const prehangKey = Object.keys(etoConfigState).find(k => k.toLowerCase() === 'pre hanging');
+  if (prehangKey && etoConfigState[prehangKey] && etoConfigState[prehangKey].includes('No (Door Only)')) {
+    prehangDeclined = true;
+  }
+  
+  // Find the exact index of the Pre-hanging option so we only skip options AFTER it
+  for (let i = 0; i < etoOptionGroups.length; i++) {
+     if (etoOptionGroups[i].title.toLowerCase() === 'pre hanging') {
+         prehangIndex = i;
+         break;
+     }
+  }
+
+  etoOptionGroups.forEach((group, index) => {
+    if (group.title === 'Size') return; // Size is handled by variant selection
+    
+    // Skip price addition for any option that comes AFTER Pre-hanging if declined
+    if (prehangDeclined && prehangIndex !== -1 && index > prehangIndex) {
+        return;
+    }
+    
+    const selectedValue = etoConfigState[group.title];
+    if (!selectedValue) return;
+
+    const isDouble = etoDoorConfig === 'double';
+    const values = (group.doubleValues && isDouble) ? group.doubleValues : group.singleValues;
+    const matched = values.find(v => v.title === selectedValue);
+    if (matched && parseFloat(matched.price) > 0) {
+      addons += parseFloat(matched.price);
+    }
+  });
+
+  // Store add-on cents globally so etoAddToCart can use it
+  etoAddonCents = Math.round(addons * 100);
+
+  // etoCurrentUnitPriceCents is the base size price (set by etoSelectVariant)
+  const totalCents = etoCurrentUnitPriceCents + etoAddonCents;
+  const totalFormatted = '$' + (totalCents / 100).toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
+  
+  const priceEl = document.getElementById('eto-current-price');
+  if (priceEl) priceEl.textContent = totalFormatted;
+}
+
+// ── Select Variant (Size) ──
+function etoSelectVariant(el) {
+  const variantId = el.dataset.variantId;
+  const price = el.dataset.price;
+  const priceCents = parseInt(el.dataset.priceCents);
+  const title = el.dataset.title;
+
+  document.querySelectorAll('.eto-size-option').forEach(opt => opt.classList.remove('selected'));
+  el.classList.add('selected');
+  document.getElementById('eto-selected-size').textContent = title + ' = ' + price;
+  
+  const boxSelected = document.getElementById('boxSelected');
+  if(boxSelected) {
+    boxSelected.textContent = title + ' selected';
+  }
+  
+  if(!isNaN(priceCents)) {
+    etoCurrentUnitPriceCents = priceCents;
+    etoUpdateTotalPrice();
+  } else {
+    document.getElementById('eto-current-price').textContent = price;
+  }
+  
+  if (variantId) {
+    document.getElementById('eto-variant-id').value = variantId;
+  }
+
+  // Hide size grid, show EDIT button for size
+  const sizeGrid = document.getElementById('eto-size-grid');
+  const sizeEditBtn = document.getElementById('eto-size-edit-btn');
+  if (sizeGrid) sizeGrid.style.display = 'none';
+  if (sizeEditBtn) sizeEditBtn.style.display = 'inline-block';
+
+  // Show config container and first dynamic option
+  const configContainer = document.getElementById('eto-config-container');
+  if (configContainer) {
+    configContainer.style.display = 'block';
+  }
+
+  // Show the first non-Size option
+  for (let i = 0; i < etoOptionGroups.length; i++) {
+    if (etoOptionGroups[i].title === 'Size') continue;
+    const rowEl = document.getElementById('eto-dynopt-' + i);
+    if (rowEl) {
+      rowEl.style.display = 'block';
+      break;
+    }
+  }
+}
+
+// Edit size - show size grid again
+function etoEditSize() {
+  const sizeGrid = document.getElementById('eto-size-grid');
+  const sizeEditBtn = document.getElementById('eto-size-edit-btn');
+  if (sizeGrid) sizeGrid.style.display = 'grid';
+  if (sizeEditBtn) sizeEditBtn.style.display = 'none';
+  
+  // Hide config container while editing size
+  const configContainer = document.getElementById('eto-config-container');
+  if (configContainer) configContainer.style.display = 'none';
+}
+
+// Clear configurator (reset everything)
+function etoClearConfigurator() {
+  // Reset size
+  document.querySelectorAll('.eto-size-option').forEach(opt => opt.classList.remove('selected'));
+  const selectedSpan = document.getElementById('eto-selected-size');
+  if (selectedSpan) selectedSpan.textContent = 'No Size Selected';
+  
+  // Show size grid, hide edit button
+  const sizeGrid = document.getElementById('eto-size-grid');
+  const sizeEditBtn = document.getElementById('eto-size-edit-btn');
+  if (sizeGrid) sizeGrid.style.display = 'grid';
+  if (sizeEditBtn) sizeEditBtn.style.display = 'none';
+  
+  // Hide config container
+  const configContainer = document.getElementById('eto-config-container');
+  if (configContainer) configContainer.style.display = 'none';
+  
+  // Reset all dynamic options
+  etoOptionGroups.forEach((group, index) => {
+    if (group.title === 'Size') return;
+    delete etoConfigState[group.title];
+    const rowEl = document.getElementById('eto-dynopt-' + index);
+    if (rowEl) rowEl.style.display = 'none';
+    const label = document.getElementById('eto-dynopt-label-' + index);
+    if (label) label.textContent = 'Not Selected';
+    const editBtn = document.getElementById('eto-dynopt-edit-' + index);
+    if (editBtn) editBtn.style.display = 'none';
+    const listEl = document.getElementById('eto-dynopt-list-' + index);
+    if (listEl) {
+      listEl.style.display = '';
+      listEl.querySelectorAll('.eto-size-option').forEach(o => o.classList.remove('selected'));
+    }
+  });
+  etoDoorConfig = '';
+  
+  // Hide configured section
+  const configuredSection = document.getElementById('eto-configured-section');
+  if (configuredSection) configuredSection.style.display = 'none';
+  const notesContainer = document.getElementById('eto-notes-container');
+  if (notesContainer) notesContainer.style.display = 'none';
+  
+  // Clear notes
+  const notesInput = document.getElementById('eto-notes');
+  if (notesInput) notesInput.value = '';
+  
+  // Reset price
+  var defaultPriceCents = {{ product.selected_or_first_available_variant.price }};
+  etoCurrentUnitPriceCents = defaultPriceCents;
+  etoUpdateTotalPrice();
+  
+  const defaultVariantId = '{{ product.selected_or_first_available_variant.id }}';
+  const variantInput = document.getElementById('eto-variant-id');
+  if (variantInput) variantInput.value = defaultVariantId;
+}
+
+// ── Initialize on page load ──
+document.addEventListener('DOMContentLoaded', function() {
+  etoBuildDynamicOptions();
+});
+
+// Edit pre-hanging - show options again, hide configured section
+// (etoEditPrehang removed - now handled by dynamic option system)
+
+// Variant ID of the dedicated "Custom Door Add-on" Shopify product (priced at $1.00)
+var ETO_ADDON_VARIANT_ID = 46529435074700;
+
+// Add to cart from center column - 2-step AJAX (reliable, supports add-on pricing)
+function etoAddToCart() {
+  const variantId = document.getElementById('eto-variant-id').value;
+  const quantity = parseInt(document.getElementById('eto-form-qty').value || 1);
+  const notesInput = document.getElementById('eto-notes');
+
+  if (!variantId) {
+    alert('Please select a size first.');
+    return;
+  }
+
+  // Generate a unique config ID to link main item and add-ons
+  const uniqueConfigId = 'config_' + Date.now() + '_' + Math.floor(Math.random() * 1000);
+
+  // Build line item properties
+  const properties = {
+    '_config_id': uniqueConfigId
+  };
+  
+  const sizeLabel = document.getElementById('eto-selected-size');
+  if (sizeLabel && sizeLabel.textContent !== 'No Size Selected') {
+    properties['Size'] = sizeLabel.textContent;
+  }
+  if (typeof etoConfigState === 'object') {
+    Object.keys(etoConfigState).forEach(key => {
+      if (etoConfigState[key]) properties[key] = etoConfigState[key];
+    });
+  }
+  if (notesInput && notesInput.value) {
+    properties['Notes'] = notesInput.value;
+  }
+
+  // Calculate total add-on cost in dollars (from etoAddonCents state)
+  var addonDollars = 0;
+  if (typeof etoAddonCents !== 'undefined' && etoAddonCents > 0) {
+    addonDollars = Math.round(etoAddonCents / 100);
+  }
+
+  // Add main door to cart
+  fetch('/cart/add.js', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ id: variantId, quantity: quantity, properties: properties })
+  })
+  .then(r => r.json())
+  .then(function() {
+    if (addonDollars > 0) {
+      // Add the Custom Door Add-on product at quantity = (add-on price per door * quantity of doors)
+      return fetch('/cart/add.js', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          id: ETO_ADDON_VARIANT_ID,
+          quantity: addonDollars * quantity,
+          properties: { 
+            '_config_id': uniqueConfigId,
+            '_is_addon': 'true',
+            'Custom Options Total (per item)': '$' + addonDollars + '.00' 
+          }
+        })
+      });
+    }
+  })
+  .then(function() {
+    window.location.href = '/cart';
+  })
+  .catch(function(err) {
+    console.error('Cart add error:', err);
+    alert('Error adding to cart. Please try again.');
+  });
+}
+
+// Fetch cart data and show popup
+function etoFetchCartAndShowPopup() {
+  fetch('/cart.js', {
+    credentials: 'same-origin'
+  })
+  .then(response => {
+    if (!response.ok) {
+      // Show popup with current product info if cart fetch fails
+      etoShowMockCartPopup();
+      return null;
+    }
+    return response.json();
+  })
+  .then(cart => {
+    if (cart) {
+      etoRenderCartPopup(cart);
+      etoShowCartPopup();
+    }
+  })
+  .catch(error => {
+    console.error('Error fetching cart:', error);
+    // Show popup with current product info
+    etoShowMockCartPopup();
+  });
+}
+
+// Show mock cart popup when API fails (dev server issue)
+function etoShowMockCartPopup() {
+  const price = document.getElementById('eto-current-price').textContent;
+  const title = '{{ product.title | escape }}';
+  const image = '{{ product.featured_image | image_url: width: 100 }}';
+  const qty = document.getElementById('eto-form-qty').value || 1;
+  const sizeDisplay = document.getElementById('eto-selected-size') ? document.getElementById('eto-selected-size').textContent : '';
+  const notesInput = document.getElementById('eto-notes');
+  const notesValue = notesInput ? notesInput.value : '';
+  
+  // Build dynamic detail rows from etoConfigState
+  let detailRows = `<div class="eto-cart-details-row"><span class="eto-cart-details-label">Size</span><span class="eto-cart-details-value">${sizeDisplay}</span></div>`;
+  if (typeof etoConfigState === 'object') {
+    Object.keys(etoConfigState).forEach(key => {
+      if (etoConfigState[key]) {
+        detailRows += `<div class="eto-cart-details-row"><span class="eto-cart-details-label">${key}</span><span class="eto-cart-details-value">${etoConfigState[key]}</span></div>`;
+      }
+    });
+  }
+  if (notesValue) {
+    detailRows += `<div class="eto-cart-details-row"><span class="eto-cart-details-label">Notes</span><span class="eto-cart-details-value">${notesValue}</span></div>`;
+  }
+  
+  const itemsContainer = document.getElementById('eto-cart-items');
+  const subtotalEl = document.getElementById('eto-popup-subtotal');
+  
+  subtotalEl.textContent = price;
+  itemsContainer.innerHTML = `
+    <div class="eto-cart-item">
+      <img src="${image}" alt="${title}" class="eto-cart-item-img">
+      <div class="eto-cart-item-info">
+        <div class="eto-cart-item-title">${title}</div>
+        <div class="eto-cart-item-qty-row">
+          <span class="eto-cart-item-qty-num">${qty}</span>
+          <span class="eto-cart-item-qty-x">x</span>
+          <select>
+            ${[1,2,3,4,5,6,7,8,9,10].map(n => `<option value="${n}" ${parseInt(qty) === n ? 'selected' : ''}>${n}</option>`).join('')}
+          </select>
+          <span class="eto-cart-item-price">${price}</span>
+        </div>
+        <div class="eto-cart-item-details-wrapper">
+          <div class="eto-cart-item-details">Details</div>
+          <div class="eto-cart-details-popup">
+            ${detailRows}
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+  etoShowCartPopup();
+}
+
+// Render cart items in popup
+function etoRenderCartPopup(cart) {
+  const itemsContainer = document.getElementById('eto-cart-items');
+  const subtotalEl = document.getElementById('eto-popup-subtotal');
+  
+  // Update subtotal
+  subtotalEl.textContent = '$' + (cart.total_price / 100).toFixed(2);
+  
+  // Build items HTML
+  let html = '';
+  cart.items.forEach(item => {
+    html += `
+      <div class="eto-cart-item">
+        <img src="${item.image || '/cdn/shopifycloud/shopify/assets/no-image-50-3d8cc48bd078eb36f5a5adf781c5991e93b4d9a7cd0920929c8f54e1c8ee30ca.gif'}" alt="${item.title}" class="eto-cart-item-img">
+        <div class="eto-cart-item-info">
+          <div class="eto-cart-item-title">${item.product_title}</div>
+          <div class="eto-cart-item-qty-row">
+            <span class="eto-cart-item-qty-num">${item.quantity}</span>
+            <span class="eto-cart-item-qty-x">x</span>
+            <select onchange="etoUpdateCartQty(${item.key ? "'" + item.key + "'" : item.variant_id}, this.value)">
+              ${[1,2,3,4,5,6,7,8,9,10].map(n => `<option value="${n}" ${item.quantity === n ? 'selected' : ''}>${n}</option>`).join('')}
+            </select>
+            <span class="eto-cart-item-price">$${(item.line_price / 100).toFixed(2)}</span>
+          </div>
+          <div class="eto-cart-item-details-wrapper">
+            <div class="eto-cart-item-details">Details</div>
+            <div class="eto-cart-details-popup">
+              <div class="eto-cart-details-row">
+                <span class="eto-cart-details-label">Size</span>
+                <span class="eto-cart-details-value">${item.variant_title || ''}</span>
+              </div>
+              ${item.properties ? Object.entries(item.properties).map(([k,v]) => v ? `<div class="eto-cart-details-row"><span class="eto-cart-details-label">${k}</span><span class="eto-cart-details-value">${v}</span></div>` : '').join('') : ''}
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="eto-cart-item-remove" onclick="etoRemoveCartItem(${item.key ? "'" + item.key + "'" : item.variant_id})"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><rect width="16" height="16" fill="#e65c00" rx="2"/><path fill="#fff" d="M11.5 5.5l-6 6M5.5 5.5l6 6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></button>
+      </div>
+    `;
+  });
+  
+  itemsContainer.innerHTML = html || '<p style="padding:20px;text-align:center;color:#666;">Your cart is empty</p>';
+}
+
+// Show cart popup
+function etoShowCartPopup() {
+  document.getElementById('eto-cart-overlay').style.display = 'block';
+  document.getElementById('eto-cart-popup').style.display = 'block';
+  document.body.style.overflow = 'hidden';
+}
+
+// Close cart popup
+function etoCloseCartPopup() {
+  document.getElementById('eto-cart-overlay').style.display = 'none';
+  document.getElementById('eto-cart-popup').style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+// Update cart item quantity
+function etoUpdateCartQty(key, qty) {
+  fetch('/cart/change.js', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ id: key, quantity: parseInt(qty) })
+  })
+  .then(response => response.json())
+  .then(cart => {
+    etoRenderCartPopup(cart);
+  });
+}
+
+// Remove cart item
+function etoRemoveCartItem(key) {
+  etoUpdateCartQty(key, 0);
+}
+
+// Sidebar Add to Cart (intercept form submit)
+function etoSidebarAddToCart(event) {
+  event.preventDefault();
+  etoAddToCart();
+  return false;
+}
+
+// Update quantity
+function etoUpdateQty(delta) {
+  const input = document.getElementById('eto-quantity');
+  let val = parseInt(input.value) + delta;
+  if (val < 1) val = 1;
+  input.value = val;
+  document.getElementById('eto-form-qty').value = val;
+  etoUpdateTotalPrice();
+}
+
+// Keep form qty in sync
+const etoQtyInput = document.getElementById('eto-quantity');
+if (etoQtyInput) {
+  etoQtyInput.addEventListener('change', function() {
+    let val = parseInt(this.value);
+    if (isNaN(val) || val < 1) val = 1;
+    this.value = val;
+    const qtyField = document.getElementById('eto-form-qty');
+    if (qtyField) qtyField.value = val;
+    etoUpdateTotalPrice();
+  });
+}
+
+// Tab switching
+function etoShowTab(tabId, btn) {
+  document.querySelectorAll('.eto-tab-pane').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.eto-tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + tabId).classList.add('active');
+  btn.classList.add('active');
+
+  // Re-initialize Judge.me widget when reviews tab is shown
+  if (tabId === 'reviews' && typeof jdgm !== 'undefined' && jdgm.customizableInstall) {
+    setTimeout(function() { jdgm.customizableInstall(); }, 100);
+  }
+}
+
+// Reviews sub-tab switching (Reviews vs Questions)
+function etoShowReviewSubTab(subtabId, btn) {
+  document.querySelectorAll('.eto-review-subtab-pane').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.eto-review-subtab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(subtabId).classList.add('active');
+  btn.classList.add('active');
+}
+
+// Attach sub-tab click events on load
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.eto-review-subtab-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var subtabId = btn.getAttribute('data-subtab');
+      etoShowReviewSubTab(subtabId, btn);
+    });
+  });
+});
+
+// Star rating input for Write a Review form
+document.addEventListener('DOMContentLoaded', function() {
+  var stars = document.querySelectorAll('.eto-star-input');
+  var ratingInput = document.getElementById('eto-rating-input');
+  var selectedRating = 0;
+
+  stars.forEach(function(star) {
+    // Hover effect
+    star.addEventListener('mouseenter', function() {
+      var val = parseInt(star.getAttribute('data-value'));
+      stars.forEach(function(s) {
+        var sVal = parseInt(s.getAttribute('data-value'));
+        s.classList.toggle('hovered', sVal <= val);
+      });
+    });
+
+    // Mouse leave - revert to selected
+    star.addEventListener('mouseleave', function() {
+      stars.forEach(function(s) {
+        var sVal = parseInt(s.getAttribute('data-value'));
+        s.classList.remove('hovered');
+        s.classList.toggle('selected', sVal <= selectedRating);
+      });
+    });
+
+    // Click to select rating
+    star.addEventListener('click', function() {
+      selectedRating = parseInt(star.getAttribute('data-value'));
+      if (ratingInput) ratingInput.value = selectedRating;
+      stars.forEach(function(s) {
+        var sVal = parseInt(s.getAttribute('data-value'));
+        s.classList.toggle('selected', sVal <= selectedRating);
+      });
+    });
+  });
+});
+
+// Fix Shipping Policy links from Magento HTML to open our modal
+document.addEventListener('DOMContentLoaded', function() {
+  var leadTimePane = document.getElementById('tab-leadtime');
+  if (leadTimePane) {
+    var links = leadTimePane.querySelectorAll('a');
+    links.forEach(function(link) {
+      var href = link.getAttribute('href') || '';
+      if (href.indexOf('shipping-policy') !== -1 || href.indexOf('shipping_policy') !== -1 || link.textContent.trim().toLowerCase().indexOf('shipping policy') !== -1) {
+        link.setAttribute('href', 'javascript:void(0)');
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          var modal = document.getElementById('eto-shipping-modal');
+          if (modal) modal.style.display = 'block';
+        });
+      }
+    });
+  }
+});
+
+
+
+// Image Zoom Script
+document.addEventListener('DOMContentLoaded', function() {
+  var img = document.getElementById('eto-featured-img');
+  var result = document.getElementById('eto-zoom-result');
+  var lens = document.getElementById('eto-zoom-lens');
+  var container = document.getElementById('eto-main-image-container');
+
+  if (!img || !result || !lens || !container) return; // Exit if elements missing
+
+  // Show zoom on hover
+  container.addEventListener('mouseenter', function() {
+    lens.style.display = 'block';
+    result.style.display = 'block';
+    updateZoomBackground();
+  });
+
+  // Hide zoom on leave
+  container.addEventListener('mouseleave', function() {
+    lens.style.display = 'none';
+    result.style.display = 'none';
+  });
+
+  // Calculate and move lens
+  function moveLens(e) {
+    e.preventDefault();
+    
+    // Ensure ratios are calculated
+    var cx = result.offsetWidth / lens.offsetWidth;
+    var cy = result.offsetHeight / lens.offsetHeight;
+    
+    var pos = getCursorPos(e);
+    var x = pos.x - (lens.offsetWidth / 2);
+    var y = pos.y - (lens.offsetHeight / 2);
+    
+    // Boundary checks
+    if (x > img.width - lens.offsetWidth) { x = img.width - lens.offsetWidth; }
+    if (x < 0) { x = 0; }
+    if (y > img.height - lens.offsetHeight) { y = img.height - lens.offsetHeight; }
+    if (y < 0) { y = 0; }
+    
+    lens.style.left = (x + img.offsetLeft) + "px";
+    lens.style.top = (y + img.offsetTop) + "px";
+    
+    result.style.backgroundPosition = "-" + (x * cx) + "px -" + (y * cy) + "px";
+    result.style.backgroundSize = (img.width * cx) + "px " + (img.height * cy) + "px";
+  }
+
+  // Get cursor position relative to image
+  function getCursorPos(e) {
+    var a, x = 0, y = 0;
+    e = e || window.event;
+    a = img.getBoundingClientRect();
+    x = e.pageX - a.left;
+    y = e.pageY - a.top;
+    x = x - window.pageXOffset;
+    y = y - window.pageYOffset;
+    return {x : x, y : y};
+  }
+  
+  function updateZoomBackground() {
+     if(!img.src) return;
+     // Calculate ratio
+     var cx = result.offsetWidth / lens.offsetWidth;
+     var cy = result.offsetHeight / lens.offsetHeight;
+     
+     result.style.backgroundImage = "url('" + img.src + "')";
+     result.style.backgroundSize = (img.width * cx) + "px " + (img.height * cy) + "px";
+  }
+
+  container.addEventListener('mousemove', moveLens);
+  lens.addEventListener('mousemove', moveLens);
+  img.addEventListener('mousemove', moveLens);
+  
+  // Hook into thumbnail change
+  var originalChangeImage = window.etoChangeImage;
+  window.etoChangeImage = function(newSrc, thumb) {
+     // Call original if it exists
+     if(typeof originalChangeImage === 'function') originalChangeImage(newSrc, thumb);
+     // Or just do our update logic here if original is simple
+     document.getElementById('eto-featured-img').src = newSrc;
+     document.querySelectorAll('.eto-gallery-thumb').forEach(t => t.classList.remove('active'));
+     thumb.classList.add('active');
+     
+     // Update background immediately
+     result.style.backgroundImage = "url('" + newSrc + "')";
+  };
+});
+
+// === Lightbox Functions ===
+function etoOpenLightbox(imgSrc) {
+  var overlay = document.getElementById('eto-lightbox');
+  var mainImg = document.getElementById('eto-lightbox-img');
+  if (!overlay || !mainImg) return;
+  mainImg.src = imgSrc;
+  overlay.classList.add('active');
+  document.body.style.overflow = 'hidden';
+  // Mark the right thumbnail as active
+  document.querySelectorAll('.eto-lightbox-thumb').forEach(function(t) {
+    t.classList.remove('active');
+    var tImg = t.querySelector('img');
+    if (tImg && tImg.src === imgSrc) t.classList.add('active');
+  });
+}
+function etoCloseLightbox() {
+  var overlay = document.getElementById('eto-lightbox');
+  if (overlay) overlay.classList.remove('active');
+  document.body.style.overflow = '';
+}
+function etoLightboxSelect(imgSrc, thumb) {
+  var mainImg = document.getElementById('eto-lightbox-img');
+  if (mainImg) mainImg.src = imgSrc;
+  document.querySelectorAll('.eto-lightbox-thumb').forEach(function(t) { t.classList.remove('active'); });
+  if (thumb) thumb.classList.add('active');
+}
+// Close lightbox on Escape key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') etoCloseLightbox();
+});
+// Open lightbox when clicking on featured image
+document.addEventListener('DOMContentLoaded', function() {
+  var featuredImg = document.getElementById('eto-featured-img');
+  if (featuredImg) {
+    featuredImg.style.cursor = 'pointer';
+    featuredImg.addEventListener('click', function() {
+      etoOpenLightbox(this.src);
+    });
+  }
+  // Also open lightbox when clicking on gallery thumbnails
+  document.querySelectorAll('.eto-gallery-thumb').forEach(function(t) {
+    t.addEventListener('click', function() {
+      var img = this.querySelector('img');
+      if (img) {
+        var src = document.getElementById('eto-featured-img').src;
+        etoOpenLightbox(src);
+      }
+    });
+  });
+});
+</script>
+
+{% schema %}
+{
+  "name": "ETO Product",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "phone",
+      "label": "Phone Number",
+      "default": "(213) 622-2003"
+    },
+    {
+      "type": "url",
+      "id": "quote_link",
+      "label": "Fast Quote Link"
+    },
+    {
+      "type": "url",
+      "id": "help_link",
+      "label": "Need Help Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "ETO Product"
+    }
+  ]
+}
+{% endschema %}

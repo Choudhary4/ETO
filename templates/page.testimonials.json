@@ -1,0 +1,11 @@
+{
+    "sections": {
+        "main": {
+            "type": "eto-testimonials",
+            "settings": {}
+        }
+    },
+    "order": [
+        "main"
+    ]
+}

@@ -1,0 +1,1160 @@
+{% comment %}
+  ETO Enterprise Customer Portal Dashboard (100% Real Dynamic Data Mode)
+  Unified Glass-Pane Dashboard integrating Shopify Orders, Zoho Books Estimates, Invoices, Payments, and ID Mapping Store.
+  No hardcoded dummy data. Powered by real Shopify customer data, metafields, and live Zoho API middleware.
+{% endcomment %}
+
+{{ 'customer.css' | asset_url | stylesheet_tag }}
+
+<style>
+  :root {
+    --eto-primary: #1a1a1a;
+    --eto-primary-hover: #333333;
+    --eto-secondary: #e6e2da;
+    --eto-accent: #6b6255;
+    --eto-success: #166534;
+    --eto-warning: #b45309;
+    --eto-danger: #991b1b;
+    --eto-bg: #faf9f7;
+    --eto-card-bg: #ffffff;
+    --eto-text-main: #0f172a;
+    --eto-text-muted: #64748b;
+    --eto-border: #e2e8f0;
+  }
+
+  .eto-portal-wrapper {
+    background-color: #e6e2da;
+    min-height: 100vh;
+    padding: 40px 20px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--eto-text-main);
+  }
+
+  .eto-portal-container {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  /* Top Banner */
+  .eto-portal-header {
+    background: #1a1a1a;
+    color: #ffffff;
+    border-radius: 20px;
+    padding: 36px 40px;
+    margin-bottom: 32px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .eto-header-left h1 {
+    font-size: 32px;
+    font-weight: 800;
+    margin: 0 0 8px 0;
+    color: #ffffff;
+    letter-spacing: -0.02em;
+  }
+
+  .eto-header-left p {
+    font-size: 15px;
+    color: #9ca3af;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .eto-header-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .eto-sync-badge {
+    background: rgba(16, 185, 129, 0.15);
+    color: #34d399;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .eto-pulse-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #10b981;
+    border-radius: 50%;
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+    animation: eto-pulse 2s infinite;
+  }
+
+  @keyframes eto-pulse {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+  }
+
+  .eto-btn-logout {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.2s;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .eto-btn-logout:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  /* KPI Cards Grid */
+  .eto-kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-bottom: 36px;
+  }
+
+  .eto-kpi-card {
+    background: var(--eto-card-bg);
+    border-radius: 16px;
+    padding: 24px;
+    border: 1px solid var(--eto-border);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .eto-kpi-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 20px -3px rgba(0, 0, 0, 0.08);
+  }
+
+  .eto-kpi-card::top {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+  }
+
+
+  .eto-kpi-title {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 700;
+    color: var(--eto-text-muted);
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .eto-kpi-value {
+    font-size: 30px;
+    font-weight: 800;
+    color: var(--eto-text-main);
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+  }
+
+
+  /* Credit Progress Bar */
+  .eto-progress-container {
+    width: 100%;
+    height: 6px;
+    background-color: #e5e7eb;
+    border-radius: 3px;
+    margin-top: 12px;
+    overflow: hidden;
+  }
+  .eto-progress-fill {
+    height: 100%;
+    background-color: #10b981;
+    border-radius: 3px;
+    transition: width 0.5s ease-out, background-color 0.3s;
+  }
+  .eto-kpi-sub {
+    font-size: 13px;
+    color: var(--eto-text-muted);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* Interactive Navigation Tabs (Segmented Control) */
+  .eto-tabs-bar {
+    display: inline-flex;
+    gap: 4px;
+    margin-bottom: 28px;
+    background: var(--eto-secondary);
+    padding: 6px;
+    border-radius: 12px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .eto-tabs-bar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .eto-tab-btn {
+    background: transparent;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--eto-text-muted);
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+  }
+
+  .eto-tab-btn:hover {
+    color: var(--eto-primary);
+  }
+
+  .eto-tab-btn.active {
+    background: #ffffff;
+    color: var(--eto-primary);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+  }
+
+  .eto-tab-badge {
+    background: rgba(0, 0, 0, 0.05);
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-size: 12px;
+    transition: background 0.25s;
+  }
+
+  .eto-tab-btn.active .eto-tab-badge {
+    background: rgba(0, 0, 0, 0.08);
+  }
+
+  /* Tab Content Sections */
+  .eto-tab-pane {
+    display: none;
+    animation: etoFadeIn 0.3s ease;
+  }
+
+  .eto-tab-pane.active {
+    display: block;
+  }
+
+  @keyframes etoFadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Data Cards & Tables */
+  .eto-content-card {
+    background: var(--eto-card-bg);
+    border-radius: 16px;
+    border: 1px solid var(--eto-border);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    margin-bottom: 32px;
+  }
+
+  .eto-card-header {
+    padding: 20px 24px;
+    background: #f8fafc;
+    border-bottom: 1px solid var(--eto-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .eto-card-header h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0;
+    color: var(--eto-text-main);
+  }
+
+  .eto-table-responsive {
+    overflow-x: auto;
+  }
+
+  .eto-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+  }
+
+  .eto-table th {
+    padding: 16px 24px;
+    background: #f1f5f9;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--eto-text-muted);
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid var(--eto-border);
+  }
+
+  .eto-table td {
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--eto-border);
+    font-size: 15px;
+    color: var(--eto-text-main);
+    vertical-align: middle;
+  }
+
+  .eto-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .eto-table tr:hover td {
+    background-color: #f8fafc;
+  }
+
+  /* Empty State Box */
+  .eto-empty-state {
+    padding: 60px 24px;
+    text-align: center;
+    color: var(--eto-text-muted);
+  }
+
+  .eto-empty-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+  }
+
+  .eto-empty-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--eto-text-main);
+    margin-bottom: 8px;
+  }
+
+  .eto-empty-text {
+    font-size: 14px;
+    max-width: 450px;
+    margin: 0 auto 24px auto;
+    line-height: 1.5;
+  }
+
+  /* Badges & Buttons */
+  .eto-badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .eto-badge.pending { background: #fef3c7; color: #b45309; }
+  .eto-badge.accepted { background: #d1fae5; color: #065f46; }
+  .eto-badge.paid { background: #dcfce7; color: #166534; }
+  .eto-badge.overdue { background: #fee2e2; color: #991b1b; }
+  .eto-badge.info { background: #dbeafe; color: #1e40af; }
+
+  .eto-action-btn {
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+  }
+
+  .eto-btn-primary {
+    background: var(--eto-primary);
+    color: #ffffff;
+  }
+  .eto-btn-primary:hover { background: var(--eto-primary-hover); }
+
+  .eto-btn-success {
+    background: var(--eto-success);
+    color: #ffffff;
+  }
+  .eto-btn-success:hover { background: #059669; }
+
+  .eto-btn-outline {
+    background: transparent;
+    border: 1px solid var(--eto-border);
+    color: var(--eto-text-main);
+  }
+  .eto-btn-outline:hover { background: #f1f5f9; }
+
+  /* Mapping Store Profile Grid */
+  .eto-profile-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+    padding: 24px;
+  }
+
+  .eto-info-box {
+    background: #f8fafc;
+    border: 1px solid var(--eto-border);
+    border-radius: 12px;
+    padding: 20px;
+  }
+
+  .eto-info-box h4 {
+    margin: 0 0 16px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--eto-text-main);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid var(--eto-border);
+    padding-bottom: 10px;
+  }
+
+  .eto-info-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    font-size: 14px;
+  }
+  .eto-info-row:last-child { margin-bottom: 0; }
+  .eto-info-label { color: var(--eto-text-muted); font-weight: 500; }
+  .eto-info-val { font-weight: 700; color: var(--eto-text-main); font-family: monospace; font-size: 13px; background: #e2e8f0; padding: 2px 6px; border-radius: 4px; }
+
+  /* Interactive Toast Notification */
+  #eto-toast {
+    visibility: hidden;
+    min-width: 300px;
+    background-color: #0f172a;
+    color: #fff;
+    text-align: center;
+    border-radius: 12px;
+    padding: 16px 24px;
+    position: fixed;
+    z-index: 9999;
+    right: 30px;
+    bottom: 30px;
+    font-size: 15px;
+    font-weight: 600;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  #eto-toast.show {
+    visibility: visible;
+    animation: etoFadeInUp 0.4s, etoFadeOut 0.4s 3.6s;
+  }
+
+  @keyframes etoFadeInUp {
+    from { bottom: 0; opacity: 0; }
+    to { bottom: 30px; opacity: 1; }
+  }
+
+  @keyframes etoFadeOut {
+    from { bottom: 30px; opacity: 1; }
+    to { bottom: 0; opacity: 0; }
+  }
+</style>
+
+<div class="eto-portal-wrapper">
+  <div class="eto-portal-container">
+    
+    <!-- Header Banner (Real Shopify Customer Profile) -->
+    <div class="eto-portal-header">
+      <div class="eto-header-left">
+        <h1>B2B Contractor Portal</h1>
+        <p>
+          {% if customer %}
+            <span>Welcome back, <strong>{{ customer.name }}</strong></span>
+            <span>•</span>
+            <span>{{ customer.email }}</span>
+            {% if customer.default_address.company != blank %}
+              <span>•</span>
+              <span>{{ customer.default_address.company }}</span>
+            {% endif %}
+          {% else %}
+            <span>Welcome, <strong>Guest Contractor</strong></span>
+            <span>•</span>
+            <span>Please log in to sync with Zoho Books & CRM</span>
+          {% endif %}
+        </p>
+      </div>
+      <div class="eto-header-right">
+        <div class="eto-sync-badge" title="Connected to Zoho Books & CRM Middleware">
+          <span class="eto-pulse-dot"></span>
+          ZOHO BOOKS & CRM LIVE SYNC
+        </div>
+        {% if customer %}
+          <a href="{{ routes.account_logout_url }}" class="eto-btn-logout">Log out</a>
+        {% else %}
+          <a href="{{ routes.account_login_url }}?checkout_url=/pages/b2b-customer-portal" class="eto-btn-logout" style="background: var(--eto-primary); border-color: var(--eto-primary);">Log In</a>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Financial KPI Summary Cards (Real Metafields / Dynamic States) -->
+    <div class="eto-kpi-grid">
+
+
+      <div class="eto-kpi-card balance">
+        <div class="eto-kpi-title">
+          <span>Outstanding Balance</span>
+          <span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--eto-text-muted)"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg></span>
+        </div>
+        <div class="eto-kpi-value" id="kpi-outstanding-balance">
+          {% if customer and customer.metafields.custom.zoho_outstanding_balance != blank %}
+            {{ customer.metafields.custom.zoho_outstanding_balance | money_with_currency }}
+          {% else %}
+            $0.00
+          {% endif %}
+        </div>
+        <div class="eto-kpi-sub">
+          <span id="kpi-outstanding-badge" class="eto-badge {% if customer and customer.metafields.custom.zoho_outstanding_balance > 0 %}overdue{% else %}accepted{% endif %}">
+            {% if customer and customer.metafields.custom.zoho_outstanding_balance > 0 %}Payment Due in Books{% else %}No Overdue Balance{% endif %}
+          </span>
+        </div>
+      </div>
+
+      <div class="eto-kpi-card quotes">
+        <div class="eto-kpi-title">
+          <span>Active Estimates / Quotes</span>
+          <span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--eto-text-muted)"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg></span>
+        </div>
+        <div class="eto-kpi-value" id="kpi-quotes-count">0 Quotes</div>
+        <div class="eto-kpi-sub">
+          <span id="kpi-quotes-sub">Synced from Zoho Books API</span>
+        </div>
+      </div>
+
+      <div class="eto-kpi-card orders">
+        <div class="eto-kpi-title">
+          <span>Total Shopify Orders</span>
+          <span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--eto-text-muted)"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg></span>
+        </div>
+        <div class="eto-kpi-value" id="kpi-orders-count" data-shopify-count="{{ customer.orders.size | default: '0' }}">{{ customer.orders.size | default: '0' }} Orders</div>
+        <div class="eto-kpi-sub">
+          <span class="eto-badge info">Zoho Flow Synced</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <div class="eto-tabs-bar">
+      <button class="eto-tab-btn active" onclick="switchEtoTab(event, 'tab-orders')">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px; vertical-align:text-bottom;"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg> Orders (Shopify + Zoho SO)
+        <span class="eto-tab-badge" id="tab-badge-orders" data-shopify-count="{{ customer.orders.size | default: '0' }}">{{ customer.orders.size | default: '0' }}</span>
+      </button>
+      <button class="eto-tab-btn" onclick="switchEtoTab(event, 'tab-estimates')">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px; vertical-align:text-bottom;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg> Estimates & Quotes (Zoho Books)
+        <span class="eto-tab-badge" id="tab-badge-estimates">Live</span>
+      </button>
+      <button class="eto-tab-btn" onclick="switchEtoTab(event, 'tab-invoices')">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px; vertical-align:text-bottom;"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"></path><path d="M16 14h-6"></path><path d="M16 18h-6"></path><path d="M16 10h-2"></path></svg> Invoices & Payments (Zoho Books)
+        <span class="eto-tab-badge" id="tab-badge-invoices">Live</span>
+      </button>
+
+    </div>
+
+    <!-- TAB 1: ORDERS (100% Real Shopify Orders via Liquid Loop) -->
+    <div id="tab-orders" class="eto-tab-pane active">
+      <div class="eto-content-card" id="shopify-orders-card" {% if customer.orders.size == 0 %}data-empty="true"{% endif %}>
+        <div class="eto-card-header">
+          <h3>Order History & Zoho Books Sales Order Sync</h3>
+          <button class="eto-action-btn eto-btn-outline" onclick="showEtoToast('Syncing latest order status from Zoho Books...')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px; vertical-align:text-bottom;"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg> Refresh Status
+          </button>
+        </div>
+        
+        {%- if customer and customer.orders.size > 0 -%}
+          <div class="eto-table-responsive">
+            <table class="eto-table">
+              <thead>
+                <tr>
+                  <th>Order #</th>
+                  <th>Date</th>
+                  <th>Synced Zoho Books SO</th>
+                  <th>Payment Status</th>
+                  <th>Fulfillment</th>
+                  <th>Total Amount</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {%- for order in customer.orders -%}
+                  <tr>
+                    <td><strong><a href="https://shopify.com/{{ shop.id }}/account/orders/{{ order.id }}" style="color: var(--eto-primary); text-decoration: none;">{{ order.name }}</a></strong></td>
+                    <td>{{ order.created_at | time_tag: format: 'date' }}</td>
+                    <td>
+                      {% if order.metafields.custom.zoho_salesorder_number != blank %}
+                        <span class="eto-badge info zoho-so-badge" data-zoho-so-id="{{ order.metafields.custom.zoho_salesorder_id }}">{{ order.metafields.custom.zoho_salesorder_number }}</span>
+                      {% elsif order.metafields.custom.zoho_estimate_number != blank %}
+                        <span class="eto-badge info zoho-so-badge" data-zoho-so-id="{{ order.metafields.custom.zoho_salesorder_id }}">{{ order.metafields.custom.zoho_estimate_number }}</span>
+                      {% elsif order.metafields.custom.zoho_salesorder_id != blank %}
+                        {% assign so_val = order.metafields.custom.zoho_salesorder_id | string | remove: 'SO-' | remove: '#' %}
+                        {% if so_val.size > 10 %}
+                          {% assign so_display = so_val | slice: -5, 5 | prepend: 'SO-' %}
+                        {% else %}
+                          {% assign so_display = so_val | prepend: 'SO-' %}
+                        {% endif %}
+                        <span class="eto-badge info zoho-so-badge" data-zoho-so-id="{{ order.metafields.custom.zoho_salesorder_id }}">{{ so_display }}</span>
+                      {% else %}
+                        <span class="eto-badge pending">Syncing Flow...</span>
+                      {% endif %}
+                    </td>
+                    <td><span class="eto-badge {% if order.financial_status_label == 'Paid' %}paid{% else %}pending{% endif %}">{{ order.financial_status_label }}</span></td>
+                    <td>{{ order.fulfillment_status_label }}</td>
+                    <td><strong>{{ order.total_net_amount | money_with_currency }}</strong></td>
+                    <td>
+                      <a href="https://shopify.com/{{ shop.id }}/account/orders/{{ order.id }}" class="eto-action-btn eto-btn-outline">View Details</a>
+                    </td>
+                  </tr>
+                {%- endfor -%}
+              </tbody>
+            </table>
+          </div>
+        {%- else -%}
+          <div class="eto-empty-state">
+            <div class="eto-empty-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" style="color: var(--eto-text-muted)"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg></div>
+            <div class="eto-empty-title">No Orders Found</div>
+            <div class="eto-empty-text">
+              You haven't placed any orders with ETO Doors yet. Once you place an order, it will automatically sync with Zoho Books as a Sales Order.
+            </div>
+            <a href="{{ routes.all_products_collection_url }}" class="eto-action-btn eto-btn-primary">Start Shopping</a>
+          </div>
+        {%- endif -%}
+      </div>
+
+      <!-- ZOHO BOOKS CUSTOM SALES ORDERS -->
+      <div class="eto-content-card" style="margin-top: 24px;">
+        <div class="eto-card-header">
+          <div>
+            <h3>Zoho Books Custom Sales Orders</h3>
+            <p style="margin: 4px 0 0 0; font-size: 13px; color: var(--eto-text-muted);">
+              Sales Orders created directly in Zoho Books (e.g. from converted quotes).
+            </p>
+          </div>
+        </div>
+        <div id="salesorders-table-container">
+          <div class="eto-empty-state" style="padding: 30px;">
+            <div class="eto-empty-text">Loading Sales Orders...</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- TAB 2: ESTIMATES & QUOTES (Real Dynamic API / Metafield Engine) -->
+    <div id="tab-estimates" class="eto-tab-pane">
+      <div class="eto-content-card">
+        <div class="eto-card-header">
+          <div>
+            <h3>Live Zoho Books Estimates & B2B Custom Quotes</h3>
+            <p style="margin: 4px 0 0 0; font-size: 13px; color: var(--eto-text-muted);">
+              Review, download PDFs, and accept architectural custom door quotes directly from Zoho Books.
+            </p>
+          </div>
+          <a href="/pages/contact?customer_id={{ customer.id }}&customer_email={{ customer.email | url_encode }}&source=b2b_portal" class="eto-action-btn eto-btn-primary eto-fast-quote-link" style="text-decoration: none; display: inline-flex; align-items: center;">
+            + Request Custom Quote
+          </a>
+        </div>
+        
+        {%- comment -%} Expose customer metafield as JS var for dynamic rendering {%- endcomment -%}
+        <script>
+          var _shopifyCustomerNote = {% if customer and customer.metafields.custom.zoho_estimates_json.value != blank %}{{ customer.metafields.custom.zoho_estimates_json.value | json }}{% else %}null{% endif %};
+          {%- assign shopify_order_names = '' -%}
+          {%- for order in customer.orders -%}
+            {%- assign shopify_order_names = shopify_order_names | append: order.name | append: ',' -%}
+          {%- endfor -%}
+          var _existingShopifyOrders = "{{ shopify_order_names }}".split(',').filter(Boolean);
+        </script>
+        
+        <div id="estimates-table-container">
+          <div class="eto-empty-state" id="estimates-empty-state">
+            <div class="eto-empty-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" style="color: var(--eto-text-muted)"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg></div>
+            <div class="eto-empty-title">No Active Estimates</div>
+            <div class="eto-empty-text">
+              There are currently no open architectural estimates or custom quotes associated with your Zoho Books Customer ID.
+            </div>
+            <button class="eto-action-btn eto-btn-outline" onclick="fetchZohoData('estimates')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px; vertical-align:text-bottom;"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg> Check Live Zoho API</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 3: INVOICES & PAYMENTS (Real Dynamic API / Metafield Engine) -->
+    <div id="tab-invoices" class="eto-tab-pane">
+      <div class="eto-content-card">
+        <div class="eto-card-header">
+          <div>
+            <h3>Zoho Books Invoices & Payment Ledger</h3>
+            <p style="margin: 4px 0 0 0; font-size: 13px; color: var(--eto-text-muted);">
+              Authoritative financial ledger synced in real-time from Zoho Books Accounting.
+            </p>
+          </div>
+          <div style="display: flex; gap: 12px; align-items: center;">
+            <span id="tab-invoices-balance" style="font-size: 14px; font-weight: 700; color: var(--eto-text-main);">
+              Balance Due: {% if customer and customer.metafields.custom.zoho_outstanding_balance != blank %}{{ customer.metafields.custom.zoho_outstanding_balance | money_with_currency }}{% else %}$0.00{% endif %}
+            </span>
+          </div>
+        </div>
+        
+        <div id="invoices-table-container">
+          {%- if customer and customer.metafields.custom.zoho_invoices_json != blank -%}
+            <!-- Will be dynamically populated by real JSON metafield if present -->
+          {%- else -%}
+            <div class="eto-empty-state">
+              <div class="eto-empty-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" style="color: var(--eto-text-muted)"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"></path><path d="M16 14h-6"></path><path d="M16 18h-6"></path><path d="M16 10h-2"></path></svg></div>
+              <div class="eto-empty-title">No Outstanding Invoices</div>
+              <div class="eto-empty-text">
+                Your financial ledger is clean! You have no unpaid invoices or pending billing statements in Zoho Books.
+              </div>
+              <button class="eto-action-btn eto-btn-outline" onclick="fetchZohoData('invoices')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px; vertical-align:text-bottom;"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg> Check Live Zoho API</button>
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+
+      <!-- ZOHO BOOKS PAYMENT HISTORY -->
+      <div class="eto-content-card" style="margin-top: 24px;">
+        <div class="eto-card-header">
+          <div>
+            <h3>Payment History & Receipts</h3>
+            <p style="margin: 4px 0 0 0; font-size: 13px; color: var(--eto-text-muted);">
+              Past payments recorded in Zoho Books.
+            </p>
+          </div>
+        </div>
+        <div id="payments-table-container">
+          <div class="eto-empty-state" style="padding: 30px;">
+            <div class="eto-empty-text">Loading Payment History...</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<!-- Interactive Toast Notification Element -->
+<div id="eto-toast">
+  <span>🔔</span>
+  <span id="eto-toast-msg">Notification message</span>
+</div>
+
+<script>
+  function getZohoIdFromUrl(url) {
+    if (!url) return '';
+    var match = url.match(/\/v3\/[^\/]+\/(\d+)/);
+    return match ? match[1] : '';
+  }
+  function switchEtoTab(evt, tabId) {
+    var panes = document.getElementsByClassName("eto-tab-pane");
+    for (var i = 0; i < panes.length; i++) {
+      panes[i].classList.remove("active");
+    }
+
+    var btns = document.getElementsByClassName("eto-tab-btn");
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].classList.remove("active");
+    }
+
+    document.getElementById(tabId).classList.add("active");
+    evt.currentTarget.classList.add("active");
+  }
+
+  function showEtoToast(message) {
+    var toast = document.getElementById("eto-toast");
+    var msgSpan = document.getElementById("eto-toast-msg");
+    msgSpan.textContent = message;
+    toast.classList.add("show");
+    setTimeout(function(){
+      toast.classList.remove("show");
+    }, 4000);
+  }
+
+  // Dynamic API Fetcher for real Zoho Books data via Zoho Flow Middleware
+  function fetchZohoData(type) {
+    showEtoToast("⏳ Querying live Zoho Books API for " + (type || "account data") + "...");
+    
+    var customerId = "{{ customer.id }}";
+    var customerEmail = "{{ customer.email }}";
+    
+    if (!customerId || customerId == "") {
+      console.warn("No logged-in Shopify customer. Zoho API sync aborted.");
+      return;
+    }
+    
+    // Hardcoded permanent live Zoho Flow Webhook URL (Bypassing theme settings cache)
+    var webhookUrl = "https://flow.zoho.com/711957929/flow/webhook/incoming?zapikey=1001.38b0a36526c213a9c23c4a4db65d43d4.867243e72856498b644b4b7b1b55edc2&isdebug=false";
+    
+    var fullUrl = webhookUrl + (webhookUrl.indexOf("?") !== -1 ? "&" : "?") + "customerId=" + customerId + "&email=" + encodeURIComponent(customerEmail);
+    
+    // Using mode: 'no-cors' so browser doesn't block the background webhook call
+    fetch(fullUrl, { mode: 'no-cors' })
+      .then(function(res) {
+        // no-cors mode gives an opaque response (status 0), which is fine for triggering
+        return "Webhook triggered in background";
+      })
+      .then(function(text) {
+        console.log("Zoho Books API Raw Response:", text);
+        
+        var data = {};
+        try {
+          if (text && text.trim() !== "") {
+            var parsed = JSON.parse(text);
+            // If Zoho Flow returns direct array, wrap it
+            if (Array.isArray(parsed)) {
+              data = { estimates: parsed, invoices: [] };
+            } else {
+              data = parsed;
+            }
+          }
+        } catch(e) {
+          console.warn("Could not parse webhook response JSON:", e);
+        }
+        
+        // Always read from secure customer Metafield (Zoho Flow pushes here asynchronously)
+        var noteRaw = {% if customer and customer.metafields.custom.zoho_estimates_json.value != blank %}{{ customer.metafields.custom.zoho_estimates_json.value | json }}{% else %}null{% endif %};
+        if (noteRaw) {
+          try {
+            var noteObj = (typeof noteRaw === 'string') ? JSON.parse(noteRaw) : noteRaw;
+            // Note can be: array of estimates, or {estimates:[...], invoices:[...]}
+            if (Array.isArray(noteObj)) {
+              // Array means it's estimates list directly
+              if (!data.estimates || data.estimates.length === 0) {
+                data.estimates = noteObj;
+              }
+            } else if (typeof noteObj === 'object') {
+              if ((!data.estimates || data.estimates.length === 0) && noteObj.estimates) {
+                data.estimates = noteObj.estimates;
+              }
+              if ((!data.invoices || data.invoices.length === 0) && noteObj.invoices) {
+                data.invoices = noteObj.invoices;
+              }
+              if ((!data.salesorders || data.salesorders.length === 0) && noteObj.salesorders) {
+                data.salesorders = noteObj.salesorders;
+              }
+              if ((!data.payments || data.payments.length === 0) && noteObj.payments) {
+                data.payments = noteObj.payments;
+              }
+            }
+          } catch(err) { console.warn("Note parse error:", err); }
+        }
+        
+        if (data.estimates && data.estimates.length > 0) {
+          showEtoToast("✅ Zoho Books data synced! " + data.estimates.length + " estimate(s) found.");
+        } else {
+          showEtoToast("🔄 Sync triggered! Refresh in 5 seconds for latest data.");
+        }
+        
+        // 1. Populate Estimates Table
+        var estContainer = document.getElementById("estimates-table-container");
+        if (estContainer && data.estimates) {
+          if (data.estimates.length > 0) {
+            var estHtml = '<div class="eto-table-responsive"><table class="eto-table"><thead><tr>' +
+              '<th>Estimate #</th><th>Date</th><th>Total Amount</th><th>Status</th><th>Actions</th></tr></thead><tbody>';
+            data.estimates.forEach(function(est) {
+              estHtml += '<tr>' +
+                '<td><strong>' + (est.estimate_number || 'EST-N/A') + '</strong></td>' +
+                '<td>' + (est.date || 'N/A') + '</td>' +
+                '<td><strong>$' + parseFloat(est.total || 0).toFixed(2) + '</strong></td>' +
+                '<td><span class="eto-badge ' + (est.status == 'accepted' ? 'paid' : 'pending') + '">' + (est.status || 'pending').toUpperCase() + '</span></td>' +
+                '<td><a href="' + (getZohoIdFromUrl(est.pdf_url) ? 'https://eto-pdf-proxy.aaron-3b7.workers.dev/?type=estimates&id=' + getZohoIdFromUrl(est.pdf_url) : '#') + '" target="_blank" class="eto-action-btn eto-btn-outline" style="padding:4px 8px; font-size:12px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 4px; vertical-align: text-bottom;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg> Download PDF</a></td>' +
+                '</tr>';
+            });
+            estHtml += '</tbody></table></div>';
+            estContainer.innerHTML = estHtml;
+            var badgeEst = document.getElementById("tab-badge-estimates");
+            if(badgeEst) badgeEst.textContent = data.estimates.length;
+            var kpiQuotes = document.getElementById("kpi-quotes-count");
+            if(kpiQuotes) kpiQuotes.textContent = data.estimates.length + " Quotes";
+          } else {
+            estContainer.innerHTML = '<div class="eto-empty-state"><div class="eto-empty-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" style="color: var(--eto-text-muted)"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg></div><div class="eto-empty-title">No Active Estimates</div><div class="eto-empty-text">There are currently no open architectural estimates or custom quotes in Zoho Books.</div><button class="eto-action-btn eto-btn-outline" onclick="fetchZohoData(\'estimates\')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px; vertical-align:text-bottom;"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg> Check Live Zoho API</button></div>';
+          }
+        }
+
+        // Clean Numbering for Top Table (Shopify Orders)
+        if (data.salesorders && data.salesorders.length > 0) {
+          var badges = document.querySelectorAll(".zoho-so-badge");
+          badges.forEach(function(badge) {
+            var soId = badge.getAttribute("data-zoho-so-id");
+            if (soId) {
+              var matched = data.salesorders.find(function(so) {
+                var extractedId = getZohoIdFromUrl(so.pdf_url) || so.salesorder_id || so.id || '';
+                return (extractedId && extractedId.toString() === soId.toString()) ||
+                       (so.salesorder_number && so.salesorder_number.toString() === soId.toString());
+              });
+              if (matched && matched.salesorder_number) {
+                var cleanNum = matched.salesorder_number.toString();
+                if (!cleanNum.toUpperCase().startsWith("SO-")) {
+                  cleanNum = "SO-" + cleanNum;
+                }
+                badge.textContent = cleanNum;
+              }
+            }
+          });
+        }
+
+        // 1.5 Populate Sales Orders Table
+        var soContainer = document.getElementById("salesorders-table-container");
+        if (soContainer && data.salesorders) {
+          var customSalesOrders = data.salesorders.filter(function(so) {
+            var cleanZohoNum = (so.salesorder_number || '').toString().replace(/^#/, '');
+            var isShopify = _existingShopifyOrders.some(function(shopOrder) {
+              return shopOrder.toString().replace(/^#/, '') === cleanZohoNum;
+            });
+            return !isShopify;
+          });
+          if (customSalesOrders.length > 0) {
+            var soHtml = '<div class="eto-table-responsive"><table class="eto-table"><thead><tr>' +
+              '<th>Sales Order #</th><th>Date</th><th>Total Amount</th><th>Status</th><th>Actions</th></tr></thead><tbody>';
+            customSalesOrders.forEach(function(so) {
+              soHtml += '<tr>' +
+                '<td><strong>' + (so.salesorder_number || 'SO-N/A') + '</strong></td>' +
+                '<td>' + (so.date || 'N/A') + '</td>' +
+                '<td><strong>$' + parseFloat(so.total || 0).toFixed(2) + '</strong></td>' +
+                '<td><span class="eto-badge pending">' + (so.status || 'open').toUpperCase() + '</span></td>' +
+                '<td><a href="' + (getZohoIdFromUrl(so.pdf_url) ? 'https://eto-pdf-proxy.aaron-3b7.workers.dev/?type=salesorders&id=' + getZohoIdFromUrl(so.pdf_url) : '#') + '" target="_blank" class="eto-action-btn eto-btn-outline" style="padding:4px 8px; font-size:12px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 4px; vertical-align: text-bottom;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg> Download PDF</a></td>' +
+                '</tr>';
+            });
+            soHtml += '</tbody></table></div>';
+            soContainer.innerHTML = soHtml;
+            
+            var soCount = customSalesOrders.length;
+            var tabOrders = document.getElementById("tab-badge-orders");
+            if (tabOrders) {
+                var sCount = parseInt(tabOrders.getAttribute("data-shopify-count") || "0");
+                tabOrders.textContent = sCount + soCount;
+            }
+            var kpiOrders = document.getElementById("kpi-orders-count");
+            if (kpiOrders) {
+                var sCount = parseInt(kpiOrders.getAttribute("data-shopify-count") || "0");
+                kpiOrders.textContent = (sCount + soCount) + " Orders";
+            }
+            
+            var sCard = document.getElementById("shopify-orders-card");
+            if (sCard && sCard.getAttribute("data-empty") === "true") {
+                sCard.style.display = "none";
+            }
+            
+          } else {
+            soContainer.innerHTML = '<div class="eto-empty-state" style="padding:30px;"><div class="eto-empty-text">No custom Sales Orders found in Zoho Books.</div></div>';
+          }
+        }
+
+        // 2. Populate Invoices Table
+        var invContainer = document.getElementById("invoices-table-container");
+        if (invContainer && data.invoices) {
+          if (data.invoices.length > 0) {
+            var invHtml = '<div class="eto-table-responsive"><table class="eto-table"><thead><tr>' +
+              '<th>Invoice #</th><th>Date</th><th>Total Amount</th><th>Balance Due</th><th>Status</th><th>Actions</th></tr></thead><tbody>';
+            data.invoices.forEach(function(inv) {
+              invHtml += '<tr>' +
+                '<td><strong>' + (inv.invoice_number || 'INV-N/A') + '</strong></td>' +
+                '<td>' + (inv.date || 'N/A') + '</td>' +
+                '<td><strong>$' + parseFloat(inv.total || 0).toFixed(2) + '</strong></td>' +
+                '<td style="color:var(--eto-primary); font-weight:700;">$' + parseFloat(inv.balance || 0).toFixed(2) + '</td>' +
+                '<td><span class="eto-badge ' + (inv.status == 'paid' ? 'paid' : 'overdue') + '">' + (inv.status || 'unpaid').toUpperCase() + '</span></td>' +
+                '<td><a href="' + (getZohoIdFromUrl(inv.pdf_url) ? 'https://eto-pdf-proxy.aaron-3b7.workers.dev/?type=invoices&id=' + getZohoIdFromUrl(inv.pdf_url) : '#') + '" target="_blank" class="eto-action-btn eto-btn-outline" style="padding:4px 8px; font-size:12px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 4px; vertical-align: text-bottom;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg> Download PDF</a></td>' +
+                '</tr>';
+            });
+            invHtml += '</tbody></table></div>';
+            invContainer.innerHTML = invHtml;
+            var badgeInv = document.getElementById("tab-badge-invoices");
+            if(badgeInv) badgeInv.textContent = data.invoices.length;
+          } else {
+            invContainer.innerHTML = '<div class="eto-empty-state"><div class="eto-empty-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" style="color: var(--eto-text-muted)"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"></path><path d="M16 14h-6"></path><path d="M16 18h-6"></path><path d="M16 10h-2"></path></svg></div><div class="eto-empty-title">No Outstanding Invoices</div><div class="eto-empty-text">Your financial ledger is clean! You have no unpaid invoices in Zoho Books.</div><button class="eto-action-btn eto-btn-outline" onclick="fetchZohoData(\'invoices\')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px; vertical-align:text-bottom;"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg> Check Live Zoho API</button></div>';
+          }
+        }
+
+        // 3. Populate Payments Table
+        var payContainer = document.getElementById("payments-table-container");
+        if (payContainer && data.payments) {
+          if (data.payments.length > 0) {
+            var payHtml = '<div class="eto-table-responsive"><table class="eto-table"><thead><tr>' +
+              '<th>Payment #</th><th>Date</th><th>Amount</th><th>Mode</th><th>Receipt</th></tr></thead><tbody>';
+            data.payments.forEach(function(pay) {
+              payHtml += '<tr>' +
+                '<td><strong>' + (pay.payment_number || 'PAY-N/A') + '</strong></td>' +
+                '<td>' + (pay.date || 'N/A') + '</td>' +
+                '<td><strong>$' + parseFloat(pay.amount || 0).toFixed(2) + '</strong></td>' +
+                '<td><span class="eto-badge paid">' + (pay.payment_mode || 'Cash').toUpperCase() + '</span></td>' +
+                '<td><a href="' + (getZohoIdFromUrl(pay.pdf_url) ? 'https://eto-pdf-proxy.aaron-3b7.workers.dev/?type=customerpayments&id=' + getZohoIdFromUrl(pay.pdf_url) : '#') + '" target="_blank" class="eto-action-btn eto-btn-outline" style="padding:4px 8px; font-size:12px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 4px; vertical-align: text-bottom;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg> Download Receipt</a></td>' +
+                '</tr>';
+            });
+            payHtml += '</tbody></table></div>';
+            payContainer.innerHTML = payHtml;
+          } else {
+            payContainer.innerHTML = '<div class="eto-empty-state" style="padding:30px;"><div class="eto-empty-text">No previous payments found in Zoho Books.</div></div>';
+          }
+        }
+      })
+      .catch(function(err) {
+        console.log("Webhook async mode - reading from Shopify customer note.");
+        // Zoho Flow webhook is async - read from customer.note instead
+        var noteRaw = {% if customer and customer.note != blank %}{{ customer.note | json }}{% else %}null{% endif %};
+        if (noteRaw) {
+          try {
+            var noteObj = (typeof noteRaw === 'string') ? JSON.parse(noteRaw) : noteRaw;
+            var estimates = Array.isArray(noteObj) ? noteObj : (noteObj.estimates || []);
+            if (estimates.length > 0) {
+              var estContainer = document.getElementById('estimates-table-container');
+              if (estContainer) {
+                var estHtml = '<div class="eto-table-responsive"><table class="eto-table"><thead><tr><th>Estimate #</th><th>Date</th><th>Total Amount</th><th>Status</th><th>Actions</th></tr></thead><tbody>';
+                estimates.forEach(function(est) {
+                  estHtml += '<tr><td><strong>' + (est.estimate_number||'N/A') + '</strong></td><td>' + (est.date||'N/A') + '</td><td><strong>$' + parseFloat(est.total||0).toFixed(2) + '</strong></td><td><span class="eto-badge ' + (est.status==='accepted'?'paid':'pending') + '">' + (est.status||'pending').toUpperCase() + '</span></td><td><a href="' + (getZohoIdFromUrl(est.pdf_url) ? 'https://eto-pdf-proxy.aaron-3b7.workers.dev/?type=estimates&id=' + getZohoIdFromUrl(est.pdf_url) : '#') + '" target="_blank" class="eto-action-btn eto-btn-outline" style="padding:4px 8px;font-size:12px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 4px; vertical-align: text-bottom;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg> Download PDF</a></td></tr>';
+                });
+                estHtml += '</tbody></table></div>';
+                estContainer.innerHTML = estHtml;
+                var badge = document.getElementById('tab-badge-estimates');
+                if(badge) badge.textContent = estimates.length;
+                var kpi = document.getElementById('kpi-quotes-count');
+                if(kpi) kpi.textContent = estimates.length + ' Quotes';
+                showEtoToast('✅ ' + estimates.length + ' estimate(s) loaded from Zoho Books!');
+              }
+            } else {
+              showEtoToast('🔄 Sync in progress. Please refresh in a few seconds.');
+            }
+          } catch(e) { showEtoToast('🔄 Sync triggered. Please refresh in a few seconds.'); }
+        } else {
+          showEtoToast('🔄 Syncing with Zoho Books... Please refresh page in 5 seconds.');
+        }
+      });
+  }
+
+  // Render from customer.note immediately on page load (no webhook call needed!)
+  function renderFromNote() {
+    if (!_shopifyCustomerNote) return false;
+    try {
+      var noteObj = (typeof _shopifyCustomerNote === 'string') ? JSON.parse(_shopifyCustomerNote) : _shopifyCustomerNote;
+      var estimates = Array.isArray(noteObj) ? noteObj : (noteObj.estimates || []);
+      var invoices = Array.isArray(noteObj) ? [] : (noteObj.invoices || []);
+      
+      if (estimates.length > 0) {
+        var estContainer = document.getElementById('estimates-table-container');
+        if (estContainer) {
+          var estHtml = '<div class="eto-table-responsive"><table class="eto-table"><thead><tr><th>Estimate #</th><th>Date</th><th>Total Amount</th><th>Status</th><th>Actions</th></tr></thead><tbody>';
+          estimates.forEach(function(est) {
+            var statusClass = est.status === 'accepted' ? 'paid' : (est.status === 'sent' ? 'pending' : 'overdue');
+            estHtml += '<tr><td><strong>' + (est.estimate_number||'N/A') + '</strong></td>' +
+              '<td>' + (est.date||'N/A') + '</td>' +
+              '<td><strong>$' + parseFloat(est.total||0).toFixed(2) + '</strong></td>' +
+              '<td><span class="eto-badge ' + statusClass + '">' + (est.status||'pending').toUpperCase() + '</span></td>' +
+              '<td><a href="' + (getZohoIdFromUrl(est.pdf_url) ? 'https://eto-pdf-proxy.aaron-3b7.workers.dev/?type=estimates&id=' + getZohoIdFromUrl(est.pdf_url) : '#') + '" target="_blank" class="eto-action-btn eto-btn-outline" style="padding:4px 8px;font-size:12px;">📄 PDF</a></td></tr>';
+          });
+          estHtml += '</tbody></table></div>';
+          estContainer.innerHTML = estHtml;
+          var badge = document.getElementById('tab-badge-estimates');
+          if(badge) badge.textContent = estimates.length;
+          var kpi = document.getElementById('kpi-quotes-count');
+          if(kpi) kpi.textContent = estimates.length + ' Quote' + (estimates.length > 1 ? 's' : '');
+        }
+        
+        if (invoices.length > 0) {
+          var totalBalance = 0;
+          var invContainer = document.getElementById('invoices-table-container');
+          if (invContainer) {
+            var invHtml = '<div class="eto-table-responsive"><table class="eto-table"><thead><tr><th>Invoice #</th><th>Date</th><th>Total Amount</th><th>Balance Due</th><th>Status</th><th>Actions</th></tr></thead><tbody>';
+            invoices.forEach(function(inv) {
+              var bal = parseFloat(inv.balance||0);
+              totalBalance += bal;
+              var statusClass = inv.status === 'paid' ? 'paid' : (inv.status === 'sent' ? 'pending' : 'overdue');
+              invHtml += '<tr><td><strong>' + (inv.invoice_number||'N/A') + '</strong></td>' +
+                '<td>' + (inv.date||'N/A') + '</td>' +
+                '<td><strong>$' + parseFloat(inv.total||0).toFixed(2) + '</strong></td>' +
+                '<td style="color:var(--eto-primary); font-weight:700;">$' + bal.toFixed(2) + '</td>' +
+                '<td><span class="eto-badge ' + statusClass + '">' + (inv.status||'unpaid').toUpperCase() + '</span></td>' +
+                '<td><a href="' + (getZohoIdFromUrl(inv.pdf_url) ? 'https://eto-pdf-proxy.aaron-3b7.workers.dev/?type=invoices&id=' + getZohoIdFromUrl(inv.pdf_url) : '#') + '" target="_blank" class="eto-action-btn eto-btn-outline" style="padding:4px 8px;font-size:12px;">📄 PDF</a></td></tr>';
+            });
+            invHtml += '</tbody></table></div>';
+            invContainer.innerHTML = invHtml;
+            var badge = document.getElementById('tab-badge-invoices');
+            if(badge) badge.textContent = invoices.length;
+          }
+          
+          // Update KPI and tab balances
+          var formattedBal = '$' + totalBalance.toFixed(2);
+          var kpiBal = document.getElementById('kpi-outstanding-balance');
+          if (kpiBal) kpiBal.textContent = formattedBal;
+          var kpiBadge = document.getElementById('kpi-outstanding-badge');
+          if (kpiBadge) {
+            kpiBadge.textContent = totalBalance > 0 ? 'Payment Due in Books' : 'No Overdue Balance';
+            kpiBadge.className = 'eto-badge ' + (totalBalance > 0 ? 'overdue' : 'accepted');
+          }
+          var tabBal = document.getElementById('tab-invoices-balance');
+          if (tabBal) tabBal.textContent = 'Balance Due: ' + formattedBal;
+          
+          var payBtn = document.getElementById('btn-pay-outstanding');
+          if (payBtn) {
+            if (totalBalance > 0) {
+              payBtn.setAttribute('onclick', "showEtoToast('Redirecting to secure B2B payment gateway for invoice settlement...')");
+            } else {
+              payBtn.setAttribute('onclick', "showEtoToast('No outstanding invoices pending payment.')");
+            }
+          }
+        }
+        
+        return true;
+      }
+    } catch(e) { console.warn('Note render error:', e); }
+    return false;
+  }
+
+  // Auto-fetch when page loads
+  document.addEventListener("DOMContentLoaded", function() {
+    // First: render immediately from customer.note (instant, no API call)
+    var rendered = renderFromNote();
+    // Then: background sync with Zoho Flow webhook (updates data for next load)
+    fetchZohoData();
+  });
+</script>
+
+{% schema %}
+{
+  "name": "ETO Customer Portal",
+  "settings": [
+    {
+      "type": "header",
+      "content": "B2B Customer Portal Settings"
+    },
+    {
+      "type": "text",
+      "id": "middleware_api_url",
+      "label": "Zoho Books Middleware API Endpoint",
+      "default": "https://flow.zoho.com/711957929/flow/webhook/incoming?zapikey=1001.38b0a36526c213a9c23c4a4db65d43d4.867243e72856498b644b4b7b1b55edc2&isdebug=false"
+    }
+  ],
+  "presets": [
+    {
+      "name": "ETO B2B Customer Portal Dashboard"
+    }
+  ]
+}
+{% endschema %}

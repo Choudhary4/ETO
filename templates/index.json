@@ -1,0 +1,49 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "image_banner": {
+      "type": "image-banner",
+      "settings": {
+        "heading": "OVER 1 MILLION ETO DOORS SOLD!",
+        "subtext": "100,000+ SATISFIED CUSTOMERS"
+      }
+    },
+    "eto_white_oak_doors": {
+      "type": "eto-white-oak-doors",
+      "settings": {
+        "title": "WHITE OAK DOORS"
+      }
+    },
+    "eto_interior_doors": {
+      "type": "eto-interior-doors",
+      "settings": {
+        "link": "/collections/all?filter.p.m.custom.product_category=Interior"
+      }
+    },
+    "eto_exterior_doors": {
+      "type": "eto-exterior-doors",
+      "settings": {
+        "link": "/collections/all?filter.p.m.custom.product_category=Exterior"
+      }
+    },
+    "eto_product_grid": {
+      "type": "eto-product-grid",
+      "settings": {}
+    }
+  },
+  "order": [
+    "eto_white_oak_doors",
+    "image_banner",
+    "eto_interior_doors",
+    "eto_exterior_doors",
+    "eto_product_grid"
+  ]
+}

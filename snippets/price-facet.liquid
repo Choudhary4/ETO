@@ -1,0 +1,142 @@
+<div class="price-facet-wrapper">
+  <div class="field price-field">
+    <input
+      class="field__input price-input"
+      name="{{ filter.min_value.param_name }}"
+      id="{{ id_prefix }}{{ filter.label | escape }}-GTE"
+      {%- if filter.min_value.value -%}
+        value="{{ filter.min_value.value | money_without_currency | replace: ',', '' }}"
+      {%- endif -%}
+      type="number"
+      placeholder="Min"
+      min="0"
+      max="999999"
+      data-no-auto-submit="true"
+      onkeydown="if(event.key==='Enter'){event.preventDefault();this.closest('.facets__display-vertical, .price-facet-wrapper')?.querySelector('.price-find-btn')?.click();}"
+    >
+  </div>
+  
+  <span class="price-separator">-</span>
+
+  <div class="field price-field">
+    <input
+      class="field__input price-input"
+      name="{{ filter.max_value.param_name }}"
+      id="{{ id_prefix }}{{ filter.label | escape }}-LTE"
+      {%- if filter.max_value.value -%}
+        value="{{ filter.max_value.value | money_without_currency | replace: ',', '' }}"
+      {%- endif -%}
+      type="number"
+      placeholder="Max"
+      min="0"
+      max="999999"
+      data-no-auto-submit="true"
+      onkeydown="if(event.key==='Enter'){event.preventDefault();this.closest('.facets__display-vertical, .price-facet-wrapper')?.querySelector('.price-find-btn')?.click();}"
+    >
+  </div>
+
+  <button type="button" class="price-find-btn" onclick="this.closest('form').submit()">
+    FIND
+  </button>
+</div>
+
+<script>
+  // Block PriceRange custom element from auto-submitting when Min/Max inputs change
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('input[data-no-auto-submit="true"]').forEach(function(input) {
+      // Stop change events from propagating to the PriceRange element
+      input.addEventListener('change', function(e) {
+        e.stopImmediatePropagation();
+      }, true);
+      input.addEventListener('input', function(e) {
+        e.stopImmediatePropagation();
+      }, true);
+    });
+  });
+</script>
+
+<div class="price-facet-ranges">
+  {%- assign current_min = filter.min_value.value | money_without_currency | replace: ',', '' | default: '' -%}
+  {%- assign current_max = filter.max_value.value | money_without_currency | replace: ',', '' | default: '' -%}
+  
+  <ul class="list-unstyled">
+    <li>
+      <label class="facet-checkbox">
+        <input type="checkbox" name="price_range_static" value="200-299.99" 
+          {% if current_min == '200.00' and current_max == '299.99' %}checked{% endif %}
+          onclick="setPriceRange(200, 299.99, this)">
+        <span class="icon-checkmark"></span>
+        <span class="facet-checkbox__text-label">$200.00 - $299.99</span>
+      </label>
+    </li>
+    <li>
+      <label class="facet-checkbox">
+        <input type="checkbox" name="price_range_static" value="300-399.99"
+          {% if current_min == '300.00' and current_max == '399.99' %}checked{% endif %}
+          onclick="setPriceRange(300, 399.99, this)">
+        <span class="icon-checkmark"></span>
+        <span class="facet-checkbox__text-label">$300.00 - $399.99</span>
+      </label>
+    </li>
+    <li>
+      <label class="facet-checkbox">
+        <input type="checkbox" name="price_range_static" value="400-499.99"
+          {% if current_min == '400.00' and current_max == '499.99' %}checked{% endif %}
+          onclick="setPriceRange(400, 499.99, this)">
+        <span class="icon-checkmark"></span>
+        <span class="facet-checkbox__text-label">$400.00 - $499.99</span>
+      </label>
+    </li>
+    <li>
+      <label class="facet-checkbox">
+        <input type="checkbox" name="price_range_static" value="500-799.99"
+          {% if current_min == '500.00' and current_max == '799.99' %}checked{% endif %}
+          onclick="setPriceRange(500, 799.99, this)">
+        <span class="icon-checkmark"></span>
+        <span class="facet-checkbox__text-label">$500.00 - $799.99</span>
+      </label>
+    </li>
+    <li>
+      <label class="facet-checkbox">
+        <input type="checkbox" name="price_range_static" value="800-"
+          {% if current_min == '800.00' and current_max == '' %}checked{% endif %}
+          onclick="setPriceRange(800, null, this)">
+        <span class="icon-checkmark"></span>
+        <span class="facet-checkbox__text-label">$800.00 and above</span>
+      </label>
+    </li>
+  </ul>
+</div>
+
+<script>
+  function setPriceRange(min, max, checkbox) {
+    // Uncheck other boxes
+    const boxes = document.getElementsByName('price_range_static');
+    boxes.forEach(box => { if(box !== checkbox) box.checked = false; });
+
+    // Find inputs relative to this snippet
+    const wrapper = checkbox.closest('.facets__display-vertical') || checkbox.closest('.mobile-facets__inner');
+    if (!wrapper) return;
+
+    const minInput = wrapper.querySelector('input[name="{{ filter.min_value.param_name }}"]');
+    const maxInput = wrapper.querySelector('input[name="{{ filter.max_value.param_name }}"]');
+
+    if (checkbox.checked) {
+      if (minInput) minInput.value = min;
+      if (maxInput) maxInput.value = max ? max : '';
+    } else {
+      if (minInput) minInput.value = '';
+      if (maxInput) maxInput.value = '';
+    }
+
+    // Creating a delay to allow visual update, then submit
+    setTimeout(() => {
+        const form = checkbox.closest('form');
+        if (form) form.submit();
+        // For standard Dawn AJAX, we might need to trigger an event, but form submit is safer safe fallback
+        // If Dawn uses FacetFiltersForm.onActiveFilterClick, we might need to mimic that,
+        // but changing input values + submit usually triggers a reload which is fine.
+    }, 100);
+  }
+</script>
+

@@ -1,0 +1,754 @@
+{% comment %}
+ETO – CUSTOM FOOTER v2 (Matches client screenshot)
+4-Column: Logo+Social | Contact | ETO Resources (2-col) | Stay Inspired
+{% endcomment %}
+
+<style>
+/* ── Brands Bar ───────────────────────────────────── */
+.eto-brands-bar {
+  background: #E6E2DF !important;
+  padding: 18px 0 !important;
+  width: 100vw !important;
+  max-width: none !important;
+  position: relative !important;
+  left: 50% !important;
+  right: 50% !important;
+  margin-left: -50vw !important;
+  margin-right: -50vw !important;
+  box-sizing: border-box !important;
+  border-bottom: 1px solid #a89f95 !important;
+}
+.eto-brands-inner {
+  max-width: 1952px;
+  margin: 0 auto;
+  padding: 0 var(--eto-margin-edge);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.eto-brands-title h3 {
+  margin: 0 0 0 0;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: #000000;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  text-align: center;
+}
+.eto-brands-logos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 36px;
+  margin-top: 18px;
+  width: 100%;
+}
+.eto-brand-logo-item {
+  filter: brightness(0) drop-shadow(0 0 0.45px #000000);
+  opacity: 1 !important;
+  transition: transform 0.2s;
+  display: block;
+  object-fit: contain;
+}
+.eto-brand-logo-item:hover {
+  transform: scale(1.05);
+}
+/* Balanced sizing so square icons and wide text logos look equal weight */
+.logo-stacked { height: 44px; width: auto; max-width: 95px; }
+.logo-wide { height: 26px; width: auto; max-width: 140px; }
+.logo-extrawide { height: 22px; width: auto; max-width: 180px; }
+
+@media (min-width: 990px) {
+  .eto-brands-logos {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    gap: 28px;
+  }
+}
+@media (max-width: 989px) and (min-width: 600px) {
+  .eto-brands-logos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+    gap: 28px 20px;
+  }
+}
+@media (max-width: 599px) {
+  .eto-brands-logos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+    gap: 24px 16px;
+  }
+}
+
+/* ── Main Footer ─────────────────────────────────── */
+.eto-footer-main {
+  background: #E6E2DF !important;
+  padding: 40px 0 32px !important;
+  color: #000000 !important;
+  width: 100vw !important;
+  max-width: none !important;
+  position: relative !important;
+  left: 50% !important;
+  right: 50% !important;
+  margin-left: -50vw !important;
+  margin-right: -50vw !important;
+  box-sizing: border-box !important;
+}
+.eto-footer-inner {
+  max-width: 1952px;
+  margin: 0 auto;
+  padding: 0 var(--eto-margin-edge);
+  display: grid;
+  grid-template-columns: 240px 280px auto 340px;
+  justify-content: center;
+  gap: 0;
+  align-items: stretch;
+}
+
+/* ── Col 1: Logo + Social ────────────────────────── */
+.eto-footer-brand {
+  border-right: 1px solid #ccc;
+  padding-right: 40px;
+}
+.eto-footer-logo {
+  display: inline-block !important;
+  margin-bottom: 16px !important;
+  border: 1px solid #ccc !important;
+  padding: 8px !important;
+  width: auto !important;
+}
+.eto-footer-logo svg {
+  width: 140px !important;
+  height: 80px !important;
+  max-width: 100% !important;
+  display: block !important;
+  margin: 0 !important;
+}
+.eto-footer-tagline {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  color: #000000;
+  margin: 0 0 20px;
+  line-height: 1.5;
+}
+.eto-footer-social {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.eto-footer-social a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: #000000;
+  border-radius: 50%;
+  color: #ffffff;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.eto-footer-social a:hover { background: #555; }
+.eto-footer-social svg { width: 15px; height: 15px; fill: #fff; }
+
+/* ── Col 2: Contact ──────────────────────────────── */
+.eto-footer-contact {
+  border-right: 1px solid #ccc;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+.eto-footer-contact h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  margin: 0 0 24px;
+  color: #000000;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.eto-contact-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.eto-contact-icon {
+  flex-shrink: 0;
+  width: 16px;
+  margin-top: 1px;
+  color: #555;
+}
+.eto-contact-row p,
+.eto-contact-row a {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  color: #000000;
+  margin: 0;
+  line-height: 1.4;
+  text-decoration: none;
+}
+.eto-contact-row a:hover { text-decoration: underline; }
+
+/* ── Col 3: ETO Resources (2 sub-cols) ───────────── */
+.eto-footer-resources {
+  border-right: 1px solid #ccc;
+  padding-left: 40px;
+  padding-right: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.eto-footer-resources h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  margin: 0 0 24px;
+  color: #000000;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-align: center !important;
+  width: 100% !important;
+  display: block !important;
+}
+.eto-resources-cols {
+  display: flex;
+  gap: 60px;
+  justify-content: center;
+  width: 100% !important;
+}
+.eto-resources-col {
+  white-space: nowrap;
+}
+.eto-resources-col h5 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #555555;
+  margin: 0 0 20px;
+}
+.eto-resources-col ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.eto-resources-col li { margin-bottom: 12px; }
+.eto-resources-col a {
+  color: #333333;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  transition: color 0.2s;
+}
+.eto-resources-col a:hover { color: #000; text-decoration: underline; }
+
+/* ── Col 4: Stay Inspired ────────────────────────── */
+.eto-footer-inspired {
+  padding-left: 40px;
+}
+.eto-footer-inspired h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  margin: 0 0 24px;
+  color: #000000;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.eto-footer-inspired p {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  color: #000000;
+  margin: 0 0 16px;
+  line-height: 1.5;
+}
+.eto-email-form {
+  margin-bottom: 28px;
+}
+.eto-email-form-inner {
+  display: flex;
+  gap: 0;
+}
+.eto-email-form-inner input {
+  flex: 1;
+  padding: 10px 12px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  border: 1px solid #ccc;
+  border-right: none;
+  background: #fff;
+  outline: none;
+  color: #000;
+}
+.eto-email-form-inner input::placeholder { color: #aaa; }
+.eto-email-form-inner button {
+  background: #000000;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: none;
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+.eto-email-form-inner button:hover { background: #333333; }
+.eto-form-success { font-size: 13px; color: #4caf50; margin-top: 10px; }
+.eto-form-error { font-size: 13px; color: #f44336; margin-top: 10px; }
+.eto-footer-badges {
+  display: flex;
+  gap: 0;
+  align-items: stretch;
+}
+.eto-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+  flex: 1;
+  padding: 0 8px;
+}
+.eto-badge:first-child {
+  padding-left: 0;
+}
+.eto-badge:last-child {
+  padding-right: 0;
+}
+.eto-badge:not(:last-child) {
+  border-right: 1px solid #ccc;
+}
+.eto-badge svg {
+  width: 36px;
+  height: 36px;
+  color: #555;
+}
+.eto-badge span {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #000000;
+  line-height: 1.3;
+}
+
+/* ── Bottom Footer ───────────────────────────────── */
+.eto-footer-bottom {
+  background: #E6E2DF !important;
+  padding: 12px 0 !important;
+  width: 100vw !important;
+  max-width: none !important;
+  position: relative !important;
+  left: 50% !important;
+  right: 50% !important;
+  margin-left: -50vw !important;
+  margin-right: -50vw !important;
+  box-sizing: border-box !important;
+}
+.eto-footer-bottom-inner {
+  max-width: 1952px;
+  margin: 0 auto;
+  padding: 0 var(--eto-margin-edge);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.eto-footer-copyright {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  color: #000000;
+}
+.eto-footer-links {
+  display: flex;
+  gap: 24px;
+}
+.eto-footer-links a {
+  color: #000000;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.eto-footer-links a:hover { color: #555; }
+
+/* ── Disclaimer ──────────────────────────────────── */
+.eto-footer-disclaimer {
+  background: #E6E2DF !important;
+  padding: 10px 0 !important;
+  width: 100vw !important;
+  max-width: none !important;
+  position: relative !important;
+  left: 50% !important;
+  right: 50% !important;
+  margin-left: -50vw !important;
+  margin-right: -50vw !important;
+  box-sizing: border-box !important;
+}
+.eto-footer-disclaimer-inner {
+  max-width: var(--eto-container-max);
+  margin: 0 auto;
+  padding: 0 var(--eto-margin-edge);
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  color: #555555;
+}
+.eto-footer-disclaimer-inner a { color: #555; text-decoration: underline; }
+
+/* ── Responsive ──────────────────────────────────── */
+@media (max-width: 1200px) {
+  .eto-footer-inner {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+  .eto-footer-brand,
+  .eto-footer-contact,
+  .eto-footer-resources,
+  .eto-footer-inspired {
+    border-right: none !important;
+    padding: 0 !important;
+  }
+  .eto-footer-resources {
+    align-items: flex-start;
+  }
+  .eto-resources-cols {
+    justify-content: flex-start;
+  }
+}
+@media (max-width: 1024px) {
+  .eto-footer-logo {
+    border: none !important;
+    padding: 0 !important;
+  }
+}
+@media (max-width: 768px) {
+  .eto-footer-inner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .eto-footer-brand {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .eto-footer-logo {
+    border: none !important;
+    padding: 0 !important;
+  }
+  .eto-footer-logo svg {
+    width: 160px !important;
+    height: 91px !important;
+  }
+  .eto-footer-tagline {
+    font-size: 14px;
+    margin-bottom: 24px;
+    text-align: center;
+  }
+  .eto-footer-social {
+    gap: 16px;
+    justify-content: center;
+    width: 100%;
+  }
+  .eto-footer-social a {
+    width: 40px;
+    height: 40px;
+  }
+  .eto-footer-social svg {
+    width: 20px;
+    height: 20px;
+  }
+  .eto-resources-cols {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .eto-resources-col {
+    white-space: normal;
+  }
+  .eto-footer-badges {
+    flex-direction: row !important;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .eto-badge {
+    padding: 0 !important;
+    border-right: none !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+  .eto-badge svg {
+    width: 28px;
+    height: 28px;
+  }
+  .eto-footer-bottom-inner {
+    flex-direction: column;
+    text-align: center;
+    gap: 16px;
+  }
+  .eto-footer-links {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+}
+</style>
+
+<!-- Brands Bar -->
+<section class="eto-brands-bar">
+  <div class="eto-brands-inner" style="width: 100%;">
+    <div style="width: 100%;">
+      <div class="eto-brands-title">
+        <h3>{{ section.settings.brands_title | default: 'Brands that trust ETO Doors' }}</h3>
+      </div>
+      <div class="eto-brands-logos">
+        <img class="eto-brand-logo-item logo-stacked" style="height: 65px; max-width: 130px;" src="{{ 'Coroado_black.svg' | asset_url }}" alt="Coronado">
+        <img class="eto-brand-logo-item logo-stacked" src="{{ 'HiltonHotelsLogo_black.svg' | asset_url }}" alt="Hilton">
+        <img class="eto-brand-logo-item logo-stacked" src="{{ 'Marriott_Logo_black.svg' | asset_url }}" alt="Marriott">
+        <img class="eto-brand-logo-item logo-wide" src="{{ 'Westin_Hotels_Logo_black.svg' | asset_url }}" alt="Westin">
+        <img class="eto-brand-logo-item logo-wide" src="{{ 'Ramada_Worldwide_logo_black.svg' | asset_url }}" alt="Ramada">
+        <img class="eto-brand-logo-item logo-extrawide" src="{{ 'Rosewood_Hotel_Group_black.svg' | asset_url }}" alt="Rosewood">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Main Footer -->
+<footer class="eto-footer-main">
+  <div class="eto-footer-inner">
+
+    <!-- Col 1: Logo + Social -->
+    <div class="eto-footer-brand">
+      <a href="/" class="eto-footer-logo" aria-label="ETO Doors">
+        {% render 'icon-eto-logo' %}
+      </a>
+      <p class="eto-footer-tagline">Timeless Craftsmanship.<br>Modern Function.</p>
+      <div class="eto-footer-social">
+        <!-- Facebook -->
+        <a href="https://www.facebook.com/etodoors/" target="_blank" aria-label="Facebook">
+          <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+        </a>
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/etodoors/?hl=en" target="_blank" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        </a>
+        <!-- Pinterest -->
+        <a href="https://www.pinterest.com/etodoor/" target="_blank" aria-label="Pinterest">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.65 7.86 6.39 9.29-.09-.78-.17-1.98.03-2.83.19-.77 1.27-5.38 1.27-5.38s-.32-.65-.32-1.61c0-1.51.88-2.64 1.97-2.64.93 0 1.38.7 1.38 1.54 0 .94-.6 2.34-.91 3.64-.26 1.09.54 1.97 1.6 1.97 1.92 0 3.4-2.02 3.4-4.95 0-2.59-1.86-4.4-4.52-4.4-3.08 0-4.89 2.31-4.89 4.7 0 .93.36 1.93.8 2.47.09.11.1.2.07.31-.08.33-.26 1.09-.3 1.24-.05.2-.16.24-.37.14-1.39-.65-2.26-2.68-2.26-4.32 0-3.51 2.55-6.74 7.35-6.74 3.86 0 6.86 2.75 6.86 6.42 0 3.83-2.41 6.9-5.76 6.9-1.13 0-2.18-.59-2.54-1.28l-.69 2.59c-.25.96-.93 2.17-1.38 2.9.04.01.08.01.12.02C12.52 22 12.26 22 12 22 6.48 22 2 17.52 2 12S6.48 2 12 2z"/></svg>
+        </a>
+        <!-- YouTube -->
+        <a href="https://www.youtube.com/@ETODOORSCORP/videos" target="_blank" aria-label="YouTube">
+          <svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 001.46 6.42 29 29 0 001 12a29 29 0 00.46 5.58 2.78 2.78 0 001.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.96A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#000" style="fill:#1a1a1a"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Col 2: Contact -->
+    <div class="eto-footer-contact">
+      <h4>Contact Us</h4>
+      <div class="eto-contact-row">
+        <svg class="eto-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.22 2.18 2 2 0 012.18 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 7.09a16 16 0 006 6l.46-.46a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/></svg>
+        <p><a href="tel:2136222003">213-622-2003</a></p>
+      </div>
+      <div class="eto-contact-row">
+        <svg class="eto-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <p class="eto-footer-address">
+            1340 e. 6th Street<br>
+            Los Angeles, CA 90021
+        </p>
+      </div>
+      <div class="eto-contact-row">
+        <svg class="eto-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <p><a href="mailto:sales@etodoors.com">sales@etodoors.com</a></p>
+      </div>
+      <div class="eto-contact-row">
+        <svg class="eto-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <p>Mon – Fri 8AM – 5:30PM PST</p>
+      </div>
+    </div>
+
+    <!-- Col 3: ETO Resources (2 sub-columns) -->
+    <div class="eto-footer-resources">
+      <h4>ETO Resources</h4>
+      <div class="eto-resources-cols">
+        <!-- Sub-col: Certifications -->
+        <div class="eto-resources-col">
+          <h5>Certifications</h5>
+          <ul>
+            <li><a href="/pages/about-us?section=impact">Impact Certification</a></li>
+            <li><a href="/pages/about-us?section=fire">Fire Certification</a></li>
+            <li><a href="/pages/about-us?section=stc">STC Sound</a></li>
+            <li><a href="/pages/about-us?section=nfrc">NFRC Efficiency</a></li>
+          </ul>
+        </div>
+        <!-- Sub-col: Support & Information -->
+        <div class="eto-resources-col">
+          <h5>Support &amp; Information</h5>
+          <ul>
+            <li><a href="/pages/about-us?section=warranty">ETO Warranty</a></li>
+            <li><a href="/pages/about-us?section=price-guarantee">Commercial Discount Programs</a></li>
+            <li><a href="/pages/portfolios">Commercial Portfolio</a></li>
+            <li><a href="/pages/project-portfolios">Residential Portfolio</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Col 4: Stay Inspired -->
+    <div class="eto-footer-inspired">
+      <h4>Stay Inspired</h4>
+      <p>Sign up for design ideas, new products, and exclusive offers.</p>
+      {%- form 'customer', id: 'ContactFooter', class: 'eto-email-form' -%}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        <div class="eto-email-form-inner">
+          <input type="email" name="contact[email]" placeholder="Enter your email" required>
+          <button type="submit">SUBSCRIBE</button>
+        </div>
+        {%- if form.posted_successfully? -%}
+          <p class="eto-form-success">Thank you for subscribing!</p>
+        {%- endif -%}
+        {%- if form.errors -%}
+          <p class="eto-form-error">{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}</p>
+        {%- endif -%}
+      {%- endform -%}
+      <div class="eto-footer-badges">
+        <!-- Badge 1: Premium Quality -->
+        <div class="eto-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <path d="M9 12l2 2 4-4" />
+          </svg>
+          <span>Premium<br>Quality</span>
+        </div>
+        <!-- Badge 2: Nationwide Shipping -->
+        <div class="eto-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
+          </svg>
+          <span>Nationwide<br>Shipping</span>
+        </div>
+        <!-- Badge 3: Expert Support -->
+        <div class="eto-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 13V11a7 7 0 0 1 14 0v2" />
+            <rect x="3" y="11" width="4" height="6" rx="2" fill="currentColor" stroke="none" />
+            <rect x="17" y="11" width="4" height="6" rx="2" fill="currentColor" stroke="none" />
+            <path d="M19 16v1a4 4 0 0 1-4 4h-4" />
+            <circle cx="9.5" cy="21" r="1.5" fill="currentColor" stroke="none" />
+          </svg>
+          <span>Expert<br>Support</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<!-- Bottom Footer -->
+<div class="eto-footer-bottom">
+  <div class="eto-footer-bottom-inner">
+    <div class="eto-footer-copyright">
+      © {{ 'now' | date: '%Y' }} {{ section.settings.copyright_text | default: 'ETO Doors Store. All Rights Reserved.' }}
+    </div>
+    <div class="eto-footer-links">
+      <a href="/pages/about-us">ABOUT</a>
+      <a href="/pages/about-us?section=warranty">WARRANTY</a>
+      <a href="/pages/about-us?section=warranty">RETURNS</a>
+      <a href="/pages/shipping-delivery">SHIPPING</a>
+      <a href="/pages/about-us?section=brand">TERMS</a>
+      <a href="/pages/about-us?section=brand">PRIVACY</a>
+    </div>
+  </div>
+</div>
+
+<!-- Disclaimer -->
+<div class="eto-footer-disclaimer">
+  <div class="eto-footer-disclaimer-inner">
+    {% assign disclaimer_text = section.settings.disclaimer | default: 'By Using This Site You Agree To Our Terms & Conditions Of Use And Privacy Statement. ⚠ WARNING: Cancer And Reproductive Harm' %}
+    {{ disclaimer_text | replace: 'Cancer And Reproductive Harm', '<a href="https://www.p65warnings.ca.gov/" target="_blank">Cancer And Reproductive Harm</a>' | replace: 'Cancer and Reproductive Harm', '<a href="https://www.p65warnings.ca.gov/" target="_blank">Cancer and Reproductive Harm</a>' }}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "ETO Footer",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Brands Bar"
+    },
+    {
+      "type": "text",
+      "id": "brands_title",
+      "label": "Brands Title",
+      "default": "Brands that trust ETO Doors"
+    },
+    {
+      "type": "header",
+      "content": "Contact Info"
+    },
+    {
+      "type": "text",
+      "id": "phone",
+      "label": "Phone",
+      "default": "213-622-2003"
+    },
+    {
+      "type": "text",
+      "id": "address_line1",
+      "label": "Address Line 1",
+      "default": "1616 E 26th Street"
+    },
+    {
+      "type": "text",
+      "id": "address_line2",
+      "label": "Address Line 2",
+      "default": "Los Angeles, CA 90058"
+    },
+    {
+      "type": "text",
+      "id": "hours",
+      "label": "Business Hours",
+      "default": "Mon – Fri 8AM – 5:30PM PST"
+    },
+    {
+      "type": "text",
+      "id": "email",
+      "label": "Email Address",
+      "default": "sales@etodoors.com"
+    },
+    {
+      "type": "header",
+      "content": "Bottom Bar"
+    },
+    {
+      "type": "text",
+      "id": "disclaimer",
+      "label": "Disclaimer Text",
+      "default": "By using this site you agree to our Terms & Conditions of Use and Privacy Statement. ⚠ WARNING: Cancer and Reproductive Harm"
+    },
+    {
+      "type": "text",
+      "id": "copyright_text",
+      "label": "Copyright Text",
+      "default": "ETO Doors Store. All Rights Reserved."
+    }
+  ]
+}
+{% endschema %}

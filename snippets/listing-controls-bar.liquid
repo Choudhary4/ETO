@@ -1,0 +1,141 @@
+<div class="listing-controls-bar">
+  <!-- Left Column -->
+  <div class="listing-controls-left">
+    <div class="listing-controls-count">
+       {%- assign actual_count = 0 -%}
+       {%- assign filter_min = false -%}
+       {%- assign filter_max = false -%}
+       {%- for filter in collection.filters -%}
+         {%- if filter.type == 'price_range' -%}
+           {%- if filter.min_value.value -%}
+             {%- assign filter_min = filter.min_value.value | divided_by: 100.0 -%}
+           {%- endif -%}
+           {%- if filter.max_value.value -%}
+             {%- assign filter_max = filter.max_value.value | divided_by: 100.0 -%}
+           {%- endif -%}
+         {%- endif -%}
+       {%- endfor -%}
+       {%- for product in collection.products -%}
+         {% if product.handle == 'custom-door-add-on' %}{% continue %}{% endif %}
+         {%- assign app_filter_pass = true -%}
+         {%- for filter in collection.filters -%}
+           {%- if filter.param_name == 'filter.p.m.custom.spec_application' and filter.active_values.size > 0 -%}
+             {%- assign match_found = false -%}
+             {%- for val in filter.active_values -%}
+               {%- if product.metafields.custom.spec_application.value contains val.value -%}
+                 {%- assign match_found = true -%}
+               {%- endif -%}
+             {%- endfor -%}
+             {%- unless match_found -%}{%- assign app_filter_pass = false -%}{%- endunless -%}
+           {%- endif -%}
+         {%- endfor -%}
+         {%- assign price_filter_pass = true -%}
+         {%- if filter_min or filter_max -%}
+           {%- assign product_price = product.price_min | divided_by: 100.0 -%}
+           {%- if filter_min and product_price < filter_min -%}{%- assign price_filter_pass = false -%}{%- endif -%}
+           {%- if filter_max and product_price > filter_max -%}{%- assign price_filter_pass = false -%}{%- endif -%}
+         {%- endif -%}
+         {%- if app_filter_pass and price_filter_pass -%}
+           {%- assign actual_count = actual_count | plus: 1 -%}
+         {%- endif -%}
+       {%- endfor -%}
+       
+       {%- if filter_min or filter_max -%}
+          {{ actual_count }} Item(s)
+       {%- else -%}
+          {{ collection.products_count }} Item(s)
+       {%- endif -%}
+    </div>
+    <div class="listing-controls-view">
+       <a href="#" class="view-toggle-btn active" data-view="grid">Grid 
+         <svg width="16" height="16" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+           <g clip-path="url(#clip0_62_277)">
+             <path d="M6 0H0V6H6V0Z" fill="#C2BCB4"/>
+             <path d="M6 7.42001H0V13.42H6V7.42001Z" fill="#C2BCB4"/>
+             <path d="M6 14.9999H0V20.9999H6V14.9999Z" fill="#C2BCB4"/>
+             <path d="M13.42 0H7.42001V6H13.42V0Z" fill="#C2BCB4"/>
+             <path d="M13.42 7.42001H7.42001V13.42H13.42V7.42001Z" fill="#C2BCB4"/>
+             <path d="M13.42 14.9999H7.42001V20.9999H13.42V14.9999Z" fill="#C2BCB4"/>
+             <path d="M20.84 0H14.84V6H20.84V0Z" fill="#C2BCB4"/>
+             <path d="M20.84 7.42001H14.84V13.42H20.84V7.42001Z" fill="#C2BCB4"/>
+             <path d="M20.84 14.9999H14.84V20.9999H20.84V14.9999Z" fill="#C2BCB4"/>
+           </g>
+           <defs><clipPath id="clip0_62_277"><rect width="20.83" height="20.83" fill="white"/></clipPath></defs>
+         </svg>
+       </a>
+       <a href="#" class="view-toggle-btn" data-view="list">List 
+         <svg width="16" height="16" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+           <g clip-path="url(#clip0_62_287)">
+             <path d="M20.47 0H14.83H13.42H7.42H0V6H7.42H13.42H14.83H20.47H20.83V0H20.47Z" fill="#C2BCB4"/>
+             <path d="M7.42 7.42001H6H2.47H0V13.42H2.47H6H7.42H13.42H20.83V7.42001H13.42H7.42Z" fill="#C2BCB4"/>
+             <path d="M14.83 14.84H13.42H7.42H0V20.84H7.42H13.42H14.83H17.47H20.83V14.84H17.47H14.83Z" fill="#C2BCB4"/>
+           </g>
+           <defs><clipPath id="clip0_62_287"><rect width="20.83" height="20.84" fill="white"/></clipPath></defs>
+         </svg>
+       </a>
+    </div>
+  </div>
+
+  <!-- Center Column -->
+  <div class="listing-controls-center">
+    <div class="toolbar-pagination">
+      <span class="pagination-label">Page</span>
+      {%- if paginate.pages > 1 -%}
+        {%- for part in paginate.parts -%}
+          {%- if part.is_link -%}
+            <a href="{{ part.url }}" class="pagination-link">{{ part.title }}</a>
+          {%- else -%}
+            {%- if part.title == paginate.current_page -%}
+              <span class="pagination-current">{{ part.title }}</span>
+            {%- else -%}
+              <span class="pagination-link">{{ part.title }}</span>
+            {%- endif -%}
+          {%- endif -%}
+        {%- endfor -%}
+      {%- else -%}
+        <span class="pagination-current">1</span>
+      {%- endif -%}
+    </div>
+  </div>
+
+  <!-- Right Column -->
+  <div class="listing-controls-right">
+     <div class="listing-controls-limiter">
+       <label>Show</label>
+       <select class="limiter-select" onchange="updateViewParam(this.value)">
+         <option value="10" {% if template.suffix == '10' %}selected{% endif %}>10</option>
+         <option value="20" {% if template.suffix == '20' %}selected{% endif %}>20</option>
+         <option value="30" {% if template.suffix == '30' or template.suffix == blank %}selected{% endif %}>30</option>
+         <option value="50" {% if template.suffix == '50' %}selected{% endif %}>50</option>
+       </select>
+       <span>per page</span>
+     </div>
+     
+     <script>
+      function updateViewParam(viewVal) {
+        var url = new URL(window.location.href);
+        url.searchParams.set('view', viewVal);
+        url.searchParams.delete('page'); // Reset to page 1
+        window.location.href = url.toString();
+      }
+     </script>
+     <div class="listing-controls-sort-wrap">
+        <label class="sort-label">Sort by</label>
+        {%- if enable_sorting -%}
+            <facet-sort-form>
+              <form class="listing-controls-sort" id="FacetSortForm{{ id_suffix }}" method="get" action="{{ collection.url }}">
+                <select name="sort_by" class="limiter-select" id="SortBy{{ id_suffix }}" aria-describedby="a11y-refresh-page-message">
+                  {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
+                  {%- for option in collection.sort_options -%}
+                    <option value="{{ option.value | escape }}" {% if option.value == sort_by %}selected="selected"{% endif %}>{{ option.name | escape }}</option>
+                  {%- endfor -%}
+                </select>
+              </form>
+             </facet-sort-form>
+        {%- endif -%}
+        <span class="sort-direction-indicator">
+            Descending Direction &uarr;
+        </span>
+     </div>
+  </div>
+</div>

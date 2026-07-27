@@ -1,0 +1,57 @@
+.door-configurator {
+    display: block;
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
+    padding: 2rem 1.5rem;
+    background-color: rgba(var(--color-foreground), 0.03);
+    border-radius: var(--inputs-radius-outset, 4px);
+    border: 1px solid rgba(var(--color-foreground), 0.08);
+}
+
+.door-configurator__title {
+    font-size: 1.4rem;
+    margin-top: 0;
+    margin-bottom: 1.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: rgba(var(--color-foreground), 0.85);
+}
+
+.door-configurator__option-group {
+    margin-bottom: 1.4rem;
+}
+
+.door-configurator__option-group:last-child {
+    margin-bottom: 0;
+}
+
+.door-configurator__option-group .form__label {
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.door-configurator__required {
+    color: #d22d2d;
+    margin-left: 2px;
+    font-weight: 700;
+}
+
+.door-configurator__select {
+    width: 100%;
+    font-size: 1.3rem;
+}
+
+.door-configurator__select.error {
+    border-color: #d22d2d !important;
+    background-color: rgba(210, 45, 45, 0.04);
+}
+
+.door-configurator__price-note {
+    display: block;
+    margin-top: 0.3rem;
+    font-size: 1.1rem;
+    color: rgba(var(--color-foreground), 0.5);
+}

@@ -1,0 +1,11 @@
+{
+    "sections": {
+        "main": {
+            "type": "eto-file-a-claim",
+            "settings": {}
+        }
+    },
+    "order": [
+        "main"
+    ]
+}

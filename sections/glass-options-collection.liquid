@@ -1,0 +1,105 @@
+<div class="eto-glass-options-collection">
+  {{ 'component-door-categories.css' | asset_url | stylesheet_tag }}
+  
+  <!-- Breadcrumb above sidebar -->
+  <nav class="eto-breadcrumb" style="font-size: 12px; margin-bottom: 15px; padding: 20px 20px 0; max-width: var(--eto-container-max); margin-left: auto; margin-right: auto; color: #000;">
+    <a href="/" style="color: #000; text-decoration: none;">Home</a>
+    <span style="color: #000;"> &gt; </span>
+    <a href="/collections/other-doors" style="color: #000; text-decoration: none;">Other Doors</a>
+    <span style="color: #000;"> &gt; </span>
+    <a href="/collections/custom-doors" style="color: #000; text-decoration: none;">Custom Doors</a>
+    <span style="color: #000;"> &gt; </span>
+    <span style="color: #000;">Glass Options</span>
+  </nav>
+  
+  <div class="eto-about-page-wrapper">
+    {% render 'door-categories' %}
+    
+    <main class="eto-about-main-content">
+
+      <div class="glass-options-content" style="color: #000; font-family: sans-serif;">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
+          <h1 style="font-size: 22px; font-weight: bold; margin: 0;">Glass Options</h1>
+          <div style="text-align: right; font-size: 12px;">
+            <p style="margin: 0;">Can't Find What You're Looking For? We have it!!!</p>
+            <p style="margin: 0; font-weight: bold;">Call Our Door Professionals (213) 622-2003</p>
+          </div>
+        </div>
+        
+        <p style="font-size: 12px; line-height: 1.6; margin-bottom: 25px;">When it comes to doors that contain glass as part of their design, it's important that you get the glass option that is going to meet your needs while also suiting what you want in terms of style. Different options in glass bring out different variances in wood grain, in the design of a door, and offer differences in levels of privacy too. Because there are so many glass options for your exterior doors and other entryways, ETO Doors offers everything from plain, clear glass to gluechip and frosted glass, as well as a number of designer glass options, including bamboo, rain, and reeded glass. With this many options, you're sure to find the glass style that works for your decor as well as the level of discretion that makes you most comfortable.</p>
+        
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; font-size: 12px;">
+          <div style="text-align: center;">
+            <h3 style="font-size: 16px; font-weight: bold; margin-bottom: 10px;">CLEAR GLASS</h3>
+            <img src="https://cdn.shopify.com/s/files/1/0672/8781/0188/files/CLEAR.png?v=1769944265" alt="Clear Glass" style="max-width: 100%; height: auto;">
+          </div>
+          
+          <div style="text-align: center;">
+            <h3 style="font-size: 16px; font-weight: bold; margin-bottom: 10px;">WHITE LAMI GLASS</h3>
+            <img src="https://cdn.shopify.com/s/files/1/0672/8781/0188/files/WHITE_20LAMI.png?v=1769944262" alt="White Lami Glass" style="max-width: 100%; height: auto;">
+          </div>
+          
+          <div style="text-align: center;">
+            <h3 style="font-size: 16px; font-weight: bold; margin-bottom: 10px;">BAMBOO GLASS</h3>
+            <img src="https://cdn.shopify.com/s/files/1/0672/8781/0188/files/BAMBOO.png?v=1769944260" alt="Bamboo Glass" style="max-width: 100%; height: auto;">
+          </div>
+          
+          <div style="text-align: center;">
+            <h3 style="font-size: 16px; font-weight: bold; margin-bottom: 10px;">GLUECHIP GLASS</h3>
+            <img src="https://cdn.shopify.com/s/files/1/0672/8781/0188/files/GLUE_20CHIP.png?v=1769944258" alt="Gluechip Glass" style="max-width: 100%; height: auto;">
+          </div>
+          
+          <div style="text-align: center;">
+            <h3 style="font-size: 16px; font-weight: bold; margin-bottom: 10px;">RAIN GLASS</h3>
+            <img src="https://cdn.shopify.com/s/files/1/0672/8781/0188/files/RAIN.png?v=1769950865" alt="Rain Glass" style="max-width: 100%; height: auto;">
+          </div>
+          
+          <div style="text-align: center;">
+            <h3 style="font-size: 16px; font-weight: bold; margin-bottom: 10px;">REEDED GLASS</h3>
+            <img src="https://cdn.shopify.com/s/files/1/0672/8781/0188/files/REED.png?v=1769950905" alt="Reeded Glass" style="max-width: 100%; height: auto;">
+          </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px;">
+          <a href="/pages/about-us?section=glass-options" style="display: inline-block; background-color: #4a7c4e; color: #fff; padding: 10px 25px; text-decoration: none; font-size: 14px;">Glass Options</a>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<style>
+  .eto-glass-options-collection .eto-about-page-wrapper {
+    display: flex;
+    max-width: var(--eto-container-max);
+    margin: 0 auto;
+    padding: 20px;
+    gap: 30px;
+  }
+  
+  .eto-glass-options-collection .eto-about-main-content {
+    flex: 1;
+  }
+
+  @media (max-width: 768px) {
+    .eto-glass-options-collection .eto-about-page-wrapper {
+      flex-direction: column;
+    }
+    
+    .eto-glass-options-collection .glass-options-content > div[style*="grid"] {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Glass Options Collection",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Glass Options Collection"
+    }
+  ]
+}
+{% endschema %}

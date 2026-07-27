@@ -1,0 +1,11 @@
+{
+    "sections": {
+        "main": {
+            "type": "eto-customer-photos",
+            "settings": {}
+        }
+    },
+    "order": [
+        "main"
+    ]
+}

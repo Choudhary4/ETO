@@ -1,0 +1,10 @@
+{%- liquid
+  assign real_count = 0
+  for item in cart.items
+    if item.properties._is_addon == 'true'
+      continue
+    endif
+    assign real_count = real_count | plus: item.quantity
+  endfor
+-%}
+{{ 'general.cart.view' | t: count: real_count }}

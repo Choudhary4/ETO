@@ -1,0 +1,70 @@
+{
+  "sections": {
+    "main": {
+      "type": "eto-shipping-delivery",
+      "blocks": {
+        "lead_time": {
+          "type": "info_card",
+          "settings": {
+            "icon": "clock",
+            "title": "Lead Times",
+            "text": "Standard orders ship within 3-5 business days. Custom orders vary by complexity."
+          }
+        },
+        "freight": {
+          "type": "info_card",
+          "settings": {
+            "icon": "truck",
+            "title": "Nationwide Freight",
+            "text": "Premium LTL carriers ensure safe delivery with specialized liftgate service."
+          }
+        },
+        "pickup": {
+          "type": "info_card",
+          "settings": {
+            "icon": "home",
+            "title": "Local Pickup",
+            "text": "Available at our Los Angeles warehouse. Save on shipping costs."
+          }
+        },
+        "inspection": {
+          "type": "info_card",
+          "settings": {
+            "icon": "search",
+            "title": "Easy Inspection",
+            "text": "Always inspect your door upon arrival before signing the delivery receipt."
+          }
+        },
+        "process": {
+          "type": "content_section",
+          "settings": {
+            "heading": "Our Shipping Process",
+            "content": "<p>When you order an ETO Door, we treat it like the piece of fine furniture it is. Each door is crated or palletized with protective cushioning. Once your shipment leaves our facility, you'll receive a tracking number via email.</p><p>For residential deliveries, the freight carrier will contact you via phone to schedule a delivery appointment. Please ensure someone is present to inspect and receive the shipment.</p>"
+          }
+        },
+        "inspection_details": {
+          "type": "content_section",
+          "settings": {
+            "heading": "Critical Inspection Guidelines",
+            "content": "<p><strong>DO NOT SIGN</strong> for your shipment until you have inspected the exterior for damage. If you see any signs of impact, puncture, or crushing, please note it clearly on the driver's Bill of Lading (BOL).</p><p>If the door is visibly damaged beyond repair, you may refuse the shipment. Taking photos of the crate before unloading is highly recommended for insurance purposes.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "lead_time",
+        "freight",
+        "pickup",
+        "inspection",
+        "process",
+        "inspection_details"
+      ],
+      "settings": {
+        "title": "Shipping & Delivery",
+        "subtitle": "Receiving your artisan doors with care and precision."
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

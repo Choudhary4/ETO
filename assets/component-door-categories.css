@@ -1,0 +1,204 @@
+/* Door Categories Sidebar - Clean Premium Style */
+.door-categories {
+  font-family: inherit;
+  margin-bottom: 30px;
+  padding: 0;
+}
+
+.door-categories__title {
+  color: #000000 !important;
+  font-size: 1.6rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  margin-bottom: 25px;
+  border-bottom: 1px solid #000000;
+  padding-bottom: 12px;
+  letter-spacing: 3px;
+  display: block;
+}
+
+.door-categories__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.door-categories__item {
+  margin-bottom: 10px;
+  background-color: #ffffff;
+  border: 1px solid #f0f0f0;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  display: block;
+  width: 100%;
+}
+
+.door-categories__item:hover {
+  border-color: #000000;
+  background-color: #f7f7f7;
+  box-shadow: 0 4px 12px rgba(193, 160, 118, 0.1);
+}
+
+/* Link Container */
+.door-categories__link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 18px;
+  min-height: auto !important;
+  text-decoration: none;
+  cursor: pointer;
+  color: #333;
+  width: 100%;
+  background: transparent !important;
+}
+
+.door-categories__label {
+  flex-grow: 1;
+  color: #333 !important;
+  text-decoration: none !important;
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.door-categories__item:hover .door-categories__label {
+    color: #000000 !important;
+}
+
+/* Toggle Buttons */
+.door-categories__plus,
+.door-categories__subtoggle {
+  background: none;
+  border: none;
+  font-size: 16px;
+  font-weight: 300;
+  color: #999;
+  cursor: pointer;
+  padding: 0;
+  width: 20px;
+  text-align: right;
+  line-height: 1;
+  transition: color 0.2s ease;
+}
+
+.door-categories__item:hover .door-categories__plus {
+    color: #000000;
+}
+
+/* Subcategories Container */
+.door-categories__subcategories {
+  display: none;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background-color: #ffffff;
+  border-top: none;
+}
+
+/* Show when parent LI is expanded */
+.door-categories__item.is-expanded>.door-categories__subcategories,
+.door-categories__subitem.is-expanded>.door-categories__subcategories--inner {
+  display: block !important;
+}
+
+/* ensure inner matches outer base style */
+.door-categories__subcategories--inner {
+  display: none;
+  padding-left: 0;
+  background-color: #fafafa;
+}
+
+/* Subcategory Items */
+.door-categories__subitem {
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.door-categories__subitem:last-child {
+  border-bottom: none;
+}
+
+.door-categories__sublink {
+  display: block;
+  padding: 10px 25px;
+  text-decoration: none;
+  color: #666;
+  font-size: 13px;
+  transition: all 0.2s ease;
+}
+
+.door-categories__sublink:hover {
+  text-decoration: none;
+  color: #000000;
+  padding-left: 30px;
+  background-color: #fcfbf9;
+}
+
+/* Full-width hover for sub-group rows (items with children) */
+.door-categories__subrow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 15px;
+  transition: background 0.2s ease;
+}
+
+.door-categories__subrow:hover {
+  background-color: #fcfbf9;
+}
+
+.door-categories__subrow:hover .door-categories__sublink {
+  color: #000000;
+}
+
+.door-categories__subrow .door-categories__sublink {
+  flex-grow: 1;
+}
+
+.door-categories__subcategories--inner .door-categories__sublink {
+  color: #888;
+  font-size: 12px;
+  padding-left: 40px;
+}
+
+/* HARD RESET */
+.door-categories__item,
+.door-categories__link,
+.door-categories__item *,
+.door-categories__link * {
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-top: none !important;
+  border-bottom: none !important;
+}
+
+.door-categories__item {
+  border: 1px solid #f0f0f0 !important;
+}
+
+.door-categories__item:hover {
+  border-color: #000000 !important;
+}
+
+.door-categories__link::after,
+.door-categories__item::after,
+.door-categories__link::before,
+.door-categories__item::before {
+  content: none !important;
+  display: none !important;
+}
+
+/* Level 3 sub-items */
+.door-categories__level3 {
+  list-style: none;
+  padding-left: 0 !important;
+  margin: 0;
+}
+
+.door-categories__level3 li {
+  border: none !important;
+}

@@ -1,0 +1,134 @@
+{% comment %}
+  Renders custom collection header with Breadcrumbs, Title, Contact Info, and Green Bar.
+  Usage: {% render 'collection-header-custom', collection: collection %}
+{% endcomment %}
+
+
+<style>
+  .collection-header-custom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 2px solid #8cc67f;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+  }
+  .header-left h1 {
+    margin: 0;
+    color: #333;
+    font-weight: 400;
+    font-size: 32px;
+  }
+  .header-contact-info {
+    text-align: right;
+    color: #444;
+  }
+  .header-contact-sub {
+    font-size: 16px; 
+    margin-bottom: 2px;
+  }
+  .header-contact-phone {
+    font-size: 18px; 
+    color: #333;
+  }
+  .collection-description-text {
+    font-size: 13px;
+    color: #333;
+    line-height: 1.6; 
+    margin-bottom: 20px;
+  }
+  .collection-green-bar {
+    background-color: #8cc67f;
+    color: white;
+    padding: 10px 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 14px;
+    display: inline-block;
+    margin-bottom: 15px;
+  }
+
+  @media screen and (max-width: 750px) {
+    .collection-header-custom {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 15px;
+    }
+    .header-contact-info {
+      text-align: left;
+      width: 100%;
+    }
+    .header-left h1 {
+      font-size: 24px;
+    }
+    .header-contact-sub {
+      font-size: 14px;
+    }
+    .header-contact-phone {
+      font-size: 16px;
+    }
+  }
+</style>
+
+<!-- Detect selected category FIRST (before rendering title) -->
+{%- assign selected_category_desc = blank -%}
+{%- assign liquid_found_desc = false -%}
+{%- assign selected_cat_name = blank -%}
+
+{%- for filter in collection.filters -%}
+  {%- if filter.param_name == 'filter.p.m.custom.product_category' -%}
+    {%- if filter.active_values.size > 0 -%}
+      {%- assign selected_cat_name = filter.active_values.last.label -%}
+      {%- capture dynamic_desc -%}
+        {%- render 'category-description-mapping', category_name: selected_cat_name -%}
+      {%- endcapture -%}
+      {%- assign dynamic_desc = dynamic_desc | strip -%}
+      {%- if dynamic_desc != blank -%}
+        {%- assign selected_category_desc = dynamic_desc -%}
+        {%- assign liquid_found_desc = true -%}
+      {%- endif -%}
+    {%- endif -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- comment -%} Use category name as display title if a category is selected {%- endcomment -%}
+{%- if selected_cat_name != blank -%}
+  {%- assign display_title = selected_cat_name | remove: 'Nav_' | replace: 'Whiteoak', 'White Oak Doors' | replace: '_', ' ' -%}
+{%- else -%}
+  {%- assign display_title = collection.title -%}
+{%- endif -%}
+
+<!-- Header Content -->
+<div class="collection-header-custom">
+  <div class="header-left">
+    <h1 class="collection-hero__title" id="js-collection-title">
+      {{ display_title }}
+    </h1>
+  </div>
+</div>
+
+{% comment %} JS fallback: pre-render all possible category descriptions as hidden, then JS reveals the correct one {% endcomment %}
+
+  <script>
+    (function() {
+      var params = new URLSearchParams(window.location.search);
+      var categories = params.getAll('filter.p.m.custom.product_category');
+      if (categories.length === 0) return;
+
+      // Use the LAST category filter value (most specific)
+      var lastCat = decodeURIComponent(categories[categories.length - 1].replace(/\+/g, ' '));
+      lastCat = lastCat.replace(/^Nav_/, '').replace(/Whiteoak/g, 'White Oak Doors').replace(/_/g, ' ');
+
+      // Update the title to show category name
+      var titleEl = document.getElementById('js-collection-title');
+      if (titleEl) {
+        titleEl.textContent = lastCat;
+      }
+
+      // Update the breadcrumb title
+      var breadcrumbEl = document.getElementById('js-breadcrumb-title');
+      if (breadcrumbEl) {
+        breadcrumbEl.textContent = lastCat + ' Home';
+      }
+    })();
+  </script>

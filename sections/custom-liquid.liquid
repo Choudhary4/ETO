@@ -1,0 +1,229 @@
+{% comment %}
+ETO DOORS CUSTOM HEADER – FULL WIDTH – DAWN FIXED
+{% endcomment %}
+
+<style>
+/* =============================
+   GLOBAL FULL WIDTH FIX
+============================= */
+.section-header,
+.header-wrapper {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+}
+
+/* =============================
+   ROW 1 – TOP HEADER
+============================= */
+.eto-header-top {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 20px;
+  padding: 14px 40px;
+  background: #f5f5f5;
+}
+
+.eto-logo img {
+  max-height: 70px;
+}
+
+.eto-search input {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 14px;
+}
+
+.eto-icons a {
+  margin-left: 14px;
+  text-decoration: none;
+  font-weight: 600;
+  color: #000;
+}
+
+/* =============================
+   ROW 2 – MENU BAR
+============================= */
+.eto-nav-bar {
+  background: #6b6b6b;
+}
+
+.eto-nav-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 40px;
+}
+
+.eto-menu {
+  display: flex;
+  gap: 22px;
+}
+
+.eto-menu a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.eto-menu a:hover {
+  text-decoration: underline;
+}
+
+.eto-call {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.eto-call a {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* =============================
+   ROW 3 – USP BAR
+============================= */
+.eto-usp-bar {
+  background: #8fb36d;
+}
+
+.eto-usp-inner {
+  padding: 8px 40px;
+}
+
+.eto-usp-title {
+  line-height: 0.9;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  text-align: left;
+}
+.eto-usp-title-top {
+  font-size: 24px;
+  font-weight: 900;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+}
+.eto-usp-title-bottom {
+  font-size: 68px;
+  font-weight: 900;
+  color: #4f4f4f; /* Dark grey */
+  display: block;
+  margin-top: -4px;
+}
+
+.eto-usp {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+  font-size: 14px;
+}
+
+.eto-usp strong {
+  display: block;
+  margin-bottom: 4px;
+}
+
+/* =============================
+   RESPONSIVE
+============================= */
+@media (max-width: 990px) {
+  .eto-header-top {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .eto-nav-inner {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .eto-menu {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .eto-usp {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
+<section class="section-header">
+
+  <!-- ROW 1 -->
+  <div class="eto-header-top">
+    <div class="eto-logo">
+      <a href="{{ routes.root_url }}">
+        {% if settings.logo != blank %}
+          {{ settings.logo | image_url: width: 300 | image_tag }}
+        {% else %}
+          <strong>{{ shop.name }}</strong>
+        {% endif %}
+      </a>
+    </div>
+
+    <div class="eto-search">
+      <form action="{{ routes.search_url }}" method="get">
+        <input type="search" name="q" placeholder="Search entire store here..." />
+      </form>
+      <small>THE HOSPITALITY DOOR SPECIALISTS</small>
+    </div>
+
+    <div class="eto-icons">
+      <a href="{{ routes.cart_url }}">Cart</a>
+      <a href="{{ routes.account_login_url }}">Log In</a>
+    </div>
+  </div>
+
+  <!-- ROW 2 -->
+  <div class="eto-nav-bar">
+    <div class="eto-nav-inner">
+      <nav class="eto-menu">
+        {% for link in linklists.main-menu.links %}
+          <a href="{{ link.url }}">{{ link.title }}</a>
+        {% endfor %}
+      </nav>
+
+      <div class="eto-call">
+        Call Us: <a href="tel:2136222003">(213) 622-2003</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ROW 3 -->
+  <div class="eto-usp-bar">
+    <div class="eto-usp-inner">
+      <div class="eto-usp-title">
+        <span class="eto-usp-title-top">WHY GO WITH</span><br>
+        <span class="eto-usp-title-bottom">ETO?</span>
+      </div>
+
+      <div class="eto-usp">
+        <div>
+          <strong>BUY MANUFACTURER DIRECT</strong>
+          over one million sold
+        </div>
+        <div>
+          <strong>LARGEST SELECTION</strong>
+          over 40,000 in stock
+        </div>
+        <div>
+          <strong>LOWEST PRICE</strong>
+          We’ll beat it
+        </div>
+        <div>
+          <strong>CERTIFIED PRODUCTS</strong>
+          lab tested
+        </div>
+        <div>
+          <strong>NATIONWIDE SHIPPING</strong>
+          all 50 states
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>

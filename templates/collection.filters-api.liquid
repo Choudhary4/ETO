@@ -1,0 +1,25 @@
+{% layout none %}{% comment %}
+  Lightweight JSON endpoint for collection filter values.
+  Usage: /collections/all?view=filters-api&filter.p.m.custom.spec_application=Interior
+  Returns available filter values for the current (filtered) collection.
+{% endcomment %}{
+  "filters": [
+    {%- for filter in collection.filters -%}
+    {
+      "label": {{ filter.label | json }},
+      "param_name": {{ filter.param_name | json }},
+      "type": {{ filter.type | json }},
+      "values": [
+        {%- for value in filter.values -%}
+        {
+          "label": {{ value.label | json }},
+          "value": {{ value.value | json }},
+          "count": {{ value.count }},
+          "active": {{ value.active }}
+        }{%- unless forloop.last -%},{%- endunless -%}
+        {%- endfor -%}
+      ]
+    }{%- unless forloop.last -%},{%- endunless -%}
+    {%- endfor -%}
+  ]
+}

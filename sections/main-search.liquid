@@ -1,0 +1,815 @@
+{{ 'template-collection.css' | asset_url | stylesheet_tag }}
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'component-search.css' | asset_url | stylesheet_tag }}
+
+{%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
+  {{ 'component-facets.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'facets.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
+{% if section.settings.image_shape == 'blob' %}
+  {{ 'mask-blobs.css' | asset_url | stylesheet_tag }}
+{%- endif -%}
+
+<script src="{{ 'main-search.js' | asset_url }}" defer="defer"></script>
+
+<style>
+  .template-search {
+    background-color: #F9F9F8;
+  }
+  
+  .template-search__header {
+    margin-bottom: 2rem;
+  }
+
+  .template-search__search {
+    margin: 0 auto 2.5rem;
+    max-width: 74.1rem;
+  }
+
+  .template-search__search .search {
+    margin-top: 2rem;
+  }
+
+  .template-search--empty {
+    padding-bottom: 18rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .template-search__header {
+      margin-bottom: 3rem;
+    }
+  }
+
+  .search__button .icon {
+    height: 1.8rem;
+  }
+
+  /* ===== ETO Search Result Cards ===== */
+  .eto-search-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  @media (max-width: 1100px) {
+    .eto-search-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 768px) {
+    .eto-search-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 480px) {
+    .eto-search-grid { grid-template-columns: 1fr; }
+  }
+
+  .eto-search-card {
+    border: none;
+    border-radius: 0;
+    overflow: hidden;
+    background: transparent;
+    transition: none;
+  }
+  .eto-search-card:hover {
+    box-shadow: none;
+    transform: none;
+  }
+
+  .eto-search-card__img-wrap {
+    width: 100%;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    overflow: hidden;
+    border-bottom: none;
+  }
+  .eto-search-card__img-wrap img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+  }
+  .eto-search-card__img-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    color: #999;
+    font-family: Arial, sans-serif;
+  }
+
+  .eto-search-card__info {
+    padding: 15px 0 0;
+    text-align: center;
+  }
+  .eto-search-card__title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #000;
+    margin: 0 0 8px 0;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .eto-search-card__title a {
+    color: #333;
+    text-decoration: none;
+  }
+  .eto-search-card__title a:hover {
+    color: #000;
+  }
+  .eto-search-card__price {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    color: #555555;
+    margin: 0 0 12px 0;
+    font-weight: 800;
+  }
+  .eto-search-card__price strong {
+    color: #555555;
+    font-weight: 800;
+  }
+  .eto-search-card__actions {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  .eto-search-card__quote {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 24px;
+    font-size: 13px;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    color: #ffffff;
+    background-color: #C6BEB5;
+    text-decoration: none;
+    border-radius: 0;
+    text-transform: uppercase;
+    transition: background 0.2s;
+  }
+  .eto-search-card__quote:hover {
+    background-color: #b0a89f;
+    color: #fff;
+  }
+
+  /* ===== ETO Filter Bar Styling ===== */
+  .template-search .facets-container {
+    padding: 0;
+    margin-bottom: 10px;
+  }
+
+  .template-search .facets__wrapper {
+    gap: 8px;
+    align-items: center;
+  }
+
+  .template-search .facets__heading {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: #555;
+    margin: 0 8px 0 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .template-search .facets__summary {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 8px 14px;
+    margin: 0;
+    height: auto;
+    min-width: auto;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #f8f8f8;
+    color: #333;
+    transition: all 0.15s ease;
+    gap: 6px;
+  }
+
+  .template-search .facets__summary .svg-wrapper,
+  .template-search .facets__summary .icon-caret {
+    margin-left: 4px;
+  }
+
+  .template-search .facets__summary:hover {
+    border-color: #4a7c3f;
+    background: #f0f7ee;
+    color: #4a7c3f;
+  }
+
+  .template-search .facets__disclosure[open] .facets__summary {
+    border-color: #4a7c3f;
+    background: #4a7c3f;
+    color: #fff;
+  }
+
+  .template-search .facets__display {
+    border-radius: 6px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+    border: 1px solid #e5e5e5;
+    overflow: hidden;
+    margin-top: 4px;
+  }
+
+  .template-search .facets__header {
+    background: #f9f9f9;
+    border-bottom: 1px solid #eee;
+    padding: 10px 16px;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+  }
+
+  .template-search .facets__list {
+    padding: 8px 16px;
+  }
+
+  .template-search .facet-checkbox {
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    padding: 6px 0;
+  }
+
+  .template-search .facets__price {
+    padding: 12px 16px;
+  }
+
+  /* Sort dropdown */
+  .template-search .facet-filters__field {
+    font-family: Arial, sans-serif;
+  }
+
+  .template-search .facet-filters__label {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: #555;
+    margin-right: 8px;
+  }
+
+  .template-search .facet-filters__sort {
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    padding: 6px 24px 6px 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #f8f8f8;
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+  }
+
+  .template-search .facet-filters__sort:hover {
+    border-color: #4a7c3f;
+  }
+
+  .template-search .select__select {
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 6px 28px 6px 10px;
+    background: #f8f8f8;
+    cursor: pointer;
+  }
+
+  .template-search .select__select:hover {
+    border-color: #4a7c3f;
+  }
+
+  .template-search .facet-filters__field .select {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .template-search .facet-filters__field .select .svg-wrapper,
+  .template-search .facet-filters__field .select .icon-caret,
+  .template-search .facet-filters__field .select > svg {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    width: 10px;
+    height: auto;
+  }
+
+  /* Product count */
+  .template-search .product-count__text {
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    color: #777;
+    font-weight: 400;
+  }
+
+  /* Active filter pills */
+  .template-search .active-facets__button-inner {
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    background: #f0f7ee;
+    color: #4a7c3f;
+    border: 1px solid #c5dfc0;
+    border-radius: 20px;
+    padding: 4px 12px;
+    box-shadow: none;
+  }
+  .template-search .active-facets__button:hover .active-facets__button-inner {
+    background: #4a7c3f;
+    color: #fff;
+    box-shadow: none;
+  }
+</style>
+
+{%- liquid
+  assign sort_by = search.sort_by | default: search.default_sort_by
+  assign terms = search.terms | escape
+  assign search_url = '?q=' | append: terms | append: '&options%5Bprefix%5D=last&sort_by=' | append: sort_by
+-%}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{% paginate search.results by 24 %}
+  <div class="template-search{% unless search.performed and search.results_count > 0 %} template-search--empty{% endunless %} section-{{ section.id }}-padding">
+    <div class="template-search__header page-width{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+      <h1 class="h2 center">
+        {%- if search.performed -%}
+          {{- 'templates.search.title' | t -}}
+        {%- else -%}
+          {{- 'general.search.search' | t -}}
+        {%- endif -%}
+      </h1>
+      <div class="template-search__search">
+        {%- if settings.predictive_search_enabled -%}
+          <predictive-search data-loading-text="{{ 'accessibility.loading' | t }}">
+        {%- endif -%}
+        <main-search>
+          <form action="{{ routes.search_url }}" method="get" role="search" class="search">
+            <div class="field">
+              <input
+                class="search__input field__input"
+                id="Search-In-Template"
+                type="search"
+                name="q"
+                value="{{ search.terms | escape }}"
+                placeholder="{{ 'general.search.search' | t }}"
+                {%- if settings.predictive_search_enabled -%}
+                  role="combobox"
+                  aria-expanded="false"
+                  aria-owns="predictive-search-results"
+                  aria-controls="predictive-search-results"
+                  aria-haspopup="listbox"
+                  aria-autocomplete="list"
+                  autocorrect="off"
+                  autocomplete="off"
+                  autocapitalize="off"
+                  spellcheck="false"
+                {%- endif -%}
+              >
+              <label class="field__label" for="Search-In-Template">{{ 'general.search.search' | t }}</label>
+              <input name="options[prefix]" type="hidden" value="last">
+
+              {%- if settings.predictive_search_enabled -%}
+                <div class="predictive-search predictive-search--search-template" tabindex="-1" data-predictive-search>
+                  {%- render 'loading-spinner', class: 'predictive-search__loading-state' -%}
+                </div>
+
+                <span class="predictive-search-status visually-hidden" role="status" aria-hidden="true"></span>
+              {%- endif -%}
+
+              <button
+                type="reset"
+                class="reset__button field__button{% if search.terms == blank %} hidden{% endif %}"
+                aria-label="{{ 'general.search.reset' | t }}"
+              >
+                <span class="svg-wrapper">
+                  {{- 'icon-reset.svg' | inline_asset_content -}}
+                </span>
+              </button>
+              <button type="submit" class="search__button field__button" aria-label="{{ 'general.search.search' | t }}">
+                <span class="svg-wrapper">
+                  {{- 'icon-search.svg' | inline_asset_content -}}
+                </span>
+              </button>
+            </div>
+          </form>
+        </main-search>
+        {%- if settings.predictive_search_enabled -%}
+          </predictive-search>
+        {%- endif -%}
+      </div>
+      {%- if search.performed -%}
+        {%- unless section.settings.enable_filtering or section.settings.enable_sorting -%}
+          {%- if search.results_count > 0 -%}
+            <p role="status">
+              {{ 'templates.search.results_with_count_and_term' | t: terms: search.terms, count: search.results_count }}
+            </p>
+          {%- endif -%}
+        {%- endunless -%}
+        {%- if search.results_count == 0 and search.filters == empty -%}
+          <p role="status">{{ 'templates.search.no_results' | t: terms: search.terms }}</p>
+        {%- endif -%}
+      {%- endif -%}
+    </div>
+    {%- if search.performed -%}
+      {%- if section.settings.enable_sorting
+        and section.settings.filter_type == 'vertical'
+        and search.filters != empty
+      -%}
+        <facet-filters-form class="facets facets-vertical-sort page-width small-hide">
+          <form class="facets-vertical-form" id="FacetSortForm">
+            <div class="facet-filters sorting caption">
+              <div class="facet-filters__field">
+                <h2 class="facet-filters__label caption-large text-body">
+                  <label for="SortBy">{{ 'products.facets.sort_by_label' | t }}</label>
+                </h2>
+                <div class="select">
+                  {%- assign sort_by = search.sort_by | default: search.default_sort_by -%}
+                  <select
+                    name="sort_by"
+                    class="facet-filters__sort select__select caption-large"
+                    id="SortBy"
+                    aria-describedby="a11y-refresh-page-message"
+                  >
+                    {%- for option in search.sort_options -%}
+                      <option
+                        value="{{ option.value | escape }}"
+                        {% if option.value == sort_by %}
+                          selected="selected"
+                        {% endif %}
+                      >
+                        {{ option.name | escape }}
+                      </option>
+                    {%- endfor -%}
+                  </select>
+                  <span class="svg-wrapper">
+                    {{- 'icon-caret.svg' | inline_asset_content -}}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="product-count-vertical light" role="status">
+              <h2 class="product-count__text text-body">
+                <span id="ProductCountDesktop">
+                  {%- if search.results_count -%}
+                    {{ 'templates.search.results_with_count' | t: terms: search.terms, count: search.results_count }}
+                  {%- elsif search.products_count == search.all_products_count -%}
+                    {{ 'products.facets.product_count_simple' | t: count: search.products_count }}
+                  {%- else -%}
+                    {{
+                      'products.facets.product_count'
+                      | t: product_count: search.products_count, count: search.all_products_count
+                    }}
+                  {%- endif -%}
+                </span>
+              </h2>
+              {%- render 'loading-spinner' -%}
+            </div>
+          </form>
+        </facet-filters-form>
+      {%- endif -%}
+      <div
+        {% if section.settings.filter_type == 'vertical' %}
+          class="facets-vertical page-width"
+        {% endif %}
+      >
+        {%- if search.filters != empty -%}
+          {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
+            <aside
+              aria-labelledby="verticalTitle"
+              class="facets-wrapper{% unless section.settings.enable_filtering %} facets-wrapper--no-filters{% endunless %}{% if section.settings.filter_type != 'vertical' %} page-width{% endif %}"
+              id="main-search-filters"
+              data-id="{{ section.id }}"
+            >
+              {% render 'facets',
+                results: search,
+                enable_filtering: section.settings.enable_filtering,
+                enable_sorting: section.settings.enable_sorting,
+                filter_type: section.settings.filter_type,
+                paginate: paginate
+              %}
+            </aside>
+          {%- endif -%}
+        {%- endif -%}
+        <div class="product-grid-container" id="ProductGridContainer">
+          {%- if search.results.size == 0 and search.filters != empty -%}
+            <div
+              class="template-search__results collection collection--empty{% if section.settings.filter_type != 'vertical' %} page-width{% endif %}"
+              id="product-grid"
+              data-id="{{ section.id }}"
+            >
+              <div class="loading-overlay gradient"></div>
+              <div class="title-wrapper center">
+                <h2 class="title title--primary">
+                  {{ 'sections.collection_template.empty' | t -}}
+                  <br>
+                  {{
+                    'sections.collection_template.use_fewer_filters_html'
+                    | t: link: search_url, class: 'underlined-link link'
+                  }}
+                </h2>
+              </div>
+            </div>
+          {%- else -%}
+            <div
+              class="template-search__results collection{% if section.settings.filter_type != 'vertical' %} page-width{% endif %}"
+              id="product-grid"
+              data-id="{{ section.id }}"
+            >
+              <div class="loading-overlay gradient"></div>
+              <ul class="eto-search-grid" role="list">
+                {%- for item in search.results -%}
+                  {% if item.object_type == 'product' and item.handle == 'custom-door-add-on' %}{% continue %}{% endif %}
+                  <li>
+                    {%- case item.object_type -%}
+                      {%- when 'product' -%}
+                        <div class="eto-search-card">
+                          <a href="{{ item.url }}" class="eto-search-card__img-wrap">
+                            {%- if item.metafields.custom.product_image_url != blank -%}
+                              <img src="{{ item.metafields.custom.product_image_url }}" alt="{{ item.title | escape }}" loading="lazy">
+                            {%- elsif item.featured_image -%}
+                              <img src="{{ item.featured_image | image_url: width: 400 }}" alt="{{ item.title | escape }}" loading="lazy">
+                            {%- else -%}
+                              <div class="eto-search-card__img-placeholder">No Image</div>
+                            {%- endif -%}
+                          </a>
+                          <div class="eto-search-card__info">
+                            <h3 class="eto-search-card__title">
+                              <a href="{{ item.url }}">{{ item.title }}</a>
+                            </h3>
+                            <p class="eto-search-card__price">
+                              Price For Door Only: <strong>{{ item.price | money }}</strong>
+                            </p>
+                            <div class="eto-search-card__actions">
+                              <a href="{{ item.url }}" class="eto-search-card__quote">View Details</a>
+                            </div>
+                          </div>
+                        </div>
+                      {%- when 'article' -%}
+                        <div class="eto-search-card">
+                          <a href="{{ item.url }}" class="eto-search-card__img-wrap">
+                            {%- if item.image -%}
+                              <img src="{{ item.image | image_url: width: 400 }}" alt="{{ item.title | escape }}" loading="lazy">
+                            {%- else -%}
+                              <div class="eto-search-card__img-placeholder">Article</div>
+                            {%- endif -%}
+                          </a>
+                          <div class="eto-search-card__info">
+                            <h3 class="eto-search-card__title"><a href="{{ item.url }}">{{ item.title }}</a></h3>
+                          </div>
+                        </div>
+                      {%- when 'page' -%}
+                        <div class="eto-search-card">
+                          <div class="eto-search-card__img-wrap">
+                            <div class="eto-search-card__img-placeholder">Page</div>
+                          </div>
+                          <div class="eto-search-card__info">
+                            <h3 class="eto-search-card__title"><a href="{{ item.url }}">{{ item.title }}</a></h3>
+                          </div>
+                        </div>
+                    {%- endcase -%}
+                  </li>
+                {%- endfor -%}
+              </ul>
+              {%- if paginate.pages > 1 -%}
+                {% render 'pagination', paginate: paginate %}
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endif -%}
+  </div>
+{% endpaginate %}
+{% if section.settings.image_shape == 'arch' %}
+  {{ 'mask-arch.svg' | inline_asset_content }}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "t:sections.main-search.name",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 4,
+      "label": "t:sections.main-search.settings.columns_desktop.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.main-search.settings.header__1.content"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "options": [
+        {
+          "value": "adapt",
+          "label": "t:sections.main-search.settings.image_ratio.options__1.label"
+        },
+        {
+          "value": "portrait",
+          "label": "t:sections.main-search.settings.image_ratio.options__2.label"
+        },
+        {
+          "value": "square",
+          "label": "t:sections.main-search.settings.image_ratio.options__3.label"
+        }
+      ],
+      "default": "adapt",
+      "label": "t:sections.main-search.settings.image_ratio.label"
+    },
+    {
+      "type": "select",
+      "id": "image_shape",
+      "options": [
+        {
+          "value": "default",
+          "label": "t:sections.all.image_shape.options__1.label"
+        },
+        {
+          "value": "arch",
+          "label": "t:sections.all.image_shape.options__2.label"
+        },
+        {
+          "value": "blob",
+          "label": "t:sections.all.image_shape.options__3.label"
+        },
+        {
+          "value": "chevronleft",
+          "label": "t:sections.all.image_shape.options__4.label"
+        },
+        {
+          "value": "chevronright",
+          "label": "t:sections.all.image_shape.options__5.label"
+        },
+        {
+          "value": "diamond",
+          "label": "t:sections.all.image_shape.options__6.label"
+        },
+        {
+          "value": "parallelogram",
+          "label": "t:sections.all.image_shape.options__7.label"
+        },
+        {
+          "value": "round",
+          "label": "t:sections.all.image_shape.options__8.label"
+        }
+      ],
+      "default": "default",
+      "label": "t:sections.all.image_shape.label",
+      "info": "t:sections.all.image_shape.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_secondary_image",
+      "default": false,
+      "label": "t:sections.main-search.settings.show_secondary_image.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "default": false,
+      "label": "t:sections.main-search.settings.show_vendor.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating",
+      "default": false,
+      "label": "t:sections.main-search.settings.show_rating.label",
+      "info": "t:sections.main-search.settings.show_rating.info"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.main-collection-product-grid.settings.header__1.content"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_filtering",
+      "default": true,
+      "label": "t:sections.main-collection-product-grid.settings.enable_filtering.label",
+      "info": "t:sections.main-collection-product-grid.settings.enable_filtering.info"
+    },
+    {
+      "type": "select",
+      "id": "filter_type",
+      "options": [
+        {
+          "value": "horizontal",
+          "label": "t:sections.main-collection-product-grid.settings.filter_type.options__1.label"
+        },
+        {
+          "value": "vertical",
+          "label": "t:sections.main-collection-product-grid.settings.filter_type.options__2.label"
+        },
+        {
+          "value": "drawer",
+          "label": "t:sections.main-collection-product-grid.settings.filter_type.options__3.label"
+        }
+      ],
+      "default": "horizontal",
+      "label": "t:sections.main-collection-product-grid.settings.filter_type.label",
+      "info": "t:sections.main-collection-product-grid.settings.filter_type.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_sorting",
+      "default": true,
+      "label": "t:sections.main-collection-product-grid.settings.enable_sorting.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.main-search.settings.header__2.content",
+      "info": "t:sections.main-search.settings.header__2.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "article_show_date",
+      "default": true,
+      "label": "t:sections.main-search.settings.article_show_date.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "article_show_author",
+      "default": false,
+      "label": "t:sections.main-search.settings.article_show_author.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.main-search.settings.header_mobile.content"
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "default": "2",
+      "label": "t:sections.main-search.settings.columns_mobile.label",
+      "options": [
+        {
+          "value": "1",
+          "label": "t:sections.main-search.settings.columns_mobile.options__1.label"
+        },
+        {
+          "value": "2",
+          "label": "t:sections.main-search.settings.columns_mobile.options__2.label"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ]
+}
+{% endschema %}

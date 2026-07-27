@@ -1,0 +1,11 @@
+{
+    "sections": {
+        "main": {
+            "type": "glass-options-collection",
+            "settings": {}
+        }
+    },
+    "order": [
+        "main"
+    ]
+}

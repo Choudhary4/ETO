@@ -1,0 +1,114 @@
+{% comment %}
+  Zoho Configuration Button
+  Replaces "Add to Cart" for products that require external configuration in Zoho Creator.
+  
+  Usage:
+  {% render 'zoho-config-button', product: product %}
+{% endcomment %}
+
+<style>
+  .zoho-config-btn {
+    display: inline-block;
+    width: 100%;
+    padding: 1.5rem;
+    background-color: #2f9c3f; /* ETO Green */
+    color: white;
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 4px;
+    margin-top: 1rem;
+    cursor: pointer;
+    border: none;
+    text-transform: uppercase;
+    transition: background 0.2s;
+  }
+  .zoho-config-btn:hover {
+    background-color: #268033;
+  }
+</style>
+
+<div class="zoho-config-wrapper">
+  {% comment %} 
+    For testing: We allow configuration even if not logged in, 
+    but Zoho might require a Customer ID to save the record properly.
+  {% endcomment %}
+  
+  <a href="#" id="BtnZohoConfigure" class="zoho-config-btn">
+    Configure This Door
+  </a>
+  <p class="caption text-center" style="margin-top: 0.5rem; color: #666;">
+    Opens our visual configurator
+  </p>
+
+  <script>
+    // 1. Pass Variant Data to JS
+    const productVariants = {{ product.variants | json }};
+    
+    document.getElementById('BtnZohoConfigure').addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      // CONFIGURE YOUR ZOHO CREATOR URL HERE
+      const ZOHO_CREATOR_BASE_URL = "https://creatorapp.zohopublic.in/saurabhkuntal91/my-first-creator-app/form-perma/Door_Configuration/BO86wrHYSdnbzuTNzy8p9kSxugp5t4wXKaV1vfuSMfaQnOjUQE8sygHJ7NQ7prSGqj8DfxV9CB2FqfQ25YhDHDnfPmMQhq7EJ1Da";
+      
+      // 2. Identify Current Variant
+      // Method A: Check the hidden input field in the product form (Most reliable for Dawn themes)
+      let selectedVariantId = null;
+      const variantInput = document.querySelector('input[name="id"]');
+      if (variantInput) {
+        selectedVariantId = variantInput.value;
+      }
+      
+      // Method B: Check URL for ?variant=123 (Backup)
+      if (!selectedVariantId) {
+        const urlParams = new URLSearchParams(window.location.search);
+        selectedVariantId = urlParams.get('variant');
+      }
+      
+      // Method C: Fallback to Liquid default
+      if (!selectedVariantId) {
+        selectedVariantId = "{{ product.selected_or_first_available_variant.id }}";
+      }
+
+      // 3. Find Variant Details
+      const variant = productVariants.find(v => v.id == selectedVariantId);
+      
+      let sku = "{{ product.selected_or_first_available_variant.sku }}"; // Fallback
+      let width = "";
+      let height = "";
+      
+      if (variant) {
+        sku = variant.sku;
+        console.log("Selected Variant:", variant.title);
+        
+        // 4. Try to Parse Dimensions from Title (e.g. "72 x 84 x 1-3/4")
+        // Regex looks for: Number followed by "x" or "X"
+        const numbers = variant.title.match(/(\d+)/g);
+        if (numbers && numbers.length >= 2) {
+           width = numbers[0];  // First number
+           height = numbers[1]; // Second number
+        }
+      }
+      
+      // Gather standard params
+      const customerId = "{{ customer.id }}";
+      const customerEmail = "{{ customer.email }}";
+      const productId = "{{ product.id }}";
+      
+      // 5. Build Smart URL
+      // We append &Width=... and &height=... matched to your Zoho Field Link Names
+      let targetUrl = `${ZOHO_CREATOR_BASE_URL}?shop_cust_id=${customerId}`;
+      targetUrl += `&shop_prod_id=${productId}`;
+      targetUrl += `&shop_sku=${encodeURIComponent(sku)}`;
+      targetUrl += `&email=${encodeURIComponent(customerEmail)}`;
+      
+      // Auto-Fill Dimensions if found
+      if (width) targetUrl += `&Width=${width}`;
+      if (height) targetUrl += `&height=${height}`;
+      
+      // Redirect
+      window.location.href = targetUrl;
+    });
+  </script>
+</div>

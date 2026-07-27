@@ -1,0 +1,2640 @@
+{
+  "7001": {
+    "category_ids": [
+      "185",
+      "265",
+      "329",
+      "330",
+      "335"
+    ],
+    "category_names": [
+      "French Doors",
+      "(REMOVED) Exterior French Douglas Fir",
+      "Patio Doors",
+      "French Patio Doors",
+      "Slab Doors (REMOVED 2)"
+    ]
+  },
+  "RIPON": {
+    "category_ids": [
+      "184",
+      "203",
+      "209",
+      "323",
+      "326",
+      "335",
+      "336",
+      "360"
+    ],
+    "category_names": [
+      "Interior & Closet Doors",
+      "Shop by Brand",
+      "Wood Interior Doors",
+      "Walnut Doors",
+      "Barn Doors",
+      "Slab Doors (REMOVED 2)",
+      "Interior",
+      "Closet Doors"
+    ]
+  },
+  "OHIO": {
+    "category_ids": [
+      "184",
+      "203",
+      "260",
+      "271",
+      "325",
+      "335",
+      "336",
+      "340",
+      "355",
+      "356",
+      "357",
+      "360"
+    ],
+    "category_names": [
+      "Interior & Closet Doors",
+      "Shop by Brand",
+      "Modern Contemporary Doors",
+      "Glass Front Doors",
+      "Solid Core Doors",
+      "Slab Doors (REMOVED 2)",
+      "Interior",
+      "Millenium",
+      "Jeld-Wen",
+      "Masonite",
+      "TruStile",
+      "Closet Doors"
+    ]
+  },
+  "LOGAN": {
+    "category_ids": [
+      "184",
+      "203",
+      "209",
+      "260",
+      "263",
+      "326",
+      "335",
+      "336",
+      "360"
+    ],
+    "category_names": [
+      "Interior & Closet Doors",
+      "Shop by Brand",
+      "Wood Interior Doors",
+      "Modern Contemporary Doors",
+      "Mahogany Doors",
+      "Barn Doors",
+      "Slab Doors (REMOVED 2)",
+      "Interior",
+      "Closet Doors"
+    ]
+  },
+  "LONDON": {
+    "category_ids": [
+      "184",
+      "203",
+      "209",
+      "323",
+      "326",
+      "335",
+      "336",
+      "360"
+    ],
+    "category_names": [
+      "Interior & Closet Doors",
+      "Shop by Brand",
+      "Wood Interior Doors",
+      "Walnut Doors",
+      "Barn Doors",
+      "Slab Doors (REMOVED 2)",
+      "Interior",
+      "Closet Doors"
+    ]
+  },
+  "LUTON": {
+    "category_ids": [
+      "184",
+      "203",
+      "209",
+      "323",
+      "326",
+      "335",
+      "336",
+      "360"
+    ],
+    "category_names": [
+      "Interior & Closet Doors",
+      "Shop by Brand",
+      "Wood Interior Doors",
+      "Walnut Doors",
+      "Barn Doors",
+      "Slab Doors (REMOVED 2)",
+      "Interior",
+      "Closet Doors"
+    ]
+  },
+  "DERBY": {
+    "category_ids": [
+      "184",
+      "203",
+      "209",
+      "323",
+      "326",
+      "335",
+      "336",
+      "360"
+    ],
+    "category_names": [
+      "Interior & Closet Doors",
+      "Shop by Brand",
+      "Wood Interior Doors",
+      "Walnut Doors",
+      "Barn Doors",
+      "Slab Doors (REMOVED 2)",
+      "Interior",
+      "Closet Doors"
+    ]
+  },
+  "YORK": {
+    "category_ids": [
+      "184",
+      "203",
+      "209",
+      "323",
+      "326",
+      "335",
+      "336",
+      "360"
+    ],
+    "category_names": [
+      "Interior & Closet Doors",
+      "Shop by Brand",
+      "Wood Interior Doors",
+      "Walnut Doors",
+      "Barn Doors",
+      "Slab Doors (REMOVED 2)",
+      "Interior",
+      "Closet Doors"
+    ]
+  },
+  "AURORA": {
+    "category_ids": [
+      "184",
+      "203",
+      "261",
+      "325",
+      "335",
+      "336",
+      "340",
+      "355",
+      "356",
+      "357"
+    ],
+    "category_names": [
+      "Interior & Closet Doors",
+      "Shop by Brand",
+      "Louvered Doors",
+      "Solid Core Doors",
+      "Slab Doors (REMOVED 2)",
+      "Interior",
+      "Millenium",
+      "Jeld-Wen",
+      "Masonite",
+      "TruStile"
+    ]
+  },
+  "SEATTLE": {
+    "category_ids": [
+      "184",
+      "203",
+      "284",
+      "325",
+      "335",
+      "336",
+      "340",
+      "355",
+      "356",
+      "357"
+    ],
+    "category_names": [
+      "Interior & Closet Doors",
+      "Shop by Brand",
+      "Most Popular Interior Doors",
+      "Solid Core Doors",
+      "Slab Doors (REMOVED 2)",
+      "Interior",
+      "Millenium",
+      "Jeld-Wen",
+      "Masonite",
+      "TruStile"
+    ]
+  },
+  "MADISON": {
+    "category_ids": [
+      "184",
+      "203",
+      "325",
+      "335",
+      "336",
+      "340",
+      "355",
+      "356",
+      "357"
+    ],
+    "category_names": [
+      "Interior & Closet Doors",
+      "Shop by Brand",
+      "Solid Core Doors",
+      "Slab Doors (REMOVED 2)",
+      "Interior",
+      "Millenium",
+      "Jeld-Wen",
+      "Masonite",
+      "TruStile"
+    ]
+  },
+  "ORLANDO": {
+    "category_ids": [
+      "184",
+      "203",
+      "325",
+      "335",
+      "336",
+      "340",
+      "355",
+      "356",
+      "357"
+    ],
+    "category_names": [
+      "Interior & Closet Doors",
+      "Shop by Brand",
+      "Solid Core Doors",
+      "Slab Doors (REMOVED 2)",
+      "Interior",
+      "Millenium",
+      "Jeld-Wen",
+      "Masonite",
+      "TruStile"
+    ]
+  },
+  "OXFORD": {
+    "category_ids": [
+      "184",
+      "203",
+      "209",
+      "323",
+      "326",
+      "335",
+      "336",
+      "360"
+    ],
+    "category_names": [
+      "Interior & Closet Doors",
+      "Shop by Brand",
+      "Wood Interior Doors",
+      "Walnut Doors",
+      "Barn Doors",
+      "Slab Doors (REMOVED 2)",
+      "Interior",
+      "Closet Doors"
+    ]
+  },
+  "AUSTIN": {
+    "category_ids": [
+      "187",
+      "196",
+      "303"
+    ],
+    "category_names": [
+      "Fiberglass",
+      "Fiberglass Doors",
+      "Smooth Skin Fiberglass Doors"
+    ]
+  },
+  "HADLEY": {
+    "category_ids": [
+      "184",
+      "206",
+      "260",
+      "266",
+      "267",
+      "284",
+      "325",
+      "332",
+      "333",
+      "335",
+      "336",
+      "340",
+      "343",
+      "355",
+      "356",
+      "357",
+      "359",
+      "360"
+    ],
+    "category_names": [
+      "Interior & Closet Doors",
+      "Commercial Flush Doors",
+      "Modern Contemporary Doors",
+      "Interior Wood Flush Doors",
+      "Commercial Door Hardware",
+      "Most Popular Interior Doors",
+      "Solid Core Doors",
+      "Pre-hung Doors",
+      "Prehung Interior Doors",
+      "Slab Doors (REMOVED 2)",
+      "Interior",
+      "Millenium",
+      "Haley Brothers",
+      "Jeld-Wen",
+      "Masonite",
+      "TruStile",
+      "Slab Doors",
+      "Closet Doors"
+    ]
+  },
+  "BENTLEY": {
+    "category_ids": [
+      "184",
+      "203",
+      "206",
+      "260",
+      "266",
+      "267",
+      "284",
+      "325",
+      "332",
+      "333",
+      "335",
+      "336",
+      "340",
+      "343",
+      "355",
+      "356",
+      "357",
+      "359",
+      "360"
+    ],
+    "category_names": [
+      "Interior & Closet Doors",
+      "Shop by Brand",
+      "Commercial Flush Doors",
+      "Modern Contemporary Doors",
+      "Interior Wood Flush Doors",
+      "Commercial Door Hardware",
+      "Most Popular Interior Doors",
+      "Solid Core Doors",
+      "Pre-hung Doors",
+      "Prehung Interior Doors",
+      "Slab Doors (REMOVED 2)",
+      "Interior",
+      "Millenium",
+      "Haley Brothers",
+      "Jeld-Wen",
+      "Masonite",
+      "TruStile",
+      "Slab Doors",
+      "Closet Doors"
+    ]
+  },
+  "REDONDO": {
+    "category_ids": [
+      "189",
+      "190",
+      "240",
+      "283",
+      "335"
+    ],
+    "category_names": [
+      "Other Doors",
+      "Mediterranean Doors",
+      "Steel Metal",
+      "Wrought Iron Doors",
+      "Slab Doors (REMOVED 2)"
+    ]
+  },
+  "MALIBU": {
+    "category_ids": [
+      "189",
+      "190",
+      "240",
+      "283",
+      "335"
+    ],
+    "category_names": [
+      "Other Doors",
+      "Mediterranean Doors",
+      "Steel Metal",
+      "Wrought Iron Doors",
+      "Slab Doors (REMOVED 2)"
+    ]
+  },
+  "STELLA": {
+    "category_ids": [
+      "240"
+    ],
+    "category_names": [
+      "Steel Metal"
+    ]
+  },
+  "DUTEXMA230": {
+    "category_ids": [
+      "195",
+      "217",
+      "335"
+    ],
+    "category_names": [
+      "Dutch Doors",
+      "(MISSING) Dutch Doors",
+      "Slab Doors (REMOVED 2)"
+    ]
+  },
+  "DUTHALFLITE": {
+    "category_ids": [
+      "195",
+      "217",
+      "335"
+    ],
+    "category_names": [
+      "Dutch Doors",
+      "(MISSING) Dutch Doors",
+      "Slab Doors (REMOVED 2)"
+    ]
+  },
+  "EXMA230": {
+    "category_ids": [
+      "186",
+      "275"
+    ],
+    "category_names": [
+      "Exterior Entry Doors",
+      "Mahogany Front Doors"
+    ]
+  },
+  "MA230": {
+    "category_ids": [
+      "184",
+      "203",
+      "209",
+      "263",
+      "284",
+      "317",
+      "326",
+      "332",
+      "333",
+      "335",
+      "336",
+      "359"
+    ],
+    "category_names": [
+      "Interior & Closet Doors",
+      "Shop by Brand",
+      "Wood Interior Doors",
+      "Mahogany Doors",
+      "Most Popular Interior Doors",
+      "Most Popular",
+      "Barn Doors",
+      "Pre-hung Doors",
+      "Prehung Interior Doors",
+      "Slab Doors (REMOVED 2)",
+      "Interior",
+      "Slab Doors"
+    ]
+  },
+  "MOVIDA": {
+    "category_ids": [
+      "184",
+      "203",
+      "206",
+      "209",
+      "260",
+      "263",
+      "266",
+      "267",
+      "284",
+      "317",
+      "326",
+      "332",
+      "333",
+      "335",
+      "336",
+      "343",
+      "359"
+    ],
+    "category_names": [
+      "Interior & Closet Doors",
+      "Shop by Brand",
+      "Commercial Flush Doors",
+      "Wood Interior Doors",
+      "Modern Contemporary Doors",
+      "Mahogany Doors",
+      "Interior Wood Flush Doors",
+      "Commercial Door Hardware",
+      "Most Popular Interior Doors",
+      "Most Popular",
+      "Barn Doors",
+      "Pre-hung Doors",
+      "Prehung Interior Doors",
+      "Slab Doors (REMOVED 2)",
+      "Interior",
+      "Haley Brothers",
+      "Slab Doors"
+    ]
+  },
+  "RM240": {
+    "category_ids": [
+      "292",
+      "335",
+      "337"
+    ],
+    "category_names": [
+      "Rustic Front Doors",
+      "Slab Doors (REMOVED 2)",
+      "Exterior"
+    ]
+  },
+  "KA230": {
+    "category_ids": [
+      "184",
+      "203",
+      "209",
+      "262",
+      "263",
+      "284",
+      "317",
+      "326",
+      "332",
+      "333",
+      "335",
+      "336",
+      "359"
+    ],
+    "category_names": [
+      "Interior & Closet Doors",
+      "Shop by Brand",
+      "Wood Interior Doors",
+      "Knotty Alder Doors",
+      "Mahogany Doors",
+      "Most Popular Interior Doors",
+      "Most Popular",
+      "Barn Doors",
+      "Pre-hung Doors",
+      "Prehung Interior Doors",
+      "Slab Doors (REMOVED 2)",
+      "Interior",
+      "Slab Doors"
+    ]
+  },
+  "FD1L": {
+    "category_ids": [
+      "185",
+      "186",
+      "211",
+      "218",
+      "270",
+      "274",
+      "275",
+      "285",
+      "290",
+      "317",
+      "318",
+      "320",
+      "324",
+      "327",
+      "329",
+      "330",
+      "331",
+      "332",
+      "335",
+      "352",
+      "353",
+      "359"
+    ],
+    "category_names": [
+      "French Doors",
+      "Exterior Entry Doors",
+      "(REMOVED) Exterior French Mahogany",
+      "All Custom Doors",
+      "Front Doors ",
+      "Wood Doors",
+      "Mahogany Front Doors",
+      "Exterior French Doors",
+      "Most Popular Exterior Doors",
+      "Most Popular",
+      "(MISSING) Most Popular Interior ETO Doors",
+      "(MISSING) Most Popular French ETO Doors",
+      "Interior French Doors",
+      "Unknown Category (327)",
+      "Patio Doors",
+      "French Patio Doors",
+      "Back Doors",
+      "Pre-hung Doors",
+      "Slab Doors (REMOVED 2)",
+      "Doors with Glass",
+      "Most Popular",
+      "Slab Doors"
+    ]
+  },
+  "FD1LPB": {
+    "category_ids": [
+      "185",
+      "186",
+      "211",
+      "218",
+      "270",
+      "274",
+      "275",
+      "285",
+      "290",
+      "317",
+      "324",
+      "327",
+      "329",
+      "330",
+      "331",
+      "332",
+      "334",
+      "335",
+      "352",
+      "353",
+      "359"
+    ],
+    "category_names": [
+      "French Doors",
+      "Exterior Entry Doors",
+      "(REMOVED) Exterior French Mahogany",
+      "All Custom Doors",
+      "Front Doors ",
+      "Wood Doors",
+      "Mahogany Front Doors",
+      "Exterior French Doors",
+      "Most Popular Exterior Doors",
+      "Most Popular",
+      "Interior French Doors",
+      "Unknown Category (327)",
+      "Patio Doors",
+      "French Patio Doors",
+      "Back Doors",
+      "Pre-hung Doors",
+      "Prehung Exterior Doors",
+      "Slab Doors (REMOVED 2)",
+      "Doors with Glass",
+      "Most Popular",
+      "Slab Doors"
+    ]
+  },
+  "FD1LMONTECARLO": {
+    "category_ids": [
+      "186",
+      "189",
+      "190",
+      "218",
+      "270",
+      "273",
+      "274",
+      "275",
+      "290",
+      "317",
+      "331",
+      "332",
+      "334",
+      "346",
+      "351",
+      "352",
+      "359"
+    ],
+    "category_names": [
+      "Exterior Entry Doors",
+      "Other Doors",
+      "Mediterranean Doors",
+      "All Custom Doors",
+      "Front Doors ",
+      "(MISSING) Exterior Iron Mahogany Doors",
+      "Wood Doors",
+      "Mahogany Front Doors",
+      "Most Popular Exterior Doors",
+      "Most Popular",
+      "Back Doors",
+      "Pre-hung Doors",
+      "Prehung Exterior Doors",
+      "Mediterranean Front Doors",
+      "Iron Grill Doors",
+      "Doors with Glass",
+      "Slab Doors"
+    ]
+  },
+  "FD1LSAVANNAH": {
+    "category_ids": [
+      "186",
+      "189",
+      "190",
+      "218",
+      "270",
+      "273",
+      "274",
+      "275",
+      "283",
+      "290",
+      "317",
+      "331",
+      "332",
+      "334",
+      "346",
+      "351",
+      "352",
+      "359"
+    ],
+    "category_names": [
+      "Exterior Entry Doors",
+      "Other Doors",
+      "Mediterranean Doors",
+      "All Custom Doors",
+      "Front Doors ",
+      "(MISSING) Exterior Iron Mahogany Doors",
+      "Wood Doors",
+      "Mahogany Front Doors",
+      "Wrought Iron Doors",
+      "Most Popular Exterior Doors",
+      "Most Popular",
+      "Back Doors",
+      "Pre-hung Doors",
+      "Prehung Exterior Doors",
+      "Mediterranean Front Doors",
+      "Iron Grill Doors",
+      "Doors with Glass",
+      "Slab Doors"
+    ]
+  },
+  "PALMA": {
+    "category_ids": [
+      "186",
+      "218",
+      "270",
+      "274",
+      "275",
+      "282",
+      "290",
+      "293",
+      "317",
+      "331",
+      "332",
+      "334",
+      "335",
+      "337",
+      "359"
+    ],
+    "category_names": [
+      "Exterior Entry Doors",
+      "All Custom Doors",
+      "Front Doors ",
+      "Wood Doors",
+      "Mahogany Front Doors",
+      "Double Doors",
+      "Most Popular Exterior Doors",
+      "Hand Carved Doors",
+      "Most Popular",
+      "Back Doors",
+      "Pre-hung Doors",
+      "Prehung Exterior Doors",
+      "Slab Doors (REMOVED 2)",
+      "Exterior",
+      "Slab Doors"
+    ]
+  },
+  "MODERNO": {
+    "category_ids": [
+      "186",
+      "218",
+      "270",
+      "274",
+      "275",
+      "280",
+      "290",
+      "294",
+      "316",
+      "317",
+      "327",
+      "331",
+      "332",
+      "334",
+      "335",
+      "337",
+      "352",
+      "359"
+    ],
+    "category_names": [
+      "Exterior Entry Doors",
+      "All Custom Doors",
+      "Front Doors ",
+      "Wood Doors",
+      "Mahogany Front Doors",
+      "Obscure Glass Doors",
+      "Most Popular Exterior Doors",
+      "Contemporary Front Doors",
+      "Modern Front Doors",
+      "Most Popular",
+      "Unknown Category (327)",
+      "Back Doors",
+      "Pre-hung Doors",
+      "Prehung Exterior Doors",
+      "Slab Doors (REMOVED 2)",
+      "Exterior",
+      "Doors with Glass",
+      "Slab Doors"
+    ]
+  },
+  "MULTUS": {
+    "category_ids": [
+      "186",
+      "218",
+      "270",
+      "274",
+      "275",
+      "290",
+      "291",
+      "294",
+      "316",
+      "317",
+      "331",
+      "332",
+      "334",
+      "335",
+      "337",
+      "359"
+    ],
+    "category_names": [
+      "Exterior Entry Doors",
+      "All Custom Doors",
+      "Front Doors ",
+      "Wood Doors",
+      "Mahogany Front Doors",
+      "Most Popular Exterior Doors",
+      "Grand 9 ft. & 10 ft. Doors",
+      "Contemporary Front Doors",
+      "Modern Front Doors",
+      "Most Popular",
+      "Back Doors",
+      "Pre-hung Doors",
+      "Prehung Exterior Doors",
+      "Slab Doors (REMOVED 2)",
+      "Exterior",
+      "Slab Doors"
+    ]
+  },
+  "KA1L": {
+    "category_ids": [
+      "185",
+      "285",
+      "286",
+      "287",
+      "317",
+      "320",
+      "324",
+      "329",
+      "330",
+      "335",
+      "337",
+      "353"
+    ],
+    "category_names": [
+      "French Doors",
+      "Exterior French Doors",
+      "(REMOVED) Exterior French Knotty Alder",
+      "Knotty Alder Front Doors",
+      "Most Popular",
+      "(MISSING) Most Popular French ETO Doors",
+      "Interior French Doors",
+      "Patio Doors",
+      "French Patio Doors",
+      "Slab Doors (REMOVED 2)",
+      "Exterior",
+      "Most Popular"
+    ]
+  },
+  "QUINQUE": {
+    "category_ids": [
+      "186",
+      "218",
+      "270",
+      "274",
+      "275",
+      "290",
+      "294",
+      "316",
+      "317",
+      "327",
+      "331",
+      "332",
+      "334",
+      "335",
+      "337",
+      "352",
+      "359"
+    ],
+    "category_names": [
+      "Exterior Entry Doors",
+      "All Custom Doors",
+      "Front Doors ",
+      "Wood Doors",
+      "Mahogany Front Doors",
+      "Most Popular Exterior Doors",
+      "Contemporary Front Doors",
+      "Modern Front Doors",
+      "Most Popular",
+      "Unknown Category (327)",
+      "Back Doors",
+      "Pre-hung Doors",
+      "Prehung Exterior Doors",
+      "Slab Doors (REMOVED 2)",
+      "Exterior",
+      "Doors with Glass",
+      "Slab Doors"
+    ]
+  },
+  "ETIAM": {
+    "category_ids": [
+      "186",
+      "218",
+      "270",
+      "274",
+      "275",
+      "290",
+      "294",
+      "316",
+      "317",
+      "327",
+      "331",
+      "332",
+      "334",
+      "335",
+      "337",
+      "352",
+      "359"
+    ],
+    "category_names": [
+      "Exterior Entry Doors",
+      "All Custom Doors",
+      "Front Doors ",
+      "Wood Doors",
+      "Mahogany Front Doors",
+      "Most Popular Exterior Doors",
+      "Contemporary Front Doors",
+      "Modern Front Doors",
+      "Most Popular",
+      "Unknown Category (327)",
+      "Back Doors",
+      "Pre-hung Doors",
+      "Prehung Exterior Doors",
+      "Slab Doors (REMOVED 2)",
+      "Exterior",
+      "Doors with Glass",
+      "Slab Doors"
+    ]
+  },
+  "FORTIS": {
+    "category_ids": [
+      "186",
+      "187",
+      "196",
+      "204",
+      "227",
+      "297",
+      "299",
+      "321",
+      "328",
+      "335"
+    ],
+    "category_names": [
+      "Exterior Entry Doors",
+      "Fiberglass",
+      "Fiberglass Doors",
+      "Unknown Category (204)",
+      "Unknown Category (227)",
+      "(REMOVED) All Fiberglass Exterior Doors",
+      "Mahogany Fiberglass Doors",
+      "Unknown Category (321)",
+      "Fiberglass Front Doors",
+      "Slab Doors (REMOVED 2)"
+    ]
+  },
+  "DANUM": {
+    "category_ids": [
+      "186",
+      "218",
+      "270",
+      "274",
+      "275",
+      "290",
+      "294",
+      "316",
+      "317",
+      "327",
+      "331",
+      "332",
+      "334",
+      "335",
+      "337",
+      "352",
+      "359"
+    ],
+    "category_names": [
+      "Exterior Entry Doors",
+      "All Custom Doors",
+      "Front Doors ",
+      "Wood Doors",
+      "Mahogany Front Doors",
+      "Most Popular Exterior Doors",
+      "Contemporary Front Doors",
+      "Modern Front Doors",
+      "Most Popular",
+      "Unknown Category (327)",
+      "Back Doors",
+      "Pre-hung Doors",
+      "Prehung Exterior Doors",
+      "Slab Doors (REMOVED 2)",
+      "Exterior",
+      "Doors with Glass",
+      "Slab Doors"
+    ]
+  },
+  "MONTREAL": {
+    "category_ids": [
+      "186",
+      "218",
+      "270",
+      "274",
+      "275",
+      "290",
+      "293",
+      "317",
+      "331",
+      "332",
+      "334",
+      "335",
+      "337",
+      "359"
+    ],
+    "category_names": [
+      "Exterior Entry Doors",
+      "All Custom Doors",
+      "Front Doors ",
+      "Wood Doors",
+      "Mahogany Front Doors",
+      "Most Popular Exterior Doors",
+      "Hand Carved Doors",
+      "Most Popular",
+      "Back Doors",
+      "Pre-hung Doors",
+      "Prehung Exterior Doors",
+      "Slab Doors (REMOVED 2)",
+      "Exterior",
+      "Slab Doors"
+    ]
+  },
+  "TOKYO": {
+    "category_ids": [
+      "186",
+      "218",
+      "270",
+      "274",
+      "275",
+      "290",
+      "293",
+      "331",
+      "332",
+      "334",
+      "335",
+      "337",
+      "359"
+    ],
+    "category_names": [
+      "Exterior Entry Doors",
+      "All Custom Doors",
+      "Front Doors ",
+      "Wood Doors",
+      "Mahogany Front Doors",
+      "Most Popular Exterior Doors",
+      "Hand Carved Doors",
+      "Back Doors",
+      "Pre-hung Doors",
+      "Prehung Exterior Doors",
+      "Slab Doors (REMOVED 2)",
+      "Exterior",
+      "Slab Doors"
+    ]
+  },
+  "PARIS": {
+    "category_ids": [
+      "186",
+      "218",
+      "270",
+      "274",
+      "275",
+      "283",
+      "290",
+      "292",
+      "317",
+      "331",
+      "332",
+      "334",
+      "335",
+      "337",
+      "352",
+      "359"
+    ],
+    "category_names": [
+      "Exterior Entry Doors",
+      "All Custom Doors",
+      "Front Doors ",
+      "Wood Doors",
+      "Mahogany Front Doors",
+      "Wrought Iron Doors",
+      "Most Popular Exterior Doors",
+      "Rustic Front Doors",
+      "Most Popular",
+      "Back Doors",
+      "Pre-hung Doors",
+      "Prehung Exterior Doors",
+      "Slab Doors (REMOVED 2)",
+      "Exterior",
+      "Doors with Glass",
+      "Slab Doors"
+    ]
+  },
+  "RMKA": {
+    "category_ids": [
+      "186",
+      "218",
+      "239",
+      "270",
+      "274",
+      "275",
+      "287",
+      "290",
+      "292",
+      "317",
+      "331",
+      "332",
+      "334",
+      "335",
+      "337",
+      "359"
+    ],
+    "category_names": [
+      "Exterior Entry Doors",
+      "All Custom Doors",
+      "FSC Approved Doors",
+      "Front Doors ",
+      "Wood Doors",
+      "Mahogany Front Doors",
+      "Knotty Alder Front Doors",
+      "Most Popular Exterior Doors",
+      "Rustic Front Doors",
+      "Most Popular",
+      "Back Doors",
+      "Pre-hung Doors",
+      "Prehung Exterior Doors",
+      "Slab Doors (REMOVED 2)",
+      "Exterior",
+      "Slab Doors"
+    ]
+  },
+  "MA110": {
+    "category_ids": [
+      "184",
+      "203",
+      "209",
+      "260",
+      "263",
+      "284",
+      "317",
+      "326",
+      "332",
+      "333",
+      "335",
+      "336",
+      "359"
+    ],
+    "category_names": [
+      "Interior & Closet Doors",
+      "Shop by Brand",
+      "Wood Interior Doors",
+      "Modern Contemporary Doors",
+      "Mahogany Doors",
+      "Most Popular Interior Doors",
+      "Most Popular",
+      "Barn Doors",
+      "Pre-hung Doors",
+      "Prehung Interior Doors",
+      "Slab Doors (REMOVED 2)",
+      "Interior",
+      "Slab Doors"
+    ]
+  },
+  "WAVOS": {
+    "category_ids": [
+      "186",
+      "218",
+      "270",
+      "274",
+      "275",
+      "290",
+      "294",
+      "316",
+      "317",
+      "327",
+      "331",
+      "332",
+      "334",
+      "337",
+      "359"
+    ],
+    "category_names": [
+      "Exterior Entry Doors",
+      "All Custom Doors",
+      "Front Doors ",
+      "Wood Doors",
+      "Mahogany Front Doors",
+      "Most Popular Exterior Doors",
+      "Contemporary Front Doors",
+      "Modern Front Doors",
+      "Most Popular",
+      "Unknown Category (327)",
+      "Back Doors",
+      "Pre-hung Doors",
+      "Prehung Exterior Doors",
+      "Exterior",
+      "Slab Doors"
+    ]
+  },
+  "TUSCANY": {
+    "category_ids": [
+      "186",
+      "189",
+      "190",
+      "216",
+      "218",
+      "270",
+      "274",
+      "275",
+      "283",
+      "290",
+      "317",
+      "331",
+      "332",
+      "334",
+      "335",
+      "337",
+      "346",
+      "351",
+      "352",
+      "359"
+    ],
+    "category_names": [
+      "Exterior Entry Doors",
+      "Other Doors",
+      "Mediterranean Doors",
+      "Cellar Doors",
+      "All Custom Doors",
+      "Front Doors ",
+      "Wood Doors",
+      "Mahogany Front Doors",
+      "Wrought Iron Doors",
+      "Most Popular Exterior Doors",
+      "Most Popular",
+      "Back Doors",
+      "Pre-hung Doors",
+      "Prehung Exterior Doors",
+      "Slab Doors (REMOVED 2)",
+      "Exterior",
+      "Mediterranean Front Doors",
+      "Iron Grill Doors",
+      "Doors with Glass",
+      "Slab Doors"
+    ]
+  },
+  "SULCUS": {
+    "category_ids": [
+      "186",
+      "218",
+      "270",
+      "274",
+      "275",
+      "290",
+      "294",
+      "316",
+      "317",
+      "327",
+      "331",
+      "332",
+      "334",
+      "335",
+      "337",
+      "359"
+    ],
+    "category_names": [
+      "Exterior Entry Doors",
+      "All Custom Doors",
+      "Front Doors ",
+      "Wood Doors",
+      "Mahogany Front Doors",
+      "Most Popular Exterior Doors",
+      "Contemporary Front Doors",
+      "Modern Front Doors",
+      "Most Popular",
+      "Unknown Category (327)",
+      "Back Doors",
+      "Pre-hung Doors",
+      "Prehung Exterior Doors",
+      "Slab Doors (REMOVED 2)",
+      "Exterior",
+      "Slab Doors"
+    ]
+  },
+  "TOPA": {
+    "category_ids": [
+      "185",
+      "186",
+      "187",
+      "196",
+      "270",
+      "271",
+      "285",
+      "290",
+      "303",
+      "304",
+      "316",
+      "324",
+      "328",
+      "335",
+      "337",
+      "352",
+      "353"
+    ],
+    "category_names": [
+      "French Doors",
+      "Exterior Entry Doors",
+      "Fiberglass",
+      "Fiberglass Doors",
+      "Front Doors ",
+      "Glass Front Doors",
+      "Exterior French Doors",
+      "Most Popular Exterior Doors",
+      "Smooth Skin Fiberglass Doors",
+      "Fiberglass French Doors",
+      "Modern Front Doors",
+      "Interior French Doors",
+      "Fiberglass Front Doors",
+      "Slab Doors (REMOVED 2)",
+      "Exterior",
+      "Doors with Glass",
+      "Most Popular"
+    ]
+  },
+  "LUX": {
+    "category_ids": [
+      "186",
+      "218",
+      "270",
+      "274",
+      "275",
+      "290",
+      "294",
+      "316",
+      "317",
+      "327",
+      "331",
+      "332",
+      "334",
+      "335",
+      "337",
+      "352",
+      "359"
+    ],
+    "category_names": [
+      "Exterior Entry Doors",
+      "All Custom Doors",
+      "Front Doors ",
+      "Wood Doors",
+      "Mahogany Front Doors",
+      "Most Popular Exterior Doors",
+      "Contemporary Front Doors",
+      "Modern Front Doors",
+      "Most Popular",
+      "Unknown Category (327)",
+      "Back Doors",
+      "Pre-hung Doors",
+      "Prehung Exterior Doors",
+      "Slab Doors (REMOVED 2)",
+      "Exterior",
+      "Doors with Glass",
+      "Slab Doors"
+    ]
+  },
+  "QUADRATUM": {
+    "category_ids": [
+      "186",
+      "218",
+      "270",
+      "274",
+      "275",
+      "290",
+      "294",
+      "316",
+      "317",
+      "327",
+      "331",
+      "332",
+      "334",
+      "335",
+      "337",
+      "352",
+      "359"
+    ],
+    "category_names": [
+      "Exterior Entry Doors",
+      "All Custom Doors",
+      "Front Doors ",
+      "Wood Doors",
+      "Mahogany Front Doors",
+      "Most Popular Exterior Doors",
+      "Contemporary Front Doors",
+      "Modern Front Doors",
+      "Most Popular",
+      "Unknown Category (327)",
+      "Back Doors",
+      "Pre-hung Doors",
+      "Prehung Exterior Doors",
+      "Slab Doors (REMOVED 2)",
+      "Exterior",
+      "Doors with Glass",
+      "Slab Doors"
+    ]
+  },
+  "BELLAROSA": {
+    "category_ids": [
+      "186",
+      "218",
+      "270",
+      "274",
+      "275",
+      "276",
+      "277",
+      "282",
+      "290",
+      "317",
+      "327",
+      "331",
+      "332",
+      "334",
+      "335",
+      "337",
+      "359"
+    ],
+    "category_names": [
+      "Exterior Entry Doors",
+      "All Custom Doors",
+      "Front Doors ",
+      "Wood Doors",
+      "Mahogany Front Doors",
+      "Arched Doors",
+      "Arched Double Doors",
+      "Double Doors",
+      "Most Popular Exterior Doors",
+      "Most Popular",
+      "Unknown Category (327)",
+      "Back Doors",
+      "Pre-hung Doors",
+      "Prehung Exterior Doors",
+      "Slab Doors (REMOVED 2)",
+      "Exterior",
+      "Slab Doors"
+    ]
+  },
+  "CARMEL": {
+    "category_ids": [
+      "185",
+      "211",
+      "276",
+      "285",
+      "292",
+      "317",
+      "324",
+      "329",
+      "330",
+      "335",
+      "353"
+    ],
+    "category_names": [
+      "French Doors",
+      "(REMOVED) Exterior French Mahogany",
+      "Arched Doors",
+      "Exterior French Doors",
+      "Rustic Front Doors",
+      "Most Popular",
+      "Interior French Doors",
+      "Patio Doors",
+      "French Patio Doors",
+      "Slab Doors (REMOVED 2)",
+      "Most Popular"
+    ]
+  },
+  "RIVIERA": {
+    "category_ids": [
+      "185",
+      "276",
+      "277",
+      "282",
+      "285",
+      "317",
+      "324",
+      "329",
+      "330",
+      "335",
+      "337",
+      "353"
+    ],
+    "category_names": [
+      "French Doors",
+      "Arched Doors",
+      "Arched Double Doors",
+      "Double Doors",
+      "Exterior French Doors",
+      "Most Popular",
+      "Interior French Doors",
+      "Patio Doors",
+      "French Patio Doors",
+      "Slab Doors (REMOVED 2)",
+      "Exterior",
+      "Most Popular"
+    ]
+  },
+  "LOREN": {
+    "category_ids": [
+      "186",
+      "271",
+      "272",
+      "274",
+      "275",
+      "335",
+      "337"
+    ],
+    "category_names": [
+      "Exterior Entry Doors",
+      "Glass Front Doors",
+      "Beveled Glass Front Doors",
+      "Wood Doors",
+      "Mahogany Front Doors",
+      "Slab Doors (REMOVED 2)",
+      "Exterior"
+    ]
+  },
+  "BARCELONA": {
+    "category_ids": [
+      "186",
+      "218",
+      "270",
+      "274",
+      "275",
+      "290",
+      "293",
+      "331",
+      "332",
+      "334",
+      "335",
+      "337",
+      "359"
+    ],
+    "category_names": [
+      "Exterior Entry Doors",
+      "All Custom Doors",
+      "Front Doors ",
+      "Wood Doors",
+      "Mahogany Front Doors",
+      "Most Popular Exterior Doors",
+      "Hand Carved Doors",
+      "Back Doors",
+      "Pre-hung Doors",
+      "Prehung Exterior Doors",
+      "Slab Doors (REMOVED 2)",
+      "Exterior",
+      "Slab Doors"
+    ]
+  },
+  "NAPA": {
+    "category_ids": [
+      "184",
+      "209",
+      "260",
+      "266",
+      "284",
+      "323"
+    ],
+    "category_names": [
+      "Interior & Closet Doors",
+      "Wood Interior Doors",
+      "Modern Contemporary Doors",
+      "Interior Wood Flush Doors",
+      "Most Popular Interior Doors",
+      "Walnut Doors"
+    ]
+  },
+  "HERMOSA": {
+    "category_ids": [
+      "184",
+      "208",
+      "209",
+      "210",
+      "260",
+      "266",
+      "284",
+      "360"
+    ],
+    "category_names": [
+      "Interior & Closet Doors",
+      "White Oak Doors",
+      "Wood Interior Doors",
+      "White Oak Doors",
+      "Modern Contemporary Doors",
+      "Interior Wood Flush Doors",
+      "Most Popular Interior Doors",
+      "Closet Doors"
+    ]
+  },
+  "BRENTWOOD": {
+    "category_ids": [
+      "184",
+      "208",
+      "209",
+      "210",
+      "260",
+      "266",
+      "284",
+      "360"
+    ],
+    "category_names": [
+      "Interior & Closet Doors",
+      "White Oak Doors",
+      "Wood Interior Doors",
+      "White Oak Doors",
+      "Modern Contemporary Doors",
+      "Interior Wood Flush Doors",
+      "Most Popular Interior Doors",
+      "Closet Doors"
+    ]
+  },
+  "MONTECITO": {
+    "category_ids": [
+      "184",
+      "208",
+      "209",
+      "210",
+      "260",
+      "266",
+      "284",
+      "360"
+    ],
+    "category_names": [
+      "Interior & Closet Doors",
+      "White Oak Doors",
+      "Wood Interior Doors",
+      "White Oak Doors",
+      "Modern Contemporary Doors",
+      "Interior Wood Flush Doors",
+      "Most Popular Interior Doors",
+      "Closet Doors"
+    ]
+  },
+  "ELITE": {
+    "category_ids": [
+      "186",
+      "271",
+      "274",
+      "275",
+      "290",
+      "291",
+      "317",
+      "333",
+      "352"
+    ],
+    "category_names": [
+      "Exterior Entry Doors",
+      "Glass Front Doors",
+      "Wood Doors",
+      "Mahogany Front Doors",
+      "Most Popular Exterior Doors",
+      "Grand 9 ft. & 10 ft. Doors",
+      "Most Popular",
+      "Prehung Interior Doors",
+      "Doors with Glass"
+    ]
+  },
+  "EXMA800": {
+    "category_ids": [
+      "186",
+      "218",
+      "270",
+      "274",
+      "275",
+      "290",
+      "317",
+      "327",
+      "331",
+      "332",
+      "334",
+      "335",
+      "337",
+      "359"
+    ],
+    "category_names": [
+      "Exterior Entry Doors",
+      "All Custom Doors",
+      "Front Doors ",
+      "Wood Doors",
+      "Mahogany Front Doors",
+      "Most Popular Exterior Doors",
+      "Most Popular",
+      "Unknown Category (327)",
+      "Back Doors",
+      "Pre-hung Doors",
+      "Prehung Exterior Doors",
+      "Slab Doors (REMOVED 2)",
+      "Exterior",
+      "Slab Doors"
+    ]
+  },
+  "LEPTOS": {
+    "category_ids": [
+      "186",
+      "218",
+      "270",
+      "274",
+      "275",
+      "290",
+      "294",
+      "316",
+      "317",
+      "327",
+      "331",
+      "332",
+      "334",
+      "335",
+      "337",
+      "352",
+      "359"
+    ],
+    "category_names": [
+      "Exterior Entry Doors",
+      "All Custom Doors",
+      "Front Doors ",
+      "Wood Doors",
+      "Mahogany Front Doors",
+      "Most Popular Exterior Doors",
+      "Contemporary Front Doors",
+      "Modern Front Doors",
+      "Most Popular",
+      "Unknown Category (327)",
+      "Back Doors",
+      "Pre-hung Doors",
+      "Prehung Exterior Doors",
+      "Slab Doors (REMOVED 2)",
+      "Exterior",
+      "Doors with Glass",
+      "Slab Doors"
+    ]
+  },
+  "SCOTTSDALE": {
+    "category_ids": [
+      "184",
+      "208",
+      "209",
+      "210",
+      "260",
+      "266",
+      "284"
+    ],
+    "category_names": [
+      "Interior & Closet Doors",
+      "White Oak Doors",
+      "Wood Interior Doors",
+      "White Oak Doors",
+      "Modern Contemporary Doors",
+      "Interior Wood Flush Doors",
+      "Most Popular Interior Doors"
+    ]
+  },
+  "VENETIAN": {
+    "category_ids": [
+      "186",
+      "218",
+      "270",
+      "271",
+      "272",
+      "274",
+      "275",
+      "290",
+      "317",
+      "327",
+      "331",
+      "332",
+      "334",
+      "335",
+      "337",
+      "352",
+      "359"
+    ],
+    "category_names": [
+      "Exterior Entry Doors",
+      "All Custom Doors",
+      "Front Doors ",
+      "Glass Front Doors",
+      "Beveled Glass Front Doors",
+      "Wood Doors",
+      "Mahogany Front Doors",
+      "Most Popular Exterior Doors",
+      "Most Popular",
+      "Unknown Category (327)",
+      "Back Doors",
+      "Pre-hung Doors",
+      "Prehung Exterior Doors",
+      "Slab Doors (REMOVED 2)",
+      "Exterior",
+      "Doors with Glass",
+      "Slab Doors"
+    ]
+  },
+  "SPINA": {
+    "category_ids": [
+      "186",
+      "189",
+      "190",
+      "216",
+      "218",
+      "270",
+      "274",
+      "275",
+      "283",
+      "290",
+      "317",
+      "331",
+      "334",
+      "335",
+      "337",
+      "346",
+      "351",
+      "352"
+    ],
+    "category_names": [
+      "Exterior Entry Doors",
+      "Other Doors",
+      "Mediterranean Doors",
+      "Cellar Doors",
+      "All Custom Doors",
+      "Front Doors ",
+      "Wood Doors",
+      "Mahogany Front Doors",
+      "Wrought Iron Doors",
+      "Most Popular Exterior Doors",
+      "Most Popular",
+      "Back Doors",
+      "Prehung Exterior Doors",
+      "Slab Doors (REMOVED 2)",
+      "Exterior",
+      "Mediterranean Front Doors",
+      "Iron Grill Doors",
+      "Doors with Glass"
+    ]
+  },
+  "VINOS": {
+    "category_ids": [
+      "186",
+      "189",
+      "190",
+      "216",
+      "218",
+      "270",
+      "274",
+      "275",
+      "276",
+      "283",
+      "290",
+      "292",
+      "331",
+      "332",
+      "334",
+      "337",
+      "346",
+      "351",
+      "359"
+    ],
+    "category_names": [
+      "Exterior Entry Doors",
+      "Other Doors",
+      "Mediterranean Doors",
+      "Cellar Doors",
+      "All Custom Doors",
+      "Front Doors ",
+      "Wood Doors",
+      "Mahogany Front Doors",
+      "Arched Doors",
+      "Wrought Iron Doors",
+      "Most Popular Exterior Doors",
+      "Rustic Front Doors",
+      "Back Doors",
+      "Pre-hung Doors",
+      "Prehung Exterior Doors",
+      "Exterior",
+      "Mediterranean Front Doors",
+      "Iron Grill Doors",
+      "Slab Doors"
+    ]
+  },
+  "SAWTELLE": {
+    "category_ids": [
+      "185",
+      "211",
+      "285",
+      "317",
+      "324",
+      "335",
+      "353"
+    ],
+    "category_names": [
+      "French Doors",
+      "(REMOVED) Exterior French Mahogany",
+      "Exterior French Doors",
+      "Most Popular",
+      "Interior French Doors",
+      "Slab Doors (REMOVED 2)",
+      "Most Popular"
+    ]
+  },
+  "KENT": {
+    "category_ids": [
+      "185",
+      "187",
+      "196",
+      "304",
+      "353"
+    ],
+    "category_names": [
+      "French Doors",
+      "Fiberglass",
+      "Fiberglass Doors",
+      "Fiberglass French Doors",
+      "Most Popular"
+    ]
+  },
+  "DALTON": {
+    "category_ids": [
+      "184",
+      "208",
+      "209",
+      "210",
+      "260",
+      "284",
+      "360"
+    ],
+    "category_names": [
+      "Interior & Closet Doors",
+      "White Oak Doors",
+      "Wood Interior Doors",
+      "White Oak Doors",
+      "Modern Contemporary Doors",
+      "Most Popular Interior Doors",
+      "Closet Doors"
+    ]
+  },
+  "BELMONT": {
+    "category_ids": [
+      "184",
+      "208",
+      "209",
+      "210",
+      "260",
+      "284",
+      "360"
+    ],
+    "category_names": [
+      "Interior & Closet Doors",
+      "White Oak Doors",
+      "Wood Interior Doors",
+      "White Oak Doors",
+      "Modern Contemporary Doors",
+      "Most Popular Interior Doors",
+      "Closet Doors"
+    ]
+  },
+  "OTTO": {
+    "category_ids": [
+      "184",
+      "208",
+      "209",
+      "210",
+      "260",
+      "284",
+      "360"
+    ],
+    "category_names": [
+      "Interior & Closet Doors",
+      "White Oak Doors",
+      "Wood Interior Doors",
+      "White Oak Doors",
+      "Modern Contemporary Doors",
+      "Most Popular Interior Doors",
+      "Closet Doors"
+    ]
+  },
+  "EXMA240": {
+    "category_ids": [
+      "292",
+      "335",
+      "337"
+    ],
+    "category_names": [
+      "Rustic Front Doors",
+      "Slab Doors (REMOVED 2)",
+      "Exterior"
+    ]
+  },
+  "DUTEXMA240": {
+    "category_ids": [
+      "195",
+      "217",
+      "335"
+    ],
+    "category_names": [
+      "Dutch Doors",
+      "(MISSING) Dutch Doors",
+      "Slab Doors (REMOVED 2)"
+    ]
+  },
+  "OSLO": {
+    "category_ids": [
+      "187",
+      "196",
+      "328"
+    ],
+    "category_names": [
+      "Fiberglass",
+      "Fiberglass Doors",
+      "Fiberglass Front Doors"
+    ]
+  },
+  "TRENTON": {
+    "category_ids": [
+      "184",
+      "203",
+      "209",
+      "260",
+      "263",
+      "326",
+      "335",
+      "336",
+      "360"
+    ],
+    "category_names": [
+      "Interior & Closet Doors",
+      "Shop by Brand",
+      "Wood Interior Doors",
+      "Modern Contemporary Doors",
+      "Mahogany Doors",
+      "Barn Doors",
+      "Slab Doors (REMOVED 2)",
+      "Interior",
+      "Closet Doors"
+    ]
+  },
+  "MA300": {
+    "category_ids": [
+      "184",
+      "203",
+      "209",
+      "263",
+      "284",
+      "317",
+      "326",
+      "332",
+      "333",
+      "335",
+      "336",
+      "359"
+    ],
+    "category_names": [
+      "Interior & Closet Doors",
+      "Shop by Brand",
+      "Wood Interior Doors",
+      "Mahogany Doors",
+      "Most Popular Interior Doors",
+      "Most Popular",
+      "Barn Doors",
+      "Pre-hung Doors",
+      "Prehung Interior Doors",
+      "Slab Doors (REMOVED 2)",
+      "Interior",
+      "Slab Doors"
+    ]
+  },
+  "MILTON": {
+    "category_ids": [
+      "205",
+      "335"
+    ],
+    "category_names": [
+      "Fire Rated",
+      "Slab Doors (REMOVED 2)"
+    ]
+  },
+  "LEON": {
+    "category_ids": [
+      "186",
+      "208",
+      "270",
+      "289",
+      "290",
+      "294"
+    ],
+    "category_names": [
+      "Exterior Entry Doors",
+      "White Oak Doors",
+      "Front Doors ",
+      "White Oak Front Doors",
+      "Most Popular Exterior Doors",
+      "Contemporary Front Doors"
+    ]
+  },
+  "CAMDEN": {
+    "category_ids": [
+      "186",
+      "208",
+      "270",
+      "289",
+      "290",
+      "294"
+    ],
+    "category_names": [
+      "Exterior Entry Doors",
+      "White Oak Doors",
+      "Front Doors ",
+      "White Oak Front Doors",
+      "Most Popular Exterior Doors",
+      "Contemporary Front Doors"
+    ]
+  },
+  "CHELSEA": {
+    "category_ids": [
+      "186",
+      "208",
+      "270",
+      "289",
+      "290",
+      "294",
+      "359"
+    ],
+    "category_names": [
+      "Exterior Entry Doors",
+      "White Oak Doors",
+      "Front Doors ",
+      "White Oak Front Doors",
+      "Most Popular Exterior Doors",
+      "Contemporary Front Doors",
+      "Slab Doors"
+    ]
+  },
+  "BRISTOL": {
+    "category_ids": [
+      "204",
+      "227",
+      "229"
+    ],
+    "category_names": [
+      "Unknown Category (204)",
+      "Unknown Category (227)",
+      "Unknown Category (229)"
+    ]
+  },
+  "MA600": {
+    "category_ids": [
+      "184",
+      "209",
+      "263"
+    ],
+    "category_names": [
+      "Interior & Closet Doors",
+      "Wood Interior Doors",
+      "Mahogany Doors"
+    ]
+  },
+  "COSTASMERALDA": {
+    "category_ids": [
+      "276",
+      "277",
+      "282",
+      "335",
+      "337"
+    ],
+    "category_names": [
+      "Arched Doors",
+      "Arched Double Doors",
+      "Double Doors",
+      "Slab Doors (REMOVED 2)",
+      "Exterior"
+    ]
+  },
+  "ALBANY": {
+    "category_ids": [
+      "186",
+      "208",
+      "270",
+      "289",
+      "290",
+      "294"
+    ],
+    "category_names": [
+      "Exterior Entry Doors",
+      "White Oak Doors",
+      "Front Doors ",
+      "White Oak Front Doors",
+      "Most Popular Exterior Doors",
+      "Contemporary Front Doors"
+    ]
+  },
+  "RENO": {
+    "category_ids": [
+      "184",
+      "203",
+      "209",
+      "262",
+      "326",
+      "335",
+      "336"
+    ],
+    "category_names": [
+      "Interior & Closet Doors",
+      "Shop by Brand",
+      "Wood Interior Doors",
+      "Knotty Alder Doors",
+      "Barn Doors",
+      "Slab Doors (REMOVED 2)",
+      "Interior"
+    ]
+  },
+  "ROME": {
+    "category_ids": [
+      "186",
+      "208",
+      "270",
+      "289",
+      "290",
+      "294"
+    ],
+    "category_names": [
+      "Exterior Entry Doors",
+      "White Oak Doors",
+      "Front Doors ",
+      "White Oak Front Doors",
+      "Most Popular Exterior Doors",
+      "Contemporary Front Doors"
+    ]
+  },
+  "BRADY": {
+    "category_ids": [
+      "184",
+      "203",
+      "209",
+      "326",
+      "335",
+      "336",
+      "341"
+    ],
+    "category_names": [
+      "Interior & Closet Doors",
+      "Shop by Brand",
+      "Wood Interior Doors",
+      "Barn Doors",
+      "Slab Doors (REMOVED 2)",
+      "Interior",
+      "Simpson"
+    ]
+  },
+  "FLORENCE": {
+    "category_ids": [
+      "189",
+      "190",
+      "216",
+      "276",
+      "283",
+      "335",
+      "337",
+      "346",
+      "351"
+    ],
+    "category_names": [
+      "Other Doors",
+      "Mediterranean Doors",
+      "Cellar Doors",
+      "Arched Doors",
+      "Wrought Iron Doors",
+      "Slab Doors (REMOVED 2)",
+      "Exterior",
+      "Mediterranean Front Doors",
+      "Iron Grill Doors"
+    ]
+  },
+  "SARDINIA": {
+    "category_ids": [
+      "276",
+      "277",
+      "282",
+      "335",
+      "337"
+    ],
+    "category_names": [
+      "Arched Doors",
+      "Arched Double Doors",
+      "Double Doors",
+      "Slab Doors (REMOVED 2)",
+      "Exterior"
+    ]
+  },
+  "ELITEPIVOT": {
+    "category_ids": [
+      "240",
+      "283"
+    ],
+    "category_names": [
+      "Steel Metal",
+      "Wrought Iron Doors"
+    ]
+  },
+  "ABRIR": {
+    "category_ids": [
+      "240"
+    ],
+    "category_names": [
+      "Steel Metal"
+    ]
+  },
+  "VENTANA1": {
+    "category_ids": [
+      "240"
+    ],
+    "category_names": [
+      "Steel Metal"
+    ]
+  },
+  "VENTANA6": {
+    "category_ids": [
+      "240"
+    ],
+    "category_names": [
+      "Steel Metal"
+    ]
+  },
+  "STAL": {
+    "category_ids": [
+      "240",
+      "283"
+    ],
+    "category_names": [
+      "Steel Metal",
+      "Wrought Iron Doors"
+    ]
+  },
+  "VENTANA8": {
+    "category_ids": [
+      "240"
+    ],
+    "category_names": [
+      "Steel Metal"
+    ]
+  },
+  "VENTANA10": {
+    "category_ids": [
+      "240"
+    ],
+    "category_names": [
+      "Steel Metal"
+    ]
+  },
+  "VENTANA3": {
+    "category_ids": [
+      "240"
+    ],
+    "category_names": [
+      "Steel Metal"
+    ]
+  },
+  "VENTANA15": {
+    "category_ids": [
+      "240"
+    ],
+    "category_names": [
+      "Steel Metal"
+    ]
+  },
+  "VERONA": {
+    "category_ids": [
+      "240"
+    ],
+    "category_names": [
+      "Steel Metal"
+    ]
+  },
+  "ACERO": {
+    "category_ids": [
+      "240",
+      "283"
+    ],
+    "category_names": [
+      "Steel Metal",
+      "Wrought Iron Doors"
+    ]
+  },
+  "ZOLO": {
+    "category_ids": [
+      "240",
+      "283"
+    ],
+    "category_names": [
+      "Steel Metal",
+      "Wrought Iron Doors"
+    ]
+  },
+  "WOOTZ": {
+    "category_ids": [
+      "240",
+      "283"
+    ],
+    "category_names": [
+      "Steel Metal",
+      "Wrought Iron Doors"
+    ]
+  },
+  "VENTANA4": {
+    "category_ids": [
+      "240"
+    ],
+    "category_names": [
+      "Steel Metal"
+    ]
+  },
+  "DOCCIA": {
+    "category_ids": [
+      "240"
+    ],
+    "category_names": [
+      "Steel Metal"
+    ]
+  },
+  "ACO": {
+    "category_ids": [
+      "240",
+      "283"
+    ],
+    "category_names": [
+      "Steel Metal",
+      "Wrought Iron Doors"
+    ]
+  },
+  "PLADA": {
+    "category_ids": [
+      "240",
+      "283"
+    ],
+    "category_names": [
+      "Steel Metal",
+      "Wrought Iron Doors"
+    ]
+  },
+  "JASPER": {
+    "category_ids": [
+      "240",
+      "283"
+    ],
+    "category_names": [
+      "Steel Metal",
+      "Wrought Iron Doors"
+    ]
+  },
+  "MOBILE": {
+    "category_ids": [
+      "240",
+      "283"
+    ],
+    "category_names": [
+      "Steel Metal",
+      "Wrought Iron Doors"
+    ]
+  },
+  "TROY": {
+    "category_ids": [
+      "240",
+      "283"
+    ],
+    "category_names": [
+      "Steel Metal",
+      "Wrought Iron Doors"
+    ]
+  },
+  "KOTET": {
+    "category_ids": [
+      "240",
+      "283"
+    ],
+    "category_names": [
+      "Steel Metal",
+      "Wrought Iron Doors"
+    ]
+  },
+  "ATHENS": {
+    "category_ids": [
+      "240",
+      "283"
+    ],
+    "category_names": [
+      "Steel Metal",
+      "Wrought Iron Doors"
+    ]
+  },
+  "OJAI": {
+    "category_ids": [
+      "240"
+    ],
+    "category_names": [
+      "Steel Metal"
+    ]
+  },
+  "VENICE": {
+    "category_ids": [
+      "240"
+    ],
+    "category_names": [
+      "Steel Metal"
+    ]
+  },
+  "BOWIE": {
+    "category_ids": [
+      "240"
+    ],
+    "category_names": [
+      "Steel Metal"
+    ]
+  },
+  "CALDWELL": {
+    "category_ids": [
+      "240",
+      "283"
+    ],
+    "category_names": [
+      "Steel Metal",
+      "Wrought Iron Doors"
+    ]
+  },
+  "PORTE": {
+    "category_ids": [
+      "240",
+      "283"
+    ],
+    "category_names": [
+      "Steel Metal",
+      "Wrought Iron Doors"
+    ]
+  },
+  "DIXON": {
+    "category_ids": [
+      "240",
+      "283"
+    ],
+    "category_names": [
+      "Steel Metal",
+      "Wrought Iron Doors"
+    ]
+  },
+  "SALEM": {
+    "category_ids": [
+      "240",
+      "283"
+    ],
+    "category_names": [
+      "Steel Metal",
+      "Wrought Iron Doors"
+    ]
+  },
+  "MA210": {
+    "category_ids": [
+      "184",
+      "209",
+      "263",
+      "317"
+    ],
+    "category_names": [
+      "Interior & Closet Doors",
+      "Wood Interior Doors",
+      "Mahogany Doors",
+      "Most Popular"
+    ]
+  }
+}

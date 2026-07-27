@@ -1,0 +1,225 @@
+{% comment %}
+ETO – PROMO BANNERS SECTION (White Oak + Side Banners)
+{% endcomment %}
+
+<style>
+.eto-promo-banners {
+  padding: 60px 0;
+  background: var(--eto-soft-white);
+}
+.eto-promo-inner {
+  max-width: var(--eto-container-max);
+  margin: 0 auto;
+  padding: 0 var(--eto-margin-edge);
+  display: flex;
+  gap: 24px;
+}
+.eto-promo-left {
+  flex: 2;
+  position: relative;
+  border-radius: 0;
+  overflow: hidden;
+  min-height: 420px;
+}
+.eto-promo-left img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  transition: transform 0.7s ease;
+}
+.eto-promo-left:hover img { transform: scale(1.03); }
+.eto-promo-left-content {
+  position: absolute; top: 20px; left: 20px; z-index: 2;
+}
+.eto-promo-label {
+  display: inline-block;
+  background: var(--eto-dark-charcoal);
+  color: #fff;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 11px; padding: 4px 12px;
+  margin-bottom: 8px; text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.eto-promo-left h2 {
+  font-family: 'EB Garamond', serif;
+  font-size: 38px; font-weight: 400;
+  color: var(--eto-dark-charcoal);
+  margin: 0; line-height: 1.1;
+  text-transform: uppercase; letter-spacing: 0.1em;
+}
+.eto-promo-left .eto-promo-btn {
+  position: absolute; bottom: 30px; left: 50%;
+  transform: translateX(-50%);
+}
+.eto-promo-btn a {
+  display: inline-block;
+  background: var(--eto-beige-btn);
+  color: var(--eto-dark-charcoal);
+  padding: 14px 36px;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 12px; font-weight: 600;
+  text-transform: uppercase; text-decoration: none;
+  border-radius: 0; letter-spacing: 0.1em;
+  transition: background 0.2s;
+}
+.eto-promo-btn a:hover { background: var(--eto-beige-hover); }
+.eto-promo-right {
+  flex: 1; display: flex;
+  flex-direction: column; gap: 24px;
+}
+.eto-promo-card {
+  position: relative; border-radius: 0;
+  overflow: hidden; flex: 1; min-height: 200px;
+}
+.eto-promo-card img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  transition: transform 0.7s ease;
+}
+.eto-promo-card:hover img { transform: scale(1.03); }
+.eto-promo-card-content {
+  position: absolute; top: 20px; left: 20px; z-index: 2;
+}
+.eto-promo-card h3 {
+  font-family: 'EB Garamond', serif;
+  font-size: 24px; font-weight: 400;
+  color: var(--eto-dark-charcoal);
+  margin: 0 0 12px; line-height: 1.15;
+  text-transform: uppercase; letter-spacing: 0.1em;
+}
+.eto-promo-card .eto-promo-btn-sm a {
+  display: inline-block;
+  background: var(--eto-beige-btn);
+  color: var(--eto-dark-charcoal);
+  padding: 8px 20px;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 11px; font-weight: 600;
+  text-transform: uppercase; text-decoration: none;
+  border-radius: 0; letter-spacing: 0.1em;
+  transition: background 0.2s;
+}
+.eto-promo-card .eto-promo-btn-sm a:hover {
+  background: var(--eto-beige-hover);
+}
+@media (max-width: 992px) {
+  .eto-promo-inner { flex-direction: column; padding: 0 16px; }
+  .eto-promo-left { min-height: 300px; }
+  .eto-promo-card { min-height: 180px; }
+}
+</style>
+
+<section class="eto-promo-banners">
+  <div class="eto-promo-inner">
+    <!-- Large Left Banner -->
+    <div class="eto-promo-left">
+      <a href="{{ section.settings.left_link | default: '#' }}">
+        <img src="{{ section.settings.left_image | default: 'https://www.etodoors.com/media/wysiwyg/White_Oak_Tile_ETO.jpg' }}" alt="Left Banner">
+      </a>
+    </div>
+
+    <!-- Right Stacked Banners -->
+    <div class="eto-promo-right">
+      <!-- Top Right Card -->
+      <div class="eto-promo-card">
+        <a href="{{ section.settings.right_top_link | default: '#' }}">
+          <img src="{{ section.settings.right_top_image | default: 'https://www.etodoors.com/media/wysiwyg/home_images/eto_banner_right1-1.png' }}" alt="Top Right Banner">
+        </a>
+      </div>
+
+      <!-- Bottom Right Card -->
+      <div class="eto-promo-card">
+        <a href="{{ section.settings.right_bottom_link | default: '#' }}">
+          <img src="{{ section.settings.right_bottom_image | default: 'https://www.etodoors.com/media/wysiwyg/eto_banner_right2-1.png' }}" alt="Bottom Right Banner">
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "ETO Promo Banners",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Left Banner"
+    },
+    {
+      "type": "text",
+      "id": "left_label",
+      "label": "Label Text",
+      "default": "ETO Doors White Oak"
+    },
+    {
+      "type": "text",
+      "id": "left_title",
+      "label": "Title",
+      "default": "White Oak Doors Line"
+    },
+    {
+      "type": "image_picker",
+      "id": "left_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "left_link",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Right Top Banner"
+    },
+    {
+      "type": "text",
+      "id": "right_top_title",
+      "label": "Title",
+      "default": "Impact Hurricane Doors"
+    },
+    {
+      "type": "image_picker",
+      "id": "right_top_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "right_top_link",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Right Bottom Banner"
+    },
+    {
+      "type": "text",
+      "id": "right_bottom_title",
+      "label": "Title",
+      "default": "Fire Rated Doors"
+    },
+    {
+      "type": "image_picker",
+      "id": "right_bottom_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "right_bottom_link",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Shop Now"
+    }
+  ],
+  "presets": [
+    {
+      "name": "ETO Promo Banners"
+    }
+  ]
+}
+{% endschema %}

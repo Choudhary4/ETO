@@ -1,0 +1,184 @@
+<div style="background-color: #ffffff; width: 100%;">
+<div class="eto-exterior-doors-section">
+  <div class="eto-exterior-image-col">
+    {% if section.settings.image != blank %}
+      {{ section.settings.image | image_url: width: 1200 | image_tag: loading: 'lazy', class: 'eto-exterior-image' }}
+    {% else %}
+      <img class="eto-exterior-image" loading="lazy" src="{{ 'exterior-doors-banner.svg' | asset_url }}" alt="Exterior Doors">
+    {% endif %}
+  </div>
+  <div class="eto-exterior-text-col">
+    <h3 class="eto-exterior-title">{{ section.settings.title }}</h3>
+    <p class="eto-exterior-subtitle">{{ section.settings.subtitle }}</p>
+    <a href="{{ section.settings.link }}" class="eto-exterior-btn">{{ section.settings.btn_text }}</a>
+  </div>
+</div>
+</div>
+
+<style>
+.eto-exterior-doors-section {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: stretch;
+  background: #ffffff;
+  width: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 40px 0;
+  border-top: 1px solid #EBEBEB;
+}
+.eto-exterior-image-col {
+  width: 55%;
+  position: relative;
+}
+.eto-exterior-image {
+  width: 100%;
+  height: 100%;
+  max-height: 800px;
+  min-height: 500px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+.eto-exterior-text-col {
+  width: 45%;
+  padding: 5% 8% 0 8%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  text-align: right;
+  gap: 16px;
+}
+.eto-exterior-title {
+  font-family: 'MADE Mirage', serif;
+  font-size: 64px;
+  font-weight: 100;
+  text-transform: none;
+  letter-spacing: normal;
+  line-height: 1.1;
+  color: #000000;
+  margin: 0;
+}
+.eto-exterior-subtitle {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 22px;
+  font-weight: 300;
+  color: #000000;
+  margin: 0 0 16px 0;
+  line-height: 25px;
+}
+
+@media (min-width: 1921px) {
+  .eto-exterior-doors-section {
+    max-width: 100%;
+    align-items: center;
+  }
+  .eto-exterior-image {
+    height: auto;
+    max-height: none;
+    min-height: auto;
+    aspect-ratio: 16 / 10;
+  }
+  .eto-exterior-text-col {
+    padding: 0 8%;
+    justify-content: center;
+  }
+  .eto-exterior-title {
+    font-size: clamp(36px, 3.5vw, 90px);
+  }
+  .eto-exterior-subtitle {
+    font-size: clamp(16px, 1.2vw, 28px);
+    line-height: 1.4;
+  }
+}
+.eto-exterior-btn {
+  background: #C7C1B9;
+  color: #ffffff;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  padding: 16px 40px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+.eto-exterior-btn:hover {
+  background: var(--eto-dark-charcoal);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 990px) {
+  .eto-exterior-doors-section {
+    flex-direction: column;
+    padding-top: 24px;
+    padding-bottom: 40px;
+  }
+  .eto-exterior-image-col, .eto-exterior-text-col {
+    width: 100%;
+    padding: 0;
+  }
+  .eto-exterior-image {
+    min-height: 300px;
+    max-height: 400px;
+  }
+  .eto-exterior-text-col {
+    align-items: center;
+    text-align: center;
+    margin-top: 24px;
+    padding: 0 20px;
+  }
+  .eto-exterior-title {
+    font-size: 36px;
+    line-height: 1.2;
+  }
+  .eto-exterior-subtitle {
+    font-size: 16px;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Exterior Doors",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Exterior Doors"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtext",
+      "default": "Designed for<br>first impressions."
+    },
+    {
+      "type": "text",
+      "id": "btn_text",
+      "label": "Button Text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Button Link"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Exterior Doors"
+    }
+  ]
+}
+{% endschema %}

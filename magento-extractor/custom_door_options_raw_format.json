@@ -1,0 +1,1624 @@
+{
+  "LOUVER": [
+    {
+      "id": "11195",
+      "title": "Size",
+      "type": "radio",
+      "is_require": true,
+      "sort_order": 1,
+      "values": [
+        {
+          "value_id": "54229",
+          "title": "24\"x96\" = $399",
+          "price": 399,
+          "price_type": "fixed",
+          "sort_order": 13
+        },
+        {
+          "value_id": "54231",
+          "title": "28\"x96\" = $399",
+          "price": 399,
+          "price_type": "fixed",
+          "sort_order": 14
+        },
+        {
+          "value_id": "54232",
+          "title": "30\"x96\" = $399",
+          "price": 399,
+          "price_type": "fixed",
+          "sort_order": 15
+        },
+        {
+          "value_id": "54233",
+          "title": "32\"x96\" = $399",
+          "price": 399,
+          "price_type": "fixed",
+          "sort_order": 16
+        },
+        {
+          "value_id": "54235",
+          "title": "36\"x96\" = $399",
+          "price": 399,
+          "price_type": "fixed",
+          "sort_order": 17
+        }
+      ]
+    },
+    {
+      "id": "11196",
+      "title": "Door Configuration",
+      "type": "radio",
+      "is_require": false,
+      "sort_order": 2,
+      "values": [
+        {
+          "value_id": "54259",
+          "title": "Single Door",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 1
+        },
+        {
+          "value_id": "54260",
+          "title": "Double Door",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 2
+        }
+      ]
+    },
+    {
+      "id": "11197",
+      "title": "Interior Pre Hanging",
+      "type": "radio",
+      "is_require": false,
+      "sort_order": 3,
+      "values": [
+        {
+          "value_id": "54261",
+          "title": "Yes (w/ Frame)",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 2
+        },
+        {
+          "value_id": "54262",
+          "title": "No (Door Only)",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 1
+        }
+      ]
+    },
+    {
+      "id": "11198",
+      "title": "Interior Pre Hanging",
+      "type": "radio",
+      "is_require": false,
+      "sort_order": 3,
+      "values": [
+        {
+          "value_id": "54263",
+          "title": "Yes (w/ Frame)",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 2
+        },
+        {
+          "value_id": "54264",
+          "title": "No (Door Only)",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 1
+        }
+      ]
+    },
+    {
+      "id": "11199",
+      "title": "Jamb Species",
+      "type": "radio",
+      "is_require": false,
+      "sort_order": 4,
+      "values": [
+        {
+          "value_id": "54265",
+          "title": "Mahogany (+$199)",
+          "price": 199,
+          "price_type": "fixed",
+          "sort_order": 1
+        },
+        {
+          "value_id": "54266",
+          "title": "Paint Grade (+$149)",
+          "price": 149,
+          "price_type": "fixed",
+          "sort_order": 2
+        }
+      ]
+    },
+    {
+      "id": "11200",
+      "title": "Jamb Species",
+      "type": "radio",
+      "is_require": false,
+      "sort_order": 4,
+      "values": [
+        {
+          "value_id": "54267",
+          "title": "Mahogany (+$319)",
+          "price": 319,
+          "price_type": "fixed",
+          "sort_order": 1
+        },
+        {
+          "value_id": "54268",
+          "title": "Paint Grade (+$249)",
+          "price": 249,
+          "price_type": "fixed",
+          "sort_order": 2
+        }
+      ]
+    },
+    {
+      "id": "11201",
+      "title": "Handing",
+      "type": "radio",
+      "is_require": false,
+      "sort_order": 5,
+      "values": [
+        {
+          "value_id": "54269",
+          "title": "Left Hand Inswing (LH)",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 1
+        },
+        {
+          "value_id": "54270",
+          "title": "Right Hand Inswing (RH)",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 2
+        },
+        {
+          "value_id": "54271",
+          "title": "Right Hand Outswing (LHR)",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 3
+        },
+        {
+          "value_id": "54272",
+          "title": "Left Hand Outswing (RHR)",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 4
+        },
+        {
+          "value_id": "187152",
+          "title": "Closet Door Ball Catch Prep No Bore",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 5
+        },
+        {
+          "value_id": "187153",
+          "title": "Closet Door Ball Catch Prep No Bore",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 6
+        }
+      ]
+    },
+    {
+      "id": "11202",
+      "title": "Handing",
+      "type": "radio",
+      "is_require": false,
+      "sort_order": 5,
+      "values": [
+        {
+          "value_id": "54273",
+          "title": "Left Hand Active (LH-A)",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 1
+        },
+        {
+          "value_id": "54274",
+          "title": "Right Hand Active (RH-A)",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 2
+        },
+        {
+          "value_id": "54275",
+          "title": "Left Hand Outswing Active (RHR-A)",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 4
+        },
+        {
+          "value_id": "54276",
+          "title": "Right Hand Outswing Active (LHR-A)",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 3
+        }
+      ]
+    },
+    {
+      "id": "11203",
+      "title": "Jamb Width",
+      "type": "radio",
+      "is_require": false,
+      "sort_order": 7,
+      "values": [
+        {
+          "value_id": "54277",
+          "title": "3-1/2\"",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 1
+        },
+        {
+          "value_id": "54278",
+          "title": "4-9/16\"",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 3
+        },
+        {
+          "value_id": "54279",
+          "title": "4\"",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 2
+        },
+        {
+          "value_id": "54280",
+          "title": "4-3/4\"",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 4
+        },
+        {
+          "value_id": "54281",
+          "title": "5-1/4\"",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 5
+        },
+        {
+          "value_id": "54282",
+          "title": "5-1/2\"",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 6
+        },
+        {
+          "value_id": "54283",
+          "title": "6\"",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 7
+        },
+        {
+          "value_id": "54284",
+          "title": "6-5/8\"",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 8
+        },
+        {
+          "value_id": "54285",
+          "title": "7-1/4\"",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 9
+        }
+      ]
+    },
+    {
+      "id": "11204",
+      "title": "Hinges Finish",
+      "type": "radio",
+      "is_require": false,
+      "sort_order": 8,
+      "values": [
+        {
+          "value_id": "54286",
+          "title": "Oil Rubbed Bronze",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 1
+        },
+        {
+          "value_id": "54287",
+          "title": "Satin Nickel",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 2
+        },
+        {
+          "value_id": "54288",
+          "title": "Brass",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 3
+        }
+      ]
+    },
+    {
+      "id": "11205",
+      "title": "Handle Preparation",
+      "type": "radio",
+      "is_require": false,
+      "sort_order": 10,
+      "values": [
+        {
+          "value_id": "54289",
+          "title": "Single (2-3/8\" backset)",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 1
+        },
+        {
+          "value_id": "54290",
+          "title": "No Bore",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 4
+        }
+      ]
+    },
+    {
+      "id": "21402",
+      "title": "Your product is now configured",
+      "type": "field",
+      "is_require": true,
+      "sort_order": 30,
+      "values": []
+    }
+  ],
+  "RITZ": [
+    {
+      "id": "15899",
+      "title": "Size",
+      "type": "radio",
+      "is_require": true,
+      "sort_order": 1,
+      "values": [
+        {
+          "value_id": "81999",
+          "title": "36\"x80\" = $899",
+          "price": 899,
+          "price_type": "fixed",
+          "sort_order": 1
+        },
+        {
+          "value_id": "232854",
+          "title": "36'x96\" = $999",
+          "price": 999,
+          "price_type": "fixed",
+          "sort_order": 2
+        },
+        {
+          "value_id": "232855",
+          "title": "42\"x80\" = $999",
+          "price": 999,
+          "price_type": "fixed",
+          "sort_order": 3
+        },
+        {
+          "value_id": "232856",
+          "title": "42\"x96\" = $1199",
+          "price": 1199,
+          "price_type": "fixed",
+          "sort_order": 4
+        }
+      ]
+    },
+    {
+      "id": "15900",
+      "title": "Door Configuration",
+      "type": "radio",
+      "is_require": false,
+      "sort_order": 2,
+      "values": [
+        {
+          "value_id": "82003",
+          "title": "Single Door",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 1
+        },
+        {
+          "value_id": "82004",
+          "title": "Double Door",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 2
+        }
+      ]
+    },
+    {
+      "id": "25924",
+      "title": "Glass Type",
+      "type": "radio",
+      "is_require": false,
+      "sort_order": 3,
+      "values": [
+        {
+          "value_id": "232848",
+          "title": "Clear",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 1
+        },
+        {
+          "value_id": "232849",
+          "title": "White Laminate",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 2
+        }
+      ]
+    },
+    {
+      "id": "25925",
+      "title": "Glass Type",
+      "type": "radio",
+      "is_require": false,
+      "sort_order": 3,
+      "values": [
+        {
+          "value_id": "232851",
+          "title": "Clear",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 1
+        },
+        {
+          "value_id": "232852",
+          "title": "White Laminate",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 2
+        }
+      ]
+    },
+    {
+      "id": "15901",
+      "title": "Pre Hanging",
+      "type": "radio",
+      "is_require": false,
+      "sort_order": 3,
+      "values": [
+        {
+          "value_id": "82005",
+          "title": "Yes (w/ Frame)",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 1
+        },
+        {
+          "value_id": "82006",
+          "title": "No (Door Only)",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 2
+        }
+      ]
+    },
+    {
+      "id": "15902",
+      "title": "Pre hanging",
+      "type": "radio",
+      "is_require": false,
+      "sort_order": 3,
+      "values": [
+        {
+          "value_id": "82007",
+          "title": "Yes (w/ Frame)",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 1
+        },
+        {
+          "value_id": "82008",
+          "title": "No (Door Only)",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 2
+        }
+      ]
+    },
+    {
+      "id": "15903",
+      "title": "Jamb Species",
+      "type": "radio",
+      "is_require": false,
+      "sort_order": 4,
+      "values": [
+        {
+          "value_id": "82009",
+          "title": "Mahogany (+$379)",
+          "price": 379,
+          "price_type": "fixed",
+          "sort_order": 1
+        },
+        {
+          "value_id": "82010",
+          "title": "Paint Grade (+$299)",
+          "price": 299,
+          "price_type": "fixed",
+          "sort_order": 2
+        }
+      ]
+    },
+    {
+      "id": "15904",
+      "title": "Jamb Species",
+      "type": "radio",
+      "is_require": false,
+      "sort_order": 4,
+      "values": [
+        {
+          "value_id": "82011",
+          "title": "Mahogany (+$659)",
+          "price": 659,
+          "price_type": "fixed",
+          "sort_order": 1
+        },
+        {
+          "value_id": "82012",
+          "title": "Paint Grade (+$499)",
+          "price": 499,
+          "price_type": "fixed",
+          "sort_order": 2
+        }
+      ]
+    },
+    {
+      "id": "15905",
+      "title": "Handing",
+      "type": "radio",
+      "is_require": false,
+      "sort_order": 5,
+      "values": [
+        {
+          "value_id": "82013",
+          "title": "Left Hand Inswing",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 1
+        },
+        {
+          "value_id": "82014",
+          "title": "Right Hand Inswing",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 2
+        },
+        {
+          "value_id": "82015",
+          "title": "Right Hand Outswing (LHR)",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 3
+        },
+        {
+          "value_id": "82016",
+          "title": "Left Hand Outswing (RHR)",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 4
+        }
+      ]
+    },
+    {
+      "id": "15906",
+      "title": "Handing",
+      "type": "radio",
+      "is_require": false,
+      "sort_order": 5,
+      "values": [
+        {
+          "value_id": "82017",
+          "title": "Active Left Inswing",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 1
+        },
+        {
+          "value_id": "82018",
+          "title": "Active Right Inswing",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 2
+        },
+        {
+          "value_id": "82019",
+          "title": "Active Right Outswing (+$50)",
+          "price": 50,
+          "price_type": "fixed",
+          "sort_order": 3
+        },
+        {
+          "value_id": "82020",
+          "title": "Active Left Outswing (+$50)",
+          "price": 50,
+          "price_type": "fixed",
+          "sort_order": 4
+        }
+      ]
+    },
+    {
+      "id": "15907",
+      "title": "Jamb Width",
+      "type": "radio",
+      "is_require": false,
+      "sort_order": 7,
+      "values": [
+        {
+          "value_id": "82021",
+          "title": "3-1/2\"",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 1
+        },
+        {
+          "value_id": "82022",
+          "title": "4\"",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 2
+        },
+        {
+          "value_id": "82023",
+          "title": "4-9/16\"",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 3
+        },
+        {
+          "value_id": "82024",
+          "title": "4-3/4\"",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 4
+        },
+        {
+          "value_id": "82025",
+          "title": "5-1/4\"",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 5
+        },
+        {
+          "value_id": "82026",
+          "title": "5-1/2\"",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 6
+        },
+        {
+          "value_id": "82027",
+          "title": "6\"",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 7
+        },
+        {
+          "value_id": "82028",
+          "title": "6-5/8\"",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 8
+        },
+        {
+          "value_id": "82029",
+          "title": "7-1/4\"",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 9
+        }
+      ]
+    },
+    {
+      "id": "15908",
+      "title": "Hinges Finish",
+      "type": "radio",
+      "is_require": false,
+      "sort_order": 8,
+      "values": [
+        {
+          "value_id": "82030",
+          "title": "Oil Rubbed Bronze",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 1
+        },
+        {
+          "value_id": "82031",
+          "title": "Satin Nickel",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 2
+        },
+        {
+          "value_id": "82032",
+          "title": "Brass",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 3
+        }
+      ]
+    },
+    {
+      "id": "15909",
+      "title": "Door Sill Finish",
+      "type": "radio",
+      "is_require": false,
+      "sort_order": 9,
+      "values": [
+        {
+          "value_id": "82033",
+          "title": "Aluminum Bronze",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 1
+        },
+        {
+          "value_id": "82034",
+          "title": "Aluminum Satin Nickel",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 2
+        },
+        {
+          "value_id": "82035",
+          "title": "Aluminum Brass",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 3
+        },
+        {
+          "value_id": "82037",
+          "title": "ADA Handicap Bronze Aluminum",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 5
+        }
+      ]
+    },
+    {
+      "id": "15910",
+      "title": "Handle Preparation",
+      "type": "radio",
+      "is_require": false,
+      "sort_order": 10,
+      "values": [
+        {
+          "value_id": "82038",
+          "title": "Single (2-3/8\" backset)",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 1
+        },
+        {
+          "value_id": "82039",
+          "title": "Double (2-3/8\" backset)",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 2
+        },
+        {
+          "value_id": "82040",
+          "title": "Mortise Prep (+$175)",
+          "price": 175,
+          "price_type": "fixed",
+          "sort_order": 3
+        },
+        {
+          "value_id": "82041",
+          "title": "No Bore",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 4
+        }
+      ]
+    },
+    {
+      "id": "15915",
+      "title": "Your product is now configured",
+      "type": "field",
+      "is_require": true,
+      "sort_order": 30,
+      "values": []
+    }
+  ],
+  "RANCHO": [
+    {
+      "id": "20806",
+      "title": "Size",
+      "type": "radio",
+      "is_require": true,
+      "sort_order": 1,
+      "values": [
+        {
+          "value_id": "102003",
+          "title": "42\"x80\" = $999 ",
+          "price": 999,
+          "price_type": "fixed",
+          "sort_order": 3
+        },
+        {
+          "value_id": "102004",
+          "title": "36\"x80\" = $899",
+          "price": 899,
+          "price_type": "fixed",
+          "sort_order": 1
+        },
+        {
+          "value_id": "102005",
+          "title": "36\"x96\" = $999",
+          "price": 999,
+          "price_type": "fixed",
+          "sort_order": 2
+        },
+        {
+          "value_id": "232841",
+          "title": "42\"x96\" = $1099",
+          "price": 1099,
+          "price_type": "fixed",
+          "sort_order": 4
+        }
+      ]
+    },
+    {
+      "id": "20807",
+      "title": "Door Configuration",
+      "type": "radio",
+      "is_require": false,
+      "sort_order": 2,
+      "values": [
+        {
+          "value_id": "102007",
+          "title": "Single Door",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 1
+        },
+        {
+          "value_id": "102008",
+          "title": "Double Door",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 2
+        }
+      ]
+    },
+    {
+      "id": "25922",
+      "title": "Glass Type",
+      "type": "radio",
+      "is_require": false,
+      "sort_order": 3,
+      "values": [
+        {
+          "value_id": "232842",
+          "title": "Clear",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 1
+        },
+        {
+          "value_id": "232843",
+          "title": "White Laminate",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 2
+        }
+      ]
+    },
+    {
+      "id": "25923",
+      "title": "Glass Type",
+      "type": "radio",
+      "is_require": false,
+      "sort_order": 3,
+      "values": [
+        {
+          "value_id": "232845",
+          "title": "Clear",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 1
+        },
+        {
+          "value_id": "232846",
+          "title": "White Laminate",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 2
+        }
+      ]
+    },
+    {
+      "id": "20808",
+      "title": "Pre Hanging",
+      "type": "radio",
+      "is_require": false,
+      "sort_order": 3,
+      "values": [
+        {
+          "value_id": "102009",
+          "title": "Yes (w/ Frame)",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 1
+        },
+        {
+          "value_id": "102010",
+          "title": "No (Door Only)",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 2
+        }
+      ]
+    },
+    {
+      "id": "20809",
+      "title": "Pre hanging",
+      "type": "radio",
+      "is_require": false,
+      "sort_order": 3,
+      "values": [
+        {
+          "value_id": "102011",
+          "title": "Yes (w/ Frame)",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 1
+        },
+        {
+          "value_id": "102012",
+          "title": "No (Door Only)",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 2
+        }
+      ]
+    },
+    {
+      "id": "20810",
+      "title": "Jamb Species",
+      "type": "radio",
+      "is_require": false,
+      "sort_order": 5,
+      "values": [
+        {
+          "value_id": "102013",
+          "title": "Mahogany (+$379)",
+          "price": 379,
+          "price_type": "fixed",
+          "sort_order": 1
+        },
+        {
+          "value_id": "102014",
+          "title": "Paint Grade (+$299)",
+          "price": 299,
+          "price_type": "fixed",
+          "sort_order": 2
+        }
+      ]
+    },
+    {
+      "id": "20811",
+      "title": "Jamb Species",
+      "type": "radio",
+      "is_require": false,
+      "sort_order": 5,
+      "values": [
+        {
+          "value_id": "102015",
+          "title": "Mahogany (+$549)",
+          "price": 549,
+          "price_type": "fixed",
+          "sort_order": 1
+        },
+        {
+          "value_id": "102016",
+          "title": "Paint Grade (+$499)",
+          "price": 499,
+          "price_type": "fixed",
+          "sort_order": 2
+        }
+      ]
+    },
+    {
+      "id": "20812",
+      "title": "Handing",
+      "type": "radio",
+      "is_require": false,
+      "sort_order": 6,
+      "values": [
+        {
+          "value_id": "102017",
+          "title": "Left Hand Inswing (LH)",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 1
+        },
+        {
+          "value_id": "102018",
+          "title": "Right Hand Inswing (RH)",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 2
+        },
+        {
+          "value_id": "102019",
+          "title": "Right Hand Outswing (LHR)",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 3
+        },
+        {
+          "value_id": "102020",
+          "title": "Left Hand Outswing (RHR)",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 4
+        },
+        {
+          "value_id": "186642",
+          "title": "Closet Door Ball Catch Prep No Bore",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 5
+        },
+        {
+          "value_id": "186643",
+          "title": "Closet Door Ball Catch Prep No Bore",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 6
+        }
+      ]
+    },
+    {
+      "id": "20813",
+      "title": "Handing",
+      "type": "radio",
+      "is_require": false,
+      "sort_order": 6,
+      "values": [
+        {
+          "value_id": "102021",
+          "title": "Active Left Inswing",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 1
+        },
+        {
+          "value_id": "102022",
+          "title": "Active Right Inswing",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 2
+        },
+        {
+          "value_id": "102023",
+          "title": "Active Right Outswing",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 3
+        },
+        {
+          "value_id": "102024",
+          "title": "Active Left Outswing",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 4
+        }
+      ]
+    },
+    {
+      "id": "20814",
+      "title": "Jamb Width",
+      "type": "radio",
+      "is_require": false,
+      "sort_order": 7,
+      "values": [
+        {
+          "value_id": "102025",
+          "title": "3-1/2\"",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 1
+        },
+        {
+          "value_id": "102026",
+          "title": "4\"",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 2
+        },
+        {
+          "value_id": "102027",
+          "title": "4-9/16\"",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 3
+        },
+        {
+          "value_id": "102028",
+          "title": "4-3/4\"",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 4
+        },
+        {
+          "value_id": "102029",
+          "title": "5-1/4\"",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 5
+        },
+        {
+          "value_id": "102030",
+          "title": "5-1/2\"",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 6
+        },
+        {
+          "value_id": "102031",
+          "title": "6\"",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 7
+        },
+        {
+          "value_id": "102032",
+          "title": "6-5/8\"",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 8
+        },
+        {
+          "value_id": "102033",
+          "title": "7-1/4\"",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 9
+        }
+      ]
+    },
+    {
+      "id": "20815",
+      "title": "Hinges Finish",
+      "type": "radio",
+      "is_require": false,
+      "sort_order": 8,
+      "values": [
+        {
+          "value_id": "102034",
+          "title": "Oil Rubbed Bronze",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 1
+        },
+        {
+          "value_id": "102035",
+          "title": "Satin Nickel",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 2
+        },
+        {
+          "value_id": "102036",
+          "title": "Brass",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 3
+        }
+      ]
+    },
+    {
+      "id": "20816",
+      "title": "Door Sill Finish",
+      "type": "radio",
+      "is_require": false,
+      "sort_order": 9,
+      "values": [
+        {
+          "value_id": "102037",
+          "title": "Aluminum Bronze",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 1
+        },
+        {
+          "value_id": "102038",
+          "title": "Aluminum Satin Nickel",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 2
+        },
+        {
+          "value_id": "102039",
+          "title": "Aluminum Brass",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 3
+        },
+        {
+          "value_id": "102041",
+          "title": "ADA Handicap Bronze Aluminum",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 5
+        }
+      ]
+    },
+    {
+      "id": "20817",
+      "title": "Handle Preparation",
+      "type": "radio",
+      "is_require": false,
+      "sort_order": 10,
+      "values": [
+        {
+          "value_id": "102042",
+          "title": "Single (2-3/8\" backset)",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 1
+        },
+        {
+          "value_id": "102043",
+          "title": "Double (2-3/8\" backset)",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 2
+        },
+        {
+          "value_id": "102044",
+          "title": "Mortise Prep (+$175)",
+          "price": 175,
+          "price_type": "fixed",
+          "sort_order": 3
+        },
+        {
+          "value_id": "102045",
+          "title": "No Bore",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 4
+        }
+      ]
+    },
+    {
+      "id": "21307",
+      "title": "Your product is now configured",
+      "type": "field",
+      "is_require": true,
+      "sort_order": 30,
+      "values": []
+    }
+  ],
+  "LA PLAYA": [
+    {
+      "id": "11252",
+      "title": "Size",
+      "type": "radio",
+      "is_require": true,
+      "sort_order": 1,
+      "values": [
+        {
+          "value_id": "54700",
+          "title": "36\"x84\" = $1899 ",
+          "price": 1899,
+          "price_type": "fixed",
+          "sort_order": 1
+        },
+        {
+          "value_id": "54712",
+          "title": "36\"x96\" = $1999",
+          "price": 1999,
+          "price_type": "fixed",
+          "sort_order": 2
+        }
+      ]
+    },
+    {
+      "id": "11253",
+      "title": "Door Configuration",
+      "type": "radio",
+      "is_require": false,
+      "sort_order": 2,
+      "values": [
+        {
+          "value_id": "54736",
+          "title": "Single Door",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 1
+        },
+        {
+          "value_id": "113840",
+          "title": "Double Door",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 2
+        }
+      ]
+    },
+    {
+      "id": "11674",
+      "title": "Upgrade Low E Glass",
+      "type": "radio",
+      "is_require": false,
+      "sort_order": 2,
+      "values": [
+        {
+          "value_id": "57055",
+          "title": "Yes (+$300)",
+          "price": 300,
+          "price_type": "fixed",
+          "sort_order": 1
+        },
+        {
+          "value_id": "57056",
+          "title": "No",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 2
+        }
+      ]
+    },
+    {
+      "id": "11260",
+      "title": "Pre Hanging",
+      "type": "radio",
+      "is_require": false,
+      "sort_order": 3,
+      "values": [
+        {
+          "value_id": "54767",
+          "title": "Yes (w/ Frame)",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 1
+        },
+        {
+          "value_id": "54768",
+          "title": "No (Door Only)",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 2
+        }
+      ]
+    },
+    {
+      "id": "11261",
+      "title": "Jamb Species",
+      "type": "radio",
+      "is_require": false,
+      "sort_order": 4,
+      "values": [
+        {
+          "value_id": "54769",
+          "title": "Mahogany (+$899)",
+          "price": 899,
+          "price_type": "fixed",
+          "sort_order": 1
+        }
+      ]
+    },
+    {
+      "id": "11262",
+      "title": "Handing",
+      "type": "radio",
+      "is_require": false,
+      "sort_order": 5,
+      "values": [
+        {
+          "value_id": "54770",
+          "title": "Left Hand Inswing (LH)",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 1
+        },
+        {
+          "value_id": "54771",
+          "title": "Right Hand Inswing (RH)",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 2
+        },
+        {
+          "value_id": "54772",
+          "title": "Right Hand Outswing (LHR)",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 3
+        },
+        {
+          "value_id": "54773",
+          "title": "Left Hand Outswing (RHR)",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 4
+        },
+        {
+          "value_id": "187216",
+          "title": "Closet Door Ball Catch Prep No Bore",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 5
+        },
+        {
+          "value_id": "187217",
+          "title": "Closet Door Ball Catch Prep No Bore",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 6
+        }
+      ]
+    },
+    {
+      "id": "11256",
+      "title": "Jamb Width",
+      "type": "radio",
+      "is_require": false,
+      "sort_order": 6,
+      "values": [
+        {
+          "value_id": "54752",
+          "title": "5-1/4\"",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 1
+        },
+        {
+          "value_id": "54753",
+          "title": "6-5/8\"",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 2
+        },
+        {
+          "value_id": "54754",
+          "title": "7-1/4\"",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 3
+        }
+      ]
+    },
+    {
+      "id": "11257",
+      "title": "Hinges Finish",
+      "type": "radio",
+      "is_require": false,
+      "sort_order": 7,
+      "values": [
+        {
+          "value_id": "54755",
+          "title": "Oil Rubbed Bronze",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 1
+        },
+        {
+          "value_id": "54756",
+          "title": "Satin Nickel",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 2
+        },
+        {
+          "value_id": "54757",
+          "title": "Brass",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 3
+        }
+      ]
+    },
+    {
+      "id": "11258",
+      "title": "Door Sill Finish",
+      "type": "radio",
+      "is_require": false,
+      "sort_order": 8,
+      "values": [
+        {
+          "value_id": "54758",
+          "title": "Aluminum Bronze",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 1
+        },
+        {
+          "value_id": "54759",
+          "title": "Aluminum Satin Nickel",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 2
+        },
+        {
+          "value_id": "54760",
+          "title": "Aluminum Brass",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 3
+        },
+        {
+          "value_id": "54761",
+          "title": "Solid Oak Sill",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 4
+        },
+        {
+          "value_id": "54762",
+          "title": "ADA Handicap Bronze Aluminum",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 5
+        }
+      ]
+    },
+    {
+      "id": "11259",
+      "title": "Handle Preparation",
+      "type": "radio",
+      "is_require": false,
+      "sort_order": 9,
+      "values": [
+        {
+          "value_id": "54763",
+          "title": "Single (2-3/8\" backset)",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 1
+        },
+        {
+          "value_id": "54764",
+          "title": "Double (2-3/8\" backset)",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 2
+        },
+        {
+          "value_id": "54765",
+          "title": "Mortise Prep (+$175)",
+          "price": 175,
+          "price_type": "fixed",
+          "sort_order": 3
+        },
+        {
+          "value_id": "54766",
+          "title": "No Bore",
+          "price": 0,
+          "price_type": "fixed",
+          "sort_order": 4
+        }
+      ]
+    },
+    {
+      "id": "14727",
+      "title": "Your product is now configured",
+      "type": "field",
+      "is_require": true,
+      "sort_order": 30,
+      "values": []
+    }
+  ]
+}

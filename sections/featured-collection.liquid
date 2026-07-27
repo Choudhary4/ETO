@@ -1,0 +1,170 @@
+{% comment %}
+ETO – COLLECTION GRID CARDS (ETO DOORS STYLE)
+{% endcomment %}
+
+<style>
+.eto-product-grid {
+  padding: 30px 0 40px;
+  background: #ffffff;
+}
+
+.eto-product-grid-inner {
+  max-width: var(--eto-container-max);
+  margin: 0 auto;
+  padding: 0 12px;
+}
+
+.eto_products {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.eto_products li {
+  border: 1px solid #959595;
+  display: flex;
+  flex-direction: column;
+  padding: 6px;
+  text-align: left;
+  width: calc(20% - 10px);
+  box-sizing: border-box;
+  max-width: 240px;
+}
+
+.eto_products img {
+  display: block;
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.eto_products .details {
+  padding-top: 4px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.eto_products .title {
+  display: block;
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid #e2e2e2;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #2f9c3f;
+}
+
+.eto_products .title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.eto_products .desc {
+  font-size: 14px;
+  color: #555555;
+  margin: 6px 0 10px;
+  flex: 1;
+}
+
+.eto_products .buynow a {
+  display: inline-block;
+  background-color: #2f9c3f;
+  color: #ffffff;
+  padding: 6px 20px;
+  font-weight: 600;
+  font-size: 13px;
+  border-radius: 4px;
+}
+
+.eto_products .buynow {
+  text-align: center;
+  margin-top: auto;
+}
+
+@media (max-width: 992px) {
+  .eto_products li { width: calc(25% - 10px); }
+}
+@media (max-width: 600px) {
+  .eto_products li { width: calc(50% - 10px); }
+}
+</style>
+
+<section class="eto-product-grid">
+  <div class="eto-product-grid-inner">
+    <ul class="eto_products">
+      {% for block in section.blocks %}
+        {% assign col = block.settings.collection %}
+        {% if col != blank %}
+          <li>
+            <a href="{{ col.url }}">
+              {% if col.image %}
+                {{ col.image | image_url: width: 600 | image_tag }}
+              {% elsif col.products.first.featured_image %}
+                {{ col.products.first.featured_image | image_url: width: 600 | image_tag }}
+              {% endif %}
+            </a>
+
+            <div class="details">
+              <span class="title">
+                <a href="{{ col.url }}">{{ col.title }}</a>
+              </span>
+
+              {% if col.description != blank %}
+                <span class="desc">
+                  {{ col.description | strip_html | truncate: 120 }}
+                </span>
+              {% endif %}
+
+              <span class="buynow">
+                <a href="{{ col.url }}">{{ section.settings.button_label }}</a>
+              </span>
+            </div>
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "ETO Collection Grid",
+  "settings": [
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Shop Now"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Select collection"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "ETO Collection Grid",
+      "blocks": [
+        { "type": "collection" },
+        { "type": "collection" },
+        { "type": "collection" }
+      ]
+    }
+  ]
+}
+{% endschema %}

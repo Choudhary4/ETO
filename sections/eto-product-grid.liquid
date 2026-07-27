@@ -1,0 +1,310 @@
+<div class="eto-product-grid-section">
+  <div class="eto-product-grid">
+    {% if section.blocks.size > 0 %}
+      {% for block in section.blocks %}
+        <div class="eto-pg-card group" {{ block.shopify_attributes }}>
+          <a href="{{ block.settings.link | default: '#' }}" class="eto-pg-image-wrapper">
+            {% if block.settings.image != blank %}
+              {{ block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy', class: 'eto-pg-image' }}
+            {% elsif block.settings.image_url != blank %}
+              <img class="eto-pg-image" loading="lazy" src="{{ block.settings.image_url }}" alt="{{ block.settings.title }}">
+            {% else %}
+              {{ 'image' | placeholder_svg_tag: 'eto-pg-image' }}
+            {% endif %}
+          </a>
+          <h4 class="eto-pg-title">{{ block.settings.title }}</h4>
+          <p class="eto-pg-subtitle">{{ block.settings.subtitle }}</p>
+          <a href="{{ block.settings.link | default: '#' }}" class="eto-pg-btn">{{ block.settings.btn_text | default: 'SHOP NOW' }}</a>
+        </div>
+      {% endfor %}
+    {% else %}
+      <div class="eto-pg-card group">
+        <a href="/collections/all?filter.p.m.custom.product_category=WhiteOak" class="eto-pg-image-wrapper">
+          <img class="eto-pg-image" loading="lazy" src="{{ 'grid-white-oak.svg' | asset_url }}" alt="White Oak Doors">
+        </a>
+        <h4 class="eto-pg-title">White Oak<br>Doors</h4>
+        <p class="eto-pg-subtitle">Timeless Craftsmanship.<br>Modern Function.</p>
+        <a href="/collections/all?filter.p.m.custom.product_category=WhiteOak" class="eto-pg-btn">SHOP NOW</a>
+      </div>
+      <div class="eto-pg-card group">
+        <a href="/collections/all?filter.p.m.custom.product_category=French" class="eto-pg-image-wrapper">
+          <img class="eto-pg-image" loading="lazy" src="{{ 'grid-french.svg' | asset_url }}" alt="French Doors">
+        </a>
+        <h4 class="eto-pg-title">French<br>Doors</h4>
+        <p class="eto-pg-subtitle">Timeless Craftsmanship.<br>Modern Function.</p>
+        <a href="/collections/all?filter.p.m.custom.product_category=French" class="eto-pg-btn">SHOP NOW</a>
+      </div>
+      <div class="eto-pg-card group">
+        <a href="/collections/all?filter.p.m.custom.product_category=FireRated" class="eto-pg-image-wrapper">
+          <img class="eto-pg-image" loading="lazy" src="{{ 'grid-fire.svg' | asset_url }}" alt="Fire Rated Doors">
+        </a>
+        <h4 class="eto-pg-title">Fire Rated<br>Doors</h4>
+        <p class="eto-pg-subtitle">Timeless Craftsmanship.<br>Modern Function.</p>
+        <a href="/collections/all?filter.p.m.custom.product_category=FireRated" class="eto-pg-btn">SHOP NOW</a>
+      </div>
+      <div class="eto-pg-card group">
+        <a href="/collections/all?filter.p.m.custom.product_category=Fiberglass" class="eto-pg-image-wrapper">
+          <img class="eto-pg-image" loading="lazy" src="{{ 'grid-fiberglass.svg' | asset_url }}" alt="Fiberglass Doors">
+        </a>
+        <h4 class="eto-pg-title">Fiberglass<br>Doors</h4>
+        <p class="eto-pg-subtitle">Timeless Craftsmanship.<br>Modern Function.</p>
+        <a href="/collections/all?filter.p.m.custom.product_category=Fiberglass" class="eto-pg-btn">SHOP NOW</a>
+      </div>
+      <div class="eto-pg-card group">
+        <a href="/collections/all?filter.p.m.custom.product_category=Metal" class="eto-pg-image-wrapper">
+          <img class="eto-pg-image" loading="lazy" src="{{ 'grid-steel.svg' | asset_url }}" alt="Steel Doors">
+        </a>
+        <h4 class="eto-pg-title">Steel<br>Doors</h4>
+        <p class="eto-pg-subtitle">Timeless Craftsmanship.<br>Modern Function.</p>
+        <a href="/collections/all?filter.p.m.custom.product_category=Metal" class="eto-pg-btn">SHOP NOW</a>
+      </div>
+      <div class="eto-pg-card group">
+        <a href="/collections/all?filter.p.m.custom.product_category=Impact" class="eto-pg-image-wrapper">
+          <img class="eto-pg-image" loading="lazy" src="{{ 'grid-impact.svg' | asset_url }}" alt="Impact Doors">
+        </a>
+        <h4 class="eto-pg-title">Impact<br>Doors</h4>
+        <p class="eto-pg-subtitle">Timeless Craftsmanship.<br>Modern Function.</p>
+        <a href="/collections/all?filter.p.m.custom.product_category=Impact" class="eto-pg-btn">SHOP NOW</a>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+<style>
+.eto-product-grid-section {
+  background: #ffffff;
+  padding: 0 var(--eto-margin-edge) 120px var(--eto-margin-edge); 
+  overflow: hidden;
+}
+.eto-product-grid {
+  display: grid;
+  gap: 0;
+  max-width: 1952px;
+  margin: 0 auto;
+  border-top: 1px solid #EBEBEB;
+  border-bottom: 1px solid #EBEBEB;
+}
+
+@media (min-width: 1921px) {
+  .eto-product-grid {
+    max-width: 100%;
+  }
+}
+.eto-pg-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  position: relative;
+  padding: 64px 16px;
+  border-bottom: 1px solid #EBEBEB;
+  border-right: 1px solid #EBEBEB;
+}
+/* Offset the 16px card padding so grid aligns with page edges on normal screens */
+@media (min-width: 768px) and (max-width: 1984px) {
+  .eto-product-grid {
+    width: calc(100% + 32px);
+    margin-left: -16px;
+    margin-right: -16px;
+  }
+}
+@media (max-width: 767px) {
+  .eto-product-grid {
+    width: calc(100% + 20px);
+    margin-left: -10px;
+    margin-right: -10px;
+  }
+  .eto-pg-card {
+    padding: 40px 10px;
+  }
+}
+
+/* Desktop: 3 Columns */
+@media (min-width: 1201px) {
+  .eto-product-grid { grid-template-columns: repeat(3, 1fr); }
+  .eto-pg-card:nth-child(3n) { border-right: none; }
+  .eto-pg-card:nth-last-child(-n+3) { border-bottom: none; }
+}
+
+/* Tablet: 2 Columns */
+@media (min-width: 901px) and (max-width: 1200px) {
+  .eto-product-grid { 
+    grid-template-columns: repeat(2, 1fr); 
+    max-width: 932px;
+  }
+  .eto-pg-card:nth-child(2n) { border-right: none; }
+  .eto-pg-card:nth-last-child(-n+2) { border-bottom: none; }
+}
+
+/* Mobile: 1 Column */
+@media (max-width: 900px) {
+  .eto-product-grid { 
+    grid-template-columns: 1fr; 
+    max-width: 532px;
+  }
+  .eto-pg-card { border-right: none; }
+  .eto-pg-card:last-child { border-bottom: none; }
+}
+
+.eto-pg-image-wrapper {
+  width: 100%;
+  aspect-ratio: 397 / 485;
+  background: var(--eto-soft-white);
+  margin-bottom: 24px;
+  overflow: hidden;
+  display: block;
+}
+.eto-pg-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.eto-pg-card:hover .eto-pg-image {
+  transform: scale(1.05);
+}
+.eto-pg-title {
+  font-family: 'MADE Mirage', serif;
+  font-size: 56px;
+  font-weight: 300;
+  text-transform: none;
+  letter-spacing: normal;
+  line-height: 0.9;
+  color: #000000;
+  margin: 0 0 16px 0;
+}
+.eto-pg-subtitle {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 19px;
+  font-weight: 400;
+  color: #000000;
+  margin: 0 0 24px 0;
+  line-height: 25px;
+}
+.eto-pg-btn {
+  background: #C7C1B9;
+  color: #ffffff;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  padding: 12px 28px;
+  text-decoration: none;
+  border: none;
+  display: inline-block;
+  transition: all 0.4s ease;
+}
+.eto-pg-btn:hover {
+  background: var(--eto-dark-charcoal);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+</style>
+
+{% schema %}
+{
+  "name": "Product Grid",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Product Card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtext"
+        },
+        {
+          "type": "text",
+          "id": "btn_text",
+          "label": "Button Text",
+          "default": "SHOP NOW"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "image_url",
+          "label": "Default Image URL (if no image selected)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Grid",
+      "blocks": [
+        {
+          "type": "card",
+          "settings": {
+            "title": "White Oak Doors",
+            "subtitle": "Timeless Craftsmanship. Endless Possibilities.",
+            "link": "/collections/all?filter.v.price.gte=&filter.v.price.lte=&filter.p.m.custom.product_category=Nav_Whiteoak&filter.v.price.gte=&filter.v.price.lte=",
+            "image_url": "https://lh3.googleusercontent.com/aida-public/AB6AXuCMmIbY7PoOtjFKLfaaWc8OAsdbQAjWCxht-5hSWimvfRqgQ1HG0mTlnug6-A5Uq1ewd4da3GvodpXDYhBUXQ9Ai47KJNEnk7K31t7g0MM1aQ3bGv9mFsEHUkHTj6QlMuhb7vhiSJ4b5gG4W3jfLcRkF1PCnjEk9QeKtCSs4ysKkZta2aUQzLP19kIgD3BmPHye2sOwxIv_k7V7pFKpSDAOmp3XojhGJwtBuQ88Jh2U80D1txn0yXJLfPAvl8mMIMan6i_TujJF-d8"
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "title": "French Doors",
+            "subtitle": "Timeless Craftsmanship. Maximum Privacy.",
+            "link": "/collections/all?filter.v.price.gte=&filter.v.price.lte=&filter.p.m.custom.product_category=Nav_French&filter.v.price.gte=&filter.v.price.lte=",
+            "image_url": "https://lh3.googleusercontent.com/aida-public/AB6AXuCMldMa4ekOxxcJx9oyVla4cbTi4qFi7gbj2Zko28bf9-C-BuCEu8v72EyqG0HquPPvzOJ6FBOkym02msl7qcsR-B0ZQJNwLnj0uLzN85N-q4CGO-5OUhPnqar4ufBSp0dJLYj_lsOYuUs3IU0qOlm6C7xTajSKFjFAyE_AL6zrkjBkn_JroFVQfWIC_7wo6_tEPhp9rVpwcTvlMHZSzh_xfen90-BvVY6DdX4lsFK18RxkGsMR33ou1F5aw0zjhF_1D9v49I4Crsc"
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "title": "Fire Rated Doors",
+            "subtitle": "Timeless Craftsmanship. Maximum Safety.",
+            "link": "/collections/all?filter.p.m.custom.product_category=Nav_Fire_Rated",
+            "image_url": "https://lh3.googleusercontent.com/aida-public/AB6AXuAJmOQb1CKVchOIEth2YKVgpYnekCR9BrdqWB3PdgGdDBl2hDCqC_f151AGSEtkgsIP_8jAzvjbSoYmDuFvHPD6eH_AiUX9hQkwKBaYYcEtzwSnrQ70ksUHoTfw6_Cf6bFfD789nZ3WlSEZlEk5aczfVYBBI3XeWGzDBMQYYpOyqlSesxVeT8IB8MVtXPUbma_WqdTc2oRWcyx_Jy97OOLEx2ZyGNC9WkaGqrVTLzLAPHTujbRKVxnd4wLLyr1oe3wNGMD_VgMvPf4"
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "title": "Fiberglass Doors",
+            "subtitle": "Timeless Craftsmanship. Maximum Protection.",
+            "link": "/collections/all?filter.p.m.custom.product_category=Nav_Fiberglass",
+            "image_url": "https://lh3.googleusercontent.com/aida-public/AB6AXuC-9e5-atS_ArjUBcI3fP_6h76tkSp1hYI3VscaMu5iYBWCl3v3iDlajOFojfjemeDZ-E5-dCtuL4dMb5ByBW_80766xKNIFhjL_En_jTLSzgPAZTkqF0sjXYidw5vBlw4S1Af8IJRcrM7TXpKb6oT8ajdDwo7e-0ZF8H8cHgOuJKL23ECP4nR7S5OJFuq5EEKj6-mSIVQgqOEgANX344LjEUJM3x9NBDaNHsVM7fbrqr8yYPMb-p5cQPGQE74-tmmqpMiegAJFn7A"
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "title": "Steel Doors",
+            "subtitle": "Timeless Craftsmanship. Maximum Security.",
+            "link": "/collections/all?filter.p.m.custom.product_category=Nav_Metal",
+            "image_url": "https://lh3.googleusercontent.com/aida-public/AB6AXuCAh73I2KoTZ4OYR90kdA6Br7xZq-VGQAC78t9oPbmt2TqT_cmE0lOAEfcZjFANU0-XC_rBBRiW4p9_xLz50eYdEOnQ5zAY2z12ouF8_vg3gvQboQ_b21eKXV0AWX3zjEop-BFlKfZ1v4tBg7z49ct5_vqXYTSVQQFcrFTW_Y3Ngx20fZVqYNh1O6hPCg_jXgUy8xGXebDItjiFS7wSypZ_yI4uguUVWgpMBOsxCZ6RvrowTf7vKYUbAKZXm1nivIx_4lpPrliPboo"
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "title": "Impact Doors",
+            "subtitle": "Timeless Craftsmanship. Maximum Strength.",
+            "link": "/collections/all?filter.p.m.custom.product_category=Nav_Impact",
+            "image_url": "https://lh3.googleusercontent.com/aida-public/AB6AXuANg0HjXvYlsALwnSzahWXzKDt9dYbhL_dDycm13CbOLAt_kVyv65D_ojgQmF4QLjIfnewuyhc--WKYZFGVAUvgrWela06M1iJAgyj9T5WCwfP3i6yYtLn-HGfgXzkT8zwblV-c46mZAASf0Wv6SLWzH4W4UQFbiHQkTZCti-5UoYhJ9TgUnK1nIin3tc2aYqAggFlXkt9tR_RGjUMuMy4x_srj8-RIfxvTWLun-27UpKJAn-6Vv-fMo_fitDyeBQBGXl9MZkxIWLk"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

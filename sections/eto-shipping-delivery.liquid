@@ -1,0 +1,289 @@
+{% schema %}
+{
+  "name": "ETO Shipping & Delivery",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Page Title",
+      "default": "Shipping & Delivery"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Everything you need to know about receiving your artisan doors."
+    },
+    {
+      "type": "header",
+      "content": "Hero Section Colors"
+    },
+    {
+      "type": "color",
+      "id": "hero_bg",
+      "label": "Hero Background",
+      "default": "#f9f9f9"
+    },
+    {
+      "type": "color",
+      "id": "hero_text",
+      "label": "Hero Text Color",
+      "default": "#2d2d2d"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "info_card",
+      "name": "Info Card (Grid)",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "clock", "label": "Clock" },
+            { "value": "truck", "label": "Truck" },
+            { "value": "home", "label": "Home" },
+            { "value": "search", "label": "Search" }
+          ],
+          "default": "truck"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Card Title",
+          "default": "Nationwide Freight"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Card Text",
+          "default": "Safe and secure shipping across the US via specialized freight carriers."
+        }
+      ]
+    },
+    {
+      "type": "content_section",
+      "name": "Content Block",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Block Heading",
+          "default": "The Delivery Process"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Block Content",
+          "default": "<p>Our doors are large and heavy items. We utilize professional freight carriers to ensure they arrive in perfect condition. Once your order ships, the carrier will call you to schedule a convenient delivery window.</p>"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Block Image (Optional)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "ETO Shipping & Delivery",
+      "blocks": [
+        { "type": "info_card", "settings": { "title": "Lead Times", "icon": "clock", "text": "Quick ship options available for in-stock items." } },
+        { "type": "info_card", "settings": { "title": "Freight Shipping", "icon": "truck", "text": "Professional LTL carriers with liftgate service." } },
+        { "type": "info_card", "settings": { "title": "Local Pickup", "icon": "home", "text": "Free local pickup at our Los Angeles warehouse." } },
+        { "type": "info_card", "settings": { "title": "Inspection", "icon": "search", "text": "Always inspect your shipment upon arrival." } }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+<style>
+  .eto-delivery-hero {
+    background: {{ section.settings.hero_bg }};
+    padding: 80px 20px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+  }
+  .eto-delivery-hero h1 {
+    font-family: 'Hanken Grotesk', sans-serif;
+    font-size: 42px;
+    font-weight: 700;
+    margin: 0 0 15px;
+    color: {{ section.settings.hero_text }};
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .eto-delivery-hero p {
+    font-size: 18px;
+    color: #666;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .eto-delivery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    margin: -40px auto 60px;
+    padding: 0 20px;
+    max-width: var(--eto-container-max);
+  }
+  .eto-delivery-card {
+    background: #fff;
+    padding: 30px;
+    border-radius: 4px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    text-align: center;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    border: 1px solid #f0f0f0;
+  }
+  .eto-delivery-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+  }
+  .eto-delivery-icon-wrap {
+    color: #c2b59b;
+    margin-bottom: 20px;
+    display: inline-block;
+  }
+  .eto-delivery-icon-wrap svg {
+    width: 40px;
+    height: 40px;
+    display: block;
+  }
+
+  /* Animated Icon Styles */
+  @keyframes eto-rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  @keyframes eto-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+  }
+  @keyframes eto-truck-vibrate {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(1px); }
+    75% { transform: translateX(-1px); }
+  }
+  @keyframes eto-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+  }
+
+  .eto-icon-clock .eto-clock-hand {
+    transform-origin: 12px 12px;
+    animation: eto-rotate 10s linear infinite;
+  }
+  .eto-icon-truck {
+    animation: eto-truck-vibrate 0.3s linear infinite;
+  }
+  .eto-icon-home {
+    animation: eto-bounce 3s ease-in-out infinite;
+  }
+  .eto-icon-search {
+    animation: eto-pulse 4s ease-in-out infinite;
+  }
+
+  .eto-delivery-card h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #2d2d2d;
+  }
+  .eto-delivery-card p {
+    font-size: 14px;
+    color: #777;
+    line-height: 1.6;
+  }
+
+  .eto-delivery-content-wrap {
+    max-width: 900px;
+    margin: 0 auto 100px;
+    padding: 0 20px;
+  }
+  .eto-delivery-block {
+    margin-bottom: 60px;
+  }
+  .eto-delivery-block h2 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    position: relative;
+    padding-bottom: 15px;
+    color: #2d2d2d;
+  }
+  .eto-delivery-block h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: #c2b59b;
+  }
+  .eto-delivery-text {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #444;
+  }
+  .eto-delivery-text p { margin-bottom: 20px; }
+
+  @media (max-width: 991px) {
+    .eto-delivery-grid { grid-template-columns: repeat(2, 1fr); margin-top: 20px; }
+  }
+  @media (max-width: 576px) {
+    .eto-delivery-grid { grid-template-columns: 1fr; }
+    .eto-delivery-hero h1 { font-size: 32px; }
+  }
+</style>
+
+<div class="eto-delivery-page">
+  <div class="eto-delivery-hero">
+    <div class="page-width">
+      <h1>{{ section.settings.title }}</h1>
+      <p>{{ section.settings.subtitle }}</p>
+    </div>
+  </div>
+
+  <div class="eto-delivery-grid">
+    {% for block in section.blocks %}
+      {% if block.type == 'info_card' %}
+        <div class="eto-delivery-card" {{ block.shopify_attributes }}>
+          <div class="eto-delivery-icon-wrap">
+            {% case block.settings.icon %}
+              {% when 'clock' %}
+                <svg class="eto-icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline class="eto-clock-hand" points="12 6 12 12 16 14"></polyline></svg>
+              {% when 'truck' %}
+                <svg class="eto-icon-truck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+              {% when 'home' %}
+                <svg class="eto-icon-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+              {% when 'search' %}
+                <svg class="eto-icon-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            {% endcase %}
+          </div>
+          <h3>{{ block.settings.title }}</h3>
+          <p>{{ block.settings.text }}</p>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  <div class="eto-delivery-content-wrap">
+    {% for block in section.blocks %}
+      {% if block.type == 'content_section' %}
+        <div class="eto-delivery-block" {{ block.shopify_attributes }}>
+          <h2>{{ block.settings.heading }}</h2>
+          <div class="eto-delivery-text">
+            {{ block.settings.content }}
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>

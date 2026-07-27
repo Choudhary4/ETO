@@ -1,0 +1,34 @@
+{% comment %}
+  List view for collection products (horizontal card layout)
+{% endcomment %}
+
+<div class="product-list-container" id="ProductListContainer">
+  {% if collection.products.size == 0 %}
+    <div class="collection collection--empty page-width" id="product-list" data-id="{{ section.id }}">
+      <div class="loading-overlay gradient"></div>
+      <div class="title-wrapper center">
+        <h2 class="title title--primary">
+          {{ 'sections.collection_template.empty' | t -}}
+          <br>
+          {{ 'sections.collection_template.use_fewer_filters_html' | t: link: collection.url, class: 'underlined-link link' }}
+        </h2>
+      </div>
+    </div>
+  {% else %}
+    <div class="collection collection--list-view">
+      <div class="loading-overlay gradient"></div>
+      <ul id="product-list" data-id="{{ section.id }}" class="product-list">
+        {% assign skip_card_product_styles = false %}
+        {% for product in collection.products %}
+          <li class="list__item">
+            {% render 'card-product', card_product: product, media_aspect_ratio: section.settings.image_ratio, image_shape: section.settings.image_shape, show_secondary_image: section.settings.show_secondary_image, show_vendor: section.settings.show_vendor, show_rating: section.settings.show_rating, lazy_load: false, skip_styles: skip_card_product_styles, quick_add: section.settings.quick_add, section_id: section.id %}
+          </li>
+          {% assign skip_card_product_styles = true %}
+        {% endfor %}
+      </ul>
+      {% if paginate.pages > 1 %}
+        {% render 'pagination', paginate: paginate, anchor: '' %}
+      {% endif %}
+    </div>
+  {% endif %}
+</div>

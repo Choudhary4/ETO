@@ -1,0 +1,11 @@
+{
+    "sections": {
+        "main": {
+            "type": "eto-customer-portal",
+            "settings": {}
+        }
+    },
+    "order": [
+        "main"
+    ]
+}

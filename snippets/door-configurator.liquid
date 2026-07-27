@@ -1,0 +1,26 @@
+{%- if product.metafields.custom.door_options != blank -%}
+  {{ 'component-door-configurator.css' | asset_url | stylesheet_tag }}
+
+  {%- comment -%}
+    Output the raw JSON metafield data for JS to consume.
+    The JavaScript will dynamically build all the option UI from this data.
+  {%- endcomment -%}
+
+  <div id="door-configurator-mount" 
+    class="door-configurator"
+    data-product-form-id="{{ product_form_id }}"
+    data-base-price="{{ product.selected_or_first_available_variant.price | money_without_currency | remove: ',' }}"
+    data-section-id="{{ section.id }}"
+  >
+    <div class="door-configurator__inner">
+      <h3 class="door-configurator__title">Customize Your Door</h3>
+      <div id="door-configurator-options"></div>
+    </div>
+  </div>
+
+  <script type="application/json" id="door-options-json">
+    {{ product.metafields.custom.door_options | json }}
+  </script>
+
+  <script src="{{ 'door-configurator.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}

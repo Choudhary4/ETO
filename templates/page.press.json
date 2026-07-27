@@ -1,0 +1,11 @@
+{
+    "sections": {
+        "main": {
+            "type": "eto-press",
+            "settings": {}
+        }
+    },
+    "order": [
+        "main"
+    ]
+}

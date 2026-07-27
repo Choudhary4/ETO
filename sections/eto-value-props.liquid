@@ -1,0 +1,199 @@
+<div class="eto-value-props-section">
+  <div class="eto-value-props-grid">
+    <!-- Fast Shipping -->
+    <div class="eto-vp-item">
+      <div class="eto-vp-icon-wrap">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="1" y="3" width="15" height="13"></rect>
+          <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+          <circle cx="5.5" cy="18.5" r="2.5"></circle>
+          <circle cx="18.5" cy="18.5" r="2.5"></circle>
+        </svg>
+      </div>
+      <h3 class="eto-vp-title">FAST &amp; FREE SHIPPING</h3>
+      <p class="eto-vp-text">On orders $1500+ Excludes HI, AK, and international orders</p>
+    </div>
+
+    <!-- 100% Satisfaction -->
+    <div class="eto-vp-item">
+      <div class="eto-vp-icon-wrap">
+        <svg width="40" height="40" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+          <g transform="rotate(90 50 50)">
+            <path d="M 15 50 
+                     C 15 15, 42 20, 50 40 
+                     C 58 20, 85 15, 85 50 
+                     C 85 85, 58 80, 50 60 
+                     C 42 80, 15 85, 15 50 Z" />
+            <circle cx="50" cy="50" r="5" />
+          </g>
+        </svg>
+      </div>
+      <h3 class="eto-vp-title">100% SATISFACTION</h3>
+      <p class="eto-vp-text">30-day returns on most items</p>
+    </div>
+
+    <!-- Best Price Guarantee -->
+    <div class="eto-vp-item">
+      <div class="eto-vp-icon-wrap">
+        <svg width="40" height="40" viewBox="80 15 40 60" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <g transform="rotate(45 100 45)">
+            <path d="M 82 70 L 118 70 L 118 35 L 100 17 L 82 35 Z" />
+            <circle cx="100" cy="27" r="3" />
+            <rect x="93" y="42" width="14" height="18" rx="4" />
+          </g>
+        </svg>
+      </div>
+      <h3 class="eto-vp-title">BEST PRICE GUARANTEE</h3>
+      <p class="eto-vp-text">Find a lower price? We'll beat it.</p>
+    </div>
+
+    <!-- Secure Shopping -->
+    <div class="eto-vp-item">
+      <div class="eto-vp-icon-wrap">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          <path d="M9 12l2 2 4-4"></path>
+        </svg>
+      </div>
+      <h3 class="eto-vp-title">SECURE SHOPPING</h3>
+      <p class="eto-vp-text">Safe payments via major credit cards</p>
+    </div>
+
+    <!-- Easy Returns -->
+    <div class="eto-vp-item">
+      <div class="eto-vp-icon-wrap">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 9h13a5 5 0 0 1 0 10H7"></path>
+          <polyline points="7 14 2 9 7 4"></polyline>
+          <rect x="14" y="11" width="6" height="4"></rect>
+        </svg>
+      </div>
+      <h3 class="eto-vp-title">EASY RETURNS</h3>
+      <p class="eto-vp-text">Hassle-free returns within 30 days of delivery</p>
+    </div>
+  </div>
+</div>
+
+<style>
+.eto-value-props-section {
+  background: #fbfaf9; /* Slightly off-white for a clean separation */
+  border-top: 1px solid var(--eto-light-border);
+  border-bottom: 1px solid var(--eto-light-border);
+  padding: 64px var(--eto-margin-edge); /* Increased padding for better breathing room */
+}
+.eto-value-props-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 48px; /* Increased gap for elegance */
+  max-width: var(--eto-container-max);
+  margin: 0 auto;
+}
+.eto-vp-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+}
+.eto-vp-icon-wrap {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--eto-dark-charcoal);
+  transition: transform 0.4s cubic-bezier(0.2, 0, 0.2, 1), color 0.4s ease;
+}
+.eto-vp-item:hover .eto-vp-icon-wrap {
+  transform: translateY(-5px);
+  color: #c1a076; /* Gold color on hover */
+}
+.eto-vp-icon-wrap svg {
+  width: 100%;
+  height: 100%;
+}
+.eto-vp-title {
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.2em; /* More spaced out for luxury feel */
+  text-transform: uppercase;
+  color: var(--eto-dark-charcoal);
+  margin: 0;
+}
+.eto-vp-text {
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 11px;
+  color: #666; /* Slightly darker for better readability */
+  max-width: 180px; /* Slightly wider text area */
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Custom SVG Animations */
+.eto-custom-animated-icon {
+  display: block;
+  overflow: visible;
+}
+.eto-anim-draw {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: etoDraw 3s ease-in-out infinite alternate;
+}
+.eto-anim-pulse-slow {
+  animation: etoPulse 2s ease-in-out infinite alternate;
+}
+.eto-anim-pulse {
+  animation: etoPulse 1s ease-in-out infinite alternate;
+  transform-origin: center;
+}
+.eto-anim-slide-right {
+  animation: etoSlide 2s ease-in-out infinite alternate;
+  transform: translateX(-2px);
+}
+.eto-anim-lock-bounce {
+  animation: etoLock 2s ease-in-out infinite alternate;
+  transform-origin: bottom center;
+}
+
+@keyframes etoDraw {
+  0% { stroke-dashoffset: 100; }
+  100% { stroke-dashoffset: 0; }
+}
+@keyframes etoPulse {
+  0% { opacity: 0.5; transform: scale(0.9); }
+  100% { opacity: 1; transform: scale(1.1); }
+}
+@keyframes etoSlide {
+  0% { transform: translateX(-2px); opacity: 0.5; }
+  100% { transform: translateX(2px); opacity: 1; }
+}
+@keyframes etoLock {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-3px); }
+  100% { transform: translateY(0px); }
+}
+
+@media (max-width: 990px) {
+  .eto-value-props-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 500px) {
+  .eto-value-props-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Value Props",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Value Props"
+    }
+  ]
+}
+{% endschema %}

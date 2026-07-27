@@ -1,0 +1,353 @@
+{% comment %}
+  ETO Doors - Pros Page Section
+  Layout: 2 Columns (Sidebar | Main Content)
+{% endcomment %}
+
+{{ 'component-door-categories.css' | asset_url | stylesheet_tag }}
+
+<style>
+.eto-pros-container {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: var(--eto-container-max);
+  margin: 0 auto;
+  padding: 20px;
+  gap: 30px;
+}
+
+/* Sidebar (Reused) */
+.eto-pros-sidebar {
+  flex: 0 0 280px;
+  max-width: 280px;
+  display: none;
+}
+
+@media (min-width: 990px) {
+  .eto-pros-sidebar {
+    display: block;
+  }
+}
+
+/* Main Content */
+.eto-pros-main {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Breadcrumbs */
+.eto-breadcrumb-container {
+  max-width: var(--eto-container-max);
+  margin: 0 auto;
+  padding: 15px 20px 0;
+}
+.eto-breadcrumb {
+  font-size: 13px;
+  color: #333;
+  font-weight: 700;
+}
+.eto-breadcrumb a { text-decoration: none; color: #333; }
+.eto-breadcrumb span { margin: 0 5px; color: #999; }
+
+/* Pros Page Specific Styles */
+.eto-pros-intro h1 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #333;
+}
+.eto-pros-intro p {
+  font-size: 13px;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+/* Hero Row: Banner + Newsletter */
+.eto-pros-hero-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+.eto-pros-banner {
+  flex: 2;
+  min-width: 300px; /* Adjust responsive */
+  position: relative;
+  min-height: 300px;
+  background-color: #ddd; /* Placeholder */
+  background-image: url('https://cdn.shopify.com/s/files/1/0004/7742/1628/files/construction_site.jpg?v=1'); /* Placeholder generic */
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.eto-pros-banner-overlay {
+  background: rgba(0,0,0,0.6);
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+  color: #fff;
+}
+.eto-pros-banner-title {
+  font-size: 24px;
+  font-weight: 800;
+  margin: 0 0 5px;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+}
+.eto-pros-banner-subtitle {
+  font-size: 16px;
+  font-weight: 400;
+  font-style: italic;
+  margin-bottom: 15px;
+}
+.eto-btn-apply {
+  background: #000000;
+  color: #fff;
+  padding: 10px 25px;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 3px;
+  display: inline-block;
+}
+
+/* Newsletter Box */
+.eto-pros-newsletter {
+  flex: 1;
+  min-width: 250px;
+  background: #f4f4f4;
+  padding: 30px 20px;
+  text-align: center;
+  border: 1px solid #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.eto-news-icon {
+  font-size: 40px;
+  color: #555;
+  margin-bottom: 15px;
+}
+.eto-news-title {
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 1.3;
+  color: #555;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+.eto-news-text {
+  font-size: 12px;
+  color: #777;
+  margin-bottom: 20px;
+  line-height: 1.4;
+}
+.eto-btn-sub {
+  background: #000000;
+  color: #fff;
+  padding: 10px 25px;
+  font-weight: 700;
+  text-decoration: none;
+  text-transform: uppercase;
+  border-radius: 3px;
+}
+
+/* Benefits Bar */
+.eto-pros-benefits {
+  background: #eee;
+  padding: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-bottom: 40px;
+  border: 1px solid #ddd;
+}
+.eto-benefit-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 10px;
+}
+.eto-check-icon {
+  color: #000000;
+  font-size: 24px;
+  font-weight: bold;
+}
+.eto-benefit-text {
+  font-weight: 800;
+  font-size: 13px;
+  text-transform: uppercase;
+  color: #333;
+  line-height: 1.2;
+}
+
+/* Content Grid 2 cols */
+.eto-pros-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-bottom: 50px;
+}
+.eto-pros-col {
+  flex: 1;
+  min-width: 300px;
+}
+.eto-grid-img {
+  width: 100%;
+  height: auto;
+  margin-bottom: 15px;
+  border: 1px solid #eee;
+}
+.eto-grid-title {
+  color: #000000;
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.eto-grid-text {
+  font-size: 13px;
+  color: #555;
+  line-height: 1.5;
+  margin-bottom: 15px;
+}
+.eto-grid-link {
+  color: #000000;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+/* Partners */
+.eto-pros-partners {
+  border-top: 1px solid #ddd;
+  padding-top: 20px;
+  margin-bottom: 20px;
+}
+.eto-partners-title {
+  color: #000000;
+  font-weight: 800;
+  font-size: 14px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.eto-partners-logos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  align-items: center;
+}
+.eto-partner-logo {
+  max-height: 50px;
+  width: auto;
+}
+
+</style>
+
+<div class="eto-breadcrumb-container">
+  <div class="eto-breadcrumb">
+    <a href="/">Home</a> <span>&gt;</span> PROS
+  </div>
+</div>
+
+<div class="eto-pros-container">
+
+
+  <!-- Main Content -->
+  <main class="eto-pros-main">
+    
+    <div class="eto-pros-intro">
+      <h1>Welcome to the ETO Doors PRO Discount Program Page!</h1>
+      <p>For designers, architects, builders, and developers, entryways are a critical aspect of any new construction, remodel, or other commercial or residential design project. That's exactly why ETO Doors wants to bring you into the fold if you are a professional in any of these fields.</p>
+      <p>Because there is no cost to apply for the PRO Discount Program, you have nothing to lose, and everything to gain for your architectural and design needs. When it comes to contracted jobs for professionals in need of doors, there's no better discounted option that offers what you'll receive when you apply to become part of the ETO Doors family.</p>
+    </div>
+
+    <div class="eto-pros-hero-row">
+      <!-- Main Banner Image -->
+      <div class="eto-pros-banner-col">
+        <a href="https://creatorapp.zohopublic.com/etodoors/eto-pro-discount-account-application/form-embed/New_Pro_Discount_Account_Application/rPNff42Kht9zjhsjCGmzgDvSPrbJzrYJPOZy9aqJnCPtW452kaEsgCkBPx5Uj4g4ED7qGmmQx4HVEggaGk2XZMrJ6JqzSF1BNwkw" target="_blank">
+          <img src="{{ 'pro_discount_banenner.png' | file_url }}" alt="PRO Discount Program" class="eto-img-responsive">
+        </a>
+      </div>
+
+      <!-- Newsletter Image -->
+      <div class="eto-pros-newsletter-col">
+         <a href="#newsletter">
+           <img src="{{ 'signup_banner.png' | file_url }}" alt="Sign Up For Newsletter" class="eto-img-responsive">
+         </a>
+      </div>
+    </div>
+
+    <!-- Benefits -->
+    <div class="eto-pros-benefits-container" style="margin-bottom: 30px;">
+       <img src="https://www.etodoors.com/media/wysiwyg/offer_list_1.png" alt="Pro Benefits: Discount, Shorter Lead Times, Custom Service, Priority" class="eto-img-responsive">
+    </div>
+
+    <!-- 2 Col Grid -->
+    <div class="eto-pros-grid">
+      <div class="eto-pros-col">
+        <img src="{{ 'pro_1.png' | file_url }}" alt="Pro Relationship" class="eto-grid-img">
+        <h3 class="eto-grid-title">PRO RELATIONSHIP</h3>
+        <p class="eto-grid-text">Question about a door specification? Need a door solution to meet a deadline? Our PRO representatives are trained to answer all of your technical questions and recommend solutions to guarantee projects are completed on time.</p>
+        <a href="https://creatorapp.zohopublic.com/etodoors/eto-pro-discount-account-application/form-embed/New_Pro_Discount_Account_Application/rPNff42Kht9zjhsjCGmzgDvSPrbJzrYJPOZy9aqJnCPtW452kaEsgCkBPx5Uj4g4ED7qGmmQx4HVEggaGk2XZMrJ6JqzSF1BNwkw" target="_blank" class="eto-grid-link">Apply Now</a>
+      </div>
+      <div class="eto-pros-col">
+        <img src="{{ 'pro_2.png' | file_url }}" alt="Exclusive Savings" class="eto-grid-img">
+        <h3 class="eto-grid-title">EXCLUSIVE SAVINGS</h3>
+        <p class="eto-grid-text">ETO's Pros program caters to licensed contractors, architects and designers and is designed to streamline the door purchasing experience by providing fast service, industry leading lead times and significant discounts to our professional partners.</p>
+        <a href="https://creatorapp.zohopublic.com/etodoors/eto-pro-discount-account-application/form-embed/New_Pro_Discount_Account_Application/rPNff42Kht9zjhsjCGmzgDvSPrbJzrYJPOZy9aqJnCPtW452kaEsgCkBPx5Uj4g4ED7qGmmQx4HVEggaGk2XZMrJ6JqzSF1BNwkw" target="_blank" class="eto-grid-link">Apply Now</a>
+      </div>
+    </div>
+
+    <!-- Partners -->
+    <div class="eto-pros-partners">
+      <h3 class="eto-partners-title">ETO DOORS IS A PROUD PARTNER OF THESE PROFESSIONAL ASSOCIATIONS</h3>
+      <div class="eto-partners-logos">
+        <img src="{{ 'CBIA-Logo.png' | file_url }}" alt="CBIA" class="eto-partner-logo">
+        <img src="{{ 'DHI.png' | file_url }}" alt="dhi" class="eto-partner-logo">
+        <img src="{{ 'Energy-Star-3-14-2011.png' | file_url }}" alt="Energy Star" class="eto-partner-logo">
+        <img src="{{ 'logo_Intertek_Warnock_Hersey.png' | file_url }}" alt="Intertek" class="eto-partner-logo">
+      </div>
+    </div>
+  </main>
+</div>
+
+<style>
+/* ... (Keep existing container styles) ... */
+
+/* Hero Row Changes */
+.eto-pros-hero-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+.eto-pros-banner-col {
+  flex: 2;
+  min-width: 300px;
+}
+.eto-pros-newsletter-col {
+  flex: 1;
+  min-width: 250px;
+}
+.eto-img-responsive {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+</style>
+
+{% schema %}
+{
+  "name": "ETO Pros Section",
+  "settings": [],
+  "presets": [
+    {
+      "name": "ETO Pros Section"
+    }
+  ]
+}
+{% endschema %}
+

@@ -1,0 +1,522 @@
+[
+  {
+    "optionTitle": "Size",
+    "values": [
+      {
+        "title": "Size",
+        "price": "0",
+        "imageUrl": null
+      },
+      {
+        "title": "14\"x80\" = $629",
+        "price": "629.00",
+        "imageUrl": null
+      },
+      {
+        "title": "18\"x80\" = $629",
+        "price": "629.00",
+        "imageUrl": null
+      },
+      {
+        "title": "24\"x80\" = $659",
+        "price": "609.00",
+        "imageUrl": null
+      },
+      {
+        "title": "28\"x80\" = $659",
+        "price": "659.00",
+        "imageUrl": null
+      },
+      {
+        "title": "30\"x80\" = $659",
+        "price": "659.00",
+        "imageUrl": null
+      },
+      {
+        "title": "32\"x80\" = $659",
+        "price": "659.00",
+        "imageUrl": null
+      },
+      {
+        "title": "36\"x80\" = $659",
+        "price": "659.00",
+        "imageUrl": null
+      },
+      {
+        "title": "18\"x96\" = $829",
+        "price": "829.00",
+        "imageUrl": null
+      },
+      {
+        "title": "24\"x96\" = $959",
+        "price": "959.00",
+        "imageUrl": null
+      },
+      {
+        "title": "28\"x96\" = $959",
+        "price": "959.00",
+        "imageUrl": null
+      },
+      {
+        "title": "30\"x96\" = $959",
+        "price": "959.00",
+        "imageUrl": null
+      },
+      {
+        "title": "32\"x96\" = $959",
+        "price": "959.00",
+        "imageUrl": null
+      },
+      {
+        "title": "36\"x96\" = $959",
+        "price": "959.00",
+        "imageUrl": null
+      }
+    ]
+  },
+  {
+    "optionTitle": "Door Configuration",
+    "values": [
+      {
+        "title": "Door Configuration",
+        "price": "0",
+        "imageUrl": null
+      },
+      {
+        "title": "Single Door",
+        "price": "0.00",
+        "imageUrl": "https://www.etodoors.com/media/customoptions/39/3862/167/Single_Door.png"
+      },
+      {
+        "title": "Double Door",
+        "price": "0.00",
+        "imageUrl": "https://www.etodoors.com/media/customoptions/39/3862/168/Double_Doors.png"
+      }
+    ]
+  },
+  {
+    "optionTitle": "Glass Type",
+    "values": [
+      {
+        "title": "Glass Type",
+        "price": "0",
+        "imageUrl": null
+      },
+      {
+        "title": "Dual Clear Tempered ",
+        "price": "0.00",
+        "imageUrl": null
+      }
+    ]
+  },
+  {
+    "optionTitle": "Glass Type",
+    "values": [
+      {
+        "title": "Glass Type",
+        "price": "0",
+        "imageUrl": null
+      },
+      {
+        "title": "Dual Clear Tempered ",
+        "price": "0.00",
+        "imageUrl": null
+      }
+    ]
+  },
+  {
+    "optionTitle": "Pre Hanging",
+    "values": [
+      {
+        "title": "Pre Hanging",
+        "price": "0",
+        "imageUrl": null
+      },
+      {
+        "title": "Yes (w/ Frame)",
+        "price": "0.00",
+        "imageUrl": "https://www.etodoors.com/media/customoptions/45/3860/12/Frame.png"
+      },
+      {
+        "title": "No (Door Only)",
+        "price": "0.00",
+        "imageUrl": "https://www.etodoors.com/media/customoptions/45/3860/13/No_Frame.png"
+      }
+    ]
+  },
+  {
+    "optionTitle": "Pre hanging",
+    "values": [
+      {
+        "title": "Pre hanging",
+        "price": "0",
+        "imageUrl": null
+      },
+      {
+        "title": "Yes (w/ Frame)",
+        "price": "0.00",
+        "imageUrl": "https://www.etodoors.com/media/customoptions/45/3861/14/Frame.png"
+      },
+      {
+        "title": "No (Door Only)",
+        "price": "0.00",
+        "imageUrl": "https://www.etodoors.com/media/customoptions/45/3861/15/No_Frame.png"
+      }
+    ]
+  },
+  {
+    "optionTitle": "Jamb Species",
+    "values": [
+      {
+        "title": "Jamb Species",
+        "price": "0",
+        "imageUrl": null
+      },
+      {
+        "title": "Douglas Fir (+$449)",
+        "price": "449.00",
+        "imageUrl": "https://www.etodoors.com/media/customoptions/45/3863/18/Exterior_Doug_Fir.jpg"
+      },
+      {
+        "title": "Paint Grade (+$299)",
+        "price": "299.00",
+        "imageUrl": "https://www.etodoors.com/media/customoptions/45/3863/19/WP_Exterior.jpg"
+      }
+    ]
+  },
+  {
+    "optionTitle": "Jamb Species",
+    "values": [
+      {
+        "title": "Jamb Species",
+        "price": "0",
+        "imageUrl": null
+      },
+      {
+        "title": "Douglas Fir (+$699)",
+        "price": "699.00",
+        "imageUrl": "https://www.etodoors.com/media/customoptions/45/3864/20/Exterior_Doug_Fir.jpg"
+      },
+      {
+        "title": "Paint Grade (+$399)",
+        "price": "399.00",
+        "imageUrl": "https://www.etodoors.com/media/customoptions/45/3864/21/WP_Exterior.jpg"
+      }
+    ]
+  },
+  {
+    "optionTitle": "Handing",
+    "values": [
+      {
+        "title": "Handing",
+        "price": "0",
+        "imageUrl": null
+      },
+      {
+        "title": "Left Hand Inswing (LH)",
+        "price": "0.00",
+        "imageUrl": "https://www.etodoors.com/media/customoptions/45/3869/43/LH.png"
+      },
+      {
+        "title": "Right Hand Inswing (RH)",
+        "price": "0.00",
+        "imageUrl": "https://www.etodoors.com/media/customoptions/45/3869/44/RH.png"
+      },
+      {
+        "title": "Right Hand Outswing (LHR)",
+        "price": "0.00",
+        "imageUrl": "https://www.etodoors.com/media/customoptions/45/3869/45/LHR.png"
+      },
+      {
+        "title": "Left Hand Outswing (RHR)",
+        "price": "0.00",
+        "imageUrl": "https://www.etodoors.com/media/customoptions/45/3869/46/RHR.png"
+      },
+      {
+        "title": "Closet Door Ball Catch Prep No Bore",
+        "price": "0.00",
+        "imageUrl": "https://www.etodoors.com/media/customoptions/45/3869/51/LHR.png"
+      },
+      {
+        "title": "Closet Door Ball Catch Prep No Bore",
+        "price": "0.00",
+        "imageUrl": "https://www.etodoors.com/media/customoptions/45/3869/52/RHR.png"
+      }
+    ]
+  },
+  {
+    "optionTitle": "Handing",
+    "values": [
+      {
+        "title": "Handing",
+        "price": "0",
+        "imageUrl": null
+      },
+      {
+        "title": "Left Hand Active (LH-A)",
+        "price": "0.00",
+        "imageUrl": "https://www.etodoors.com/media/customoptions/45/3870/47/LH-A.png"
+      },
+      {
+        "title": "Right Hand Active (RH-A)",
+        "price": "0.00",
+        "imageUrl": "https://www.etodoors.com/media/customoptions/45/3870/48/RH-A.png"
+      },
+      {
+        "title": "Right Hand Outswing Active (LHR-A)",
+        "price": "0.00",
+        "imageUrl": "https://www.etodoors.com/media/customoptions/45/3870/50/LHR-A.png"
+      },
+      {
+        "title": "Left Hand Outswing Active (RHR-A)",
+        "price": "0.00",
+        "imageUrl": "https://www.etodoors.com/media/customoptions/45/3870/49/RHR-A.png"
+      }
+    ]
+  },
+  {
+    "optionTitle": "Jamb Width",
+    "values": [
+      {
+        "title": "Jamb Width",
+        "price": "0",
+        "imageUrl": null
+      },
+      {
+        "title": "3-1/2\"",
+        "price": "0.00",
+        "imageUrl": null
+      },
+      {
+        "title": "4-3/4\"",
+        "price": "0.00",
+        "imageUrl": null
+      },
+      {
+        "title": "5-1/4\"",
+        "price": "0.00",
+        "imageUrl": null
+      },
+      {
+        "title": "4\"",
+        "price": "0.00",
+        "imageUrl": null
+      },
+      {
+        "title": "5-1/2\"",
+        "price": "0.00",
+        "imageUrl": null
+      },
+      {
+        "title": "6\"",
+        "price": "0.00",
+        "imageUrl": null
+      },
+      {
+        "title": "6-5/8\"",
+        "price": "0.00",
+        "imageUrl": null
+      },
+      {
+        "title": "7-1/4\"",
+        "price": "0.00",
+        "imageUrl": null
+      },
+      {
+        "title": "4-9/16\"",
+        "price": "0.00",
+        "imageUrl": null
+      }
+    ]
+  },
+  {
+    "optionTitle": "Hinges Finish",
+    "values": [
+      {
+        "title": "Hinges Finish",
+        "price": "0",
+        "imageUrl": null
+      },
+      {
+        "title": "Oil Rubbed Bronze",
+        "price": "0.00",
+        "imageUrl": "https://www.etodoors.com/media/customoptions/42/3866/31/Bronze.jpg"
+      },
+      {
+        "title": "Satin Nickel",
+        "price": "0.00",
+        "imageUrl": "https://www.etodoors.com/media/customoptions/42/3866/32/Satin_Nickel.jpg"
+      },
+      {
+        "title": "Brass",
+        "price": "0.00",
+        "imageUrl": "https://www.etodoors.com/media/customoptions/42/3866/33/Brass.jpg"
+      }
+    ]
+  },
+  {
+    "optionTitle": "Door Sill Finish",
+    "values": [
+      {
+        "title": "Door Sill Finish",
+        "price": "0",
+        "imageUrl": null
+      },
+      {
+        "title": "Aluminum Bronze",
+        "price": "0.00",
+        "imageUrl": "https://www.etodoors.com/media/customoptions/42/3867/34/Aluminum_Bronze.jpg"
+      },
+      {
+        "title": "Aluminum Satin Nickel",
+        "price": "0.00",
+        "imageUrl": "https://www.etodoors.com/media/customoptions/42/3867/35/Aluminum_Satin_Nickel.jpg"
+      },
+      {
+        "title": "Aluminum Brass",
+        "price": "0.00",
+        "imageUrl": "https://www.etodoors.com/media/customoptions/42/3867/36/Aluminum_Brass.jpg"
+      },
+      {
+        "title": "Solid Oak Sill",
+        "price": "0.00",
+        "imageUrl": "https://www.etodoors.com/media/customoptions/42/3867/37/Oak_Sill_2_4-9-13.jpg"
+      },
+      {
+        "title": "ADA Handicap Bronze Aluminum",
+        "price": "0.00",
+        "imageUrl": "https://www.etodoors.com/media/customoptions/42/3867/38/ADA_Handicap_Bronze_Aluminum.jpg"
+      }
+    ]
+  },
+  {
+    "optionTitle": "Handle Preparation",
+    "values": [
+      {
+        "title": "Handle Preparation",
+        "price": "0",
+        "imageUrl": null
+      },
+      {
+        "title": "Single (2-3/8\" backset)",
+        "price": "0.00",
+        "imageUrl": "https://www.etodoors.com/media/customoptions/42/3868/39/Single_Bore.png"
+      },
+      {
+        "title": "Double (2-3/8\" backset)",
+        "price": "0.00",
+        "imageUrl": "https://www.etodoors.com/media/customoptions/42/3868/40/Double_Bore.png"
+      },
+      {
+        "title": "Mortise Prep (+$175)",
+        "price": "175.00",
+        "imageUrl": "https://www.etodoors.com/media/customoptions/42/3868/42/Mortise.png"
+      },
+      {
+        "title": "No Bore",
+        "price": "0.00",
+        "imageUrl": "https://www.etodoors.com/media/customoptions/42/3868/41/No_Bore.png"
+      }
+    ]
+  },
+  {
+    "optionTitle": "Sidelite",
+    "values": [
+      {
+        "title": "Sidelite",
+        "price": "0",
+        "imageUrl": null
+      },
+      {
+        "title": "YES (12\")",
+        "price": "0.00",
+        "imageUrl": null
+      },
+      {
+        "title": "No",
+        "price": "0.00",
+        "imageUrl": null
+      }
+    ]
+  },
+  {
+    "optionTitle": "Size",
+    "values": [
+      {
+        "title": "Size",
+        "price": "0",
+        "imageUrl": null
+      },
+      {
+        "title": "12\"",
+        "price": "0.00",
+        "imageUrl": null
+      }
+    ]
+  },
+  {
+    "optionTitle": "SL Type",
+    "values": [
+      {
+        "title": "SL Type",
+        "price": "0",
+        "imageUrl": null
+      },
+      {
+        "title": "AB1501 = $229",
+        "price": "229.00",
+        "imageUrl": "https://www.etodoors.com/media/customoptions/83/10561/3/ab150l_sl.jpg"
+      },
+      {
+        "title": "AB1510 = $229",
+        "price": "229.00",
+        "imageUrl": "https://www.etodoors.com/media/customoptions/83/10561/4/ab1510_sl.jpg"
+      }
+    ]
+  },
+  {
+    "optionTitle": "Single Sidelite Application",
+    "values": [
+      {
+        "title": "Single Sidelite Application",
+        "price": "0",
+        "imageUrl": null
+      },
+      {
+        "title": "Left Side =$120",
+        "price": "120.00",
+        "imageUrl": "https://www.etodoors.com/media/customoptions/57/8964/89/Left_Sidelite.png"
+      },
+      {
+        "title": "Right Side =$120",
+        "price": "120.00",
+        "imageUrl": "https://www.etodoors.com/media/customoptions/57/8964/90/Right_Sidelite.png"
+      }
+    ]
+  },
+  {
+    "optionTitle": "Double Sidelite Application",
+    "values": [
+      {
+        "title": "Double Sidelite Application",
+        "price": "0",
+        "imageUrl": null
+      },
+      {
+        "title": "Both Sides =$320",
+        "price": "320.00",
+        "imageUrl": "https://www.etodoors.com/media/customoptions/57/24473/92/2_Sidelites.png"
+      }
+    ]
+  },
+  {
+    "optionTitle": "Your product is now configured",
+    "values": [
+      {
+        "title": "Your product is now configured",
+        "price": "0",
+        "imageUrl": null
+      }
+    ]
+  }
+]

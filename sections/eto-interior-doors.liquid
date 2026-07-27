@@ -1,0 +1,183 @@
+<div style="background-color: #ffffff; width: 100%;">
+<div class="eto-interior-doors-section">
+  <div class="eto-interior-image-col">
+    {% if section.settings.image != blank %}
+      {{ section.settings.image | image_url: width: 1200 | image_tag: loading: 'lazy', class: 'eto-interior-image' }}
+    {% else %}
+      <img class="eto-interior-image" loading="lazy" src="{{ 'interior-doors-banner.svg' | asset_url }}" alt="Interior Doors">
+    {% endif %}
+  </div>
+  <div class="eto-interior-text-col">
+    <h3 class="eto-interior-title">{{ section.settings.title }}</h3>
+    <p class="eto-interior-subtitle">{{ section.settings.subtitle }}</p>
+    <a href="{{ section.settings.link }}" class="eto-interior-btn">{{ section.settings.btn_text }}</a>
+  </div>
+</div>
+</div>
+
+<style>
+.eto-interior-doors-section {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  background: #ffffff;
+  width: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 40px 0;
+  border-top: 1px solid #EBEBEB;
+}
+.eto-interior-image-col {
+  width: 55%;
+  position: relative;
+}
+.eto-interior-image {
+  width: 100%;
+  height: 100%;
+  max-height: 800px; /* Prevent massive height on 4K */
+  min-height: 500px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+.eto-interior-text-col {
+  width: 45%;
+  padding: 5% 8% 0 8%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  gap: 16px;
+}
+.eto-interior-title {
+  font-family: 'MADE Mirage', serif;
+  font-size: 64px;
+  font-weight: 100;
+  text-transform: none;
+  letter-spacing: normal;
+  line-height: 1.1;
+  color: #000000;
+  margin: 0;
+}
+.eto-interior-subtitle {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 22px;
+  font-weight: 300;
+  color: #000000;
+  margin: 0 0 16px 0;
+  line-height: 25px;
+}
+
+@media (min-width: 1921px) {
+  .eto-interior-doors-section {
+    max-width: 100%;
+    align-items: center;
+  }
+  .eto-interior-image {
+    height: auto;
+    max-height: none;
+    min-height: auto;
+    aspect-ratio: 16 / 10;
+  }
+  .eto-interior-text-col {
+    padding: 0 8%;
+    justify-content: center;
+  }
+  .eto-interior-title {
+    font-size: clamp(36px, 3.5vw, 90px);
+  }
+  .eto-interior-subtitle {
+    font-size: clamp(16px, 1.2vw, 28px);
+    line-height: 1.4;
+  }
+}
+.eto-interior-btn {
+  background: #C7C1B9; /* Greyish beige matching the screenshot */
+  color: #ffffff;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  padding: 16px 40px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+.eto-interior-btn:hover {
+  background: var(--eto-dark-charcoal);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 990px) {
+  .eto-interior-doors-section {
+    flex-direction: column;
+    padding-top: 24px;
+    padding-bottom: 40px;
+  }
+  .eto-interior-image-col, .eto-interior-text-col {
+    width: 100%;
+    padding: 0;
+  }
+  .eto-interior-image {
+    min-height: 300px;
+    max-height: 400px;
+  }
+  .eto-interior-text-col {
+    align-items: center;
+    text-align: center;
+    margin-top: 24px;
+    padding: 0 20px;
+  }
+  .eto-interior-title {
+    font-size: 36px;
+    line-height: 1.2;
+  }
+  .eto-interior-subtitle {
+    font-size: 16px;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Interior Doors",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Interior Doors"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtext",
+      "default": "Timeless Craftsmanship.<br>Modern Function."
+    },
+    {
+      "type": "text",
+      "id": "btn_text",
+      "label": "Button Text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Button Link"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Interior Doors"
+    }
+  ]
+}
+{% endschema %}

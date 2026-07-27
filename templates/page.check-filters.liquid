@@ -1,0 +1,12 @@
+
+{% layout none %}
+{
+  "filters": [
+    {% for filter in collections['all'].filters %}
+      {
+        "label": "{{ filter.label }}",
+        "param_name": "{{ filter.param_name }}"
+      }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ]
+}

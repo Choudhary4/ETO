@@ -1,0 +1,18 @@
+{% comment %}
+  Renders door categories sidebar - DYNAMICALLY POPULATED
+  Content is injected by dynamic-menu.js based on product data.
+  Matches styles from component-door-categories.css
+{% endcomment %}
+
+<div class="door-categories" data-dynamic-categories>
+  <div style="padding: 20px; text-align: center; color: #666;">
+    <span class="spinner" style="display: inline-block; width: 20px; height: 20px; border: 2px solid #ccc; border-top-color: #333; border-radius: 50%; animation: spin 1s linear infinite;"></span>
+    Loading categories...
+  </div>
+  <style>
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</div>
+
+{% comment %} Ensure script is loaded if not already {% endcomment %}
+<script src="{{ 'dynamic-menu.js' | asset_url }}" defer></script>

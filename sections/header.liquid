@@ -1,0 +1,742 @@
+{% comment %}
+ETO DOORS – STITCH-MATCHED HEADER (4-TIER)
+{% endcomment %}
+
+<style>
+@font-face {
+  font-family: 'Montserrat';
+  src: url('{{ "Montserrat-VariableFont_wght.ttf" | asset_url }}') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+/* ===== GLOBAL FIX ===== */
+html body .shopify-section-group-header-group {
+  position: static !important;
+  top: auto !important;
+  transform: none !important;
+}
+.section-header { width: 100%; margin: 0; padding: 0; }
+
+.eto-sticky-header-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  background: #E6E2DF;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+/* Offset for the fixed header so content doesn't get hidden */
+.section-header { 
+  width: 100%; 
+  margin: 0; 
+  padding-top: 202px; /* Exactly 110 + 46 + 46 */
+}
+
+/* ===== TIER 1 & 2: BRAND & UTILITY ===== */
+.eto-top-unified-bar { background: #E6E2DF; width: 100%; height: 110px; border-top: 1px solid rgba(0, 0, 0, 0.1); border-bottom: 1px solid rgba(0, 0, 0, 0.1); box-sizing: border-box; }
+.eto-top-unified-inner {
+  max-width: var(--eto-container-max);
+  margin: 0 auto;
+  height: 100%;
+  padding: 0 var(--eto-margin-edge);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.eto-top-left, .eto-top-right {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex: 1;
+}
+.eto-top-right {
+  justify-content: flex-end;
+}
+.eto-top-center {
+  flex: 0 0 auto;
+}
+.eto-utility-link {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  color: var(--eto-dark-charcoal);
+  text-decoration: none;
+  transition: color 0.2s;
+  position: relative;
+  padding-bottom: 2px;
+}
+.eto-utility-link::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 1px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--eto-dark-charcoal);
+  transform-origin: bottom right;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.eto-utility-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+.eto-utility-link:hover { color: var(--eto-dark-charcoal); }
+.eto-utility-icon {
+  font-family: 'Material Symbols Outlined';
+  font-size: 24px;
+  color: var(--eto-dark-charcoal);
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), color 0.2s;
+  display: inline-block;
+}
+.eto-utility-icon:hover { 
+  color: var(--eto-dark-charcoal); 
+  transform: scale(1.15);
+}
+.eto-utility-icon svg {
+  height: 1em;
+  width: auto;
+  vertical-align: middle;
+}
+.eto-utility-divider { color: var(--eto-light-border); font-size: 14px; }
+
+/* Cart badge */
+.eto-cart-icon-wrap { position: relative; display: inline-flex; align-items: center; }
+.eto-cart-count {
+  position: absolute; top: -4px; right: -8px;
+  background: var(--eto-deep-walnut); color: #fff;
+  border-radius: 50%; min-width: 16px; height: 16px;
+  font-size: 10px; font-weight: 700; line-height: 16px;
+  text-align: center; padding: 0 3px; pointer-events: none;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* (Brand section merged above) */
+.eto-brand-logo-link { text-decoration: none; display: inline-block; }
+.eto-brand-name {
+  font-family: 'EB Garamond', serif;
+  font-size: 32px; font-weight: 500;
+  color: var(--eto-dark-charcoal);
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  margin: 0; line-height: 1.2;
+}
+.eto-brand-name a { color: inherit; text-decoration: none; }
+.eto-logo-img { height: 60px; width: 106px; display: block; margin: 0 auto; }
+.eto-search-form-hidden { display: none; }
+
+/* ===== TIER 3: NAV BAR ===== */
+.eto-nav-bar {
+  background: #C6BEB5;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  width: 100%;
+  height: 46px;
+}
+.eto-nav-inner {
+  display: flex; justify-content: center; align-items: center;
+  padding: 0 var(--eto-margin-edge);
+  max-width: var(--eto-container-max); margin: 0 auto;
+  height: 100%; position: relative;
+}
+.eto-desktop-phone {
+  position: absolute; right: var(--eto-margin-edge);
+  display: flex; align-items: center; gap: 8px;
+  color: var(--eto-dark-charcoal); text-decoration: none;
+  font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 15px;
+  background-color: #E0E0E0;
+  padding: 4px 12px;
+  border-radius: 6px;
+}
+@media (max-width: 1024px) {
+  .eto-desktop-phone { display: none; }
+}
+.eto-menu { display: flex; width: 100%; justify-content: center; }
+.eto-menu > ul {
+  list-style: none; padding: 0; margin: 0;
+  display: flex; gap: 32px; align-items: center; flex-wrap: wrap;
+}
+.eto-menu ul ul { display: none !important; }
+.eto-menu-item:hover > .eto-dropdown { display: flex !important; }
+.eto-menu-item { position: relative; display: flex; align-items: center; }
+.eto-menu-item > a {
+  color: var(--eto-dark-charcoal); text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px; font-weight: 300;
+  line-height: 25px;
+  text-transform: capitalize; letter-spacing: 0.01em;
+  transition: color 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  padding-bottom: 4px;
+}
+.eto-menu-item > a::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--eto-dark-charcoal);
+  transform-origin: bottom right;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.eto-menu-item > a:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+.eto-menu-item > a:hover { color: var(--eto-dark-charcoal); }
+
+/* Dropdown Level 1 */
+.eto-dropdown {
+  position: absolute; top: 100%; left: 0;
+  min-width: 220px; background: var(--eto-soft-white);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  display: none; flex-direction: column; z-index: 999;
+  border: 1px solid var(--eto-light-border); border-top: none;
+  padding: 0; list-style: none !important; margin: 0;
+}
+.eto-dropdown-item {
+  position: relative; border-bottom: 1px solid var(--eto-light-border);
+  width: 100%; list-style: none !important;
+}
+.eto-dropdown-item:last-child { border-bottom: none; }
+.eto-dropdown-item > a {
+  padding: 10px 16px; color: var(--eto-dark-charcoal) !important;
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: 'Montserrat', sans-serif; font-size: 12px;
+  background: transparent; text-decoration: none; width: 100%;
+  font-weight: 400; letter-spacing: 0.05em;
+  transition: background 0.2s, color 0.2s; line-height: 1.2;
+}
+.eto-dropdown-item > a:hover,
+.eto-dropdown-item:hover > a {
+  background: #C6BEB5; color: var(--eto-dark-charcoal) !important;
+}
+
+/* Flyout Level 2 */
+.eto-flyout {
+  position: absolute; top: 0; left: 100%;
+  min-width: 240px; background: var(--eto-soft-white);
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.06);
+  display: none; flex-direction: column;
+  border: 1px solid var(--eto-light-border);
+  z-index: 1000; list-style: none !important;
+  padding: 0; margin: 0; margin-left: -1px;
+}
+.eto-flyout .eto-dropdown-item { border-bottom: 1px solid var(--eto-light-border); background: var(--eto-soft-white); }
+.eto-flyout .eto-dropdown-item:last-child { border-bottom: none; }
+.eto-dropdown-item:hover > .eto-flyout { display: flex !important; }
+
+/* Arrow */
+.arrow-right { font-size: 10px; color: var(--eto-soft-gray); margin-left: auto; }
+.eto-dropdown-item:hover > a .arrow-right { color: var(--eto-dark-charcoal); }
+
+/* Last item alignment fix */
+.eto-menu-item:last-child .eto-dropdown { left: auto; right: 0; }
+.eto-menu-item:last-child .eto-dropdown .eto-flyout { left: auto; right: 100%; }
+
+/* Dynamic flyout */
+.eto-dynamic-flyout { min-width: 250px; border-left: 1px solid var(--eto-light-border); background: var(--eto-soft-white); }
+.eto-dynamic-flyout .eto-dropdown-item > a { font-size: 12px; padding: 10px 16px; }
+
+/* ===== TIER 4: ANNOUNCEMENT (outside sticky) ===== */
+.eto-announce-bar {
+  background: #E6E2DF;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  width: 100%; height: 46px;
+  display: flex; align-items: center; justify-content: center;
+  padding: 0 var(--eto-margin-edge); text-align: center;
+}
+.eto-announce-text {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px; font-weight: 400; line-height: 25px;
+  letter-spacing: 0.01em; text-transform: uppercase;
+  color: var(--eto-dark-charcoal); margin: 0;
+}
+.eto-announce-text a { color: var(--eto-dark-charcoal); font-weight: 700; text-decoration: none; }
+
+/* ===== RESPONSIVENESS ===== */
+@media (max-width: 1400px) {
+  .eto-menu > ul { gap: 20px; }
+  .eto-menu-item > a { font-size: 13px; }
+}
+
+@media (max-width: 1200px) {
+  .eto-menu > ul { gap: 12px; }
+  .eto-menu-item > a { font-size: 11px; letter-spacing: 0.1em; }
+  .eto-utility-left, .eto-utility-right { gap: 16px; }
+  .section-header { padding-top: 200px; }
+}
+
+@media (max-width: 1100px) {
+  .eto-menu > ul { gap: 8px; }
+  .eto-menu-item > a { font-size: 10px; }
+}
+
+@media (max-width: 990px) {
+  .section-header { padding-top: 155px; } /* Adjusted for mobile tiers */
+  .eto-announce-bar { padding: 8px 16px; }
+  .eto-announce-text { font-size: 10px; line-height: 1.3; }
+}
+</style>
+
+<style>
+/* Mobile: hide desktop-only elements */
+.eto-mobile-toggle, .eto-drawer-close, .eto-mobile-bar, .eto-drawer-header { display: none; }
+
+@media (min-width: 991px) {
+  .mobile-only-arrow { display: none !important; }
+}
+
+@media (max-width: 990px) {
+  .eto-top-unified-bar { background: #E6E2DF; }
+  .eto-top-unified-inner { height: auto; padding: 12px 16px; justify-content: space-between; }
+  .eto-top-left, .eto-top-right { display: flex; flex: 1; align-items: center; }
+  .eto-top-left { justify-content: flex-start; }
+  .eto-top-right { justify-content: flex-end; gap: 16px; }
+  
+  .desktop-account-text { font-size: 13px; font-weight: 600; text-transform: uppercase; color: var(--eto-dark-charcoal); }
+  .eto-utility-divider { display: none; }
+  
+  .eto-logo-img { max-height: 36px; }
+  .eto-brand-name { font-size: 24px; }
+
+  .eto-mobile-bar {
+    display: flex; justify-content: center; align-items: center;
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--eto-light-border);
+  }
+  .eto-mobile-toggle {
+    display: flex !important; background: none; border: none;
+    color: var(--eto-dark-charcoal); padding: 0; cursor: pointer;
+  }
+  .eto-mobile-hamburger {
+    background: var(--eto-dark-charcoal); color: #fff;
+    border-radius: 4px; width: 40px; height: 36px; padding: 6px;
+  }
+  .eto-mobile-call {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px; font-weight: 700; color: var(--eto-dark-charcoal);
+    text-transform: uppercase; text-align: center;
+    letter-spacing: 0.05em;
+  }
+  .eto-mobile-call a { text-decoration: none; color: var(--eto-dark-charcoal); }
+
+  .eto-top-right .eto-utility-icon {
+    font-size: 24px;
+    color: var(--eto-dark-charcoal);
+  }
+  .eto-top-right .eto-cart-count {
+    top: -5px;
+    right: -8px;
+  }
+
+  .eto-nav-inner {
+    display: block; position: fixed; top: 0; left: -320px;
+    width: 300px; height: 100vh; background: #2d2d2d;
+    z-index: 1000; transition: left 0.3s ease;
+    overflow-y: auto; overflow-x: hidden;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.5); padding-top: 50px;
+  }
+  .eto-nav-inner.active { left: 0; }
+  .eto-drawer-close {
+    position: absolute; top: 10px; right: 14px;
+    background: none; border: none; color: #fff;
+    font-size: 24px; cursor: pointer; display: block;
+  }
+  .eto-menu { flex-direction: column; width: 100%; gap: 0; height: auto; }
+  .eto-menu ul { flex-direction: column; width: 100%; height: auto; }
+  .eto-menu-item { width: 100%; display: block; position: static; border-bottom: 1px solid #3e3e3e; }
+  .eto-menu-item > a {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 14px 20px; border-bottom: none; width: 100%;
+    font-size: 15px; color: #fff !important; background: #2d2d2d; transition: none;
+  }
+  .eto-menu-item > a:hover { background: #383838; color: #fff !important; }
+
+  .eto-nav-inner .eto-dropdown, .eto-nav-inner .eto-flyout {
+    display: block !important; position: absolute !important; top: 0 !important; left: 0 !important;
+    width: 100% !important; min-height: 100% !important; height: 100vh !important;
+    background: #2d2d2d !important; transform: translateX(100%);
+    transition: transform 0.3s ease; z-index: 20 !important;
+    padding-top: 0; border-left: 1px solid #3e3e3e;
+    box-shadow: -2px 0 10px rgba(0,0,0,0.5);
+    visibility: hidden; overflow-y: auto !important;
+  }
+  .eto-nav-inner .eto-dropdown.is-open, .eto-nav-inner .eto-flyout.is-open {
+    transform: translateX(0) !important;
+    visibility: visible !important;
+    z-index: 40 !important;
+  }
+  .eto-dropdown-item { border-bottom: 1px solid #3e3e3e; position: static; }
+  .eto-dropdown-item > a {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 14px 20px; color: #fff !important;
+    text-decoration: none; font-size: 14px; background: #2d2d2d;
+  }
+  .eto-dropdown-item > a:hover { color: #fff !important; background: #2d2d2d; }
+  .arrow-right { padding: 15px; margin: -15px -20px -15px 0; font-size: 14px; cursor: pointer; }
+
+  .eto-drawer-header {
+    background: #222; padding: 15px 20px; color: #fff;
+    font-weight: bold; border-bottom: 1px solid #3e3e3e;
+    cursor: pointer; display: flex; align-items: center; gap: 10px;
+    font-size: 14px; text-transform: uppercase; position: sticky; top: 0; z-index: 5;
+  }
+  .eto-back-icon { font-size: 18px; color: #888; }
+
+  .eto-announce-bar { padding: 10px 16px; }
+  .eto-announce-text { font-size: 11px; }
+}
+</style>
+
+<section class="section-header">
+
+  <div class="eto-sticky-header-wrapper">
+    <!-- TIER 1 & 2: BRAND & UTILITY -->
+    <div class="eto-top-unified-bar">
+      <div class="eto-top-unified-inner">
+        <div class="eto-top-left">
+          <button class="eto-mobile-toggle" onclick="document.querySelector('.eto-nav-inner').classList.add('active')">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="eto-mobile-hamburger" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          </button>
+        </div>
+        <div class="eto-top-center">
+          <a href="{{ routes.root_url }}" class="eto-brand-logo-link">
+            {% render 'icon-eto-logo' %}
+          </a>
+        </div>
+        <div class="eto-top-right">
+          <a href="/search" class="eto-utility-icon eto-search-icon-wrap" aria-label="Search">
+            {% render 'icon-eto-search' %}
+          </a>
+          <a href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}" class="eto-utility-icon eto-account-icon-wrap" aria-label="{% if customer %}My Account{% else %}Log In{% endif %}">
+            {% render 'icon-eto-account' %}
+          </a>
+          <a href="{{ routes.cart_url }}" class="eto-utility-icon eto-cart-icon-wrap" aria-label="Cart">
+            {% render 'icon-eto-cart' %}
+            {%- liquid
+              assign real_count = 0
+              for item in cart.items
+                if item.properties._is_addon == 'true'
+                  continue
+                endif
+                assign real_count = real_count | plus: item.quantity
+              endfor
+            -%}
+            {% if real_count > 0 %}
+              <span class="eto-cart-count" id="eto-cart-badge">{{ real_count }}</span>
+            {% else %}
+              <span class="eto-cart-count" id="eto-cart-badge" style="display:none;">0</span>
+            {% endif %}
+          </a>
+        </div>
+      </div>
+      <form id="header-search-form" action="{{ routes.search_url }}" method="get" class="eto-search-form-hidden"></form>
+    </div>
+
+    <!-- TIER 3: NAV BAR -->
+    <div class="eto-nav-bar">
+      <div class="eto-mobile-bar">
+        <div class="eto-mobile-call">
+          CALL: <a href="tel:2136222003">(213) 622-2003</a>
+        </div>
+      </div>
+
+      <div class="eto-nav-inner page-width">
+        <button class="eto-drawer-close" onclick="document.querySelector('.eto-nav-inner').classList.remove('active')">&times;</button>
+        
+        <a href="tel:2136222003" class="eto-desktop-phone">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          213-622-2003
+        </a>
+
+        <nav class="eto-menu">
+          <ul>
+            <li class="eto-menu-item">
+              <a href="/collections/all?filter.p.m.custom.product_category=Interior">Interior</a>
+            </li>
+            <li class="eto-menu-item">
+              <a href="/collections/all?filter.p.m.custom.product_category=Exterior">Exterior</a>
+            </li>
+            <li class="eto-menu-item">
+              <a href="/collections/all?filter.p.m.custom.product_category=French">French</a>
+            </li>
+
+            <li class="eto-menu-item">
+              <a href="/collections/all?filter.p.m.custom.product_category=FireRated">Fire Rated</a>
+            </li>
+            <li class="eto-menu-item">
+              <a href="/collections/all?filter.p.m.custom.product_category=Impact">Impact</a>
+            </li>
+            <li class="eto-menu-item">
+              <a href="/collections/all?filter.p.m.custom.product_category=Metal">Metal</a>
+            </li>
+            <li class="eto-menu-item">
+              <a href="/collections/all?filter.p.m.custom.product_category=Fiberglass">Fiberglass</a>
+            </li>
+
+            <li class="eto-menu-item">
+              <a href="/pages/pros">Pros</a>
+            </li>
+            <li class="eto-menu-item">
+              <a href="/pages/contact">Contact <span class="arrow-right mobile-only-arrow">▶</span></a>
+              <ul class="eto-dropdown">
+                <li class="eto-dropdown-item"><a href="/pages/contact">Contact</a></li>
+                <li class="eto-dropdown-item">
+                  <a href="/pages/about-us">
+                    About <span class="arrow-right">▶</span>
+                  </a>
+                  <ul class="eto-flyout eto-dynamic-flyout">
+                    <li class="eto-dropdown-item"><a href="/pages/about-us?section=history">History</a></li>
+                    <li class="eto-dropdown-item"><a href="/pages/about-us?section=green">ETO Green</a></li>
+                    <li class="eto-dropdown-item"><a href="/pages/testimonials">Testimonials</a></li>
+                    <li class="eto-dropdown-item"><a href="/pages/about-us?section=why-buy">Why Buy From ETO</a></li>
+                    <li class="eto-dropdown-item">
+                      <a href="/pages/about-us?section=fire">Certifications <span class="arrow-right">▶</span></a>
+                      <ul class="eto-flyout eto-dynamic-flyout">
+                        <li class="eto-dropdown-item"><a href="/pages/about-us?section=impact">Impact Rating</a></li>
+                        <li class="eto-dropdown-item"><a href="/pages/about-us?section=fire">Fire Rating</a></li>
+                        <li class="eto-dropdown-item"><a href="/pages/about-us?section=energy">Energy Star</a></li>
+                        <li class="eto-dropdown-item"><a href="/pages/about-us?section=fsc">FSC Green</a></li>
+                        <li class="eto-dropdown-item"><a href="/pages/about-us?section=stc">STC Sound</a></li>
+                        <li class="eto-dropdown-item"><a href="/pages/about-us?section=nfrc">NFRC Efficiency</a></li>
+                      </ul>
+                    </li>
+                    <li class="eto-dropdown-item">
+                      <a href="/pages/portfolios">Portfolios <span class="arrow-right">▶</span></a>
+                      <ul class="eto-flyout eto-dynamic-flyout">
+                        <li class="eto-dropdown-item"><a href="/pages/customer-photos">Customer Photos</a></li>
+                        <li class="eto-dropdown-item"><a href="/pages/project-portfolios">Project Portfolios</a></li>
+                        <li class="eto-dropdown-item"><a href="/pages/press">Press</a></li>
+                        <li class="eto-dropdown-item"><a href="/pages/testimonials">Testimonials</a></li>
+                      </ul>
+                    </li>
+                    <li class="eto-dropdown-item">
+                      <a href="/pages/about-us?section=forms">Resources <span class="arrow-right">▶</span></a>
+                      <ul class="eto-flyout eto-dynamic-flyout">
+                        <li class="eto-dropdown-item"><a href="/pages/about-us?section=diy">DIY Instructions</a></li>
+                        <li class="eto-dropdown-item"><a href="/pages/about-us?section=diy-videos">DIY Videos</a></li>
+                        <li class="eto-dropdown-item"><a href="/pages/about-us?section=forms">Forms</a></li>
+                        <li class="eto-dropdown-item"><a href="/pages/about-us?section=warranty">Warranty</a></li>
+                        <li class="eto-dropdown-item"><a href="/pages/about-us?section=3d-modeling">3D Modeling</a></li>
+                        <li class="eto-dropdown-item"><a href="/pages/about-us?section=glass-options">Glass Options</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+                <li class="eto-dropdown-item"><a href="/pages/file-a-claim">Claim</a></li>
+                <li class="eto-dropdown-item"><a href="/account">My Status</a></li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <!-- TIER 4: ANNOUNCEMENT STRIP (now inside fixed wrapper) -->
+    <div class="eto-announce-bar">
+      <p class="eto-announce-text">
+        THE HOSPITALITY DOOR SPECIALISTS
+      </p>
+    </div>
+  </div> <!-- Close eto-sticky-header-wrapper -->
+
+  <script>
+    (function() {
+      fetch('/account', { method: 'HEAD', credentials: 'same-origin' })
+        .then(function(response) {
+          var isLoginUrl = response.url.indexOf('/account/login') !== -1;
+          var isLoggedIn = !isLoginUrl;
+          var accountLink = document.getElementById('eto-account-link');
+          if (isLoggedIn) {
+            accountLink.innerHTML = '<a href="/account" class="eto-utility-link">LOG IN</a>';
+          } else {
+            accountLink.innerHTML = '<a href="/account/login" class="eto-utility-link">LOG IN</a>';
+          }
+        })
+        .catch(function(err) { console.error('Login Check Failed:', err); });
+    })();
+  </script>
+
+</section>
+
+{% comment %} Dynamic Menu Script {% endcomment %}
+<script src="{{ 'dynamic-menu.js' | asset_url }}?v={{ 'now' | date: '%s' }}" defer></script>
+<script data-dynamic-menu-init>
+  document.addEventListener('DOMContentLoaded', function() {
+    {% assign all_applications = '' %}
+    {% assign app_data = '' %}
+    {% for product in collections.all.products limit: 250 %}
+      {% assign app = product.metafields.custom.spec_application.value %}
+      {% if app and app != '' %}
+        {% unless all_applications contains app %}
+          {% if all_applications != '' %}{% assign all_applications = all_applications | append: '|||' %}{% endif %}
+          {% assign all_applications = all_applications | append: app %}
+        {% endunless %}
+      {% endif %}
+    {% endfor %}
+    {% assign apps_array = all_applications | split: '|||' %}
+    {% assign category_json = '' %}
+    {% for app_name in apps_array %}
+      {% if app_name != '' %}
+        {% assign app_species = '' %}
+        {% assign app_fire = '' %}
+        {% assign app_arch = '' %}
+        {% assign app_mega = '' %}
+        {% assign app_impact = '' %}
+        {% assign app_oversize = '' %}
+        {% for product in collections.all.products limit: 50 %}
+          {% assign raw_app = product.metafields.custom.spec_application.value %}
+          {% if raw_app %}
+            {% assign prod_app_str = raw_app | strip | downcase %}
+            {% assign target_app_str = app_name | strip | downcase %}
+            {% if prod_app_str == target_app_str %}
+            {% assign val = product.metafields.custom.spec_species.value %}
+            {% if val and val != '' %}
+              {% unless app_species contains val %}
+                {% if app_species != '' %}{% assign app_species = app_species | append: '|||' %}{% endif %}
+                {% assign app_species = app_species | append: val %}
+              {% endunless %}
+            {% endif %}
+            {% assign val = product.metafields.custom.spec_fire_rated.value %}
+            {% if val and val != 'No' and val != '' %}
+              {% unless app_fire contains val %}
+                {% if app_fire != '' %}{% assign app_fire = app_fire | append: '|||' %}{% endif %}
+                {% assign app_fire = app_fire | append: val %}
+              {% endunless %}
+            {% endif %}
+            {% assign val = product.metafields.custom.spec_arch.value %}
+            {% if val and val != 'No' and val != '' %}
+              {% unless app_arch contains val %}
+                {% if app_arch != '' %}{% assign app_arch = app_arch | append: '|||' %}{% endif %}
+                {% assign app_arch = app_arch | append: val %}
+              {% endunless %}
+            {% endif %}
+            {% assign val = product.metafields.custom.spec_mega.value %}
+            {% if val and val != 'No' and val != '' %}
+              {% unless app_mega contains val %}
+                {% if app_mega != '' %}{% assign app_mega = app_mega | append: '|||' %}{% endif %}
+                {% assign app_mega = app_mega | append: val %}
+              {% endunless %}
+            {% endif %}
+            {% assign val = product.metafields.custom.spec_impact.value %}
+            {% if val and val != 'No' and val != '' %}
+              {% unless app_impact contains val %}
+                {% if app_impact != '' %}{% assign app_impact = app_impact | append: '|||' %}{% endif %}
+                {% assign app_impact = app_impact | append: val %}
+              {% endunless %}
+            {% endif %}
+            {% assign val = product.metafields.custom.spec_oversize.value %}
+            {% if val and val != 'No' and val != '' %}
+              {% unless app_oversize contains val %}
+                {% if app_oversize != '' %}{% assign app_oversize = app_oversize | append: '|||' %}{% endif %}
+                {% assign app_oversize = app_oversize | append: val %}
+              {% endunless %}
+            {% endif %}
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+        {% capture app_json %}
+          "{{ app_name | escape }}": {
+            "species": {{ app_species | split: '|||' | json }},
+            "fireRated": {{ app_fire | split: '|||' | json }},
+            "arch": {{ app_arch | split: '|||' | json }},
+            "megaDoor": {{ app_mega | split: '|||' | json }},
+            "impact": {{ app_impact | split: '|||' | json }},
+            "oversize": {{ app_oversize | split: '|||' | json }}
+          }
+        {% endcapture %}
+        {% if category_json != '' %}{% assign category_json = category_json | append: ',' %}{% endif %}
+        {% assign category_json = category_json | append: app_json %}
+      {% endif %}
+    {% endfor %}
+    if (typeof etoInitDynamicMenu === 'function') {
+      etoInitDynamicMenu({
+        applications: {{ apps_array | json }},
+        categories: { {{ category_json }} },
+        asyncFetch: true
+      });
+    }
+  });
+
+  // Mobile Sliding Menu Script
+  document.addEventListener('DOMContentLoaded', function() {
+    var navInner = document.querySelector('.eto-nav-inner');
+    if (!navInner) return;
+    navInner.addEventListener('click', function(e) {
+      if (window.innerWidth > 990) return;
+      var target = e.target;
+      var backHeader = target.closest('.eto-drawer-header');
+      if (backHeader) {
+        e.preventDefault(); e.stopPropagation();
+        var submenu = backHeader.parentElement;
+        if (submenu && (submenu.classList.contains('eto-dropdown') || submenu.classList.contains('eto-flyout'))) {
+          submenu.classList.remove('is-open');
+        }
+        return;
+      }
+      var link = target.closest('a');
+      if (!link) return;
+      var listItem = link.closest('li');
+      if (!listItem) return;
+      // Get the immediate submenu to avoid selecting nested flyouts
+      var submenu = null;
+      var children = listItem.children;
+      for (var i = 0; i < children.length; i++) {
+        if (children[i].classList.contains('eto-dropdown') || children[i].classList.contains('eto-flyout')) {
+          submenu = children[i];
+          break;
+        }
+      }
+      
+      // Check if user clicked the arrow or the link text
+      var clickedArrow = target.closest('.arrow-right');
+      
+      if (submenu && clickedArrow) {
+        e.preventDefault(); e.stopPropagation();
+        if (!submenu.querySelector('.eto-drawer-header')) {
+          var header = document.createElement('li');
+          header.className = 'eto-drawer-header';
+          var linkText = link.innerText.trim() || link.textContent.trim();
+          // Remove the right arrow from the header text if it exists
+          linkText = linkText.replace(/▶/g, '').trim();
+          header.innerHTML = '<span class="eto-back-icon">&lt;</span> ' + linkText;
+          submenu.insertBefore(header, submenu.firstChild);
+        }
+        submenu.classList.add('is-open');
+        // Scroll the parent container to top instead of navInner
+        var scrollContainer = submenu.parentElement.closest('.eto-dropdown, .eto-flyout, .eto-nav-inner');
+        if (scrollContainer) scrollContainer.scrollTop = 0;
+      }
+    });
+  });
+
+  // Dynamic Header Padding
+  function etoUpdateHeaderPadding() {
+    var wrapper = document.querySelector('.eto-sticky-header-wrapper');
+    var sectionHeader = document.querySelector('.section-header');
+    if (wrapper && sectionHeader) {
+      var h = wrapper.offsetHeight;
+      if (h > 0) {
+        sectionHeader.style.paddingTop = h + 'px';
+      }
+    }
+  }
+  
+  document.addEventListener('DOMContentLoaded', function() {
+    etoUpdateHeaderPadding();
+    window.addEventListener('resize', etoUpdateHeaderPadding);
+    var wrapper = document.querySelector('.eto-sticky-header-wrapper');
+    if (wrapper && typeof ResizeObserver !== 'undefined') {
+      new ResizeObserver(etoUpdateHeaderPadding).observe(wrapper);
+    }
+  });
+</script>

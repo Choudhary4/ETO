@@ -1,0 +1,138 @@
+{% comment %}
+  Renders custom collection footer with category description.
+  Usage: {% render 'collection-footer-custom', collection: collection %}
+{% endcomment %}
+
+<style>
+  .collection-footer-custom {
+    background: transparent !important;
+    padding: 40px 0 !important;
+    margin: 0 auto 0 auto !important;
+    width: 100vw !important;
+    max-width: none !important;
+    position: relative !important;
+    left: 50% !important;
+    right: 50% !important;
+    margin-left: -50vw !important;
+    margin-right: -50vw !important;
+    box-sizing: border-box !important;
+    text-align: left;
+    border-top: 1px solid #a89f95 !important;
+    border-bottom: 1px solid #a89f95 !important;
+  }
+  .collection-footer-custom-inner {
+    max-width: var(--eto-container-max);
+    margin: 0 auto;
+    padding: 0 var(--eto-margin-edge);
+  }
+  .collection-footer-title {
+    font-size: 20px;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #000;
+  }
+  .collection-footer-custom .collection-description-text {
+    font-size: 14px;
+    color: #333;
+    line-height: 1.6; 
+  }
+</style>
+
+<!-- Detect selected category FIRST (before rendering title) -->
+{%- assign selected_category_desc = blank -%}
+{%- assign liquid_found_desc = false -%}
+{%- assign selected_cat_name = blank -%}
+
+{%- for filter in collection.filters -%}
+  {%- if filter.param_name == 'filter.p.m.custom.product_category' -%}
+    {%- if filter.active_values.size > 0 -%}
+      {%- assign selected_cat_name = filter.active_values.last.label -%}
+      {%- capture dynamic_desc -%}
+        {%- render 'category-description-mapping', category_name: selected_cat_name -%}
+      {%- endcapture -%}
+      {%- assign dynamic_desc = dynamic_desc | strip -%}
+      {%- if dynamic_desc != blank -%}
+        {%- assign selected_category_desc = dynamic_desc -%}
+        {%- assign liquid_found_desc = true -%}
+      {%- endif -%}
+    {%- endif -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- comment -%} Use category name as display title if a category is selected {%- endcomment -%}
+{%- if selected_cat_name != blank -%}
+  {%- assign display_title = selected_cat_name | remove: 'Nav_' | replace: 'Whiteoak', 'White Oak Doors' | replace: '_', ' ' -%}
+{%- else -%}
+  {%- assign display_title = collection.title -%}
+{%- endif -%}
+
+{%- assign show_footer = false -%}
+{%- if selected_category_desc != blank or collection.description != blank -%}
+  {%- assign show_footer = true -%}
+{%- endif -%}
+
+<div class="collection-footer-custom" id="js-collection-footer" {% unless show_footer %}style="display:none;"{% endunless %}>
+  <div class="collection-footer-custom-inner">
+    <h2 class="collection-footer-title" id="js-footer-title">{{ display_title }} DOORS</h2>
+    
+    {%- if selected_category_desc != blank -%}
+    <div class="collection-description-text" id="js-footer-desc">
+      {{ selected_category_desc }}
+    </div>
+    {%- elsif collection.description != blank -%}
+    <div class="collection-description-text" id="js-footer-desc">
+      {{ collection.description }}
+    </div>
+    {%- else -%}
+    <div class="collection-description-text" id="js-footer-desc"></div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% comment %} JS fallback: pre-render all possible category descriptions as hidden, then JS reveals the correct one {% endcomment %}
+{%- unless liquid_found_desc -%}
+  {%- assign all_cat_names = "Rustic Front Doors,Interior & Closet Doors,French Doors,Fiberglass,Other Doors,Exterior Entry Doors,Mediterranean Doors,Dutch Doors,Wine Cellar Doors,Door Transoms ,Fiberglass Doors,Door Accessories,Craftsman Doors,Sidelites,Custom Doors,Commercial Flush Doors,Hardware,Shop by Brand,Fire Rated,Wood Interior Doors,White Oak Doors,Rustic Mahogany Doors,Glass Options,Cellar Doors,Custom White Primed Doors,Rustic Knotty Alder Front Doors,Door Jambs,Steel Metal,Residential Handles - Emtek,Residential Multipoint Locks,Bypass Sliding Doors,Modern Contemporary Doors,Hinges,Knotty Alder Doors,Decorative Accessories,Mahogany Doors,Louvered Doors,Mouldings,Hand Carved Doors,Glass Front Doors,Front Doors ,Beveled Glass Front Doors,Impact Doors,Panel Front Doors,Mahogany Entry Doors,White Primed Doors,Shaker Doors,Flush Interior Doors,Barn Doors,Mirror Doors,Solid Panel Doors,Most Popular Interior Doors,Most Popular Exterior Doors,Wooden Interior Doors,Wooden Exterior Doors,Knotty Alder Front Doors,Mahogany Front Doors,White Oak Front Doors,Primed Front Doors,Contemporary Front Doors,Obscure Glass Doors,Wrought Iron Doors,Arched Doors,Arched Double Doors,Double Doors,Grand 9 ft. & 10 ft. Doors,Wood Doors,Interior Wood Flush Doors,Exterior French Doors,Interior French Doors,French Patio Doors,Fiberglass French Doors,Douglas Fir Fiberglass Doors,Mahogany Fiberglass Doors,Oak Woodgrain Fiberglass Doors,Smooth Skin Fiberglass Doors,Wrought Iron Fiberglass Doors,Sidelite Door Sidelight,Rustic Fiberglass Doors,Most Popular,Most Popular French Doors,Modern Front Doors,Walnut Doors,Solid Core Doors,Patio Doors,Fiberglass Front Doors,White Oak,Exterior,Interior,Commercial,French,Impact,Metal,White Oak Fiberglass Doors,Iron Grill Doors,Carved Doors" | split: "," -%}
+
+  {%- for cat_name in all_cat_names -%}
+    {%- capture cat_desc_html -%}
+      {%- render 'category-description-mapping', category_name: cat_name -%}
+    {%- endcapture -%}
+    {%- assign cat_desc_html = cat_desc_html | strip -%}
+    {%- if cat_desc_html != blank -%}
+      <div class="js-footer-desc-hidden" data-category="{{ cat_name | escape }}" style="display:none;">
+        {{ cat_desc_html }}
+      </div>
+    {%- endif -%}
+  {%- endfor -%}
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var params = new URLSearchParams(window.location.search);
+      var categories = params.getAll('filter.p.m.custom.product_category');
+      if (categories.length === 0) return;
+
+      var lastCat = decodeURIComponent(categories[categories.length - 1].replace(/\+/g, ' '));
+      lastCat = lastCat.replace(/^Nav_/, '').replace(/Whiteoak/g, 'White Oak Doors').replace(/_/g, ' ');
+
+      var allDescs = document.querySelectorAll('.js-footer-desc-hidden');
+      var container = document.getElementById('js-footer-desc');
+      var footerBox = document.getElementById('js-collection-footer');
+      var titleEl = document.getElementById('js-footer-title');
+      
+      if (!container || !footerBox) return;
+
+      for (var i = 0; i < allDescs.length; i++) {
+        if (allDescs[i].getAttribute('data-category') === lastCat) {
+          container.innerHTML = allDescs[i].innerHTML;
+          footerBox.style.display = 'block';
+          if (titleEl) {
+             titleEl.textContent = lastCat + ' DOORS';
+          }
+          break;
+        }
+      }
+    });
+  </script>
+{%- endunless -%}
