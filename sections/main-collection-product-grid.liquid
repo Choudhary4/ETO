@@ -527,3 +527,60 @@ document.addEventListener('DOMContentLoaded', function() {
   ]
 }
 {% endschema %}
+
+<style>
+@media (min-width: 1921px) {
+  .category-breadcrumb, .category-breadcrumb span, .category-breadcrumb a {
+    font-size: clamp(15px, 1.2vw, 30px) !important;
+  }
+  
+  .facets-vertical .facets-wrapper {
+    width: clamp(250px, 15vw, 450px) !important;
+    min-width: clamp(250px, 15vw, 450px) !important;
+    flex-shrink: 0 !important;
+    padding-right: clamp(15px, 2vw, 40px) !important;
+  }
+  
+  .facets__form-vertical {
+    width: 100% !important;
+  }
+  
+  /* Removed .help-choosing-banner and .door-type-banner massive screen overrides */
+  
+  .facets-wrapper, .facets-wrapper label, .facets-wrapper a, .facets-wrapper div:not(.help-choosing-banner):not(.door-type-banner):not(.help-choosing-banner div):not(.door-type-banner div), .facets-wrapper span:not(.help-choosing-banner span):not(.door-type-banner span), .door-categories__label, .door-categories__sublink { 
+    font-size: clamp(14px, 1.1vw, 28px) !important; 
+    line-height: 1.5 !important; 
+  }
+  .facets__heading, .door-categories__title, .facets__summary span { 
+    font-size: clamp(16px, 1.4vw, 32px) !important; 
+  }
+  .facets-wrapper img:not(.help-choosing-banner img):not(.door-type-banner img) {
+    height: clamp(32px, 2vw, 64px) !important;
+  }
+  .facets-wrapper svg:not(.help-choosing-banner svg):not(.door-type-banner svg) {
+    width: clamp(16px, 1.2vw, 32px) !important;
+    height: clamp(16px, 1.2vw, 32px) !important;
+  }
+  
+  .listing-controls-bar, .collection-toolbar, .toolbar-amount, .toolbar-sorter, .toolbar-view, .toolbar-view button, .toolbar-limiter, .toolbar-sorter select, .toolbar-limiter select {
+    font-size: clamp(12px, 1vw, 24px) !important;
+  }
+  .toolbar-view button svg {
+    width: clamp(16px, 1.2vw, 32px) !important;
+    height: clamp(16px, 1.2vw, 32px) !important;
+  }
+  
+  .eto-bottom-cta-section p { 
+    font-size: clamp(21px, 1.6vw, 42px) !important; 
+    line-height: 1.5 !important; 
+  }
+  
+  .collection-footer-custom, .collection-footer-custom p {
+    font-size: clamp(12px, 0.9vw, 24px) !important;
+    line-height: 1.5 !important;
+  }
+  .collection-footer-custom h2, .collection-footer-custom h3, .collection-footer-custom h4 {
+    font-size: clamp(16px, 1.2vw, 32px) !important;
+  }
+}
+</style>

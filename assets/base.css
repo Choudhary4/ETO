@@ -147,6 +147,16 @@ body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
   }
 }
 
+@media screen and (min-width: 1921px) {
+  .page-width, .page-width-desktop {
+    max-width: 85vw !important; /* Scale to 85% of screen width on massive screens */
+    padding: 0 4vw !important;
+  }
+  .page-width--narrow {
+    max-width: 55vw !important;
+  }
+}
+
 .isolate {
   position: relative;
   z-index: 0;

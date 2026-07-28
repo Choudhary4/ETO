@@ -224,3 +224,78 @@ cart-items {
     gap: 1rem;
   }
 }
+
+@media screen and (min-width: 1921px) {
+  /* Cart Page Scaling for Massive Screens */
+  .title-wrapper-with-link .title { font-size: clamp(36px, 2.5vw, 60px) !important; }
+  .title-wrapper-with-link a { font-size: clamp(18px, 1.2vw, 32px) !important; }
+  
+  .cart-items th { font-size: clamp(14px, 1vw, 28px) !important; padding-bottom: clamp(18px, 1.5vw, 36px) !important; }
+  .cart-item__name { font-size: clamp(22px, 1.5vw, 36px) !important; margin-bottom: clamp(10px, 0.8vw, 20px) !important; }
+  .product-option { font-size: clamp(16px, 1.1vw, 28px) !important; line-height: 1.4 !important; margin-top: clamp(4px, 0.3vw, 8px) !important; }
+  .cart-item__final-price, .cart-item__old-price { font-size: clamp(18px, 1.3vw, 32px) !important; }
+  
+  .cart-item__image { max-width: clamp(140px, 10vw, 250px) !important; }
+  
+  /* Fix Layout Column Widths */
+  .cart-item__details { width: clamp(500px, 35vw, 1000px) !important; }
+  .cart-item__media { width: clamp(150px, 12vw, 300px) !important; }
+  .cart-items thead th:first-child { width: 55% !important; }
+  .cart__footer > * { width: clamp(400px, 30vw, 800px) !important; }
+  
+  /* Scale G Pay / Dynamic Checkout buttons using transform to bypass iframe restrictions */
+  .cart__dynamic-checkout-buttons { 
+    max-width: clamp(266px, 20vw, 533px) !important; /* 400px/1.5 to 800px/1.5 */
+    margin-top: clamp(15px, 1.2vw, 30px) !important; 
+    transform: scale(1.5);
+    transform-origin: top center;
+    margin-bottom: clamp(20px, 1.5vw, 40px) !important;
+  }
+  
+  quantity-input.quantity { 
+    width: clamp(220px, 18vw, 450px) !important; 
+    height: clamp(60px, 4vw, 120px) !important; 
+    min-height: clamp(60px, 4vw, 120px) !important;
+    align-items: center !important;
+  }
+  .quantity__input { 
+    font-size: clamp(24px, 1.8vw, 40px) !important; 
+    height: clamp(60px, 4vw, 120px) !important; 
+    line-height: normal !important; 
+    padding: 0 !important; 
+    margin: 0 !important;
+    width: 100% !important;
+    min-width: 50px !important;
+    color: #000 !important;
+    opacity: 1 !important;
+    display: block !important;
+  }
+  .quantity__button { 
+    width: clamp(60px, 5vw, 120px) !important; 
+    height: clamp(60px, 4vw, 120px) !important; 
+  }
+  .quantity__button .svg-wrapper { width: clamp(20px, 1.5vw, 40px) !important; }
+  .quantity__button svg { width: clamp(20px, 1.5vw, 40px) !important; height: clamp(20px, 1.5vw, 40px) !important; }
+  
+  cart-remove-button .icon-remove { width: clamp(35px, 2.8vw, 60px) !important; height: clamp(35px, 2.8vw, 60px) !important; }
+  cart-remove-button .button { min-width: clamp(45px, 3.5vw, 90px) !important; min-height: clamp(45px, 3.5vw, 90px) !important; }
+  .cart-item cart-remove-button { margin-left: clamp(30px, 2.5vw, 60px) !important; }
+  .cart-item__quantity-wrapper { gap: clamp(15px, 1.5vw, 40px) !important; justify-content: flex-start !important; }
+  
+  .totals > h2, .totals > p { font-size: clamp(20px, 1.5vw, 36px) !important; }
+  .totals__total-value { font-size: clamp(24px, 1.7vw, 40px) !important; }
+  
+  /* Scale Cart Line Item Prices */
+  .cart-item__price-wrapper .price { font-size: clamp(18px, 1.3vw, 32px) !important; }
+  .cart-item__totals .price { font-size: clamp(20px, 1.5vw, 36px) !important; }
+  
+  .tax-note { font-size: clamp(15px, 1.1vw, 28px) !important; margin-bottom: clamp(22px, 1.5vw, 44px) !important; }
+  
+  .cart__checkout-button { 
+    font-size: clamp(18px, 1.3vw, 32px) !important; 
+    padding: clamp(15px, 1.2vw, 30px) !important; 
+    min-height: clamp(60px, 4vw, 100px) !important; 
+    max-width: clamp(400px, 30vw, 800px) !important;
+    width: 100% !important;
+  }
+}

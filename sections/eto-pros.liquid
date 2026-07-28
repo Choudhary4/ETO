@@ -36,12 +36,12 @@
 
 /* Breadcrumbs */
 .eto-breadcrumb-container {
-  max-width: var(--eto-container-max);
+  max-width: var(--page-width);
   margin: 0 auto;
-  padding: 15px 20px 0;
+  padding: clamp(15px, 1.5vw, 30px) 20px 0;
 }
 .eto-breadcrumb {
-  font-size: 13px;
+  font-size: clamp(13px, 1vw, 24px);
   color: #333;
   font-weight: 700;
 }
@@ -50,16 +50,16 @@
 
 /* Pros Page Specific Styles */
 .eto-pros-intro h1 {
-  font-size: 18px;
+  font-size: clamp(18px, 1.8vw, 40px);
   font-weight: 700;
-  margin-bottom: 10px;
+  margin-bottom: clamp(10px, 1vw, 20px);
   color: #333;
 }
 .eto-pros-intro p {
-  font-size: 13px;
+  font-size: clamp(13px, 1.2vw, 26px);
   color: #555;
   line-height: 1.6;
-  margin-bottom: 20px;
+  margin-bottom: clamp(20px, 2vw, 40px);
 }
 
 /* Hero Row: Banner + Newsletter */
@@ -196,25 +196,25 @@
 .eto-grid-img {
   width: 100%;
   height: auto;
-  margin-bottom: 15px;
+  margin-bottom: clamp(15px, 1.5vw, 30px);
   border: 1px solid #eee;
 }
 .eto-grid-title {
   color: #000000;
-  font-size: 18px;
+  font-size: clamp(18px, 1.8vw, 36px);
   font-weight: 700;
   text-transform: uppercase;
-  margin-bottom: 10px;
+  margin-bottom: clamp(10px, 1vw, 20px);
 }
 .eto-grid-text {
-  font-size: 13px;
+  font-size: clamp(13px, 1.3vw, 26px);
   color: #555;
   line-height: 1.5;
-  margin-bottom: 15px;
+  margin-bottom: clamp(15px, 1.5vw, 30px);
 }
 .eto-grid-link {
   color: #000000;
-  font-size: 13px;
+  font-size: clamp(13px, 1.3vw, 26px);
   font-weight: 700;
   text-decoration: none;
 }
@@ -222,15 +222,15 @@
 /* Partners */
 .eto-pros-partners {
   border-top: 1px solid #ddd;
-  padding-top: 20px;
-  margin-bottom: 20px;
+  padding-top: clamp(20px, 2vw, 40px);
+  margin-bottom: clamp(20px, 2vw, 40px);
 }
 .eto-partners-title {
   color: #000000;
   font-weight: 800;
-  font-size: 14px;
+  font-size: clamp(14px, 1.4vw, 28px);
   text-transform: uppercase;
-  margin-bottom: 20px;
+  margin-bottom: clamp(20px, 2vw, 40px);
 }
 .eto-partners-logos {
   display: flex;
@@ -337,6 +337,10 @@
   display: block;
 }
 
+@media screen and (min-width: 1921px) {
+  .eto-pros-container, .eto-breadcrumb-container { max-width: 85vw !important; padding-left: 2vw !important; padding-right: 2vw !important; }
+  .eto-pros-banner { min-height: clamp(300px, 30vw, 1200px) !important; }
+}
 </style>
 
 {% schema %}

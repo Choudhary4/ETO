@@ -231,6 +231,14 @@
       grid-template-columns: 1fr;
     }
   }
+
+  @media screen and (min-width: 1921px) {
+    .eto-press-wrapper, .eto-press-breadcrumb { max-width: 85vw !important; padding-left: 2vw !important; padding-right: 2vw !important; }
+    .eto-press-breadcrumb { font-size: clamp(12px, 1.2vw, 24px) !important; }
+    .eto-press-header h2 { font-size: clamp(18px, 1.8vw, 36px) !important; }
+    .eto-press-item h3 { font-size: clamp(14px, 1.4vw, 28px) !important; }
+    .eto-press-item p { font-size: clamp(12px, 1.2vw, 24px) !important; }
+  }
 </style>
 
 {% schema %}

@@ -492,3 +492,46 @@
 .eto-product-card .card-information {
   margin-top: auto !important;
 }
+
+/* Massive Screen Scaling (1921px+) */
+@media screen and (min-width: 1921px) {
+  /* Scale Image Container */
+  .product-card-wrapper .card__media {
+    height: clamp(280px, 18vw, 450px) !important;
+    min-height: clamp(280px, 18vw, 450px) !important;
+  }
+  .product-card-wrapper .card__media .media {
+    height: clamp(260px, 17vw, 430px) !important;
+  }
+  .product-card-wrapper .card__media img {
+    max-height: clamp(260px, 17vw, 430px) !important;
+  }
+  
+  /* Scale Title */
+  .eto-product-card__title,
+  .eto-product-card__title.h5,
+  .product-card-wrapper .card__heading.eto-product-card__title,
+  .product-card-wrapper .card__heading {
+    font-size: clamp(13px, 0.9vw, 22px) !important;
+    min-height: clamp(38px, 2.5vw, 65px) !important;
+  }
+  
+  /* Scale Subtitle / Vendor */
+  .eto-product-card .caption-with-letter-spacing {
+    font-size: clamp(11px, 0.7vw, 18px) !important;
+  }
+  
+  /* Scale Price */
+  .eto-product-card__from-label {
+    font-size: clamp(16px, 1.1vw, 24px) !important;
+  }
+  .eto-product-card__price-value {
+    font-size: clamp(18px, 1.25vw, 28px) !important;
+  }
+  
+  /* Scale Button */
+  .eto-product-card__view-details {
+    font-size: clamp(13px, 0.9vw, 20px) !important;
+    padding: clamp(6px, 0.5vw, 12px) clamp(20px, 1.5vw, 36px) !important;
+  }
+}

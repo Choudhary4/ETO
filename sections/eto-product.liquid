@@ -4123,9 +4123,169 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   ],
   "presets": [
-    {
-      "name": "ETO Product"
-    }
   ]
 }
 {% endschema %}
+
+<style>
+@media (min-width: 1921px) {
+  /* Zoho Configuration */
+  .eto-config-card { padding: clamp(20px, 1.8vw, 40px) !important; margin-bottom: clamp(24px, 2vw, 48px) !important; }
+  .eto-config-row { padding: clamp(16px, 1.5vw, 32px) 0 !important; }
+  .eto-config-icon-placeholder { width: clamp(54px, 4.5vw, 108px) !important; height: clamp(54px, 4.5vw, 108px) !important; margin-right: clamp(16px, 1.5vw, 32px) !important; border-radius: clamp(8px, 0.7vw, 16px) !important; }
+  .eto-config-icon-placeholder img, .eto-config-icon-placeholder svg { width: clamp(28px, 2.2vw, 56px) !important; height: clamp(28px, 2.2vw, 56px) !important; }
+  .eto-config-row-label { font-size: clamp(14px, 1.2vw, 28px) !important; margin-right: clamp(6px, 0.5vw, 12px) !important; }
+  .eto-config-value { font-size: clamp(14px, 1.2vw, 28px) !important; }
+  .eto-config-edit { font-size: clamp(11px, 0.9vw, 22px) !important; padding: clamp(4px, 0.4vw, 8px) clamp(10px, 0.8vw, 20px) !important; border-radius: clamp(4px, 0.4vw, 8px) !important; }
+  .eto-config-complete-box { padding: clamp(16px, 1.5vw, 32px) clamp(20px, 1.8vw, 40px) !important; border-radius: clamp(8px, 0.7vw, 16px) !important; }
+  .eto-config-complete-icon { width: clamp(32px, 2.5vw, 64px) !important; height: clamp(32px, 2.5vw, 64px) !important; margin-right: clamp(16px, 1.5vw, 32px) !important; }
+  .eto-config-complete-icon svg { width: clamp(20px, 1.6vw, 40px) !important; height: clamp(20px, 1.6vw, 40px) !important; }
+  .eto-config-complete-text strong { font-size: clamp(15px, 1.2vw, 30px) !important; margin-bottom: clamp(4px, 0.3vw, 8px) !important; }
+  .eto-config-complete-text p { font-size: clamp(13px, 1vw, 26px) !important; }
+  #eto-center-add-cart { font-size: clamp(14px, 1.2vw, 28px) !important; padding: clamp(12px, 1vw, 24px) clamp(24px, 2vw, 48px) !important; border-radius: clamp(6px, 0.5vw, 12px) !important; }
+  
+  .eto-size-option { font-size: clamp(14px, 1.2vw, 28px) !important; padding: clamp(12px, 1vw, 24px) clamp(10px, 0.8vw, 20px) !important; min-height: clamp(34px, 3vw, 68px) !important; }
+  .eto-size-option .size, .eto-size-option .price, .eto-size-option .eto-img-opt-text span { font-size: clamp(14px, 1.2vw, 28px) !important; }
+  .eto-size-option img { width: clamp(50px, 4vw, 100px) !important; height: auto !important; }
+  .eto-dynamic-options-list { margin-bottom: clamp(16px, 1.5vw, 32px) !important; }
+  .sizes-head .label, .sizes-head .label * { font-size: clamp(18px, 1.5vw, 36px) !important; }
+  .sizes-head .eto-clear-config { font-size: clamp(14px, 1.1vw, 28px) !important; }
+  .eto-door-image, .eto-door-image-double-wrapper .panel { 
+    width: clamp(60px, 5vw, 120px) !important; 
+    height: clamp(110px, 9vw, 220px) !important; 
+  }
+  .eto-door-caption, .eto-prehang-caption { 
+    font-size: clamp(20px, 1.8vw, 40px) !important; 
+    padding: clamp(8px, 0.7vw, 16px) clamp(20px, 1.8vw, 40px) !important; 
+  }
+  .eto-door-options, .eto-prehang-options { gap: clamp(40px, 4vw, 80px) !important; margin: clamp(30px, 2.5vw, 60px) 0 clamp(15px, 1.2vw, 30px) !important; }
+
+  /* Breadcrumbs */
+  .crumb, .crumb a, .crumb .sep, .crumb .current { 
+    font-size: clamp(15px, 1.2vw, 30px) !important; 
+    gap: clamp(9px, 0.8vw, 18px) !important; 
+    padding: clamp(20px, 1.5vw, 40px) 0 !important; 
+  }
+  
+  /* Product Top Section */
+  main.wrap .eto-new-product-grid { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.35fr) clamp(275px, 20vw, 550px) !important; }
+  .eto-new-product-grid .title { font-size: clamp(30px, 2.5vw, 60px) !important; }
+  .eto-new-product-grid .lede { font-size: clamp(15px, 1.2vw, 30px) !important; max-width: none !important; }
+  
+  /* Size Grid */
+  .size-tile { padding: clamp(11px, 1vw, 22px) !important; }
+  .size-tile .dim { font-size: clamp(14px, 1.1vw, 28px) !important; }
+  .size-tile .price { font-size: clamp(13px, 1vw, 26px) !important; }
+  
+  /* Features */
+  .feature p { font-size: clamp(13px, 1vw, 26px) !important; }
+  .feature .ficon { width: clamp(40px, 3vw, 80px) !important; height: clamp(40px, 3vw, 80px) !important; }
+  .feature .ficon .icon { width: clamp(28px, 2.2vw, 56px) !important; height: clamp(28px, 2.2vw, 56px) !important; }
+  
+  /* Helper / Assurance */
+  .helper { padding: clamp(18px, 1.5vw, 36px) clamp(20px, 1.8vw, 40px) !important; gap: clamp(18px, 1.5vw, 36px) !important; }
+  .helper .badge { width: clamp(56px, 4.5vw, 112px) !important; height: clamp(56px, 4.5vw, 112px) !important; }
+  .helper .badge .icon { width: clamp(22px, 1.8vw, 44px) !important; height: clamp(22px, 1.8vw, 44px) !important; }
+  .helper .copy strong { font-size: clamp(16px, 1.3vw, 32px) !important; }
+  .helper .copy span { font-size: clamp(14px, 1.1vw, 28px) !important; }
+  .helper .check-btn { font-size: clamp(14px, 1.1vw, 28px) !important; padding: clamp(12px, 1vw, 24px) clamp(18px, 1.5vw, 36px) !important; }
+  
+  /* Buybox */
+  .buybox .btn { font-size: clamp(16px, 1.3vw, 32px) !important; padding: clamp(16px, 1.3vw, 32px) !important; }
+  .buybox .btn .icon { width: clamp(20px, 1.6vw, 40px) !important; height: clamp(20px, 1.6vw, 40px) !important; }
+  .buybox .price { font-size: clamp(38px, 3vw, 76px) !important; }
+  .buybox .selected, .buybox .selected * { font-size: clamp(15px, 1.2vw, 30px) !important; }
+  .buybox .selected .icon { width: clamp(20px, 1.6vw, 40px) !important; height: clamp(20px, 1.6vw, 40px) !important; }
+  .buybox .ships, .buybox .ships * { font-size: clamp(15px, 1.2vw, 30px) !important; }
+  .buybox .ships .icon { width: clamp(22px, 1.8vw, 44px) !important; height: clamp(22px, 1.8vw, 44px) !important; }
+  .buybox .customnote { font-size: clamp(14px, 1.1vw, 28px) !important; }
+  .buybox .qty-label { font-size: clamp(15px, 1.2vw, 30px) !important; margin: clamp(20px, 2vw, 40px) 0 clamp(8px, 0.7vw, 16px) !important; }
+  .buybox .stepper { gap: clamp(8px, 1vw, 20px) !important; }
+  .buybox .step { width: clamp(40px, 3vw, 80px) !important; height: clamp(40px, 3vw, 80px) !important; font-size: clamp(20px, 1.8vw, 40px) !important; border-radius: clamp(8px, 0.7vw, 16px) !important; }
+  .buybox .qty-val { width: clamp(40px, 3vw, 80px) !important; min-width: clamp(40px, 3vw, 80px) !important; font-size: clamp(18px, 1.5vw, 36px) !important; }
+  .buybox .callout { margin-top: clamp(20px, 2vw, 40px) !important; }
+  .buybox .callout .num { font-size: clamp(22px, 1.8vw, 44px) !important; gap: clamp(8px, 1vw, 20px) !important; flex-wrap: wrap !important; }
+  .buybox .callout .num .icon { width: clamp(24px, 2vw, 48px) !important; height: clamp(24px, 2vw, 48px) !important; }
+  .buybox .callout .hours { font-size: clamp(14px, 1.1vw, 28px) !important; margin-top: clamp(4px, 0.5vw, 10px) !important; }
+  .buybox .assurance { padding: clamp(15px, 1.5vw, 30px) clamp(16px, 1.5vw, 32px) !important; margin-top: clamp(16px, 1.5vw, 32px) !important; gap: clamp(14px, 1.2vw, 28px) !important; }
+  .buybox .assurance .icon { width: clamp(48px, 3.5vw, 96px) !important; height: clamp(48px, 3.5vw, 96px) !important; padding: clamp(7px, 0.7vw, 14px) !important; }
+  .buybox .assurance p { font-size: clamp(15px, 1.2vw, 30px) !important; }
+  
+  /* Tabs Container */
+  .tabs { padding: clamp(24px, 2vw, 48px) clamp(32px, 3vw, 64px) !important; margin-top: clamp(20px, 2vw, 40px) !important; }
+  
+  /* Tab Headers */
+  .tab { 
+    font-size: clamp(14px, 1.2vw, 28px) !important; 
+    padding: clamp(20px, 2vw, 40px) clamp(10px, 1vw, 20px) !important;
+  }
+  .tab .icon { 
+    width: clamp(16px, 1.5vw, 32px) !important; 
+    height: clamp(16px, 1.5vw, 32px) !important; 
+  }
+  
+  /* Tab Content */
+  .tabpanel, .product-description-container, .eto-clean-tab {
+    padding-top: clamp(28px, 2.5vw, 56px) !important;
+  }
+  .tabpanel p, .tabpanel li, .product-description-container, .eto-clean-tab, .eto-clean-tab span {
+    font-size: clamp(14px, 1.1vw, 28px) !important;
+    line-height: 1.6 !important;
+  }
+  .tabpanel li::before {
+    width: clamp(5px, 0.4vw, 10px) !important;
+    height: clamp(5px, 0.4vw, 10px) !important;
+    margin-top: clamp(8px, 0.7vw, 16px) !important;
+  }
+  
+  /* Tab Content Headings */
+  .product-description-container strong, .product-description-container b, .eto-clean-tab strong, .eto-clean-tab b {
+    font-size: clamp(15px, 1.2vw, 30px) !important;
+  }
+  .product-description-container h3, .product-description-container h4 {
+    font-size: clamp(18px, 1.5vw, 36px) !important;
+    margin-bottom: clamp(12px, 1vw, 24px) !important;
+  }
+  .product-description-container .eto-please-note, .product-description-container .eto-please-note * {
+    font-size: clamp(15px, 1.2vw, 30px) !important;
+  }
+  
+  .eto-clean-tab a.eto-fast-quote-link {
+    font-size: clamp(14px, 1.1vw, 28px) !important;
+    padding: clamp(13px, 1vw, 26px) !important;
+    border-radius: clamp(9px, 0.7vw, 18px) !important;
+  }
+  
+  /* Judge.me Reviews Widget */
+  #judgeme_product_reviews .jdgm-widget { font-size: clamp(14px, 1.1vw, 28px) !important; }
+  #judgeme_product_reviews .jdgm-summary-title { font-size: clamp(18px, 1.5vw, 36px) !important; }
+  #judgeme_product_reviews .jdgm-summary__score { font-size: clamp(24px, 2vw, 48px) !important; }
+  #judgeme_product_reviews .jdgm-summary__stars .jdgm-star,
+  #judgeme_product_reviews .jdgm-rev__rating .jdgm-star { font-size: clamp(18px, 1.5vw, 36px) !important; }
+  #judgeme_product_reviews .jdgm-write-rev-link,
+  #judgeme_product_reviews .jdgm--btn,
+  #judgeme_product_reviews .jdgm-submit-rev { 
+    font-size: clamp(14px, 1.1vw, 28px) !important; 
+    padding: clamp(12px, 1vw, 24px) clamp(24px, 2vw, 48px) !important; 
+  }
+  #judgeme_product_reviews .jdgm-rev__title { font-size: clamp(16px, 1.3vw, 32px) !important; }
+  #judgeme_product_reviews .jdgm-rev__body { font-size: clamp(14px, 1.1vw, 28px) !important; line-height: 1.6 !important; }
+  #judgeme_product_reviews .jdgm-rev__author { font-size: clamp(14px, 1.1vw, 28px) !important; }
+  #judgeme_product_reviews .jdgm-paginate .jdgm-paginate__page { font-size: clamp(14px, 1.1vw, 28px) !important; padding: clamp(8px, 0.6vw, 16px) !important; }
+  #judgeme_product_reviews .jdgm-widget-actions { display: flex; gap: clamp(10px, 1vw, 20px) !important; }
+
+  /* Q&A Section */
+  .eto-qa-form-section { font-size: clamp(14px, 1.1vw, 28px) !important; margin-top: clamp(30px, 2.5vw, 60px) !important; }
+  .eto-qa-write-btn, .eto-qa-submit-btn { 
+    font-size: clamp(14px, 1.1vw, 28px) !important; 
+    padding: clamp(12px, 1vw, 24px) clamp(24px, 2vw, 48px) !important; 
+  }
+  .eto-qa-form-title { font-size: clamp(18px, 1.5vw, 36px) !important; }
+  .eto-qa-label { font-size: clamp(14px, 1.1vw, 28px) !important; }
+  .eto-qa-input, .eto-qa-textarea { font-size: clamp(14px, 1.1vw, 28px) !important; padding: clamp(12px, 1vw, 24px) !important; }
+
+  /* Bottom CTA Section */
+  .eto-bottom-cta-section { padding: clamp(25px, 2vw, 50px) 0 !important; }
+  .eto-bottom-cta-section p { font-size: clamp(21px, 1.6vw, 42px) !important; line-height: 1.5 !important; }
+}
+</style>

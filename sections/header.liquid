@@ -312,8 +312,20 @@ html body .shopify-section-group-header-group {
   .eto-menu-item > a { font-size: clamp(16px, 1.1vw, 32px); line-height: 1.5; }
   .eto-menu > ul { gap: clamp(32px, 2.5vw, 64px); }
   
+  /* Dropdown Scaling */
+  .eto-dropdown { min-width: clamp(220px, 15vw, 440px) !important; }
+  .eto-dropdown-item > a,
+  .eto-flyout .eto-dropdown-item > a,
+  .eto-dynamic-flyout .eto-dropdown-item > a { 
+    padding: clamp(10px, 0.8vw, 20px) clamp(16px, 1.2vw, 32px) !important; 
+    font-size: clamp(14px, 1vw, 28px) !important; 
+  }
+  .eto-flyout, .eto-dynamic-flyout { min-width: clamp(240px, 16vw, 480px) !important; }
+  .arrow-right { font-size: clamp(10px, 0.8vw, 20px) !important; }
+  
   .eto-announce-text { font-size: clamp(14px, 1vw, 28px); line-height: 1.5; }
   .eto-desktop-phone { font-size: clamp(15px, 1vw, 30px); padding: 0.5vw 1vw; border-radius: 0.5vw; }
+  .eto-desktop-phone svg { width: clamp(18px, 1.2vw, 36px) !important; height: clamp(18px, 1.2vw, 36px) !important; }
   
   .eto-cart-count {
     top: -0.2vw; right: -0.4vw;

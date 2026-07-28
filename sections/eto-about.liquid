@@ -222,6 +222,42 @@
   border-color: #333333;
 }
 
+@media screen and (min-width: 1921px) {
+  .eto-about-container { max-width: 85vw !important; padding: clamp(20px, 2vw, 40px) !important; }
+  .eto-breadcrumb-container { max-width: 85vw !important; padding: clamp(15px, 1.5vw, 30px) 2vw 0 !important; }
+  .eto-breadcrumb { font-size: clamp(13px, 1.2vw, 26px); }
+  
+  .eto-about-hero { height: clamp(380px, 30vw, 1200px) !important; }
+  .eto-about-hero-text h2 { font-size: clamp(34px, 3vw, 68px); }
+  
+  .eto-about-img { height: clamp(180px, 15vw, 600px) !important; }
+  .eto-about-title { font-size: clamp(15px, 1.4vw, 30px); }
+  .eto-about-desc { font-size: clamp(13px, 1.2vw, 26px); }
+  .eto-read-more { font-size: clamp(16px, 1.5vw, 32px); }
+  
+  .eto-section-title { font-size: clamp(20px, 1.8vw, 40px); }
+  .eto-text-p { font-size: clamp(13px, 1.2vw, 26px); }
+  
+  .eto-form-label { font-size: clamp(13px, 1.2vw, 26px); margin-bottom: clamp(5px, 0.5vw, 10px); }
+  .eto-form-input, .eto-form-textarea { 
+    padding: clamp(8px, 0.8vw, 16px) !important; 
+    font-size: clamp(14px, 1.3vw, 28px) !important; 
+  }
+  .eto-date-input { width: clamp(35px, 3.5vw, 70px) !important; padding: clamp(4px, 0.4vw, 8px) !important; font-size: clamp(13px, 1.2vw, 26px) !important; }
+  .eto-date-sub { font-size: clamp(10px, 0.9vw, 20px); }
+  
+  .eto-radio-label { font-size: clamp(13px, 1.2vw, 26px); }
+  
+  .eto-submit-btn { 
+    padding: clamp(10px, 1vw, 20px) clamp(25px, 2.5vw, 50px) !important; 
+    font-size: clamp(14px, 1.3vw, 28px) !important; 
+  }
+
+  /* Scale text for hidden tabs (Impact, Brand, Price Guarantee, etc) */
+  #eto-about-default-content h2, #eto-about-default-content h3, #eto-impact-content h2, #eto-impact-content h3, #eto-brand-content h3, #eto-price-guarantee-content h2, #eto-price-guarantee-content h3, #eto-press-content h3, #eto-forms-content h3, #eto-warranty-content h3, #eto-diy-videos-content h2, #eto-diy-videos-content h3, #eto-3d-modeling-content h2, #eto-3d-modeling-content h3 { font-size: clamp(16px, 1.6vw, 32px) !important; margin-bottom: clamp(5px, 0.5vw, 10px) !important; }
+  
+  #eto-impact-content div, #eto-impact-content strong, #eto-forms-content ul, #eto-warranty-content div, #eto-3d-modeling-content p, #eto-3d-modeling-content div, #eto-3d-modeling-content a { font-size: clamp(13px, 1.3vw, 26px) !important; line-height: 1.6; }
+}
 </style>
 
 <div class="eto-breadcrumb-container">

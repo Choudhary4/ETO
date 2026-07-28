@@ -43,7 +43,7 @@
         {%- endif -%}
 
         {%- if filter_type == 'vertical' -%}
-          <div class="help-choosing-banner" style="box-sizing: border-box; width: 100%; height: 85px; border: 1.5px solid #C5BEB3; border-radius: 4px; padding: 12px 15px; display: flex; align-items: center; margin-bottom: 15px; background: #fff;">
+          <div class="help-choosing-banner" style="box-sizing: border-box; width: 100%; min-height: 85px; height: auto; border: 1.5px solid #C5BEB3; border-radius: 4px; padding: 12px 15px; display: flex; align-items: center; margin-bottom: 15px; background: #fff;">
             <div style="flex-shrink: 0; margin-right: 15px; display: flex; align-items: center;">
               <svg width="38" height="36" viewBox="0 0 38 36" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g clip-path="url(#clip0_62_662)">
@@ -58,23 +58,23 @@
             </div>
             <div style="display: flex; flex-direction: column; justify-content: center; text-align: left;">
 
-              <p style="margin: 0 0 2px 0; font-size: 15px; font-weight: 800; color: #000; letter-spacing: 0; white-space: nowrap;">CALL (213) 622-2003</p>
-              <p style="margin: 0; font-size: 14px; font-weight: 300; color: #000; letter-spacing: 0; white-space: nowrap;">Speak with a Door Specialist</p>
+              <p style="margin: 0 0 2px 0; font-size: 15px; font-weight: 800; color: #000; letter-spacing: 0; line-height: 1.2;">CALL (213) 622-2003</p>
+              <p style="margin: 0; font-size: 14px; font-weight: 300; color: #000; letter-spacing: 0; line-height: 1.2;">Speak with a Door Specialist</p>
             </div>
           </div>
 
-          <div class="door-type-banner" style="box-sizing: border-box; width: 100%; height: 85px; border: 1.5px solid #C5BEB3; border-radius: 4px; padding: 12px 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; margin-bottom: 25px; background: #fff;">
-            <p style="margin: 0 0 8px 0; font-size: 16px; font-weight: 300; color: #000; letter-spacing: 0; white-space: nowrap;">All eto doors can be ordered as</p>
-            <div style="display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; white-space: nowrap;">
-              <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 15px; font-weight: 800; color: #000;">
+          <div class="door-type-banner" style="box-sizing: border-box; width: 100%; height: 85px; border: 1.5px solid #C5BEB3; border-radius: 4px; padding: 12px 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; margin-bottom: 25px; background: #fff; overflow: hidden;">
+            <p style="margin: 0 0 8px 0; font-size: clamp(12px, 3.8vw, 16px); font-weight: 300; color: #000; letter-spacing: 0; text-align: center; line-height: 1.2; white-space: nowrap;">All eto doors can be ordered as</p>
+            <div style="display: flex; align-items: center; justify-content: center; gap: clamp(4px, 1.5vw, 10px); width: 100%; white-space: nowrap;">
+              <span style="display: inline-flex; align-items: center; gap: clamp(2px, 1vw, 6px); font-size: clamp(11px, 3.5vw, 15px); font-weight: 800; color: #000;">
                 <!-- Prehung SVG -->
-                <img src="{{ 'prehung-icon.jpeg' | asset_url }}" alt="Prehung" style="height: 32px; width: auto; object-fit: contain; mix-blend-mode: multiply; filter: grayscale(100%) contrast(1.5) brightness(1.2);">
+                <img src="{{ 'prehung-icon.jpeg' | asset_url }}" alt="Prehung" style="height: clamp(24px, 7vw, 32px); width: auto; object-fit: contain; mix-blend-mode: multiply; filter: grayscale(100%) contrast(1.5) brightness(1.2);">
                 PREHUNG
               </span>
-              <span style="font-size: 15px; color: #000; font-weight: 300;">or</span>
-              <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 15px; font-weight: 800; color: #000;">
+              <span style="font-size: clamp(11px, 3.5vw, 15px); color: #000; font-weight: 300;">or</span>
+              <span style="display: inline-flex; align-items: center; gap: clamp(2px, 1vw, 6px); font-size: clamp(11px, 3.5vw, 15px); font-weight: 800; color: #000;">
                 <!-- Slab SVG -->
-                <img src="{{ 'slab-icon.jpeg' | asset_url }}" alt="Slab" style="height: 32px; width: auto; object-fit: contain; mix-blend-mode: multiply; filter: grayscale(100%) contrast(1.5) brightness(1.2);">
+                <img src="{{ 'slab-icon.jpeg' | asset_url }}" alt="Slab" style="height: clamp(24px, 7vw, 32px); width: auto; object-fit: contain; mix-blend-mode: multiply; filter: grayscale(100%) contrast(1.5) brightness(1.2);">
                 SLAB
               </span>
             </div>
