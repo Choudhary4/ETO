@@ -107,7 +107,7 @@ ETO Doors - Custom Product Page Layout
   background-color: white;
   position: absolute;
   top: 0;
-  left: 520px;
+  left: calc(100% + 20px);
   z-index: 1000;
   display: none;
   box-shadow: 0 4px 20px rgba(0,0,0,0.15);
@@ -1982,11 +1982,11 @@ ETO Doors - Custom Product Page Layout
 
   /* sizes-head styling moved */
 
-  .size-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;}
-  .size-tile{position:relative;text-align:left;background:var(--tile);border:1px solid var(--tile-line);border-radius:9px;padding:11px 11px;display:flex;flex-direction:column;gap:2px;transition:border-color .12s ease, box-shadow .12s ease;cursor:pointer;min-width:0;}
+  .size-grid{display:grid;grid-template-columns:repeat(4, 1fr);gap:9px;}
+  .size-tile{position:relative;text-align:center;align-items:center;background:var(--tile);border:1px solid var(--tile-line);border-radius:9px;padding:11px 8px;display:flex;flex-direction:column;gap:2px;transition:border-color .12s ease, box-shadow .12s ease;cursor:pointer;min-width:0; overflow:hidden;}
   .size-tile:hover{border-color:var(--oak-soft);}
   .size-tile.selected{border-color:var(--oak);box-shadow:0 0 0 1px var(--oak);background:var(--oak-tint);}
-  .size-tile .dim{font-size:14px;font-weight:500;color:var(--ink);white-space:nowrap;}
+  .size-tile .dim{font-size:14px;font-weight:500;color:var(--ink);white-space:nowrap !important;text-align:center;text-overflow:ellipsis;max-width:100%;}
   .size-tile .price{font-size:13px;font-weight:500;color:var(--oak);}
   .size-tile .check{position:absolute;top:-7px;right:-7px;width:20px;height:20px;border-radius:50%;background:var(--oak);color:#fff;display:none;align-items:center;justify-content:center;}
   .size-tile.selected .check{display:flex;}
@@ -1998,7 +1998,7 @@ ETO Doors - Custom Product Page Layout
   .helper .copy{flex:1;}
   .helper .copy strong{display:block;font-size:16px;color:#1F1D1A;font-weight:700;margin-bottom:4px;}
   .helper .copy span{display:block;font-size:14px;color:#4A453E;line-height:1.45;max-width:none;}
-  .helper .check-btn{border:1px solid #D8CDBA;background:#fff;border-radius:8px;padding:12px 18px;font-size:14px;font-weight:600;color:#1F1D1A;white-space:nowrap;cursor:default;text-decoration:none;box-shadow:0 2px 6px rgba(0,0,0,0.05);pointer-events:none;}
+  .helper .check-btn{border:1px solid #D8CDBA;background:#fff;border-radius:8px;padding:12px 18px;font-size:14px;font-weight:600;color:#1F1D1A;white-space:nowrap;cursor:pointer;text-decoration:none;box-shadow:0 2px 6px rgba(0,0,0,0.05);}
   .helper .check-btn:hover{border-color:#D8CDBA;}
 
   .features{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:20px;background:#F3F0EA !important;border:1px solid #E7E2D8;border-radius:12px;padding:32px 16px;}
@@ -2066,6 +2066,451 @@ ETO Doors - Custom Product Page Layout
     .thumbs { gap: 6px; }
     .gallery .hero{padding:12px; border-radius: 8px;}
   }
+
+  /* ========================================= */
+  /* NEW TABS DESIGN CSS */
+  /* ========================================= */
+  .eto-new-tabs-section {
+    max-width: 100%;
+    margin: 60px auto;
+    padding: 0 40px;
+  }
+  .eto-new-tablist {
+    display: flex;
+    width: 100%;
+    gap: 0;
+    border-bottom: none;
+    margin-bottom: -1px;
+    position: relative;
+    z-index: 1;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .eto-new-tablist::-webkit-scrollbar { display: none; }
+  .eto-new-tablist .eto-tab-btn {
+    flex: 1 1 0 !important;
+    justify-content: center !important;
+    text-align: center;
+    background: #fdfaf7;
+    border: 1px solid #e0dcd5;
+    border-bottom: none;
+    padding: 16px 32px;
+    font-family: var(--font-heading-family);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--eto-soft-gray);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-radius: 8px 8px 0 0;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    margin-right: -1px;
+  }
+  .eto-new-tablist .eto-tab-btn .material-symbols-outlined {
+    font-size: 18px;
+    color: inherit;
+  }
+  .eto-new-tablist .eto-tab-btn.active {
+    background: #fff;
+    color: var(--eto-dark-charcoal);
+    border-top: 1px solid #eae4d9;
+    border-left: 1px solid #eae4d9;
+    border-right: 1px solid #eae4d9;
+    border-bottom: 3px solid #b6855b;
+    font-weight: 600;
+    z-index: 2;
+  }
+
+  /* Content Wrapper */
+  .eto-tabs-content-wrapper {
+    background: #fff;
+    border: 1px solid #eae4d9;
+    border-radius: 0 8px 8px 8px;
+    padding: 40px;
+    position: relative;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+  }
+  .eto-tab-pane { display: none; }
+  .eto-tab-pane.active { display: block; animation: fadeIn 0.4s ease forwards; }
+
+  .eto-tab-inner {
+    width: 100%;
+  }
+
+  /* Warning Banner */
+  .eto-tab-warning-banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fcf9f5;
+    border: 1px solid #eae4d9;
+    border-radius: 8px;
+    padding: 16px 24px;
+    margin-bottom: 32px !important;
+  }
+  .eto-tab-warning-banner.style-light {
+    justify-content: flex-start;
+    gap: 12px;
+  }
+  .eto-tab-warning-banner.style-light .material-symbols-outlined { color: #666; font-size: 22px; font-variation-settings: 'wght' 300; }
+  .eto-warning-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .eto-tab-warning-banner .eto-warning-text { margin: 0; font-size: 13px !important; color: #444 !important; font-weight: 500; display: block !important; visibility: visible !important; }
+  .eto-tab-warning-banner a { color: #b6855b; text-decoration: underline; font-weight: 600; font-size: 13px; margin-left: 8px; }
+  .eto-tab-warning-banner a:hover { color: #9c6c43; }
+
+  /* Typography */
+  .eto-tab-product-title {
+    font-family: var(--font-heading-family);
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0 0 12px 0;
+    color: #111;
+  }
+  .eto-tab-product-desc {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 40px;
+    max-width: 1000px;
+  }
+  .eto-tab-title {
+    font-family: var(--font-heading-family) !important;
+    font-size: 24px !important;
+    font-weight: 600 !important;
+    color: #333 !important;
+    margin: 0 0 8px 0 !important;
+  }
+  .eto-tab-subtitle {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 48px;
+  }
+
+  .eto-details-2col {
+    display: grid;
+    grid-template-columns: 1fr clamp(350px, 25vw, 500px);
+    gap: 40px;
+  }
+  .eto-details-left {
+    max-width: 1000px;
+  }
+  .eto-details-left h4 { font-size: 16px; font-weight: 700; color: #111; margin: 0 0 12px 0; }
+  .eto-details-left p { font-size: 13px; color: #555; line-height: 1.6; margin-bottom: 24px; }
+  .eto-checklist { list-style: none; padding: 0; margin: 0 0 24px 0; }
+  .eto-checklist li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 13px;
+    margin-bottom: 12px;
+    color: #333;
+  }
+  .eto-checklist li .material-symbols-outlined { color: #111; font-size: 18px; font-weight: 600; }
+  .eto-view-full-link { color: #b6855b; font-weight: 600; font-size: 13px; text-decoration: underline; display: inline-block; margin-top: 16px; }
+
+  .eto-details-right {
+    background: #FCF9F5;
+    border: 1px solid #eae4d9;
+    border-radius: 8px;
+    padding: 32px;
+  }
+  .eto-details-right h4 { font-size: 16px; font-weight: 700; color: #111; margin: 0 0 20px 0; }
+  .eto-options-list { list-style: none; padding: 0; margin: 0; }
+  .eto-options-list li {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 13px;
+    color: #444;
+    padding: 16px 0;
+    list-style: none !important;
+  }
+  .eto-options-list li::before, .eto-options-list li::after, .eto-options-list li::marker {
+    display: none !important;
+    content: none !important;
+  }
+  .eto-options-list li:first-child { padding-top: 0; }
+  .eto-options-list li:last-child { padding-bottom: 0; }
+  .eto-options-list li .material-symbols-outlined { color: #444; font-size: 24px; font-variation-settings: 'wght' 200; }
+
+  /* Spec Features */
+  .eto-spec-features {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .eto-feature-card {
+    background: #ffffff;
+    border: 1px solid #f0eae1;
+    border-radius: 8px;
+    padding: 24px 16px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+  }
+  .eto-feature-card .icon-large { font-size: 32px; color: #444; margin-bottom: 4px; font-variation-settings: 'wght' 200; }
+  .eto-feature-card strong { font-size: 13px; font-weight: 700; color: #111; }
+  .eto-feature-card span { font-size: 12px; color: #777; }
+
+  /* Spec Tables */
+  .eto-spec-tables {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 32px;
+  }
+  .eto-spec-table-container h4 {
+    font-size: 14px;
+    font-weight: 700;
+    margin: 0 0 12px 0;
+    padding-bottom: 0;
+    border-bottom: none;
+    color: #444;
+  }
+  .eto-spec-table { 
+    width: 100%; 
+    border-collapse: separate; 
+    border-spacing: 0;
+    background: #ffffff;
+    border: 1px solid #f0eae1;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .eto-spec-table td {
+    padding: 14px 20px;
+    font-size: 13px;
+    border-bottom: 1px solid #f0eae1;
+  }
+  .eto-spec-table tr:last-child td { border-bottom: none; }
+  .eto-spec-table td:first-child { font-weight: 700; width: 45%; color: #111; }
+  .eto-spec-table td:last-child { color: #666; }
+
+  .eto-spec-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 24px;
+    padding-top: 24px;
+  }
+  .eto-spec-footer p { margin: 0; font-size: 13px; color: var(--eto-soft-gray); }
+
+  /* Leadtime Cards */
+  .eto-leadtime-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-bottom: 40px !important;
+  }
+  .eto-leadtime-card {
+    border: 1px solid #e8e2d7;
+    border-radius: 6px;
+    padding: 24px 32px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+  .door-icon-wrapper {
+    width: 72px;
+    height: 72px;
+    background: #fbf9f6;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .eto-leadtime-card .door-icon { font-size: 40px; color: #333; }
+  .eto-leadtime-card-content { display: flex; flex-direction: column; }
+  .leadtime-label { font-size: 11px; font-weight: 700; color: #737373; letter-spacing: 0.5px; margin-bottom: 6px; text-transform: uppercase; }
+  .eto-leadtime-card-content strong { font-size: 24px; font-weight: 700; margin-bottom: 4px; color: #222; }
+  .eto-leadtime-card-content span:last-child { font-size: 12px; color: #666; }
+
+  /* Magento Spec HTML Styles */
+  .eto-magento-spec-html { font-size: 14px; color: var(--eto-soft-gray); line-height: 1.6; margin-top: 32px; }
+  .eto-magento-spec-html ul { padding-left: 20px; }
+  .eto-magento-spec-html li { margin-bottom: 8px; }
+  .eto-magento-spec-html strong { color: #333; font-weight: 600; }
+
+  /* Progress Bar */
+  .eto-shipping-progress {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: flex-start;
+    position: relative;
+    margin-bottom: 32px !important;
+    padding: 0;
+  }
+  .progress-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    padding: 0 10px;
+  }
+  .progress-step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 24px;
+    left: calc(50% + 32px);
+    width: calc(100% - 64px);
+    height: 1px;
+    background: #e6dac8;
+    z-index: 1;
+  }
+  .progress-step:not(:last-child)::before {
+    content: '';
+    position: absolute;
+    top: 21px;
+    right: calc(-50% + 30px);
+    border-top: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+    border-left: 5px solid #e6dac8;
+    z-index: 2;
+  }
+  .step-icon-wrapper {
+    width: 48px;
+    height: 48px;
+    background: #ffffff;
+    border: 1px solid #e6dac8;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+    position: relative;
+    z-index: 3;
+  }
+  .step-icon-wrapper .material-symbols-outlined { color: #333 !important; font-size: 24px !important; }
+  .progress-step strong { font-size: 13px; font-weight: 600; color: #333; margin-bottom: 4px; }
+  .progress-step span:last-child { font-size: 12px; color: #737373; }
+
+  .eto-shipping-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0px;
+  }
+  .eto-policy-link {
+    font-size: 15px;
+    font-weight: 700;
+    color: #111;
+    text-decoration: none !important;
+    border-bottom: 1.5px solid #111;
+    padding-bottom: 2px;
+  }
+
+  /* Buttons */
+  .eto-btn-brown {
+    background: #b6855b;
+    color: #fff;
+    padding: 12px 32px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 14px;
+    display: inline-block;
+    transition: background 0.3s;
+  }
+  .eto-btn-brown:hover { background: #9c6c43; color: #fff; }
+
+  .eto-btn-orange {
+    background: #D87732;
+    color: #fff !important;
+    -webkit-text-fill-color: #fff !important;
+    padding: 12px 24px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 14px;
+    display: inline-block;
+    transition: background 0.3s;
+  }
+  .eto-btn-orange:hover { background: #b86529; color: #fff !important; -webkit-text-fill-color: #fff !important; }
+
+  /* FAQs */
+  .eto-faq-accordion {
+    border: 1px solid #e0dcd5;
+    border-radius: 8px;
+    margin-bottom: 32px;
+    overflow: hidden;
+  }
+  .faq-item {
+    background: #ffffff;
+  }
+  .faq-item.border-top {
+    border-top: 1px solid #e0dcd5;
+  }
+  .faq-question {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    background: none;
+    border: none;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--eto-dark-charcoal);
+    cursor: pointer;
+    text-align: left;
+  }
+  .faq-question .faq-icon {
+    color: #d38b4a;
+  }
+  .faq-answer {
+    display: none;
+    padding: 0 24px 24px 24px;
+  }
+  .faq-answer p { margin: 0; font-size: 14px; color: var(--eto-soft-gray); line-height: 1.6; }
+
+  .eto-faq-cta {
+    background: #f7f3ec;
+    border-radius: 8px;
+    padding: 24px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .cta-content { display: flex; align-items: center; gap: 12px; }
+  .cta-content .cta-icon { font-size: 28px; color: #D87732; }
+
+  /* Responsive */
+  @media(max-width: 990px) {
+    .eto-details-2col, .eto-spec-tables, .eto-leadtime-cards {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+    .eto-spec-features {
+      grid-template-columns: 1fr 1fr;
+    }
+    .eto-tab-warning-banner {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    .progress-line { display: none; }
+    .eto-shipping-progress { flex-direction: column; gap: 24px; padding: 0; }
+    .progress-step { width: 100%; flex-direction: row; text-align: left; gap: 16px; }
+    .step-icon-wrapper { margin-bottom: 0; }
+    .eto-shipping-footer, .eto-faq-cta {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 16px;
+    }
+    .eto-tabs-content-wrapper { padding: 24px; }
+  }
+
 </style>
 
 <!-- Cart Popup -->
@@ -2285,16 +2730,11 @@ ETO Doors - Custom Product Page Layout
           </div>
         {% endif %}
         
-        {% for image in product.images limit: 4 %}
+        {% for image in product.images limit: 5 %}
           <div class="thumb {% if forloop.first and product.metafields.custom.product_image_url == blank %}active{% endif %}" onclick="etoChangeImage('{{ image | image_url: width: 600 }}', this)">
             <img src="{{ image | image_url: width: 100 }}" alt="{{ product.title }}" style="width: 100%; height: 100%; object-fit: contain; mix-blend-mode: darken; padding: 4px;">
           </div>
         {% endfor %}
-        {% if product.images.size > 4 %}
-          <div class="thumb more" onclick="etoOpenLightbox('{{ product.images[4] | image_url: width: 1200 }}');">
-            +{{ product.images.size | minus: 4 }}<span>More</span>
-          </div>
-        {% endif %}
       </div>
 
       <div class="zoomhint">
@@ -2429,7 +2869,7 @@ ETO Doors - Custom Product Page Layout
           <strong>Not sure which size you need?</strong>
           <span>Send us your rough opening measurements and we'll help confirm the right fit.</span>
         </div>
-        <a href="javascript:void(0);" class="check-btn" style="text-decoration:none;cursor:default;pointer-events:none;" onclick="return false;">Check My Size</a>
+        <a href="javascript:void(0);" class="check-btn" style="text-decoration:none;cursor:pointer;" onclick="openSizeCalculatorModal(); return false;">Check My Size</a>
       </div>
 
       <div class="features">
@@ -2494,192 +2934,328 @@ ETO Doors - Custom Product Page Layout
 
 
   <!-- ============ TABS ============ -->
-  <section class="tabs" aria-label="More information">
-    <div class="tablist" role="tablist">
-      <button class="tab eto-tab-btn active" data-tab="details" role="tab" onclick="etoShowTab('overview', this)"><svg class="icon" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><line x1="8" y1="8" x2="16" y2="8"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="8" y1="16" x2="13" y2="16"/></svg>Product Details</button>
-      <button class="tab eto-tab-btn" data-tab="fit" role="tab" onclick="etoShowTab('specification', this)"><svg class="icon" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="18" rx="1"/><line x1="9" y1="9" x2="15" y2="9"/><line x1="9" y1="15" x2="15" y2="15"/></svg>Size &amp; Fit Guide</button>
-      <button class="tab eto-tab-btn" data-tab="shipping" role="tab" onclick="etoShowTab('leadtime', this)"><svg class="icon" viewBox="0 0 24 24"><rect x="1" y="6" width="13" height="11" rx="1"/><path d="M14 9h4l3 3v5h-7z"/><circle cx="6" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg>Shipping &amp; Lead Time</button>
-      <button class="tab" data-tab="faq" role="tab" onclick="document.getElementById('eto-reviews-section').scrollIntoView({behavior: 'smooth'})"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.8.4-1 .8-1 1.7"/><line x1="12" y1="17" x2="12" y2="17"/></svg>FAQ</button>
+  <!-- ============ NEW TABS ============ -->
+  <section class="eto-new-tabs-section" aria-label="More information">
+    <div class="eto-new-tablist" role="tablist">
+      <button class="eto-tab-btn active" data-tab="details" role="tab" onclick="etoShowTab('overview', this)"><span class="material-symbols-outlined">grid_on</span> Product Details</button>
+      <button class="eto-tab-btn" data-tab="fit" role="tab" onclick="etoShowTab('specification', this)"><span class="material-symbols-outlined">straighten</span> Specifications</button>
+      <button class="eto-tab-btn" data-tab="shipping" role="tab" onclick="etoShowTab('leadtime', this)"><span class="material-symbols-outlined">local_shipping</span> Shipping &amp; Lead Time</button>
+      <button class="eto-tab-btn" data-tab="faq" role="tab" onclick="etoShowTab('faq', this)"><span class="material-symbols-outlined">help_outline</span> FAQ</button>
     </div>
     
-    <div>
+    <div class="eto-tabs-content-wrapper">
+      <!-- Product Details Tab -->
       <div id="tab-overview" class="tabpanel eto-tab-pane active" role="tabpanel">
-        <div class="product-description-container">
-          {% if product.metafields.custom.tab_overview != blank %}
-            {{ product.metafields.custom.tab_overview.value }}
-          {% else %}
-            <p class="eto-please-note"><strong>Please note: Doors are unfinished (the pictures may depict a finished door)<br>Request a Free Corner Sample to See the ETO Quality Difference</strong></p>
-            
-            <h3>{{ product.title }}</h3>
-            <div class="product-description">
-              {{ product.description }}
+        <div class="eto-tab-inner">
+          <div class="eto-tab-warning-banner">
+            <div class="eto-warning-left">
+              <span class="material-symbols-outlined">info</span>
+              <p>Doors arrive unfinished. Images may show a finished door.</p>
             </div>
+            <a href="/pages/contact?product_name={{ product.title | url_encode }}&product_url={{ shop.url | append: product.url | url_encode }}">Request a Free Corner Sample</a>
+          </div>
+
+          <h3 class="eto-tab-product-title">{{ product.title }}</h3>
+          {% if product.metafields.custom.tab_overview != blank %}
+            <div class="eto-tab-product-desc">{{ product.metafields.custom.tab_overview.value }}</div>
+          {% else %}
+            <div class="eto-tab-product-desc">{{ product.description }}</div>
           {% endif %}
+
+          <div class="eto-details-2col">
+            <div class="eto-details-left">
+              <h4>Why Choose the {{ product.title | split: ' ' | first }}</h4>
+              <p>Designed for those who value timeless style and reliable performance. Delivering a modern aesthetic with the durability and consistency you expect.</p>
+              <ul class="eto-checklist">
+                <li><span class="material-symbols-outlined">check</span> Modern design</li>
+                <li><span class="material-symbols-outlined">check</span> Residential and commercial applications</li>
+                <li><span class="material-symbols-outlined">check</span> Customization available</li>
+                <li><span class="material-symbols-outlined">check</span> Competitive nationwide pricing</li>
+              </ul>
+              <a href="javascript:void(0)" onclick="etoShowTab('specification', document.querySelector('[data-tab=\'fit\']'))" class="eto-view-full-link">View full product details</a>
+            </div>
+            <div class="eto-details-right">
+              <h4>Options &amp; Services</h4>
+              <ul class="eto-options-list">
+                <li><img src="{{ 'options-icon-1.jpeg' | asset_url }}" alt="Fire Rating" style="width: 24px; height: 24px; object-fit: contain; mix-blend-mode: multiply; filter: contrast(1.5) brightness(1.2) grayscale(1);"> 20-Minute Fire Rating</li>
+                <li><img src="{{ 'options-icon-2.jpeg' | asset_url }}" alt="Pre-Hanging" style="width: 24px; height: 24px; object-fit: contain; mix-blend-mode: multiply; filter: contrast(1.5) brightness(1.2) grayscale(1);"> Pre-Hanging Available</li>
+                <li><img src="{{ 'options-icon-3.jpeg' | asset_url }}" alt="Corner Sample" style="width: 24px; height: 24px; object-fit: contain; mix-blend-mode: multiply; filter: contrast(1.5) brightness(1.2) grayscale(1);"> Free Corner Sample</li>
+                <li><img src="{{ 'options-icon-4.jpeg' | asset_url }}" alt="Volume Pricing" style="width: 24px; height: 24px; object-fit: contain; mix-blend-mode: multiply; filter: contrast(1.5) brightness(1.2) grayscale(1);"> Pro Volume Pricing</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
-      
+
+      <!-- Specifications Tab -->
       <div id="tab-specification" class="tabpanel eto-tab-pane" role="tabpanel">
-        <div class="eto-clean-tab">
-        {% if product.metafields.custom.tab_specification != blank %}
-          <div class="eto-specs-list" style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; line-height: 1.8; color: #000;">
-            <style>
-              .eto-specs-list ul { list-style: disc; padding-left: 20px; margin: 6px 0; }
-              .eto-specs-list li { display: list-item !important; float: none !important; width: auto !important; padding: 2px 0; }
-              .eto-specs-list p  { display: block !important; margin: 4px 0; }
-              .eto-specs-list ul[type="disc"] > li > ul,
-              .eto-specs-list ul[type="disc"] > li > p { display: block !important; }
-            </style>
-            {{ product.metafields.custom.tab_specification.value }}
+        <div class="eto-tab-inner">
+          <h3 class="eto-tab-title">Product Specifications</h3>
+          <div class="eto-tab-subtitle">Construction, performance, and available options for this door.</div>
+          
+          {% assign raw_spec = product.metafields.custom.tab_specification | strip_html | strip_newlines | replace: '&nbsp;', ' ' %}
+          
+          {% assign spec_wood = product.metafields.custom.wood_species | default: 'Premium Veneer' %}
+          {% if raw_spec contains 'Wood Species:' %}
+            {% assign spec_wood = raw_spec | split: 'Wood Species:' | last | split: 'Construction:' | first | strip %}
+          {% endif %}
+          
+          {% assign spec_construction = product.metafields.custom.construction | default: 'Solid Core' %}
+          {% if raw_spec contains 'Construction:' %}
+            {% assign spec_construction = raw_spec | split: 'Construction:' | last | split: 'Custom Capabilities:' | first | split: 'Warranty:' | first | strip %}
+          {% endif %}
+          
+          {% assign spec_application = product.metafields.custom.project_application | default: 'Interior Use' %}
+          {% if raw_spec contains 'Project Application:' %}
+            {% assign spec_application = raw_spec | split: 'Project Application:' | last | split: 'NFRC' | first | split: 'Collection:' | first | strip %}
+          {% endif %}
+          
+          {% assign spec_warranty = product.metafields.custom.warranty | default: '1-Year Warranty' %}
+          {% if raw_spec contains 'Warranty:' %}
+            {% assign spec_warranty = raw_spec | split: 'Warranty:' | last | split: 'Project Application:' | first | strip %}
+          {% endif %}
+
+          {% assign spec_finish = product.metafields.custom.finish | default: 'Sold unfinished' %}
+          {% if raw_spec contains 'Finish:' %}
+            {% assign spec_finish = raw_spec | split: 'Finish:' | last | split: 'Pre-Hanging' | first | strip %}
+          {% endif %}
+
+          {% assign spec_pre_hanging = product.metafields.custom.pre_hanging | default: 'Single and double door options' %}
+          {% if raw_spec contains 'Pre-Hanging Available:' %}
+            {% assign spec_pre_hanging = raw_spec | split: 'Pre-Hanging Available:' | last | split: 'Wood Species:' | first | strip %}
+          {% elsif raw_spec contains 'Pre-Hanging:' %}
+            {% assign spec_pre_hanging = raw_spec | split: 'Pre-Hanging:' | last | split: 'Wood Species:' | first | strip %}
+          {% endif %}
+
+          {% assign spec_fire_rated = product.metafields.custom.fire_rated | default: '20, 45, and 60-minute options' %}
+          {% if raw_spec contains 'Fire Rating:' %}
+            {% assign spec_fire_rated = raw_spec | split: 'Fire Rating:' | last | split: 'Custom Capabilities:' | first | strip %}
+          {% endif %}
+
+          {% assign spec_custom = product.metafields.custom.custom_capabilities | default: 'Custom sizes, shapes, and designs' %}
+          {% if raw_spec contains 'Custom Capabilities:' %}
+            {% assign spec_custom = raw_spec | split: 'Custom Capabilities:' | last | split: 'Warranty:' | first | strip %}
+          {% endif %}
+
+          {% assign spec_u_factor = product.metafields.custom.u_factor | default: '0.40' %}
+          {% if raw_spec contains 'U-Factor' %}
+            {% assign spec_u_factor = raw_spec | split: 'U-Factor' | last | split: 'SHGC' | first | remove_first: ':' | remove_first: '-' | strip | truncatewords: 1, "" %}
+          {% endif %}
+
+          {% assign spec_shgc = product.metafields.custom.shgc | default: '0.04' %}
+          {% if raw_spec contains 'SHGC' %}
+            {% assign spec_shgc = raw_spec | split: 'SHGC' | last | split: 'STC' | first | remove_first: ':' | remove_first: '-' | strip | truncatewords: 1, "" %}
+          {% endif %}
+
+          {% assign spec_stc = product.metafields.custom.stc_rating | default: '28' %}
+          {% if raw_spec contains 'STC Rating' %}
+            {% assign spec_stc = raw_spec | split: 'STC Rating' | last | split: 'OITC' | first | strip | split: ' ' | last | remove: ':' | remove: '-' %}
+          {% endif %}
+
+          {% assign spec_oitc = product.metafields.custom.oitc_rating | default: '26' %}
+          {% if raw_spec contains 'OITC Rating' %}
+            {% assign spec_oitc = raw_spec | split: 'OITC Rating' | last | split: 'R-Value' | first | strip | split: ' ' | last | remove: ':' | remove: '-' %}
+          {% endif %}
+
+          {% assign spec_r_value = product.metafields.custom.r_value | default: '2.5' %}
+          {% if raw_spec contains 'R-Value' %}
+            {% assign temp_r = raw_spec | split: 'R-Value' | last %}
+            {% if temp_r contains 'Resistance to Heat Loss' %}
+              {% assign temp_r = temp_r | split: 'Resistance to Heat Loss' | last %}
+            {% endif %}
+            {% assign spec_r_value = temp_r | remove_first: ':' | remove_first: '-' | strip | truncatewords: 1, "" %}
+          {% endif %}
+
+          <div class="eto-spec-features">
+            <div class="eto-feature-card">
+              <img src="{{ 'spec-icon-1.jpeg' | asset_url }}" alt="Wood Species" class="icon-large" style="width: 56px; height: 56px; object-fit: contain; margin-bottom: 8px; mix-blend-mode: multiply; filter: contrast(1.5) brightness(1.2) grayscale(1);">
+              <strong>{{ spec_wood }}</strong>
+              <span>Vertical grain</span>
+            </div>
+            <div class="eto-feature-card">
+              <img src="{{ 'spec-icon-2.svg' | asset_url }}" alt="Construction" class="icon-large" style="width: 56px; height: 56px; object-fit: contain; margin-bottom: 8px; mix-blend-mode: multiply; filter: contrast(1.5) brightness(1.2) grayscale(1);">
+              <strong>{{ spec_construction }}</strong>
+              <span>Solid construction</span>
+            </div>
+            <div class="eto-feature-card">
+              <img src="{{ 'spec-icon-4.jpeg' | asset_url }}" alt="Application" class="icon-large" style="width: 56px; height: 56px; object-fit: contain; margin-bottom: 8px; mix-blend-mode: multiply; filter: contrast(1.5) brightness(1.2) grayscale(1);">
+              <strong>{{ spec_application }}</strong>
+              <span>Residential & commercial</span>
+            </div>
+            <div class="eto-feature-card">
+              <img src="{{ 'spec-icon-3.jpeg' | asset_url }}" alt="Warranty" class="icon-large" style="width: 56px; height: 56px; object-fit: contain; margin-bottom: 8px; mix-blend-mode: multiply; filter: contrast(1.5) brightness(1.2) grayscale(1);">
+              <strong>{{ spec_warranty }}</strong>
+              <span>Limited warranty</span>
+            </div>
           </div>
-        {% else %}
-          <div class="eto-specs-list" style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; line-height: 1.5; color: #000;">
-            <!-- Zoho Import Specs -->
-            {% if product.metafields.custom.spec_door_model != blank %}
-              <p style="margin: 0 0 2px 0;"><strong>Door Model:</strong> {{ product.metafields.custom.spec_door_model }}</p>
-            {% endif %}
-            
-            {% if product.metafields.custom.spec_species != blank %}
-              <p style="margin: 0 0 2px 0;"><strong>Species:</strong> {{ product.metafields.custom.spec_species }}</p>
-            {% endif %}
-  
-            {% if product.metafields.custom.spec_width != blank %}
-               <p style="margin: 0 0 2px 0;"><strong>Width:</strong> {{ product.metafields.custom.spec_width }}"</p>
-            {% endif %}
-  
-            {% if product.metafields.custom.spec_height != blank %}
-               <p style="margin: 0 0 2px 0;"><strong>Height:</strong> {{ product.metafields.custom.spec_height }}"</p>
-            {% endif %}
-  
-            {% if product.metafields.custom.spec_thickness != blank %}
-               <p style="margin: 0 0 2px 0;"><strong>Thickness:</strong> {{ product.metafields.custom.spec_thickness }}"</p>
-            {% endif %}
-  
-            {% if product.metafields.custom.spec_application != blank %}
-              <p style="margin: 0 0 2px 0;"><strong>Applicaton:</strong> {{ product.metafields.custom.spec_application }}</p>
-            {% endif %}
-  
-            {% if product.metafields.custom.spec_fire_rated != blank %}
-              <p style="margin: 0 0 2px 0;"><strong>Fire Rated:</strong> {{ product.metafields.custom.spec_fire_rated }}</p>
-            {% endif %}
-  
-            {% if product.metafields.custom.spec_impact_rated != blank %}
-              <p style="margin: 0 0 2px 0;"><strong>Impact Rated:</strong> {{ product.metafields.custom.spec_impact_rated }}</p>
-            {% endif %}
-  
-            {% if product.metafields.custom.spec_arch != blank %}
-              <p style="margin: 0 0 2px 0;"><strong>Arch:</strong> {{ product.metafields.custom.spec_arch }}</p>
-            {% endif %}
-  
-            {% if product.metafields.custom.spec_mega != blank %}
-              <p style="margin: 0 0 2px 0;"><strong>Mega Door (2-1/4):</strong> {{ product.metafields.custom.spec_mega }}</p>
-            {% endif %}
-  
-            {% if product.metafields.custom.spec_oversize != blank %}
-              <p style="margin: 0 0 2px 0;"><strong>Oversize (Taller than 96"):</strong> {{ product.metafields.custom.spec_oversize }}</p>
-            {% endif %}
-  
-            {% if product.metafields.custom.spec_weight != blank %}
-              <p style="margin: 0 0 2px 0;"><strong>Weight:</strong> {{ product.metafields.custom.spec_weight }} lbs</p>
-            {% endif %}
-            
-            <hr style="border:0; border-top:1px solid #eee; margin:10px 0;">
-  
-            <!-- Existing Specs -->
-            {% if product.metafields.custom.finish != blank %}
-              <p style="margin: 0 0 2px 0;"><strong>Finish:</strong> {{ product.metafields.custom.finish }}</p>
-            {% endif %}
-            
-            {% if product.metafields.custom.pre_hanging != blank %}
-              <p style="margin: 0 0 2px 0;"><strong>Pre-Hanging Available:</strong> {{ product.metafields.custom.pre_hanging }}</p>
-            {% endif %}
-            
-            {% if product.metafields.custom.wood_species != blank %}
-              <p style="margin: 0 0 2px 0;"><strong>Wood Species:</strong> {{ product.metafields.custom.wood_species }}</p>
-            {% endif %}
-            
-            {% if product.metafields.custom.construction != blank %}
-              <p style="margin: 0 0 2px 0;"><strong>Construction:</strong> {{ product.metafields.custom.construction }}</p>
-            {% endif %}
-            
-            {% if product.metafields.custom.fire_rated != blank %}
-              <p style="margin: 0 0 2px 0;"><strong>Fire Rated:</strong> {{ product.metafields.custom.fire_rated }}</p>
-            {% endif %}
-            
-            {% if product.metafields.custom.impact_rated != blank %}
-              <p style="margin: 0 0 2px 0;"><strong>Impact Rated:</strong> {{ product.metafields.custom.impact_rated }}</p>
-            {% endif %}
-            
-            {% if product.metafields.custom.custom_capabilities != blank %}
-              <p style="margin: 0 0 2px 0;"><strong>Custom Capabilities:</strong> {{ product.metafields.custom.custom_capabilities }}</p>
-            {% endif %}
-            
-            {% if product.metafields.custom.warranty != blank %}
-              <p style="margin: 0 0 2px 0;"><strong>Warranty:</strong> {{ product.metafields.custom.warranty }}</p>
-            {% endif %}
-            
-            {% if product.metafields.custom.project_application != blank %}
-              <p style="margin: 0 0 2px 0;"><strong>Project Application:</strong> {{ product.metafields.custom.project_application }}</p>
-            {% endif %}
-            
-            {% if product.metafields.custom.u_factor != blank %}
-              <p style="margin: 0 0 2px 0;"><strong>NFRC Rated U-Factor:</strong> {{ product.metafields.custom.u_factor }}</p>
-            {% endif %}
-            
-            {% if product.metafields.custom.shgc != blank %}
-              <p style="margin: 0 0 2px 0;"><strong>NFRC Rated SHGC:</strong> {{ product.metafields.custom.shgc }}</p>
-            {% endif %}
-            
-            {% if product.metafields.custom.stc_rating != blank %}
-              <p style="margin: 0 0 2px 0;"><strong>STC Rating:</strong> {{ product.metafields.custom.stc_rating }}</p>
-            {% endif %}
-            
-            {% if product.metafields.custom.oitc_rating != blank %}
-              <p style="margin: 0 0 2px 0;"><strong>OITC Rating:</strong> {{ product.metafields.custom.oitc_rating }}</p>
-            {% endif %}
-            
-            {% if product.metafields.custom.r_value != blank %}
-              <p style="margin: 0 0 2px 0;"><strong>R-Value:</strong> {{ product.metafields.custom.r_value }}</p>
-            {% endif %}
+
+          <div class="eto-spec-tables">
+            <div class="eto-spec-table-container">
+              <h4>Construction &amp; Options</h4>
+              <table class="eto-spec-table">
+                <tbody>
+                  <tr><td>Finish</td><td>{{ spec_finish }}</td></tr>
+                  <tr><td>Pre-Hanging</td><td>{{ spec_pre_hanging }}</td></tr>
+                  <tr><td>Fire Rating</td><td>{{ spec_fire_rated }}</td></tr>
+                  <tr><td>Custom Capabilities</td><td>{{ spec_custom }}</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="eto-spec-table-container">
+              <h4>Performance Ratings</h4>
+              <table class="eto-spec-table">
+                <tbody>
+                  <tr><td>U-Factor</td><td>{{ spec_u_factor }}</td></tr>
+                  <tr><td>SHGC</td><td>{{ spec_shgc }}</td></tr>
+                  <tr><td>STC Rating</td><td>{{ spec_stc }}</td></tr>
+                  <tr><td>OITC Rating</td><td>{{ spec_oitc }}</td></tr>
+                  <tr><td>R-Value</td><td>{{ spec_r_value }}</td></tr>
+                </tbody>
+              </table>
+            </div>
           </div>
-        {% endif %}
-        
-        <div class="eto-specs-action" style="margin-top: 25px;">
-          <a href="/pages/contact?product_name={{ product.title | url_encode }}&product_url={{ shop.url | append: product.url | url_encode }}" class="eto-btn-green eto-fast-quote-link" style="display: inline-block; padding: 8px 15px; font-size: 14px; font-weight: bold; color: white; background-color: var(--eto-dark-charcoal); border-radius: 4px; text-decoration: none; box-shadow: 0 2px 4px rgba(0,0,0,0.2); font-family: Arial, sans-serif; text-shadow: 1px 1px 1px rgba(0,0,0,0.3);">Click for Fast Quote</a>
-        </div>
+
+          <div class="eto-spec-footer">
+            <p>Performance values may vary by configuration. Confirm requirements before ordering.</p>
+            <a href="/pages/contact?product_name={{ product.title | url_encode }}&product_url={{ shop.url | append: product.url | url_encode }}" class="eto-btn-brown">Request a Quote</a>
+          </div>
         </div>
       </div>
-      
+
+      <!-- Shipping & Lead Time Tab -->
       <div id="tab-leadtime" class="tabpanel eto-tab-pane" role="tabpanel">
-        <div class="eto-clean-tab">
-        {% if product.metafields.custom.tab_lead_time != blank %}
-          {{ product.metafields.custom.tab_lead_time.value }}
-        {% else %}
-          <div style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; line-height: 1.5; color: #000;">
-            <p style="margin-bottom: 15px; text-decoration: underline;"><strong>Approximate Shipping Lead Times:</strong></p>
-            
-            <p style="margin-bottom: 15px;">
-              <span style="background-color: yellow; font-weight: bold; padding: 2px 0;">VENDOR PRODUCT</span>
-            </p>
-            
-            <p style="margin-bottom: 5px;">
-              <strong style="color: #000080;">SLAB ORDERS</strong> (Door Only): <strong style="color: #008f20; font-style: italic;">7-10 Business days</strong> (to ship out from our warehouse)
-            </p>
-            
-            <p style="margin-bottom: 20px;">
-              <strong style="color: #000080;">PRE-HUNG ORDERS:</strong> <strong style="color: #008f20; font-style: italic;">4-5 weeks</strong> (to ship out from our warehouse)
-            </p>
-            
-            <p style="margin-bottom: 20px;">
-              This product is being shipped from our warehouse in Los Angeles, California. Please understand, that lead times stated above represent the date the products will ship out from our facility. Once the product(s) ship, a tracking number will be forwarded to you and the shipment can be tracked with the carrier. It will take a few additional days for the common carrier to deliver the product to you.
-            </p>
-            
-            <p style="margin-bottom: 0;">
-              Read more: <strong><a href="javascript:void(0)" onclick="document.getElementById('eto-shipping-modal').style.display='block'" style="color: inherit; text-decoration: none;">Shipping Policy</a></strong>
-            </p>
+        <div class="eto-tab-inner">
+          <h3 class="eto-tab-title">Shipping &amp; Lead Time</h3>
+          <div class="eto-tab-subtitle">Estimated production timelines before your order leaves our Los Angeles warehouse.</div>
+          
+          <div class="eto-leadtime-cards">
+            <div class="eto-leadtime-card">
+              <div class="door-icon-wrapper">
+                <span class="material-symbols-outlined door-icon" style="font-variation-settings: 'wght' 200;">door_front</span>
+              </div>
+              <div class="eto-leadtime-card-content">
+                <span class="leadtime-label">SLAB DOOR ORDERS</span>
+                <strong>7–10 business days</strong>
+                <span>Estimated time to ship from our warehouse</span>
+              </div>
+            </div>
+            <div class="eto-leadtime-card">
+              <div class="door-icon-wrapper">
+                <span class="material-symbols-outlined door-icon" style="font-variation-settings: 'wght' 200;">sensor_door</span>
+              </div>
+              <div class="eto-leadtime-card-content">
+                <span class="leadtime-label">PRE-HUNG ORDERS</span>
+                <strong>4–5 weeks</strong>
+                <span>Estimated time to ship from our warehouse</span>
+              </div>
+            </div>
           </div>
-        {% endif %}
+
+          <div class="eto-shipping-progress">
+            <div class="progress-step">
+              <div class="step-icon-wrapper"><span class="material-symbols-outlined" style="font-variation-settings: 'wght' 200;">assignment</span></div>
+              <strong>1 Order Prepared</strong>
+              <span>Your door enters production</span>
+            </div>
+            <div class="progress-step">
+              <div class="step-icon-wrapper"><span class="material-symbols-outlined" style="font-variation-settings: 'wght' 200;">local_shipping</span></div>
+              <strong>2 Ships from Los Angeles</strong>
+              <span>Carrier transit time begins</span>
+            </div>
+            <div class="progress-step">
+              <div class="step-icon-wrapper"><span class="material-symbols-outlined" style="font-variation-settings: 'wght' 200;">mail</span></div>
+              <strong>3 Tracking Sent</strong>
+              <span>Tracking is emailed when available</span>
+            </div>
+          </div>
+
+          <div class="eto-tab-warning-banner style-light">
+            <span class="material-symbols-outlined">info</span>
+            <div class="eto-warning-text">Lead times are estimates and may vary by configuration. Carrier transit time is additional.</div>
+          </div>
+
+          <div class="eto-shipping-footer">
+            <a href="javascript:void(0)" onclick="document.getElementById('eto-shipping-modal').style.display='block'" class="eto-policy-link">Read shipping policy</a>
+            <a href="/pages/contact?product_name={{ product.title | url_encode }}&product_url={{ shop.url | append: product.url | url_encode }}" class="eto-btn-orange">Request a Shipping Quote</a>
+          </div>
         </div>
-        <!-- Shipping Policy Modal -->
+      </div>
+
+      <!-- FAQ Tab -->
+      <div id="tab-faq" class="tabpanel eto-tab-pane" role="tabpanel">
+        <div class="eto-tab-inner">
+          <h3 class="eto-tab-title">Frequently Asked Questions</h3>
+          <div class="eto-tab-subtitle">Helpful information about this door, available options, and ordering.</div>
+
+          <div class="eto-faq-accordion">
+            <div class="faq-item">
+              <button class="faq-question" onclick="etoToggleFaq(this)">Does this door arrive finished? <span class="material-symbols-outlined faq-icon">add</span></button>
+              <div class="faq-answer"><p>No. This door is sold unfinished. Product images may show the door with a finished appearance.</p></div>
+            </div>
+            <div class="faq-item border-top">
+              <button class="faq-question" onclick="etoToggleFaq(this)">Can this door be ordered pre-hung? <span class="material-symbols-outlined faq-icon">add</span></button>
+              <div class="faq-answer"><p>Yes, most of our doors can be ordered pre-hung. Contact us for specific configuration details.</p></div>
+            </div>
+            <div class="faq-item border-top">
+              <button class="faq-question" onclick="etoToggleFaq(this)">Are custom sizes and configurations available? <span class="material-symbols-outlined faq-icon">add</span></button>
+              <div class="faq-answer"><p>Yes, we offer extensive custom capabilities including custom sizes, shapes, and designs.</p></div>
+            </div>
+            <div class="faq-item border-top">
+              <button class="faq-question" onclick="etoToggleFaq(this)">Is this door available with a fire rating? <span class="material-symbols-outlined faq-icon">add</span></button>
+              <div class="faq-answer"><p>Many of our doors are available with 20, 45, and 60-minute fire ratings. Please request a quote to confirm availability for this specific model.</p></div>
+            </div>
+            <div class="faq-item border-top">
+              <button class="faq-question" onclick="etoToggleFaq(this)">Can I request a material sample? <span class="material-symbols-outlined faq-icon">add</span></button>
+              <div class="faq-answer"><p>Yes, we offer free corner samples so you can see the ETO quality difference before you buy.</p></div>
+            </div>
+            <div class="faq-item border-top">
+              <button class="faq-question" onclick="etoToggleFaq(this)">Is this door suitable for exterior use? <span class="material-symbols-outlined faq-icon">add</span></button>
+              <div class="faq-answer"><p>Please check the specifications tab. Some doors are interior-only, while others can be used for exterior applications if properly sealed and protected.</p></div>
+            </div>
+          </div>
+
+          <div class="eto-faq-cta">
+            <div class="cta-content">
+              <svg class="cta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" style="width: 44px; height: 44px; min-width: 44px;">
+                <path d="M5 13V11a7 7 0 0 1 14 0v2" />
+                <rect x="3" y="11" width="4" height="6" rx="2" fill="currentColor" stroke="none" />
+                <rect x="17" y="11" width="4" height="6" rx="2" fill="currentColor" stroke="none" />
+                <path d="M19 16v1a4 4 0 0 1-4 4h-4" />
+                <circle cx="9.5" cy="21" r="1.5" fill="currentColor" stroke="none" />
+              </svg>
+              <strong>Still need help choosing the right door?</strong>
+            </div>
+            <a href="/pages/contact?product_name={{ product.title | url_encode }}&product_url={{ shop.url | append: product.url | url_encode }}" class="eto-btn-brown">Talk to a Door Expert</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Toggle Script -->
+  <script>
+    function etoToggleFaq(btn) {
+      const answer = btn.nextElementSibling;
+      const icon = btn.querySelector('.faq-icon');
+      const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+      
+      // Close all others
+      document.querySelectorAll('.faq-question').forEach(q => {
+        q.setAttribute('aria-expanded', 'false');
+        q.querySelector('.faq-icon').textContent = 'add';
+        q.nextElementSibling.style.display = 'none';
+        q.classList.remove('active');
+      });
+
+      if (!isExpanded) {
+        btn.setAttribute('aria-expanded', 'true');
+        icon.textContent = 'remove';
+        answer.style.display = 'block';
+        btn.classList.add('active');
+      }
+    }
+  </script>
+
         <div id="eto-shipping-modal" style="display:none; position:fixed; z-index:9999; left:0; top:0; width:100%; height:100%; overflow:auto; background-color:rgba(0,0,0,0.6);" onclick="if(event.target===this) document.getElementById('eto-shipping-modal').style.display='none';">
           <div style="background-color:#fff; margin:5% auto; padding:30px; border:1px solid #888; width:90%; max-width:800px; border-radius:4px; position:relative; max-height:85vh; overflow-y:auto; line-height:1.6; text-align:left;">
             <span onclick="document.getElementById('eto-shipping-modal').style.display='none'" style="color:#aaa; position:absolute; right:20px; top:15px; font-size:28px; font-weight:bold; cursor:pointer; line-height:1;">&times;</span>
@@ -2702,14 +3278,7 @@ ETO Doors - Custom Product Page Layout
           </div>
         </div>
         
-        <div class="eto-specs-action" style="margin-top: 25px;">
-          <a href="/pages/contact?product_name={{ product.title | url_encode }}&product_url={{ shop.url | append: product.url | url_encode }}" class="eto-btn-green eto-fast-quote-link" style="display: inline-block; padding: 8px 15px; font-size: 14px; font-weight: bold; color: white; background-color: var(--eto-dark-charcoal); border-radius: 4px; text-decoration: none; box-shadow: 0 2px 4px rgba(0,0,0,0.2); font-family: Arial, sans-serif; text-shadow: 1px 1px 1px rgba(0,0,0,0.3);">Click for Fast Quote</a>
-        </div>
-      </div>
-      
-      </div>
-    </div>
-  </section>
+
 </main>
 
 <!-- ==============================================
@@ -4172,10 +4741,13 @@ document.addEventListener('DOMContentLoaded', function() {
   .eto-new-product-grid .title { font-size: clamp(30px, 2.5vw, 60px) !important; }
   .eto-new-product-grid .lede { font-size: clamp(15px, 1.2vw, 30px) !important; max-width: none !important; }
   
-  /* Size Grid */
-  .size-tile { padding: clamp(11px, 1vw, 22px) !important; }
-  .size-tile .dim { font-size: clamp(14px, 1.1vw, 28px) !important; }
-  .size-tile .price { font-size: clamp(13px, 1vw, 26px) !important; }
+  /* Size Grid fixed font sizes to prevent overflow on wide screens */
+  .size-tile { padding: 11px 11px !important; }
+  .size-tile .dim { font-size: 14px !important; }
+  .size-tile .price { font-size: 13px !important; }
+  
+  /* Zoom Container */
+  .eto-zoom-result { width: clamp(450px, 35vw, 900px) !important; height: clamp(500px, 40vw, 1000px) !important; }
   
   /* Features */
   .feature p { font-size: clamp(13px, 1vw, 26px) !important; }
@@ -4289,3 +4861,5 @@ document.addEventListener('DOMContentLoaded', function() {
   .eto-bottom-cta-section p { font-size: clamp(21px, 1.6vw, 42px) !important; line-height: 1.5 !important; }
 }
 </style>
+
+{% render 'eto-size-calculator' %}

@@ -35,8 +35,8 @@
     >
   </div>
 
-  <button type="button" class="price-find-btn" onclick="this.closest('form').submit()">
-    FIND
+  <button type="button" class="price-find-btn" onclick="this.closest('form').dispatchEvent(new Event('input', { bubbles: true }))">
+    APPLY
   </button>
 </div>
 

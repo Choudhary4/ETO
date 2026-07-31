@@ -2,8 +2,8 @@
   <div class="eto-product-grid">
     {% if section.blocks.size > 0 %}
       {% for block in section.blocks %}
-        <div class="eto-pg-card group" {{ block.shopify_attributes }}>
-          <a href="{{ block.settings.link | default: '#' }}" class="eto-pg-image-wrapper">
+        <a href="{{ block.settings.link | default: '#' }}" class="eto-pg-card group" {{ block.shopify_attributes }} style="text-decoration: none; color: inherit;">
+          <div class="eto-pg-image-wrapper">
             {% if block.settings.image != blank %}
               {{ block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy', class: 'eto-pg-image' }}
             {% elsif block.settings.image_url != blank %}
@@ -11,61 +11,61 @@
             {% else %}
               {{ 'image' | placeholder_svg_tag: 'eto-pg-image' }}
             {% endif %}
-          </a>
+          </div>
           <h4 class="eto-pg-title">{{ block.settings.title }}</h4>
           <p class="eto-pg-subtitle">{{ block.settings.subtitle }}</p>
-          <a href="{{ block.settings.link | default: '#' }}" class="eto-pg-btn">{{ block.settings.btn_text | default: 'SHOP NOW' }}</a>
-        </div>
+          <span class="eto-pg-btn">{{ block.settings.btn_text | default: 'SHOP NOW' }}</span>
+        </a>
       {% endfor %}
     {% else %}
-      <div class="eto-pg-card group">
-        <a href="/collections/all?filter.p.m.custom.product_category=WhiteOak" class="eto-pg-image-wrapper">
+      <a href="/collections/all?filter.p.m.custom.product_category=WhiteOak" class="eto-pg-card group" style="text-decoration: none; color: inherit;">
+        <div class="eto-pg-image-wrapper">
           <img class="eto-pg-image" loading="lazy" src="{{ 'grid-white-oak.svg' | asset_url }}" alt="White Oak Doors">
-        </a>
+        </div>
         <h4 class="eto-pg-title">White Oak<br>Doors</h4>
         <p class="eto-pg-subtitle">Timeless Craftsmanship.<br>Modern Function.</p>
-        <a href="/collections/all?filter.p.m.custom.product_category=WhiteOak" class="eto-pg-btn">SHOP NOW</a>
-      </div>
-      <div class="eto-pg-card group">
-        <a href="/collections/all?filter.p.m.custom.product_category=French" class="eto-pg-image-wrapper">
+        <span class="eto-pg-btn">SHOP NOW</span>
+      </a>
+      <a href="/collections/all?filter.p.m.custom.product_category=French" class="eto-pg-card group" style="text-decoration: none; color: inherit;">
+        <div class="eto-pg-image-wrapper">
           <img class="eto-pg-image" loading="lazy" src="{{ 'grid-french.svg' | asset_url }}" alt="French Doors">
-        </a>
+        </div>
         <h4 class="eto-pg-title">French<br>Doors</h4>
         <p class="eto-pg-subtitle">Timeless Craftsmanship.<br>Modern Function.</p>
-        <a href="/collections/all?filter.p.m.custom.product_category=French" class="eto-pg-btn">SHOP NOW</a>
-      </div>
-      <div class="eto-pg-card group">
-        <a href="/collections/all?filter.p.m.custom.product_category=FireRated" class="eto-pg-image-wrapper">
+        <span class="eto-pg-btn">SHOP NOW</span>
+      </a>
+      <a href="/collections/all?filter.p.m.custom.product_category=FireRated" class="eto-pg-card group" style="text-decoration: none; color: inherit;">
+        <div class="eto-pg-image-wrapper">
           <img class="eto-pg-image" loading="lazy" src="{{ 'grid-fire.svg' | asset_url }}" alt="Fire Rated Doors">
-        </a>
+        </div>
         <h4 class="eto-pg-title">Fire Rated<br>Doors</h4>
         <p class="eto-pg-subtitle">Timeless Craftsmanship.<br>Modern Function.</p>
-        <a href="/collections/all?filter.p.m.custom.product_category=FireRated" class="eto-pg-btn">SHOP NOW</a>
-      </div>
-      <div class="eto-pg-card group">
-        <a href="/collections/all?filter.p.m.custom.product_category=Fiberglass" class="eto-pg-image-wrapper">
+        <span class="eto-pg-btn">SHOP NOW</span>
+      </a>
+      <a href="/collections/all?filter.p.m.custom.product_category=Fiberglass" class="eto-pg-card group" style="text-decoration: none; color: inherit;">
+        <div class="eto-pg-image-wrapper">
           <img class="eto-pg-image" loading="lazy" src="{{ 'grid-fiberglass.svg' | asset_url }}" alt="Fiberglass Doors">
-        </a>
+        </div>
         <h4 class="eto-pg-title">Fiberglass<br>Doors</h4>
         <p class="eto-pg-subtitle">Timeless Craftsmanship.<br>Modern Function.</p>
-        <a href="/collections/all?filter.p.m.custom.product_category=Fiberglass" class="eto-pg-btn">SHOP NOW</a>
-      </div>
-      <div class="eto-pg-card group">
-        <a href="/collections/all?filter.p.m.custom.product_category=Metal" class="eto-pg-image-wrapper">
+        <span class="eto-pg-btn">SHOP NOW</span>
+      </a>
+      <a href="/collections/all?filter.p.m.custom.product_category=Metal" class="eto-pg-card group" style="text-decoration: none; color: inherit;">
+        <div class="eto-pg-image-wrapper">
           <img class="eto-pg-image" loading="lazy" src="{{ 'grid-steel.svg' | asset_url }}" alt="Steel Doors">
-        </a>
+        </div>
         <h4 class="eto-pg-title">Steel<br>Doors</h4>
         <p class="eto-pg-subtitle">Timeless Craftsmanship.<br>Modern Function.</p>
-        <a href="/collections/all?filter.p.m.custom.product_category=Metal" class="eto-pg-btn">SHOP NOW</a>
-      </div>
-      <div class="eto-pg-card group">
-        <a href="/collections/all?filter.p.m.custom.product_category=Impact" class="eto-pg-image-wrapper">
+        <span class="eto-pg-btn">SHOP NOW</span>
+      </a>
+      <a href="/collections/all?filter.p.m.custom.product_category=Impact" class="eto-pg-card group" style="text-decoration: none; color: inherit;">
+        <div class="eto-pg-image-wrapper">
           <img class="eto-pg-image" loading="lazy" src="{{ 'grid-impact.svg' | asset_url }}" alt="Impact Doors">
-        </a>
+        </div>
         <h4 class="eto-pg-title">Impact<br>Doors</h4>
         <p class="eto-pg-subtitle">Timeless Craftsmanship.<br>Modern Function.</p>
-        <a href="/collections/all?filter.p.m.custom.product_category=Impact" class="eto-pg-btn">SHOP NOW</a>
-      </div>
+        <span class="eto-pg-btn">SHOP NOW</span>
+      </a>
     {% endif %}
   </div>
 </div>
@@ -99,6 +99,7 @@
   padding: 64px 16px;
   border-bottom: 1px solid #EBEBEB;
   border-right: 1px solid #EBEBEB;
+  cursor: pointer;
 }
 /* Offset the 16px card padding so grid aligns with page edges on normal screens */
 @media (min-width: 768px) and (max-width: 1984px) {

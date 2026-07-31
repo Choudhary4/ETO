@@ -1,5 +1,5 @@
 <div style="width: 100%;">
-<div class="eto-white-oak-section">
+<a href="/collections/all?filter.p.m.custom.product_category=Interior" class="eto-white-oak-section" style="text-decoration: none; color: inherit; display: flex;" aria-label="Interior Doors">
   <div class="eto-white-oak-inner">
     <h2 class="eto-white-oak-title">{{ section.settings.title }}</h2>
   </div>
@@ -116,7 +116,7 @@
       <p class="eto-wo-vp-text">All 50 States + Interational.<br>Home Or Office Delivery.</p>
     </div>
   </div>
-</div>
+</a>
 </div>
 
 <style>
@@ -139,6 +139,7 @@
   position: relative;
   display: flex;
   justify-content: center;
+  cursor: pointer;
 }
 
 .eto-white-oak-inner {
@@ -211,27 +212,28 @@
     max-width: 100%;
   }
   .eto-white-oak-inner {
-    padding-top: 4vw;
+    padding-top: clamp(30px, 3vw, 80px);
   }
   .eto-white-oak-title {
-    font-size: clamp(64px, 5vw, 150px);
+    font-size: clamp(44px, 3vw, 85px);
     line-height: 1.2;
   }
   .eto-wo-vp-grid {
-    max-width: 85%;
+    max-width: 100% !important;
+    padding: 0 10vw !important;
     gap: 2vw;
   }
   .eto-wo-vp-icon {
-    width: clamp(32px, 3vw, 80px);
-    height: clamp(32px, 3vw, 80px);
-    margin-bottom: clamp(12px, 1.5vw, 40px);
+    width: clamp(32px, 2vw, 48px);
+    height: clamp(32px, 2vw, 48px);
+    margin-bottom: clamp(12px, 1vw, 20px);
   }
   .eto-wo-vp-title {
-    font-size: clamp(18px, 1.8vw, 45px);
+    font-size: clamp(16px, 1.1vw, 24px);
     line-height: 1.2;
   }
   .eto-wo-vp-text {
-    font-size: clamp(15px, 1.5vw, 36px);
+    font-size: clamp(15px, 0.8vw, 18px);
     line-height: 1.3;
   }
 }

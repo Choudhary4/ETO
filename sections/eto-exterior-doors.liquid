@@ -1,5 +1,5 @@
 <div style="background-color: #ffffff; width: 100%;">
-<div class="eto-exterior-doors-section">
+<a href="{{ section.settings.link }}" class="eto-exterior-doors-section" style="text-decoration: none; color: inherit; display: flex;" aria-label="Exterior Doors">
   <div class="eto-exterior-image-col">
     {% if section.settings.image != blank %}
       {{ section.settings.image | image_url: width: 1200 | image_tag: loading: 'lazy', class: 'eto-exterior-image' }}
@@ -10,9 +10,9 @@
   <div class="eto-exterior-text-col">
     <h3 class="eto-exterior-title">{{ section.settings.title }}</h3>
     <p class="eto-exterior-subtitle">{{ section.settings.subtitle }}</p>
-    <a href="{{ section.settings.link }}" class="eto-exterior-btn">{{ section.settings.btn_text }}</a>
+    <span class="eto-exterior-btn">{{ section.settings.btn_text }}</span>
   </div>
-</div>
+</a>
 </div>
 
 <style>
@@ -26,6 +26,8 @@
   margin: 0 auto;
   padding: 40px 0;
   border-top: 1px solid #EBEBEB;
+  position: relative;
+  cursor: pointer;
 }
 .eto-exterior-image-col {
   width: 55%;
@@ -52,8 +54,8 @@
 }
 .eto-exterior-title {
   font-family: 'MADE Mirage', serif;
-  font-size: 64px;
-  font-weight: 100;
+  font-size: 56px;
+  font-weight: 300;
   text-transform: none;
   letter-spacing: normal;
   line-height: 1.1;

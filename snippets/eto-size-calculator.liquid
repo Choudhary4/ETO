@@ -1,0 +1,408 @@
+<div class="overlay" id="sizeCalculatorOverlay" style="display:none;">
+  <div class="modal">
+    <span class="modal-close" onclick="closeSizeCalculatorModal()">&times;</span>
+    <div class="modal-eyebrow">Size calculator</div>
+    <h3>Check my size</h3>
+    <p class="desc">Pick your door and configuration — we'll calculate the exact pre-hung unit size instantly, no waiting on a reply.</p>
+
+    <div class="calc-field-row">
+      <div class="calc-field">
+        <label>Door category</label>
+        <div class="seg" id="categorySeg">
+          <button data-val="interior" class="active">Interior</button>
+          <button data-val="exterior">Exterior</button>
+          <button data-val="fiberglass">Fiberglass</button>
+          <button data-val="firerated">Fire rated</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="calc-field-row">
+      <div class="calc-field">
+        <label>Configuration</label>
+        <div class="seg" id="configSeg">
+          <button data-val="single" class="active">Single door</button>
+          <button data-val="double">Double door</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="calc-field-row" id="thicknessRow">
+      <div class="calc-field">
+        <label>Door thickness</label>
+        <div class="seg" id="thicknessSeg">
+          <button data-val="1.375">1-3/8"</button>
+          <button data-val="1.75" class="active">1-3/4"</button>
+        </div>
+      </div>
+      <div class="calc-field" id="thicknessFixedWrap" style="display:none;">
+        <label>Door thickness</label>
+        <input type="text" value="1-3/4&quot; (fixed)" disabled>
+      </div>
+    </div>
+
+    <div class="calc-field-row" id="hingeRow">
+      <div class="calc-field">
+        <label>Hinge / prep</label>
+        <select id="hingeSelect">
+          <option value="standard">Standard hinge</option>
+          <option value="soss">SOSS hinge (requires 1-3/4" door)</option>
+          <option value="ballcatch">Ball catch prep (double only)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="calc-field-row" id="swingRow" style="display:none;">
+      <div class="calc-field">
+        <label>Swing</label>
+        <div class="seg" id="swingSeg">
+          <button data-val="inswing" class="active">Inswing</button>
+          <button data-val="outswing">Outswing</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="calc-field-row" id="sidelitesRow" style="display:none;">
+      <div class="calc-field">
+        <label>Side lites</label>
+        <div class="seg" id="sidelitesSeg">
+          <button data-val="none" class="active">None</button>
+          <button data-val="single">Single</button>
+          <button data-val="double">Double</button>
+        </div>
+      </div>
+      <div class="calc-field" id="sidelitewidthWrap" style="display:none;">
+        <label>Side lite width (A)</label>
+        <select id="sidelitewidthSelect">
+          <option value="12">12"</option>
+          <option value="14" selected>14"</option>
+          <option value="16">16"</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="calc-field-row">
+      <div class="calc-field">
+        <label>Door width (X)</label>
+        <select id="widthSelect">
+          <option value="24">24"</option>
+          <option value="28">28"</option>
+          <option value="30">30"</option>
+          <option value="32">32"</option>
+          <option value="36" selected>36"</option>
+          <option value="42">42"</option>
+        </select>
+      </div>
+      <div class="calc-field">
+        <label>Door height (Y)</label>
+        <select id="heightSelect">
+          <option value="80" selected>80"</option>
+          <option value="84">84"</option>
+          <option value="96">96"</option>
+        </select>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="result">
+      <div class="label">Required unit size</div>
+      <div class="value" id="resultValue">37-1/2" x 81-1/4"</div>
+      <div class="formula" id="resultFormula">Width: X + 1-1/2" &nbsp;·&nbsp; Height: Y + 1-1/4"</div>
+    </div>
+
+    <div class="disclaimer">This is an estimated unit size based on standard door dimensions and does not account for out-of-square openings, existing framing, or job-specific conditions. Always confirm your actual rough opening measurements before ordering &mdash; final sizing is the customer's responsibility.</div>
+
+    <button class="modal-submit" onclick="closeSizeCalculatorModal()">Done (Close)</button>
+    <div class="modal-footnote">Still unsure? Call a door expert at (213) 622-2003, Mon&ndash;Fri 8am&ndash;5pm PST.</div>
+  </div>
+</div>
+
+<style>
+  :root {
+    --calc-ink: #2b2620;
+    --calc-muted: #8a8377;
+    --calc-line: #d8d2c4;
+    --calc-cream: #f3f0e9;
+    --calc-tan: #c9a876;
+  }
+  .overlay {
+    position: fixed; inset: 0; z-index: 999999;
+    background: rgba(43,38,32,0.35);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .modal {
+    width: 500px;
+    background: #fff;
+    border: 1px solid var(--calc-line);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+    padding: 28px 30px 26px;
+    position: relative;
+    max-width: 90vw;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  .modal-close {
+    position: absolute; top: 14px; right: 16px;
+    font-size: 24px; color: var(--calc-muted); cursor: pointer;
+    line-height: 1;
+  }
+  .modal-eyebrow {
+    font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--calc-muted);
+    margin-bottom: 6px;
+  }
+  .modal h3 {
+    font-family: 'Georgia', serif; font-weight: normal; font-size: 22px;
+    margin: 0 0 6px; color: var(--calc-ink);
+  }
+  .modal p.desc {
+    font-size: 12.5px; color: var(--calc-muted); line-height: 1.5; margin: 0 0 18px;
+  }
+  .calc-field-row { display: flex; gap: 12px; margin-bottom: 14px; }
+  .calc-field { flex: 1; }
+  .calc-field label {
+    display: block; font-size: 10.5px; letter-spacing: 0.5px; text-transform: uppercase;
+    color: var(--calc-muted); margin-bottom: 5px;
+  }
+  .calc-field select, .calc-field input {
+    width: 100%; height: 34px; border: 1px solid var(--calc-line); padding: 0 10px;
+    font-size: 13px; font-family: Arial, sans-serif; color: var(--calc-ink); background: #fff;
+    box-sizing: border-box;
+  }
+  .calc-field select:focus, .calc-field input:focus { outline: none; border-color: var(--calc-tan); }
+  .seg { display: flex; border: 1px solid var(--calc-line); overflow: hidden; box-sizing: border-box;}
+  .seg button {
+    flex: 1; border: none; background: #fff; padding: 8px 6px; font-size: 11px;
+    font-family: Arial, sans-serif; color: var(--calc-muted); cursor: pointer; border-right: 1px solid var(--calc-line);
+    margin: 0; box-sizing: border-box;
+  }
+  .seg button:last-child { border-right: none; }
+  .seg button.active { background: var(--calc-ink); color: #fff; }
+  hr.divider { border: none; border-top: 1px solid var(--calc-line); margin: 18px 0; }
+  .result {
+    background: var(--calc-cream);
+    border: 1px solid var(--calc-tan);
+    padding: 16px 18px;
+    text-align: center;
+    margin-bottom: 14px;
+  }
+  .result .label { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--calc-muted); margin-bottom: 6px; }
+  .result .value { font-family: 'Georgia', serif; font-size: 26px; color: var(--calc-ink); }
+  .result .formula { font-size: 10.5px; color: var(--calc-muted); margin-top: 6px; }
+  .modal-submit {
+    width: 100%; height: 42px; background: var(--calc-ink); color: #fff; border: none;
+    font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer;
+    margin-bottom: 10px;
+  }
+  .modal-submit:hover { opacity: 0.9; }
+  .modal-footnote { font-size: 10.5px; color: var(--calc-muted); text-align: center; line-height: 1.5; }
+  .disclaimer {
+    font-size: 10px; color: var(--calc-muted); line-height: 1.5;
+    border-top: 1px solid var(--calc-line); padding-top: 10px; margin-bottom: 14px;
+  }
+</style>
+
+<script>
+  function openSizeCalculatorModal() {
+    document.getElementById('sizeCalculatorOverlay').style.display = 'flex';
+  }
+  function closeSizeCalculatorModal() {
+    document.getElementById('sizeCalculatorOverlay').style.display = 'none';
+  }
+  
+  // Close on outside click
+  document.getElementById('sizeCalculatorOverlay').addEventListener('click', function(e) {
+    if (e.target === this) {
+      closeSizeCalculatorModal();
+    }
+  });
+
+  (function() {
+    const interiorWidth = {
+      single: { standard: (x)=>x+1.5, soss: (x)=>x+2.5 },
+      double: { standard: (x)=>2*x+2, soss: (x)=>2*x+4, ballcatch: (x)=>2*x+1.75 }
+    };
+    const plainWidth = {
+      single: { standard: (x)=>x+1.5 },
+      double: { standard: (x)=>2*x+2 }
+    };
+
+    function toFraction(dec){
+      let whole = Math.floor(dec);
+      let frac = Math.round((dec - whole) * 8);
+      if(frac === 8){ whole += 1; frac = 0; }
+      if(frac === 0) return whole + '"';
+      let num = frac, den = 8;
+      while(num % 2 === 0 && den % 2 === 0){ num/=2; den/=2; }
+      return whole + '-' + num + '/' + den + '"';
+    }
+
+    let category = 'interior';
+    
+    // Auto-select category based on product tags
+    {% if product.tags contains 'Exterior' %}
+      category = 'exterior';
+    {% elsif product.tags contains 'Fiberglass' %}
+      category = 'fiberglass';
+    {% elsif product.tags contains 'Fire Rated' %}
+      category = 'firerated';
+    {% endif %}
+
+    let config = 'single';
+    let swing = 'inswing';
+    let thickness = 1.75;
+    let sidelite = 'none';
+
+    function initCategory() {
+      document.querySelectorAll('#categorySeg button').forEach(b => {
+        b.classList.remove('active');
+        if(b.dataset.val === category) b.classList.add('active');
+      });
+    }
+
+    function refreshVisibility(){
+      const hingeRow = document.getElementById('hingeRow');
+      const swingRow = document.getElementById('swingRow');
+      const sidelitesRow = document.getElementById('sidelitesRow');
+      const thicknessSeg = document.getElementById('thicknessSeg');
+      const thicknessFixedWrap = document.getElementById('thicknessFixedWrap');
+
+      const hasSidelites = (category === 'exterior' || category === 'fiberglass');
+      hingeRow.style.display = category === 'interior' ? '' : 'none';
+      swingRow.style.display = category === 'interior' ? 'none' : '';
+      sidelitesRow.style.display = hasSidelites ? '' : 'none';
+
+      if(category === 'interior'){
+        thicknessSeg.style.display = '';
+        thicknessFixedWrap.style.display = 'none';
+      } else {
+        thicknessSeg.style.display = 'none';
+        thicknessFixedWrap.style.display = '';
+        thickness = 1.75;
+      }
+
+      const hingeSelect = document.getElementById('hingeSelect');
+      const sossOpt = hingeSelect.querySelector('option[value="soss"]');
+      const ballOpt = hingeSelect.querySelector('option[value="ballcatch"]');
+      sossOpt.disabled = (thickness !== 1.75);
+      ballOpt.disabled = (config === 'single');
+      if(sossOpt.disabled && hingeSelect.value === 'soss') hingeSelect.value = 'standard';
+      if(ballOpt.disabled && hingeSelect.value === 'ballcatch') hingeSelect.value = 'standard';
+
+      const sideBtns = document.querySelectorAll('#sidelitesSeg button');
+      sideBtns.forEach(b=>{
+        b.disabled = (b.dataset.val === 'single' && config === 'double');
+      });
+      if(config === 'double' && sidelite === 'single'){
+        sidelite = 'none';
+        sideBtns.forEach(b=>b.classList.toggle('active', b.dataset.val === 'none'));
+      }
+      document.getElementById('sidelitewidthWrap').style.display = (sidelite === 'none') ? 'none' : '';
+    }
+
+    function update(){
+      const x = parseFloat(document.getElementById('widthSelect').value);
+      const y = parseFloat(document.getElementById('heightSelect').value);
+      const a = parseFloat(document.getElementById('sidelitewidthSelect').value);
+
+      let unitWidth, widthLabel, unitHeight, heightLabel;
+
+      if(category === 'interior'){
+        const hinge = document.getElementById('hingeSelect').value;
+        let effectiveHinge = (config === 'single' && hinge === 'ballcatch') ? 'standard' : hinge;
+        if(effectiveHinge === 'soss' && thickness !== 1.75) effectiveHinge = 'standard';
+        const widthFn = interiorWidth[config][effectiveHinge] || interiorWidth[config].standard;
+        unitWidth = widthFn(x);
+        widthLabel = config === 'single'
+          ? (effectiveHinge === 'soss' ? 'X + 2-1/2"' : 'X + 1-1/2"')
+          : (effectiveHinge === 'soss' ? '2X + 4"' : effectiveHinge === 'ballcatch' ? '2X + 1-3/4"' : '2X + 2"');
+        unitHeight = y + 1.25;
+        heightLabel = 'Y + 1-1/4"';
+      } else {
+        const hasSidelites = (category === 'exterior' || category === 'fiberglass');
+        if(hasSidelites && sidelite !== 'none'){
+          if(sidelite === 'single'){
+            unitWidth = x + a + 3;
+            widthLabel = 'X + A + 3"';
+          } else {
+            unitWidth = config === 'single' ? (x + 2*a + 4.5) : (2*x + 2*a + 5);
+            widthLabel = config === 'single' ? 'X + 2A + 4-1/2"' : '2X + 2A + 5"';
+          }
+        } else {
+          unitWidth = plainWidth[config].standard(x);
+          widthLabel = config === 'single' ? 'X + 1-1/2"' : '2X + 2"';
+        }
+        if(swing === 'outswing'){
+          unitHeight = y + 0.625;
+          heightLabel = 'Y + 5/8"';
+        } else {
+          unitHeight = y + 1.5;
+          heightLabel = 'Y + 1-1/2"';
+        }
+      }
+
+      document.getElementById('resultValue').textContent = toFraction(unitWidth) + ' x ' + toFraction(unitHeight);
+      document.getElementById('resultFormula').textContent = 'Width: ' + widthLabel + '  ·  Height: ' + heightLabel;
+    }
+
+    document.querySelectorAll('#categorySeg button').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        document.querySelectorAll('#categorySeg button').forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        category = btn.dataset.val;
+        refreshVisibility();
+        update();
+      });
+    });
+
+    document.querySelectorAll('#configSeg button').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        document.querySelectorAll('#configSeg button').forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        config = btn.dataset.val;
+        refreshVisibility();
+        update();
+      });
+    });
+
+    document.querySelectorAll('#swingSeg button').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        document.querySelectorAll('#swingSeg button').forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        swing = btn.dataset.val;
+        update();
+      });
+    });
+
+    document.querySelectorAll('#thicknessSeg button').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        if(btn.disabled) return;
+        document.querySelectorAll('#thicknessSeg button').forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        thickness = parseFloat(btn.dataset.val);
+        refreshVisibility();
+        update();
+      });
+    });
+
+    document.querySelectorAll('#sidelitesSeg button').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        if(btn.disabled) return;
+        document.querySelectorAll('#sidelitesSeg button').forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        sidelite = btn.dataset.val;
+        refreshVisibility();
+        update();
+      });
+    });
+
+    document.getElementById('hingeSelect').addEventListener('change', update);
+    document.getElementById('widthSelect').addEventListener('change', update);
+    document.getElementById('heightSelect').addEventListener('change', update);
+    document.getElementById('sidelitewidthSelect').addEventListener('change', update);
+
+    initCategory();
+    refreshVisibility();
+    update();
+  })();
+</script>

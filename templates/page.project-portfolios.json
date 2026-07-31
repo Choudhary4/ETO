@@ -1,11 +1,42 @@
 {
-    "sections": {
-        "main": {
-            "type": "eto-portfolios",
-            "settings": {}
+  "sections": {
+    "main": {
+      "type": "eto-portfolios",
+      "blocks": {
+        "block_1": {
+          "type": "project",
+          "settings": {
+            "category": "HOSPITALITY",
+            "title": "Hotel del Coronado",
+            "location": "San Diego, CA"
+          }
+        },
+        "block_2": {
+          "type": "project",
+          "settings": {
+            "category": "HOSPITALITY",
+            "title": "Rosewood Hotels",
+            "location": "Hospitality Portfolio"
+          }
+        },
+        "block_3": {
+          "type": "project",
+          "settings": {
+            "category": "RESTAURANT",
+            "title": "The Charcoal Grill",
+            "location": "Los Angeles, CA"
+          }
         }
-    },
-    "order": [
-        "main"
-    ]
+      },
+      "block_order": [
+        "block_1",
+        "block_2",
+        "block_3"
+      ],
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
 }

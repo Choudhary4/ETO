@@ -188,26 +188,36 @@ details:not([open]) .facets__summary .icon-minus {
   padding-top: 0;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
+  flex-wrap: nowrap;
 }
 
 .price-field {
-  width: 50px;
-  min-width: 0;
+  width: 70px;
+  min-width: 70px;
   margin: 0;
+  position: relative;
+}
+
+.price-field:before,
+.price-field:after {
+  display: none !important;
 }
 
 /* Override Dawn field styles to prevent floating label issues */
 .price-field .field__input {
   width: 100%;
-  border: 1px solid #999;
-  border-radius: 2px;
-  padding: 4px;
-  height: 32px;
-  font-size: 13px;
-  color: #333;
-  box-shadow: none;
-  margin: 0;
+  border: 1px solid #999 !important;
+  border-radius: 2px !important;
+  padding: 0 8px !important;
+  height: 32px !important;
+  line-height: 30px !important;
+  font-size: 13px !important;
+  color: #333 !important;
+  box-shadow: none !important;
+  margin: 0 !important;
+  appearance: none;
+  -webkit-appearance: none;
 }
 
 .price-field .field__input:focus {
@@ -224,25 +234,41 @@ details:not([open]) .facets__summary .icon-minus {
 .price-separator {
   font-size: 14px;
   color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  margin: 0;
 }
 
 .price-find-btn {
   background-color: #1a1a1a !important;
-  /* Charcoal black */
   color: white !important;
   border: none !important;
   border-radius: 2px !important;
-  padding: 0 16px !important;
+  padding: 0 12px !important;
   height: 32px !important;
-  font-size: 14px !important;
+  font-size: 13px !important;
   font-weight: 700 !important;
   text-transform: uppercase;
   cursor: pointer;
   margin-left: auto;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
 .price-find-btn:hover {
   background-color: #2b5b16 !important;
+}
+
+/* Enlarge Product Images in Collection Grid */
+.card-wrapper .card__media img {
+  transform: scale(1.15);
+  transition: transform 0.3s ease;
+}
+.card-wrapper:hover .card__media img {
+  transform: scale(1.22);
 }
 
 .availability-facet-box {
@@ -865,4 +891,11 @@ details:not([open]) > summary .icon-minus {
 .custom-clean-link::after,
 .custom-clean-link::before {
   display: none !important;
+}
+
+@media screen and (min-width: 1921px) {
+  .category-sidebar {
+    width: clamp(260px, 22vw, 600px) !important;
+    flex-shrink: 0 !important;
+  }
 }

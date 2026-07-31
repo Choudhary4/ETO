@@ -810,98 +810,297 @@
         
         <p class="eto-text-p">ETO's fire-rated doors are available for purchase online or at the company's showrooms in Los Angeles and New York.</p>
 
-        <div style="margin-top: 40px; display: flex; flex-direction: column; gap: 20px;">
+        <div style="margin-top: 20px; display: flex; flex-direction: column; gap: 0;">
              <!-- Row 1 -->
              <div style="display: flex; align-items: center; gap: 20px;">
-                 <img src="{{ 'firerated1.jpg' | file_url }}" alt="20 Minute Rated Door Label" style="width: 350px; height: auto;">
-                 <span style="font-weight: bold; font-size: 18px; color: #333; line-height: 1.3;">20 Minute Rated<br>Door Label</span>
+                 <img src="{{ '20-minute-eto-fire-label.png' | asset_url }}" alt="20 Minute Fire Label" style="width: 350px; height: auto; margin: -30px 0;">
+                 <span style="font-weight: bold; font-size: 18px; color: #333; line-height: 1.3;">20 Minute Fire<br>Label</span>
              </div>
 
              <!-- Row 2 -->
              <div style="display: flex; align-items: center; gap: 20px;">
-                 <img src="{{ 'firerated2.jpg' | file_url }}" alt="20 Minute Fire Rated Frame Label" style="width: 350px; height: auto;">
-                 <span style="font-weight: bold; font-size: 18px; color: #333; line-height: 1.3;">20 Minute Fire<br>Rated Frame<br>Label</span>
+                 <img src="{{ '45-minute-eto-fire-label.png' | asset_url }}" alt="45 Minute Fire Label" style="width: 350px; height: auto; margin: -30px 0;">
+                 <span style="font-weight: bold; font-size: 18px; color: #333; line-height: 1.3;">45 Minute Fire<br>Label</span>
              </div>
 
              <!-- Row 3 -->
              <div style="display: flex; align-items: center; gap: 20px;">
-                 <img src="{{ 'firerated3.jpg' | file_url }}" alt="60 Minute Fire Rated Door Label" style="width: 350px; height: auto;">
-                 <span style="font-weight: bold; font-size: 18px; color: #333; line-height: 1.3;">60 Minute Fire<br>Rated Door<br>Label</span>
+                 <img src="{{ '60-minute-eto-fire-label.png' | asset_url }}" alt="60 Minute Fire Label" style="width: 350px; height: auto; margin: -30px 0;">
+                 <span style="font-weight: bold; font-size: 18px; color: #333; line-height: 1.3;">60 Minute Fire<br>Label</span>
              </div>
 
              <!-- Row 4 -->
              <div style="display: flex; align-items: center; gap: 20px;">
-                 <img src="{{ 'firerated5.jpg' | file_url }}" alt="3 Hour Fire Rated Frame Label" style="width: 350px; height: auto;">
-                 <span style="font-weight: bold; font-size: 18px; color: #333; line-height: 1.3;">3 Hour Fire<br>Rated Frame<br>Label</span>
-             </div>
-
-             <!-- Row 5 -->
-             <div style="display: flex; align-items: center; gap: 20px;">
-                 <img src="{{ 'firerated4.jpg' | file_url }}" alt="3 Hour Fire Rated Door Label" style="width: 350px; height: auto;">
-                 <span style="font-weight: bold; font-size: 18px; color: #333; line-height: 1.3;">3 Hour Fire<br>Rated Door<br>Label</span>
+                 <img src="{{ '90-minute-eto-fire-label.png' | asset_url }}" alt="90 Minute Fire Label" style="width: 350px; height: auto; margin: -30px 0;">
+                 <span style="font-weight: bold; font-size: 18px; color: #333; line-height: 1.3;">90 Minute Fire<br>Label</span>
              </div>
         </div>
      </div>
 
      <!-- Hidden Energy Star Ratings Content -->
-     <div id="eto-energy-content" style="display: none;">
-        <h2 style="font-size: 24px; color: #333; margin-bottom: 20px;">ETO Achieves Energystar Certification</h2>
-        
-        <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
-             <!-- Logo - using a placeholder or user might upload -->
-             <div style="flex-shrink: 0; width: 150px; text-align: center;">
-                 <img src="{{ 'NFRC_Logo.jpg' | file_url }}" alt="National Fenestration Rating Council" style="max-width: 100%;">
-                 <p style="font-size: 11px; margin-top: 5px; color: #666; font-style: italic;">can save families about a third on their energy bill.</p>
-             </div>
-             <div>
-                 <p class="eto-text-p" style="font-style: italic; margin-top: 0;">ETO Doors Corp. is committed to achieving the highest standards of energy efficiency on all products. Energy efficient choices</p>
-                 <p class="eto-text-p">ETO has collaborated with the government's Energy Star Program. The U.S. Environmental Protection Agency has recognized ETO Door's environmentally friendly practices with an Energy Star Certification. ETO certifies that our Glass Doors meet or exceed the prescriptive criteria established by the National Fenestration Rating Council (NFRC) and are ENERGY STAR qualified for all climate zones when selected with an Energy Star glass package.</p>
-             </div>
-        </div>
+     <div id="eto-energy-content" style="display: none; font-family: var(--font-body-family);">
+        <style>
+            .nfrc-container { max-width: 1200px; margin: 0 auto; color: #000; }
+            .nfrc-text-orange { color: #e6601b; }
+            .nfrc-bg-beige { background: #faf8f5; border: 1px solid #eae4d9; border-radius: 6px; }
+            .nfrc-heading-sm { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; display: block; }
+            .nfrc-h2 { font-size: 38px; font-weight: 800; line-height: 1.1; margin: 0 0 16px 0; color: #000; letter-spacing: -0.5px; }
+            .nfrc-desc { font-size: 16px; line-height: 1.5; color: #000; margin-bottom: 24px; max-width: 500px; }
+            
+            .nfrc-top-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 40px; align-items: center; }
+            
+            .nfrc-btn-primary { background: #e6601b; color: #fff; padding: 14px 24px; font-size: 15px; font-weight: 700; border-radius: 4px; text-decoration: none; display: inline-block; transition: background 0.2s; border: none; cursor: pointer; }
+            .nfrc-btn-primary:hover { background: #d05315; color: #fff; text-decoration: none; }
+            
+            .nfrc-btn-link { color: #000; font-size: 15px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; margin-left: 20px; border-bottom: 2px solid #e6601b; padding-bottom: 2px; }
+            .nfrc-btn-link:hover { color: #e6601b; }
+            
+            .nfrc-features-list { font-size: 12px; color: #000; margin-top: 16px; font-weight: 500; }
+            
+            .nfrc-glance-card { padding: 24px; }
+            .nfrc-glance-card-title { text-align: center; font-size: 18px; font-weight: 700; margin-bottom: 20px; color: #000; }
+            .nfrc-glance-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+            .nfrc-glance-item { display: flex; align-items: flex-start; gap: 12px; padding: 16px; border-top: 1px solid #eae4d9; }
+            .nfrc-glance-item:nth-child(even) { border-left: 1px solid #eae4d9; }
+            .nfrc-glance-item:nth-child(1), .nfrc-glance-item:nth-child(2) { border-top: none; }
+            .nfrc-glance-icon { color: #000; display: flex; align-items: center; justify-content: center; }
+            .nfrc-glance-icon img { width: 40px; height: auto; display: block; }
+            .nfrc-glance-content h5 { font-size: 14px; margin: 0 0 2px 0; color: #000; font-weight: 600; }
+            .nfrc-glance-content .val { font-size: 24px; font-weight: 800; margin: 0 0 2px 0; color: #000; line-height: 1.1; }
+            .nfrc-glance-content p { font-size: 12px; margin: 0; color: #000; line-height: 1.3; }
+            
+            .nfrc-section-title { text-align: center; margin-bottom: 24px; }
+            .nfrc-section-title h3 { font-size: 24px; font-weight: 700; margin: 0 0 4px 0; color: #000; }
+            .nfrc-section-title p { font-size: 15px; color: #000; margin: 0; }
+            
+            .nfrc-cards-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 12px; }
+            .nfrc-glass-card { padding: 24px 20px; text-align: left; display: flex; align-items: center; gap: 16px; }
+            .nfrc-glass-door-icon { flex-shrink: 0; width: 50px; }
+            .nfrc-glass-content { flex: 1; }
+            .nfrc-glass-tag { font-size: 10px; font-weight: 800; color: #e6601b; text-transform: uppercase; letter-spacing: 0.5px; border: 1px solid rgba(230,96,27,0.2); background: rgba(230,96,27,0.05); padding: 2px 6px; border-radius: 3px; display: inline-block; margin-bottom: 6px; }
+            .nfrc-glass-content h4 { font-size: 22px; font-weight: 800; margin: 0 0 2px 0; color: #000; line-height: 1.1; }
+            .nfrc-glass-content .sub { font-size: 14px; font-weight: 700; color: #000; margin: 0 0 6px 0; display: block; }
+            .nfrc-glass-content p { font-size: 13px; margin: 0 0 2px 0; color: #000; font-weight: 500; }
+            .nfrc-glass-content a { font-size: 14px; font-weight: 700; color: #e6601b; text-decoration: none; margin-top: 6px; display: inline-flex; align-items: center; gap: 2px; }
+            .nfrc-glass-content a:hover { text-decoration: underline; }
+            
+            .nfrc-disclaimer { text-align: center; font-size: 12px; color: #000; margin-bottom: 40px; }
+            
+            .nfrc-meanings-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 40px; }
+            .nfrc-meaning-card { padding: 24px 20px; display: flex; align-items: flex-start; gap: 16px; }
+            .nfrc-meaning-icon { flex-shrink: 0; color: #000; }
+            .nfrc-meaning-icon img { width: 44px; height: auto; display: block; }
+            .nfrc-meaning-content h5 { font-size: 16px; font-weight: 800; margin: 0 0 2px 0; color: #000; }
+            .nfrc-meaning-content .sub { font-size: 13px; font-weight: 700; color: #000; margin: 0 0 6px 0; display: block; }
+            .nfrc-meaning-content p { font-size: 13px; color: #000; margin: 0; line-height: 1.4; }
+            
+            .nfrc-footer { padding: 24px 32px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 40px; }
+            .nfrc-footer-left h4 { font-size: 18px; font-weight: 800; margin: 0 0 4px 0; color: #000; }
+            .nfrc-footer-left p { font-size: 13px; color: #000; margin: 0; }
+            .nfrc-footer-right { display: flex; align-items: center; gap: 24px; }
+            .nfrc-footer-call { font-size: 15px; font-weight: 700; color: #000; text-decoration: none; border-bottom: 2px solid #e6601b; padding-bottom: 2px; }
+            .nfrc-footer-call:hover { color: #e6601b; }
+            
+            @media (max-width: 900px) {
+                .nfrc-top-grid, .nfrc-cards-grid, .nfrc-meanings-grid { grid-template-columns: 1fr; gap: 20px; }
+                .nfrc-glance-item:nth-child(even) { border-left: none; }
+                .nfrc-glance-item:nth-child(2) { border-top: 1px solid #eae4d9; }
+                .nfrc-footer { flex-direction: column; text-align: center; gap: 20px; }
+            }
+        </style>
 
-        <hr style="border: 0; border-top: 1px solid #eee; margin: 30px 0;">
-
-        <p class="eto-text-p">PRESS RELEASE: January 20th, 2011</p>
-        <p class="eto-text-p" style="font-weight: bold;">ETO Doors Announces Energy Star Certification</p>
-        <p class="eto-text-p">The U.S. Environmental Protection Agency has recognized ETO Door's envirnomentall friendly practices with an Energy Star Certification.<br>
-        Los Angeles, CA, January 20, 2011 --(PR.com)-- While ETO Doors has been committed to environmentally conscious products and practices since its inception, it has finally been approved with an Energy Star Certification. The Energy Star Certification was designed by the EPA to recognize products that help reduce greenhouse gas emissions by maximizing efficiency, and to give products an easily identifiable badge so that consumers can make environmentally wise purchases.</p>
-        
-        <p class="eto-text-p">ETO Doors' previous recognitions for environmental stewardship include a certification by the Forest Stewardship Council (FSC). The FSC is an independent nonprofit, which works to promote the protection of our world's forests. FSC certifies businesses in more than 50 countries around the world, and ETO is only one of a few door companies in the United States to earn this certification.</p>
-        
-        <p class="eto-text-p">In addition to the FSC certification, ETO Doors' Los Angeles facility hosts numerous solar panels on its rooftop. Thanks to these solar panels, ETO now independently produces all of its electrical needs. ETO's green efforts have generated the energy equivalent to saving nearly 1,500 acres of trees, creating a significant reduction in air pollution and its resulting environmental damage.</p>
-
-        <p class="eto-text-p">"We are honored to receive the Energy Star Certification," said Tal Hassid, president of ETO Doors. "Our continual efforts to protect the environment are being now recognized by the EPA, and our customers can clearly see that when they buy our products, they're making a difference."</p>
-
-        <div style="margin: 40px 0; border-top: 1px solid #ccc; padding-top: 20px;">
-             <!-- The Label Table Image -->
-             <img src="{{ 'Energy-Performance-Label_NFRC.jpg' | file_url }}" alt="Energy Performance Ratings" style="width: 100%; max-width: 250px; display: block; margin: 0 20px 20px 0; float: left;">
-             <div style="clear: both;"></div>
-             
-             <p class="eto-text-p" style="margin-top: 20px;">NFRC is the recognized leader in energy performance rating and certification programs for fenestration products. The NFRC is the only non-profit organization that administers uniform, independent rating and labeling systems for the energy performance of doors, windows, skylights etc.</p>
-             
-             <p class="eto-text-p">This NFRC report provides information on our doors' energy rating including a "U-Factor," "Solar Heat Gain Coefficient," "Visible Transmittance" and "Condensation Resistance."</p>
-             
-             <p class="eto-text-p" style="margin-bottom: 5px;"><strong>U-Factor</strong></p>
-             <p class="eto-text-p">U-factor is also known as thermal transmission. Here, it is used to measure the rate of heat loss through a door, therefore, the lower the U-factor, the lower the amount of heat loss. In cold climates, where heating bills are a major concern, choosing doors with lower U-factors will reduce the amount of heat which escapes through a door from inside your house to the outside. U-Factor ratings generally fall between .20 and 1.20.</p>
-             
-             <p class="eto-text-p" style="margin-bottom: 5px;"><strong>Solar Heat Gain Coefficient (SHGC)</strong></p>
-             <p class="eto-text-p">The Solar Heat Gain Coefficient, also known as "SHGC", measures the rate of heat gain through a door. Therefore, the lower the SHGC, the lower the amount of solar heat gain. In hot climates, where air-conditioning bills are a major concern, choosing doors with lower SHGC will reduce the amount of heat that comes in through your doors from the outside. SHGC is expressed as a number between 0 and 1.</p>
-             
-             <p class="eto-text-p" style="margin-bottom: 5px;"><strong>Visible Transmittance</strong></p>
-             <p class="eto-text-p">Visible Transmittance (VT) measures how much light comes through a window. The higher the visible light transmittance, the more light is transmitted through the window. VT is expressed as a number between 0 and 1.</p>
-             
-             <p class="eto-text-p" style="margin-bottom: 5px;"><strong>Condensation Resistance</strong></p>
-             <p class="eto-text-p">Condensation Resistance (CR) measures the ability of a door to resist the formation of condensation on the interior door surface. The higher the rating, the better the product is at resisting condensation formation. CR is expressed as a number between 0 and 100.</p>
-             
-             <div style="margin-top: 30px;">
-                <p class="eto-text-p">You can learn more about Energy Star and NFRC Ratings at:<br>
-                <a href="http://www.NFRC.org" target="_blank" style="color: #333;">http://www.NFRC.org</a><br>
-                <a href="http://www.EnergyStar.gov" target="_blank" style="color: #333;">http://www.EnergyStar.gov</a></p>
+        <div class="nfrc-container">
+            <!-- Top Section -->
+            <div class="nfrc-top-grid">
+                <div class="nfrc-hero-text">
+                    <span class="nfrc-heading-sm nfrc-text-orange">NFRC Energy Performance</span>
+                    <h2 class="nfrc-h2">Compare energy performance by glass configuration.</h2>
+                    <p class="nfrc-desc">NFRC ratings provide standardized U-Factor and Solar Heat Gain Coefficient values for specific tested door and glass configurations.</p>
+                    <div style="margin-bottom: 16px;">
+                        <a href="/collections/all?filter.p.m.custom.product_category=Exterior" class="nfrc-btn-primary">Explore Energy-Efficient Doors</a>
+                        <a href="http://www.NFRC.org" target="_blank" class="nfrc-btn-link">View Rating Label <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 2px;"><polyline points="9 18 15 12 9 6"></polyline></svg></a>
+                    </div>
+                    <div class="nfrc-features-list">
+                        Low-E glass &nbsp;&bull;&nbsp; Argon-filled units &nbsp;&bull;&nbsp; Wood frame
+                    </div>
+                </div>
                 
-                <p class="eto-text-p" style="font-weight: bold; margin-top: 20px;">CLICK HERE TO SEE TEST RESULTS</p>
-                <p class="eto-text-p">ETO DOORS R&D TEAM<br>
-                <span style="font-size: 11px;">* ETO Doors reserves the right to update all testing information periodically</span></p>
-             </div>
+                <div class="nfrc-bg-beige nfrc-glance-card">
+                    <div class="nfrc-glance-card-title">Performance at a glance</div>
+                    <div class="nfrc-glance-grid">
+                        <div class="nfrc-glance-item">
+                            <div class="nfrc-glance-icon">
+                                <img src="{{ 'nfrc-icon-u-factor-thermo.png' | asset_url }}" alt="U-Factor">
+                            </div>
+                            <div class="nfrc-glance-content">
+                                <h5>U-Factor</h5>
+                                <p class="val">0.29&ndash;0.30</p>
+                                <p>Lower means less heat transfer</p>
+                            </div>
+                        </div>
+                        <div class="nfrc-glance-item">
+                            <div class="nfrc-glance-icon">
+                                <img src="{{ 'nfrc-icon-shgc-sunny.png' | asset_url }}" alt="SHGC">
+                            </div>
+                            <div class="nfrc-glance-content">
+                                <h5>SHGC</h5>
+                                <p class="val">0.07&ndash;0.21</p>
+                                <p>Lower means less solar heat gain</p>
+                            </div>
+                        </div>
+                        <div class="nfrc-glance-item">
+                            <div class="nfrc-glance-icon">
+                                <img src="{{ 'nfrc-icon-low-e-argon.png' | asset_url }}" alt="Low-E + Argon">
+                            </div>
+                            <div class="nfrc-glance-content">
+                                <h5>Low-E + Argon</h5>
+                                <p>Dual-pane glass package</p>
+                            </div>
+                        </div>
+                        <div class="nfrc-glance-item">
+                            <div class="nfrc-glance-icon">
+                                <img src="{{ 'nfrc-icon-1-4-lite.png' | asset_url }}" alt="1/4 to Full Lite">
+                            </div>
+                            <div class="nfrc-glance-content">
+                                <h5>1/4 to Full Lite</h5>
+                                <p>Ratings vary by glass area</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Middle Section -->
+            <div class="nfrc-section-title">
+                <h3>Ratings by glass area</h3>
+                <p>Choose the glass area to compare the available Low-E performance values.</p>
+            </div>
+
+            <div class="nfrc-cards-grid">
+                <!-- Card 1 -->
+                <div class="nfrc-bg-beige nfrc-glass-card">
+                    <div class="nfrc-glass-door-icon">
+                        <svg viewBox="0 0 40 80" fill="none" stroke="#333" stroke-width="2">
+                            <rect x="4" y="4" width="32" height="72" />
+                            <rect x="10" y="10" width="20" height="15" />
+                            <rect x="10" y="30" width="20" height="15" />
+                            <rect x="10" y="50" width="20" height="20" />
+                            <circle cx="8" cy="42" r="1" fill="#333" stroke="none" />
+                        </svg>
+                    </div>
+                    <div class="nfrc-glass-content">
+                        <span class="nfrc-glass-tag">LOW-E + ARGON</span>
+                        <h4>1/4 Lite</h4>
+                        <span class="sub">&le; 410</span>
+                        <p>U-Factor 0.30</p>
+                        <p>SHGC 0.07&ndash;0.09</p>
+                        <a href="/collections/all?filter.p.m.custom.product_category=Exterior">View Options <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg></a>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="nfrc-bg-beige nfrc-glass-card">
+                    <div class="nfrc-glass-door-icon">
+                        <svg viewBox="0 0 40 80" fill="none" stroke="#333" stroke-width="2">
+                            <rect x="4" y="4" width="32" height="72" />
+                            <rect x="10" y="10" width="20" height="35" />
+                            <rect x="10" y="50" width="20" height="20" />
+                            <circle cx="8" cy="45" r="1" fill="#333" stroke="none" />
+                        </svg>
+                    </div>
+                    <div class="nfrc-glass-content">
+                        <span class="nfrc-glass-tag">LOW-E + ARGON</span>
+                        <h4>1/2 Lite</h4>
+                        <span class="sub">&le; 900</span>
+                        <p>U-Factor 0.30</p>
+                        <p>SHGC 0.10&ndash;0.15</p>
+                        <a href="/collections/all?filter.p.m.custom.product_category=Exterior">View Options <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg></a>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="nfrc-bg-beige nfrc-glass-card">
+                    <div class="nfrc-glass-door-icon">
+                        <svg viewBox="0 0 40 80" fill="none" stroke="#333" stroke-width="2">
+                            <rect x="4" y="4" width="32" height="72" />
+                            <rect x="10" y="10" width="20" height="45" />
+                            <rect x="10" y="60" width="20" height="10" />
+                            <circle cx="8" cy="45" r="1" fill="#333" stroke="none" />
+                        </svg>
+                    </div>
+                    <div class="nfrc-glass-content">
+                        <span class="nfrc-glass-tag">LOW-E + ARGON</span>
+                        <h4>3/4 Lite</h4>
+                        <span class="sub">&le; 1110</span>
+                        <p>U-Factor 0.29</p>
+                        <p>SHGC 0.13&ndash;0.18</p>
+                        <a href="/collections/all?filter.p.m.custom.product_category=Exterior">View Options <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg></a>
+                    </div>
+                </div>
+                <!-- Card 4 -->
+                <div class="nfrc-bg-beige nfrc-glass-card">
+                    <div class="nfrc-glass-door-icon">
+                        <svg viewBox="0 0 40 80" fill="none" stroke="#333" stroke-width="2">
+                            <rect x="4" y="4" width="32" height="72" />
+                            <rect x="10" y="10" width="20" height="60" />
+                            <circle cx="8" cy="45" r="1" fill="#333" stroke="none" />
+                        </svg>
+                    </div>
+                    <div class="nfrc-glass-content">
+                        <span class="nfrc-glass-tag">LOW-E + ARGON</span>
+                        <h4>Full Lite</h4>
+                        <span class="sub">&gt; 1100</span>
+                        <p>U-Factor 0.29</p>
+                        <p>SHGC 0.15&ndash;0.21</p>
+                        <a href="/collections/all?filter.p.m.custom.product_category=Exterior">View Options <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg></a>
+                    </div>
+                </div>
+            </div>
+            <div class="nfrc-disclaimer">Exact ratings depend on the certified individual option number and glass construction.</div>
+
+            <!-- What Ratings Mean Section -->
+            <div class="nfrc-meanings-grid">
+                <div class="nfrc-bg-beige nfrc-meaning-card">
+                    <div class="nfrc-meaning-icon">
+                        <img src="{{ 'nfrc-icon-u-factor-mean.png' | asset_url }}" alt="U-Factor Mean">
+                    </div>
+                    <div class="nfrc-meaning-content">
+                        <h5>U-Factor</h5>
+                        <span class="sub">Heat transfer</span>
+                        <p>Measures how readily heat moves through the complete door assembly. Lower values indicate better insulating performance.</p>
+                    </div>
+                </div>
+                <div class="nfrc-bg-beige nfrc-meaning-card">
+                    <div class="nfrc-meaning-icon">
+                        <img src="{{ 'nfrc-icon-shgc-mean.png' | asset_url }}" alt="SHGC Mean">
+                    </div>
+                    <div class="nfrc-meaning-content">
+                        <h5>SHGC</h5>
+                        <span class="sub">Solar heat gain</span>
+                        <p>Measures the amount of solar heat admitted through the glass. Lower values reduce solar heat gain.</p>
+                    </div>
+                </div>
+                <div class="nfrc-bg-beige nfrc-meaning-card">
+                    <div class="nfrc-meaning-icon">
+                        <img src="{{ 'nfrc-icon-config-matters.png' | asset_url }}" alt="Configuration Matters">
+                    </div>
+                    <div class="nfrc-meaning-content">
+                        <h5>Configuration Matters</h5>
+                        <span class="sub">Use the exact option</span>
+                        <p>Glass area, coating orientation, construction, and certified option number determine the final rating.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Banner -->
+            <div class="nfrc-bg-beige nfrc-footer">
+                <div class="nfrc-footer-left">
+                    <h4>Need help choosing the right glass package?</h4>
+                    <p>Our door specialists can confirm the correct NFRC-rated configuration for your project.</p>
+                </div>
+                <div class="nfrc-footer-right">
+                    <a href="/pages/contact" class="nfrc-btn-primary">Talk to a Door Expert</a>
+                    <a href="tel:2136222003" class="nfrc-footer-call">Call (213) 622-2003 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 2px;"><polyline points="9 18 15 12 9 6"></polyline></svg></a>
+                </div>
+            </div>
         </div>
      </div>
 
@@ -985,26 +1184,6 @@
              </div>
         </div>
         
-        <!-- Footer Logos Block (Typical for ETO pages) -->
-        <div style="margin: 30px 0; text-align: center; border-top: 1px solid #ddd; padding-top: 30px;">
-          <img src="{{ 'custom-door-banner.jpg' | file_url }}" alt="ETO Custom Doors Program" style="max-width: 100%;">
-        </div>
-
-        <div style="text-align: center; margin-bottom: 20px;">
-          <p style="font-weight: bold; margin-bottom: 10px;">As Featured on:</p>
-          <a href="#" onclick="showEtoPress(event)">
-            <img src="{{ 'logo-blog-home-2.jpg' | file_url }}" alt="Featured On" style="max-width: 100%; border: 0;">
-          </a>
-        </div>
-
-        <div style="text-align: center; margin-bottom: 20px;">
-          <p style="font-weight: bold; margin-bottom: 10px;">Proud Members of:</p>
-          <img src="{{ 'logo-block-home.png' | file_url }}" alt="Proud Members" style="max-width: 100%;">
-        </div>
-
-        <div style="text-align: center; margin-bottom: 30px;">
-          <img src="{{ 'masterspec-logo.png' | file_url }}" alt="MasterSpec" style="max-width: 100%;">
-        </div>
      </div>
 
      <!-- Hidden Price Guarantee Content -->

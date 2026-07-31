@@ -535,17 +535,35 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   
   .facets-vertical .facets-wrapper {
-    width: clamp(250px, 15vw, 450px) !important;
-    min-width: clamp(250px, 15vw, 450px) !important;
+    width: clamp(260px, 22vw, 600px) !important;
+    min-width: clamp(260px, 22vw, 600px) !important;
     flex-shrink: 0 !important;
-    padding-right: clamp(15px, 2vw, 40px) !important;
+    padding-right: clamp(15px, 2.5vw, 50px) !important;
   }
   
   .facets__form-vertical {
     width: 100% !important;
   }
   
-  /* Removed .help-choosing-banner and .door-type-banner massive screen overrides */
+  /* Safely scale .help-choosing-banner and .door-type-banner for the new wider 600px sidebar */
+  .help-choosing-banner, .door-type-banner {
+    padding: clamp(15px, 1.5vw, 30px) clamp(10px, 1.2vw, 25px) !important;
+    min-height: clamp(85px, 6vw, 120px) !important;
+  }
+  .help-choosing-banner p, .door-type-banner p {
+    font-size: clamp(14px, 1vw, 22px) !important;
+  }
+  .door-type-banner > div > span {
+    font-size: clamp(12px, 0.85vw, 18px) !important; 
+    gap: clamp(4px, 0.6vw, 12px) !important;
+  }
+  .door-type-banner img {
+    height: clamp(32px, 1.8vw, 44px) !important;
+  }
+  .help-choosing-banner svg {
+    width: clamp(38px, 2.2vw, 50px) !important;
+    height: clamp(36px, 2.2vw, 48px) !important;
+  }
   
   .facets-wrapper, .facets-wrapper label, .facets-wrapper a, .facets-wrapper div:not(.help-choosing-banner):not(.door-type-banner):not(.help-choosing-banner div):not(.door-type-banner div), .facets-wrapper span:not(.help-choosing-banner span):not(.door-type-banner span), .door-categories__label, .door-categories__sublink { 
     font-size: clamp(14px, 1.1vw, 28px) !important; 
