@@ -3691,6 +3691,8 @@ function etoPopulateDynamicOptionValues(container, values, groupIndex, groupTitl
 
   let closetDoorCount = 0;
   (values || []).forEach((val, valIdx) => {
+    if (!val.title || val.title.trim() === '') return; // Skip blank options
+    
     const btn = document.createElement('div');
     btn.className = 'eto-size-option'; 
     
@@ -3913,16 +3915,44 @@ function etoShowNextOption(currentGroupIndex) {
      }
   }
 
+  // Check if Sidelite was declined (answered with anything that doesn't include YES)
+  let sideliteDeclined = false;
+  let sideliteIndex = -1;
+  const sideliteKey = Object.keys(etoConfigState).find(k => k.toLowerCase() === 'sidelite');
+  if (sideliteKey && etoConfigState[sideliteKey] && !etoConfigState[sideliteKey].toUpperCase().includes('YES')) {
+    sideliteDeclined = true;
+  }
+
+  // Sidelite sub-questions to skip when sidelite = No
+  const sideliteSubQuestions = ['sl type', 'single sidelite application', 'double sidelite application'];
+
+  // Find the exact index of the Sidelite option
+  for (let i = 0; i < etoOptionGroups.length; i++) {
+     if (etoOptionGroups[i].title.toLowerCase() === 'sidelite') {
+         sideliteIndex = i;
+         break;
+     }
+  }
+
   // Find next valid option index after current
   let found = false;
   for (let i = 0; i < etoOptionGroups.length; i++) {
     const groupTitle = etoOptionGroups[i].title;
+    const groupTitleLow = groupTitle.toLowerCase();
     if (groupTitle === 'Size') continue;
     if (i <= currentGroupIndex) continue;
     
     // If pre-hanging is NO, skip ALL options that come after Pre-hanging
     if (prehangDeclined && prehangIndex !== -1 && i > prehangIndex) {
       // Ensure it stays hidden and state is cleared
+      const rowEl = document.getElementById('eto-dynopt-' + i);
+      if (rowEl) rowEl.style.display = 'none';
+      delete etoConfigState[groupTitle];
+      continue;
+    }
+
+    // If Sidelite is NO, skip all sidelite sub-questions
+    if (sideliteDeclined && sideliteIndex !== -1 && i > sideliteIndex && sideliteSubQuestions.includes(groupTitleLow)) {
       const rowEl = document.getElementById('eto-dynopt-' + i);
       if (rowEl) rowEl.style.display = 'none';
       delete etoConfigState[groupTitle];
@@ -4179,8 +4209,13 @@ document.addEventListener('DOMContentLoaded', function() {
 // Edit pre-hanging - show options again, hide configured section
 // (etoEditPrehang removed - now handled by dynamic option system)
 
-// Variant ID of the dedicated "Custom Door Add-on" Shopify product (priced at $1.00)
-var ETO_ADDON_VARIANT_ID = 46529435074700;
+// Variant IDs for the dedicated "Pre-Hanging" Shopify products (priced at $1.00)
+const PREHANG_VARIANTS = {
+  'PH1-E': 51799765778572,
+  'PH1-I': 51799768203404,
+  'PH2-E': 51799787405452,
+  'PH2-I': 51799790518412
+};
 
 // Add to cart from center column - 2-step AJAX (reliable, supports add-on pricing)
 function etoAddToCart() {
@@ -4209,6 +4244,28 @@ function etoAddToCart() {
     Object.keys(etoConfigState).forEach(key => {
       if (etoConfigState[key]) properties[key] = etoConfigState[key];
     });
+    
+    // --- ZOHO BOOKS PREHANG MAPPING ---
+    if (properties['Pre Hanging'] && properties['Pre Hanging'].toLowerCase().includes('yes')) {
+      let doorConfig = properties['Door Configuration'] || properties['Configuration'] || "";
+      let isDouble = doorConfig.toLowerCase().includes('double');
+      
+      let isExterior = false;
+      let pTags = {{ product.tags | json }} || [];
+      let pType = {{ product.type | json }} || "";
+      let pTitle = {{ product.title | json }} || "";
+      
+      if (pType.toLowerCase().includes('exterior') || 
+          pTitle.toLowerCase().includes('exterior') || 
+          pTags.some(t => t.toLowerCase().includes('exterior'))) {
+        isExterior = true;
+      }
+      
+      let baseName = isDouble ? 'PH2' : 'PH1';
+      let envName = isExterior ? 'E' : 'I';
+      
+      properties['_zoho_prehang_name'] = baseName + '-' + envName;
+    }
   }
   if (notesInput && notesInput.value) {
     properties['Notes'] = notesInput.value;
@@ -4229,19 +4286,34 @@ function etoAddToCart() {
   .then(r => r.json())
   .then(function() {
     if (addonDollars > 0) {
+      // Select the correct variant ID based on the prehang name (fallback to first one if missing)
+      let prehangName = properties['_zoho_prehang_name'] || 'PH1-E';
+      let selectedVariantId = PREHANG_VARIANTS[prehangName] || PREHANG_VARIANTS['PH1-E'];
+
+      // Copy all properties from main door to addon, so configurations show on both
+      let addonProperties = Object.assign({}, properties);
+      addonProperties['_config_id'] = uniqueConfigId;
+      addonProperties['_is_addon'] = 'true';
+      addonProperties['Custom Options Total (per item)'] = '$' + addonDollars + '.00';
+      addonProperties['_zoho_prehang_name'] = prehangName;
+
       // Add the Custom Door Add-on product at quantity = (add-on price per door * quantity of doors)
       return fetch('/cart/add.js', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          id: ETO_ADDON_VARIANT_ID,
+          id: selectedVariantId,
           quantity: addonDollars * quantity,
-          properties: { 
-            '_config_id': uniqueConfigId,
-            '_is_addon': 'true',
-            'Custom Options Total (per item)': '$' + addonDollars + '.00' 
-          }
+          properties: addonProperties
         })
+      }).then(r => {
+        if(!r.ok) {
+           return r.json().then(err => {
+             alert('Add-on product failed to add! Error: ' + err.description + '\n(Check if Dummy product variant ID is correct and has stock)');
+             throw new Error(err.description);
+           });
+        }
+        return r.json();
       });
     }
   })
