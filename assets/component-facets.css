@@ -1162,6 +1162,20 @@ input.mobile-facets__checkbox {
 
   .facets-vertical .facets-wrapper {
     padding-right: 2rem;
+    position: sticky;
+    top: 150px;
+    align-self: flex-start;
+    max-height: calc(100vh - 170px);
+    overflow-y: auto;
+    z-index: 3;
+  }
+  
+  .facets-vertical .facets-wrapper::-webkit-scrollbar {
+    width: 4px;
+  }
+  .facets-vertical .facets-wrapper::-webkit-scrollbar-thumb {
+    background: #e2e2e2;
+    border-radius: 4px;
   }
 
   .facets-vertical .facets-wrapper--no-filters {

@@ -21,6 +21,20 @@ body.template-collection {
   .category-sidebar {
     width: 260px;
     flex-shrink: 0;
+    position: sticky;
+    top: 230px;
+    align-self: flex-start;
+    max-height: calc(100vh - 250px);
+    overflow-y: auto;
+    z-index: 3;
+  }
+  
+  .category-sidebar::-webkit-scrollbar {
+    width: 4px;
+  }
+  .category-sidebar::-webkit-scrollbar-thumb {
+    background: #e2e2e2;
+    border-radius: 4px;
   }
 
   .main-content {

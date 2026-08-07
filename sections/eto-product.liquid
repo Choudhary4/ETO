@@ -1967,6 +1967,11 @@ ETO Doors - Custom Product Page Layout
   main.wrap .eto-new-product-grid > .details { grid-column: 2 !important; grid-row: 1 !important; min-width: 0 !important; }
   main.wrap .eto-new-product-grid > .buybox { grid-column: 3 !important; grid-row: 1 !important; position: sticky !important; top: 170px !important; align-self: start !important; z-index: 2 !important; }
 
+  @media (min-width: 1921px) {
+    .wrap { max-width: 95% !important; padding: 0 2vw !important; }
+    main.wrap .eto-new-product-grid { grid-template-columns: minmax(400px, 550px) minmax(0, 1fr) 350px !important; gap: 40px !important; }
+  }
+
   .gallery .hero{aspect-ratio:4/5;border-radius:12px;overflow:hidden;background:#ECE5DA;position:relative;display:flex;align-items:center;justify-content:center;padding:24px;}
   .thumbs{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:12px;}
   .thumb{aspect-ratio:1/1;border-radius:8px;border:1px solid var(--tile-line);background:#EAE1D2;overflow:hidden;cursor:pointer;}
@@ -3566,6 +3571,7 @@ try {
 
 // State tracking for all options
 const etoConfigState = {};
+const etoConfigStateById = {}; // keyed by question id (from metafield JSON)
 let etoDoorConfig = ''; // 'single' or 'double'
 
 // ── De-duplicate options (same title = context-dependent) ──
@@ -3587,6 +3593,8 @@ if (Array.isArray(doorOptionsData)) {
     } else {
       etoSeenTitles[normalizedTitle] = etoOptionGroups.length;
       etoOptionGroups.push({
+        id: opt.id || null,
+        showIf: opt.show_if || null,
         title: opt.title,
         normalizedTitle: normalizedTitle,
         type: opt.type,
@@ -3720,21 +3728,21 @@ function etoPopulateDynamicOptionValues(container, values, groupIndex, groupTitl
         hasImage = true; imageUrl = 'https://cdn.shopify.com/s/files/1/0672/8781/0188/files/WP_Exterior.jpg?v=1773070236'; 
     } else if (val.title.includes('Oak')) {
         hasImage = true; imageUrl = 'https://cdn.shopify.com/s/files/1/0672/8781/0188/files/Interior_White_Oak_Jamb_2_1.png?v=1773241871';
-    } else if (val.title.includes('Active Left Inswing')) {
+    } else if (val.title.includes('(LH-A)') || val.title.includes('Active Left Inswing')) {
         hasImage = true; imageUrl = 'https://cdn.shopify.com/s/files/1/0672/8781/0188/files/LH-A.png?v=1773078325';
-    } else if (val.title.includes('Active Right Inswing')) {
+    } else if (val.title.includes('(RH-A)') || val.title.includes('Active Right Inswing')) {
         hasImage = true; imageUrl = 'https://cdn.shopify.com/s/files/1/0672/8781/0188/files/RH-A.png?v=1773078422';
-    } else if (val.title.includes('Active Left Outswing')) {
+    } else if (val.title.includes('(LHR-A)') || val.title.includes('Active Left Outswing')) {
         hasImage = true; imageUrl = 'https://cdn.shopify.com/s/files/1/0672/8781/0188/files/LHR-A.png?v=1773078492';
-    } else if (val.title.includes('Active Right Outswing')) {
+    } else if (val.title.includes('(RHR-A)') || val.title.includes('Active Right Outswing')) {
         hasImage = true; imageUrl = 'https://cdn.shopify.com/s/files/1/0672/8781/0188/files/RHR-A.png?v=1773078639';
-    } else if (val.title.includes('Left') && val.title.includes('Inswing')) {
+    } else if (val.title.includes('(LH)') || (val.title.toUpperCase().includes('LEFT') && val.title.toUpperCase().includes('INSWING'))) {
         hasImage = true; imageUrl = 'https://cdn.shopify.com/s/files/1/0672/8781/0188/files/LH.png?v=1773070873';
-    } else if (val.title.includes('Right') && val.title.includes('Inswing')) {
+    } else if (val.title.includes('(RH)') || (val.title.toUpperCase().includes('RIGHT') && val.title.toUpperCase().includes('INSWING'))) {
         hasImage = true; imageUrl = 'https://cdn.shopify.com/s/files/1/0672/8781/0188/files/RH.png?v=1773070966';
-    } else if (val.title.includes('Right') && val.title.includes('Outswing')) {
+    } else if (val.title.includes('(LHR)') || (val.title.toUpperCase().includes('RIGHT') && val.title.toUpperCase().includes('OUTSWING'))) {
         hasImage = true; imageUrl = 'https://cdn.shopify.com/s/files/1/0672/8781/0188/files/LHR.png?v=1773071056';
-    } else if (val.title.includes('Left') && val.title.includes('Outswing')) {
+    } else if (val.title.includes('(RHR)') || (val.title.toUpperCase().includes('LEFT') && val.title.toUpperCase().includes('OUTSWING'))) {
         hasImage = true; imageUrl = 'https://cdn.shopify.com/s/files/1/0672/8781/0188/files/RHR.png?v=1773071164';
     } else if (val.title.includes('Closet Door')) {
         hasImage = true; 
@@ -3859,6 +3867,7 @@ function etoSelectDynamicOption(groupIndex, value, el) {
 
   // Store state
   etoConfigState[groupObj.title] = value;
+  if (groupObj.id) etoConfigStateById[groupObj.id] = value;
 
   // If this is "Door Configuration", update context-dependent options
   if (groupObj.title === 'Door Configuration') {
@@ -3897,81 +3906,58 @@ function etoUpdateContextDependentOptions() {
   });
 }
 
+// ── Evaluate a show_if condition against current state ──
+function etoEvaluateShowIf(showIf) {
+  if (!showIf) return true; // No condition = always show
+
+  function evalSingle(cond) {
+    const val = etoConfigStateById[cond.question_id];
+    if (!val) return false; // Question not yet answered
+    if (cond.operator === 'equals') return val === cond.value;
+    if (cond.operator === 'in') return Array.isArray(cond.values) && cond.values.includes(val);
+    return true;
+  }
+
+  if (showIf.all) return showIf.all.every(evalSingle);
+  if (showIf.any) return showIf.any.some(evalSingle);
+  return evalSingle(showIf);
+}
+
 // ── Show next available option step ──
 function etoShowNextOption(currentGroupIndex) {
-  // Check if Pre-hanging was declined
-  let prehangDeclined = false;
-  let prehangIndex = -1;
-  const prehangKey = Object.keys(etoConfigState).find(k => k.toLowerCase() === 'pre hanging');
-  if (prehangKey && etoConfigState[prehangKey] && etoConfigState[prehangKey].includes('No (Door Only)')) {
-    prehangDeclined = true;
-  }
-  
-  // Find the exact index of the Pre-hanging option so we only skip options AFTER it
-  for (let i = 0; i < etoOptionGroups.length; i++) {
-     if (etoOptionGroups[i].title.toLowerCase() === 'pre hanging') {
-         prehangIndex = i;
-         break;
-     }
-  }
-
-  // Check if Sidelite was declined (answered with anything that doesn't include YES)
-  let sideliteDeclined = false;
-  let sideliteIndex = -1;
-  const sideliteKey = Object.keys(etoConfigState).find(k => k.toLowerCase() === 'sidelite');
-  if (sideliteKey && etoConfigState[sideliteKey] && !etoConfigState[sideliteKey].toUpperCase().includes('YES')) {
-    sideliteDeclined = true;
-  }
-
-  // Sidelite sub-questions to skip when sidelite = No
-  const sideliteSubQuestions = ['sl type', 'single sidelite application', 'double sidelite application'];
-
-  // Find the exact index of the Sidelite option
-  for (let i = 0; i < etoOptionGroups.length; i++) {
-     if (etoOptionGroups[i].title.toLowerCase() === 'sidelite') {
-         sideliteIndex = i;
-         break;
-     }
-  }
-
   // Find next valid option index after current
   let found = false;
   for (let i = 0; i < etoOptionGroups.length; i++) {
-    const groupTitle = etoOptionGroups[i].title;
-    const groupTitleLow = groupTitle.toLowerCase();
+    const group = etoOptionGroups[i];
+    const groupTitle = group.title;
     if (groupTitle === 'Size') continue;
     if (i <= currentGroupIndex) continue;
-    
-    // If pre-hanging is NO, skip ALL options that come after Pre-hanging
-    if (prehangDeclined && prehangIndex !== -1 && i > prehangIndex) {
-      // Ensure it stays hidden and state is cleared
+
+    // Evaluate show_if condition from JSON
+    const shouldShow = etoEvaluateShowIf(group.showIf);
+
+    if (!shouldShow) {
+      // Hide and clear state for this skipped question
       const rowEl = document.getElementById('eto-dynopt-' + i);
       if (rowEl) rowEl.style.display = 'none';
       delete etoConfigState[groupTitle];
+      if (group.id) delete etoConfigStateById[group.id];
       continue;
     }
 
-    // If Sidelite is NO, skip all sidelite sub-questions
-    if (sideliteDeclined && sideliteIndex !== -1 && i > sideliteIndex && sideliteSubQuestions.includes(groupTitleLow)) {
-      const rowEl = document.getElementById('eto-dynopt-' + i);
-      if (rowEl) rowEl.style.display = 'none';
-      delete etoConfigState[groupTitle];
-      continue;
-    }
-    
-    // If we land here, this is a valid option that SHOULD be shown
+    // This question should be shown
     const rowEl = document.getElementById('eto-dynopt-' + i);
     if (rowEl) {
       rowEl.style.display = 'block';
-      
-      // Also ensure its corresponding list is visible so the user can interact
+
+      // Ensure its list is visible so the user can interact
       const listEl = document.getElementById('eto-dynopt-list-' + i);
       if (listEl) listEl.style.display = '';
-      
+
       // Ensure the EDIT button is hidden initially
       const editBtn = document.getElementById('eto-dynopt-edit-' + i);
       if (editBtn) editBtn.style.display = 'none';
-      
+
       found = true;
       break;
     }
@@ -4277,6 +4263,18 @@ function etoAddToCart() {
     addonDollars = Math.round(etoAddonCents / 100);
   }
 
+  // Backup all properties for the addon item before we hide them on the main door
+  let addonProperties = Object.assign({}, properties);
+
+  // Hide all configuration options from the main door (customer cart UI) by prefixing with _
+  // We keep 'Size', 'Notes' visible.
+  Object.keys(properties).forEach(key => {
+    if (key !== 'Size' && key !== 'Notes' && !key.startsWith('_')) {
+      properties['_' + key] = properties[key];
+      delete properties[key];
+    }
+  });
+
   // Add main door to cart
   fetch('/cart/add.js', {
     method: 'POST',
@@ -4289,13 +4287,46 @@ function etoAddToCart() {
       // Select the correct variant ID based on the prehang name (fallback to first one if missing)
       let prehangName = properties['_zoho_prehang_name'] || 'PH1-E';
       let selectedVariantId = PREHANG_VARIANTS[prehangName] || PREHANG_VARIANTS['PH1-E'];
-
-      // Copy all properties from main door to addon, so configurations show on both
-      let addonProperties = Object.assign({}, properties);
+      
       addonProperties['_config_id'] = uniqueConfigId;
       addonProperties['_is_addon'] = 'true';
       addonProperties['Custom Options Total (per item)'] = '$' + addonDollars + '.00';
       addonProperties['_zoho_prehang_name'] = prehangName;
+      
+      const SWING_VARIANTS = {
+        // WP1L Single Doors
+        'Left Hand Inswing (LH)': 51862357180556,
+        'Right Hand Inswing (RH)': 51862363963532,
+        'Left Hand Outswing (RHR)': 51862372745356,
+        'Right Hand Outswing (LHR)': 51862399451276,
+        
+        // WP1L Double Doors
+        'Active Left Inswing': 51862743613580,
+        'Active Right Inswing': 51862793683084,
+        'Active Left Outswing': 51862806331532,
+        'Active Right Outswing': 51862912401548,
+        
+        // Bailey Single Doors (Mapped to same variants)
+        'Left Inswing': 51862357180556,
+        'Right Inswing': 51862363963532,
+        'Left Outswing': 51862372745356,
+        'Right Outswing': 51862399451276,
+        
+        // EX-WP1L Double Doors (Mapped to same variants)
+        'Left Hand Active (LH-A)': 51862743613580,
+        'Right Hand Active (RH-A)': 51862793683084,
+        'Left Hand Outswing Active (RHR-A)': 51862806331532,
+        'Right Hand Outswing Active (LHR-A)': 51862912401548,
+        
+        // Special/Closet Doors
+        'Closet Door Ball Catch Prep No Bore': 51863523393676
+      };
+      
+      // Hide Handing from the Pre-hung description ONLY if it's now its own line item
+      if (addonProperties['Handing'] && SWING_VARIANTS[addonProperties['Handing']]) {
+        addonProperties['_Handing'] = addonProperties['Handing'];
+        delete addonProperties['Handing'];
+      }
 
       // Add the Custom Door Add-on product at quantity = (add-on price per door * quantity of doors)
       return fetch('/cart/add.js', {
@@ -4311,6 +4342,63 @@ function etoAddToCart() {
            return r.json().then(err => {
              alert('Add-on product failed to add! Error: ' + err.description + '\n(Check if Dummy product variant ID is correct and has stock)');
              throw new Error(err.description);
+           });
+        }
+        return r.json();
+      });
+    }
+  })
+  .then(function() {
+    const SWING_VARIANTS = {
+      // WP1L Single Doors
+      'Left Hand Inswing (LH)': 51862357180556,
+      'Right Hand Inswing (RH)': 51862363963532,
+      'Left Hand Outswing (RHR)': 51862372745356,
+      'Right Hand Outswing (LHR)': 51862399451276,
+      
+      // WP1L Double Doors
+      'Active Left Inswing': 51862743613580,
+      'Active Right Inswing': 51862793683084,
+      'Active Left Outswing': 51862806331532,
+      'Active Right Outswing': 51862912401548,
+      
+      // Bailey Single Doors (Mapped to same variants)
+      'Left Inswing': 51862357180556,
+      'Right Inswing': 51862363963532,
+      'Left Outswing': 51862372745356,
+      'Right Outswing': 51862399451276,
+      
+      // EX-WP1L Double Doors (Mapped to same variants)
+      'Left Hand Active (LH-A)': 51862743613580,
+      'Right Hand Active (RH-A)': 51862793683084,
+      'Left Hand Outswing Active (RHR-A)': 51862806331532,
+      'Right Hand Outswing Active (LHR-A)': 51862912401548,
+      
+      // Special/Closet Doors
+      'Closet Door Ball Catch Prep No Bore': 51863523393676
+    };
+    
+    let handingVal = addonProperties['_Handing'] || addonProperties['Handing'];
+    if (handingVal && SWING_VARIANTS[handingVal]) {
+      let swingVariantId = SWING_VARIANTS[handingVal];
+      let swingProperties = {
+        '_config_id': uniqueConfigId,
+        '_is_addon': 'true',
+        '_is_swing': 'true'
+      };
+      
+      return fetch('/cart/add.js', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          id: swingVariantId,
+          quantity: quantity,
+          properties: swingProperties
+        })
+      }).then(r => {
+        if(!r.ok) {
+           return r.json().then(err => {
+             console.error('Swing product failed to add', err);
            });
         }
         return r.json();
@@ -4767,171 +4855,5 @@ document.addEventListener('DOMContentLoaded', function() {
   ]
 }
 {% endschema %}
-
-<style>
-@media (min-width: 1921px) {
-  /* Zoho Configuration */
-  .eto-config-card { padding: clamp(20px, 1.8vw, 40px) !important; margin-bottom: clamp(24px, 2vw, 48px) !important; }
-  .eto-config-row { padding: clamp(16px, 1.5vw, 32px) 0 !important; }
-  .eto-config-icon-placeholder { width: clamp(54px, 4.5vw, 108px) !important; height: clamp(54px, 4.5vw, 108px) !important; margin-right: clamp(16px, 1.5vw, 32px) !important; border-radius: clamp(8px, 0.7vw, 16px) !important; }
-  .eto-config-icon-placeholder img, .eto-config-icon-placeholder svg { width: clamp(28px, 2.2vw, 56px) !important; height: clamp(28px, 2.2vw, 56px) !important; }
-  .eto-config-row-label { font-size: clamp(14px, 1.2vw, 28px) !important; margin-right: clamp(6px, 0.5vw, 12px) !important; }
-  .eto-config-value { font-size: clamp(14px, 1.2vw, 28px) !important; }
-  .eto-config-edit { font-size: clamp(11px, 0.9vw, 22px) !important; padding: clamp(4px, 0.4vw, 8px) clamp(10px, 0.8vw, 20px) !important; border-radius: clamp(4px, 0.4vw, 8px) !important; }
-  .eto-config-complete-box { padding: clamp(16px, 1.5vw, 32px) clamp(20px, 1.8vw, 40px) !important; border-radius: clamp(8px, 0.7vw, 16px) !important; }
-  .eto-config-complete-icon { width: clamp(32px, 2.5vw, 64px) !important; height: clamp(32px, 2.5vw, 64px) !important; margin-right: clamp(16px, 1.5vw, 32px) !important; }
-  .eto-config-complete-icon svg { width: clamp(20px, 1.6vw, 40px) !important; height: clamp(20px, 1.6vw, 40px) !important; }
-  .eto-config-complete-text strong { font-size: clamp(15px, 1.2vw, 30px) !important; margin-bottom: clamp(4px, 0.3vw, 8px) !important; }
-  .eto-config-complete-text p { font-size: clamp(13px, 1vw, 26px) !important; }
-  #eto-center-add-cart { font-size: clamp(14px, 1.2vw, 28px) !important; padding: clamp(12px, 1vw, 24px) clamp(24px, 2vw, 48px) !important; border-radius: clamp(6px, 0.5vw, 12px) !important; }
-  
-  .eto-size-option { font-size: clamp(14px, 1.2vw, 28px) !important; padding: clamp(12px, 1vw, 24px) clamp(10px, 0.8vw, 20px) !important; min-height: clamp(34px, 3vw, 68px) !important; }
-  .eto-size-option .size, .eto-size-option .price, .eto-size-option .eto-img-opt-text span { font-size: clamp(14px, 1.2vw, 28px) !important; }
-  .eto-size-option img { width: clamp(50px, 4vw, 100px) !important; height: auto !important; }
-  .eto-dynamic-options-list { margin-bottom: clamp(16px, 1.5vw, 32px) !important; }
-  .sizes-head .label, .sizes-head .label * { font-size: clamp(18px, 1.5vw, 36px) !important; }
-  .sizes-head .eto-clear-config { font-size: clamp(14px, 1.1vw, 28px) !important; }
-  .eto-door-image, .eto-door-image-double-wrapper .panel { 
-    width: clamp(60px, 5vw, 120px) !important; 
-    height: clamp(110px, 9vw, 220px) !important; 
-  }
-  .eto-door-caption, .eto-prehang-caption { 
-    font-size: clamp(20px, 1.8vw, 40px) !important; 
-    padding: clamp(8px, 0.7vw, 16px) clamp(20px, 1.8vw, 40px) !important; 
-  }
-  .eto-door-options, .eto-prehang-options { gap: clamp(40px, 4vw, 80px) !important; margin: clamp(30px, 2.5vw, 60px) 0 clamp(15px, 1.2vw, 30px) !important; }
-
-  /* Breadcrumbs */
-  .crumb, .crumb a, .crumb .sep, .crumb .current { 
-    font-size: clamp(15px, 1.2vw, 30px) !important; 
-    gap: clamp(9px, 0.8vw, 18px) !important; 
-    padding: clamp(20px, 1.5vw, 40px) 0 !important; 
-  }
-  
-  /* Product Top Section */
-  main.wrap .eto-new-product-grid { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.35fr) clamp(275px, 20vw, 550px) !important; }
-  .eto-new-product-grid .title { font-size: clamp(30px, 2.5vw, 60px) !important; }
-  .eto-new-product-grid .lede { font-size: clamp(15px, 1.2vw, 30px) !important; max-width: none !important; }
-  
-  /* Size Grid fixed font sizes to prevent overflow on wide screens */
-  .size-tile { padding: 11px 11px !important; }
-  .size-tile .dim { font-size: 14px !important; }
-  .size-tile .price { font-size: 13px !important; }
-  
-  /* Zoom Container */
-  .eto-zoom-result { width: clamp(450px, 35vw, 900px) !important; height: clamp(500px, 40vw, 1000px) !important; }
-  
-  /* Features */
-  .feature p { font-size: clamp(13px, 1vw, 26px) !important; }
-  .feature .ficon { width: clamp(40px, 3vw, 80px) !important; height: clamp(40px, 3vw, 80px) !important; }
-  .feature .ficon .icon { width: clamp(28px, 2.2vw, 56px) !important; height: clamp(28px, 2.2vw, 56px) !important; }
-  
-  /* Helper / Assurance */
-  .helper { padding: clamp(18px, 1.5vw, 36px) clamp(20px, 1.8vw, 40px) !important; gap: clamp(18px, 1.5vw, 36px) !important; }
-  .helper .badge { width: clamp(56px, 4.5vw, 112px) !important; height: clamp(56px, 4.5vw, 112px) !important; }
-  .helper .badge .icon { width: clamp(22px, 1.8vw, 44px) !important; height: clamp(22px, 1.8vw, 44px) !important; }
-  .helper .copy strong { font-size: clamp(16px, 1.3vw, 32px) !important; }
-  .helper .copy span { font-size: clamp(14px, 1.1vw, 28px) !important; }
-  .helper .check-btn { font-size: clamp(14px, 1.1vw, 28px) !important; padding: clamp(12px, 1vw, 24px) clamp(18px, 1.5vw, 36px) !important; }
-  
-  /* Buybox */
-  .buybox .btn { font-size: clamp(16px, 1.3vw, 32px) !important; padding: clamp(16px, 1.3vw, 32px) !important; }
-  .buybox .btn .icon { width: clamp(20px, 1.6vw, 40px) !important; height: clamp(20px, 1.6vw, 40px) !important; }
-  .buybox .price { font-size: clamp(38px, 3vw, 76px) !important; }
-  .buybox .selected, .buybox .selected * { font-size: clamp(15px, 1.2vw, 30px) !important; }
-  .buybox .selected .icon { width: clamp(20px, 1.6vw, 40px) !important; height: clamp(20px, 1.6vw, 40px) !important; }
-  .buybox .ships, .buybox .ships * { font-size: clamp(15px, 1.2vw, 30px) !important; }
-  .buybox .ships .icon { width: clamp(22px, 1.8vw, 44px) !important; height: clamp(22px, 1.8vw, 44px) !important; }
-  .buybox .customnote { font-size: clamp(14px, 1.1vw, 28px) !important; }
-  .buybox .qty-label { font-size: clamp(15px, 1.2vw, 30px) !important; margin: clamp(20px, 2vw, 40px) 0 clamp(8px, 0.7vw, 16px) !important; }
-  .buybox .stepper { gap: clamp(8px, 1vw, 20px) !important; }
-  .buybox .step { width: clamp(40px, 3vw, 80px) !important; height: clamp(40px, 3vw, 80px) !important; font-size: clamp(20px, 1.8vw, 40px) !important; border-radius: clamp(8px, 0.7vw, 16px) !important; }
-  .buybox .qty-val { width: clamp(40px, 3vw, 80px) !important; min-width: clamp(40px, 3vw, 80px) !important; font-size: clamp(18px, 1.5vw, 36px) !important; }
-  .buybox .callout { margin-top: clamp(20px, 2vw, 40px) !important; }
-  .buybox .callout .num { font-size: clamp(22px, 1.8vw, 44px) !important; gap: clamp(8px, 1vw, 20px) !important; flex-wrap: wrap !important; }
-  .buybox .callout .num .icon { width: clamp(24px, 2vw, 48px) !important; height: clamp(24px, 2vw, 48px) !important; }
-  .buybox .callout .hours { font-size: clamp(14px, 1.1vw, 28px) !important; margin-top: clamp(4px, 0.5vw, 10px) !important; }
-  .buybox .assurance { padding: clamp(15px, 1.5vw, 30px) clamp(16px, 1.5vw, 32px) !important; margin-top: clamp(16px, 1.5vw, 32px) !important; gap: clamp(14px, 1.2vw, 28px) !important; }
-  .buybox .assurance .icon { width: clamp(48px, 3.5vw, 96px) !important; height: clamp(48px, 3.5vw, 96px) !important; padding: clamp(7px, 0.7vw, 14px) !important; }
-  .buybox .assurance p { font-size: clamp(15px, 1.2vw, 30px) !important; }
-  
-  /* Tabs Container */
-  .tabs { padding: clamp(24px, 2vw, 48px) clamp(32px, 3vw, 64px) !important; margin-top: clamp(20px, 2vw, 40px) !important; }
-  
-  /* Tab Headers */
-  .tab { 
-    font-size: clamp(14px, 1.2vw, 28px) !important; 
-    padding: clamp(20px, 2vw, 40px) clamp(10px, 1vw, 20px) !important;
-  }
-  .tab .icon { 
-    width: clamp(16px, 1.5vw, 32px) !important; 
-    height: clamp(16px, 1.5vw, 32px) !important; 
-  }
-  
-  /* Tab Content */
-  .tabpanel, .product-description-container, .eto-clean-tab {
-    padding-top: clamp(28px, 2.5vw, 56px) !important;
-  }
-  .tabpanel p, .tabpanel li, .product-description-container, .eto-clean-tab, .eto-clean-tab span {
-    font-size: clamp(14px, 1.1vw, 28px) !important;
-    line-height: 1.6 !important;
-  }
-  .tabpanel li::before {
-    width: clamp(5px, 0.4vw, 10px) !important;
-    height: clamp(5px, 0.4vw, 10px) !important;
-    margin-top: clamp(8px, 0.7vw, 16px) !important;
-  }
-  
-  /* Tab Content Headings */
-  .product-description-container strong, .product-description-container b, .eto-clean-tab strong, .eto-clean-tab b {
-    font-size: clamp(15px, 1.2vw, 30px) !important;
-  }
-  .product-description-container h3, .product-description-container h4 {
-    font-size: clamp(18px, 1.5vw, 36px) !important;
-    margin-bottom: clamp(12px, 1vw, 24px) !important;
-  }
-  .product-description-container .eto-please-note, .product-description-container .eto-please-note * {
-    font-size: clamp(15px, 1.2vw, 30px) !important;
-  }
-  
-  .eto-clean-tab a.eto-fast-quote-link {
-    font-size: clamp(14px, 1.1vw, 28px) !important;
-    padding: clamp(13px, 1vw, 26px) !important;
-    border-radius: clamp(9px, 0.7vw, 18px) !important;
-  }
-  
-  /* Judge.me Reviews Widget */
-  #judgeme_product_reviews .jdgm-widget { font-size: clamp(14px, 1.1vw, 28px) !important; }
-  #judgeme_product_reviews .jdgm-summary-title { font-size: clamp(18px, 1.5vw, 36px) !important; }
-  #judgeme_product_reviews .jdgm-summary__score { font-size: clamp(24px, 2vw, 48px) !important; }
-  #judgeme_product_reviews .jdgm-summary__stars .jdgm-star,
-  #judgeme_product_reviews .jdgm-rev__rating .jdgm-star { font-size: clamp(18px, 1.5vw, 36px) !important; }
-  #judgeme_product_reviews .jdgm-write-rev-link,
-  #judgeme_product_reviews .jdgm--btn,
-  #judgeme_product_reviews .jdgm-submit-rev { 
-    font-size: clamp(14px, 1.1vw, 28px) !important; 
-    padding: clamp(12px, 1vw, 24px) clamp(24px, 2vw, 48px) !important; 
-  }
-  #judgeme_product_reviews .jdgm-rev__title { font-size: clamp(16px, 1.3vw, 32px) !important; }
-  #judgeme_product_reviews .jdgm-rev__body { font-size: clamp(14px, 1.1vw, 28px) !important; line-height: 1.6 !important; }
-  #judgeme_product_reviews .jdgm-rev__author { font-size: clamp(14px, 1.1vw, 28px) !important; }
-  #judgeme_product_reviews .jdgm-paginate .jdgm-paginate__page { font-size: clamp(14px, 1.1vw, 28px) !important; padding: clamp(8px, 0.6vw, 16px) !important; }
-  #judgeme_product_reviews .jdgm-widget-actions { display: flex; gap: clamp(10px, 1vw, 20px) !important; }
-
-  /* Q&A Section */
-  .eto-qa-form-section { font-size: clamp(14px, 1.1vw, 28px) !important; margin-top: clamp(30px, 2.5vw, 60px) !important; }
-  .eto-qa-write-btn, .eto-qa-submit-btn { 
-    font-size: clamp(14px, 1.1vw, 28px) !important; 
-    padding: clamp(12px, 1vw, 24px) clamp(24px, 2vw, 48px) !important; 
-  }
-  .eto-qa-form-title { font-size: clamp(18px, 1.5vw, 36px) !important; }
-  .eto-qa-label { font-size: clamp(14px, 1.1vw, 28px) !important; }
-  .eto-qa-input, .eto-qa-textarea { font-size: clamp(14px, 1.1vw, 28px) !important; padding: clamp(12px, 1vw, 24px) !important; }
-
-  /* Bottom CTA Section */
-  .eto-bottom-cta-section { padding: clamp(25px, 2vw, 50px) 0 !important; }
-  .eto-bottom-cta-section p { font-size: clamp(21px, 1.6vw, 42px) !important; line-height: 1.5 !important; }
-}
-</style>
 
 {% render 'eto-size-calculator' %}

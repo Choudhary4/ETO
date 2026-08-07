@@ -129,7 +129,7 @@
 
                     {%- for item in cart.items -%}
                       {%- assign item_cfg = item.properties._config_id -%}
-                      {%- if item.properties._is_addon == 'true' -%}{%- continue -%}{%- endif -%}
+                      {%- comment -%} Addon items will now render as their own rows. {%- endcomment -%}
                       
                       {%- assign item_addon_price = 0 -%}
                       {%- assign linked_keys_string = item.key -%}
@@ -141,9 +141,15 @@
                         {%- endif -%}
                         
                         {%- assign linked_keys_string = '' -%}
+                        {%- assign linked_door_title = '' -%}
+                        {%- assign linked_door_qty = 1 -%}
                         {%- for other_item in cart.items -%}
                           {%- if other_item.properties._config_id == item_cfg -%}
                             {%- assign linked_keys_string = linked_keys_string | append: other_item.key | append: ',' -%}
+                            {%- if other_item.properties._is_addon != 'true' -%}
+                              {%- assign linked_door_title = other_item.variant.sku | default: other_item.product.title -%}
+                              {%- assign linked_door_qty = other_item.quantity -%}
+                            {%- endif -%}
                           {%- endif -%}
                         {%- endfor -%}
                         {%- assign linked_keys_string = linked_keys_string | remove_last: ',' -%}
@@ -178,6 +184,14 @@
 
                           <a href="{{ item.url }}" class="cart-item__name h4 break">
                             {{- item.product.title | escape -}}
+                            {%- if item.properties._is_addon == 'true' and linked_door_title != blank -%}
+                              for {{ linked_door_title }}
+                            {%- endif -%}
+                            {%- if item.properties['_Door Configuration'] -%}
+                              - {{ item.properties['_Door Configuration'] }}
+                            {%- elsif item.properties['Door Configuration'] -%}
+                              - {{ item.properties['Door Configuration'] }}
+                            {%- endif -%}
                           </a>
 
                           {%- if item.original_price != item.final_price -%}
@@ -196,14 +210,8 @@
                               </strong>
                             </div>
                           {%- else -%}
-                            <div class="product-option">
                               {%- assign display_price = item.original_price -%}
-                              {%- if item_addon_price > 0 -%}
-                                {%- assign addon_unit_price = item_addon_price | divided_by: item.quantity -%}
-                                {%- assign display_price = item.original_price | plus: addon_unit_price -%}
-                              {%- endif -%}
                               {{ display_price | money }}
-                            </div>
                           {%- endif -%}
 
                           {%- if item.product.has_only_default_variant == false
@@ -284,7 +292,7 @@
                               </div>
                             {%- else -%}
                               <span class="price price--end">
-                                {{ item.original_line_price | plus: item_addon_price | money }}
+                                {{ item.original_line_price | money }}
                               </span>
                             {%- endif -%}
 
@@ -320,8 +328,15 @@
                           role="cell"
                           headers="CartDrawer-ColumnQuantity"
                         >
-                          <quantity-popover>
+                          {%- if item.properties._is_addon == 'true' -%}
                             <div class="cart-item__quantity-wrapper quantity-popover-wrapper">
+                              <div class="quantity-popover-container">
+                                <span class="caption">Qty: {{ linked_door_qty }}</span>
+                              </div>
+                            </div>
+                          {%- else -%}
+                            <quantity-popover>
+                              <div class="cart-item__quantity-wrapper quantity-popover-wrapper">
                               <div class="quantity-popover-container{% if has_qty_rules or has_vol_pricing %} quantity-popover-container--hover{% endif %}">
                                 <quantity-input class="quantity cart-quantity">
                                   <button class="quantity__button" name="minus" type="button">
@@ -480,7 +495,8 @@
                                 {{- 'icon-error.svg' | inline_asset_content -}}
                               </span>
                             </div>
-                          </quantity-popover>
+                            </quantity-popover>
+                          {%- endif -%}
                         </td>
                       </tr>
                     {%- endfor -%}

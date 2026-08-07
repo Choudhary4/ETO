@@ -150,6 +150,41 @@ class CartItems extends HTMLElement {
     ];
   }
 
+  updateLinkedGroup(keysString, newQuantity) {
+    const updates = {};
+    const keysArray = keysString.split(',');
+
+    keysArray.forEach((key) => {
+      if (key.trim()) {
+        updates[key.trim()] = newQuantity;
+      }
+    });
+
+    const clickedItem = this.querySelector(`[data-linked-keys="${keysString}"]`);
+    const line = clickedItem ? clickedItem.querySelector('cart-remove-button')?.dataset?.index : null;
+    this.enableLoading(line);
+
+    const body = JSON.stringify({
+      updates,
+      sections: this.getSectionsToRender().map((section) => section.section),
+      sections_url: window.location.pathname,
+    });
+
+    fetch(`${routes.cart_update_url}`, { ...fetchConfig(), ...{ body } })
+      .then((response) => response.text())
+      .then((state) => {
+        const parsedState = JSON.parse(state);
+        this.renderContents(parsedState);
+        publish(PUB_SUB_EVENTS.cartUpdate, { source: 'cart-items', cartData: parsedState });
+      })
+      .catch((e) => {
+        console.error(e);
+      })
+      .finally(() => {
+        this.disableLoading(line);
+      });
+  }
+
   removeLinkedGroup(keysString) {
     const updates = {};
     const keysArray = keysString.split(',');
@@ -232,9 +267,14 @@ class CartItems extends HTMLElement {
       document.getElementById(`CartItem-${line}`) || document.getElementById(`CartDrawer-Item-${line}`);
     const linkedKeys = lineItem ? lineItem.dataset.linkedKeys : null;
 
-    if (quantity === 0 && linkedKeys && linkedKeys !== '') {
-      this.removeLinkedGroup(linkedKeys);
-      return;
+    if (linkedKeys && linkedKeys !== '') {
+      if (quantity === 0) {
+        this.removeLinkedGroup(linkedKeys);
+        return;
+      } else {
+        this.updateLinkedGroup(linkedKeys, quantity);
+        return;
+      }
     }
 
     this.enableLoading(line);

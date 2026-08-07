@@ -357,7 +357,7 @@ document.addEventListener("DOMContentLoaded", () => {
         fd.append("properties[_config_id]", uniqueKey);
 
         // Optional: also store the config on the door item
-        fd.append("properties[Door configuration]", prehangState.answers.door_configuration || "");
+        // fd.append("properties[Door configuration]", prehangState.answers.door_configuration || "");
         fd.append("properties[Door type]", prehangState.answers.door_type || "");
         fd.append("properties[Species]", species || "");
 

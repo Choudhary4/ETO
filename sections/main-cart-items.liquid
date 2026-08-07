@@ -108,7 +108,7 @@ Assumption: you tagged the prehang product with tag "prehang"
 {%- assign item_cfg = item.properties._config_id -%}
 
 {%- assign is_prehang = false -%}
-{%- if item.product != blank and item.product.tags contains 'prehang_service' -%}
+{%- if item.properties._is_addon == 'true' -%}
   {%- assign is_prehang = true -%}
 {%- endif -%}
 
@@ -124,9 +124,7 @@ Rules:
 - Else: normal (standalone door or other product)
 {%- endcomment -%}
 
-{%- if item.properties._is_addon == 'true' -%}
-  {%- continue -%}
-{%- endif -%}
+{%- comment -%} Addon items will now render as their own rows. {%- endcomment -%}
 
 {%- assign item_addon_price = 0 -%}
 {%- assign linked_keys_string = item.key -%}
@@ -138,9 +136,15 @@ Rules:
   {%- endif -%}
   
   {%- assign linked_keys_string = '' -%}
+  {%- assign linked_door_title = '' -%}
+  {%- assign linked_door_qty = 1 -%}
   {%- for other_item in cart.items -%}
     {%- if other_item.properties._config_id == item_cfg -%}
       {%- assign linked_keys_string = linked_keys_string | append: other_item.key | append: ',' -%}
+      {%- if other_item.properties._is_addon != 'true' -%}
+        {%- assign linked_door_title = other_item.variant.sku | default: other_item.product.title -%}
+        {%- assign linked_door_qty = other_item.quantity -%}
+      {%- endif -%}
     {%- endif -%}
   {%- endfor -%}
   {%- assign linked_keys_string = linked_keys_string | remove_last: ',' -%}
@@ -177,7 +181,17 @@ Rules:
                         <p class="caption-with-letter-spacing">{{ item.product.vendor }}</p>
                       {%- endif -%}
 
-                      <a href="{{ item.url }}" class="cart-item__name h4 break">{{ item.variant.sku | default: item.variant.title | escape }}</a>
+                      <a href="{{ item.url }}" class="cart-item__name h4 break">
+                        {{ item.variant.sku | default: item.product.title | escape }}
+                        {%- if is_prehang and linked_door_title != blank -%}
+                          for {{ linked_door_title }}
+                        {%- endif -%}
+                        {%- if item.properties['_Door Configuration'] -%}
+                          - {{ item.properties['_Door Configuration'] }}
+                        {%- elsif item.properties['Door Configuration'] -%}
+                          - {{ item.properties['Door Configuration'] }}
+                        {%- endif -%}
+                      </a>
 
                       {%- comment -%} Price hidden from description - shown in TOTAL column {%- endcomment -%}
 
@@ -253,7 +267,7 @@ Rules:
                           </dl>
                         {%- else -%}
                           <span class="price price--end">
-                            {{ item.original_line_price | plus: item_addon_price | money }}
+                            {{ item.original_line_price | money }}
                           </span>
                         {%- endif -%}
 
@@ -290,7 +304,7 @@ Rules:
     {%- comment -%} PREHANG: lock qty + hide remove {%- endcomment -%}
     <div class="cart-item__quantity-wrapper quantity-popover-wrapper">
       <div class="quantity-popover-container">
-        <span class="caption">Qty: {{ item.quantity }}</span>
+        <span class="caption">Qty: {{ linked_door_qty }}</span>
       </div>
     </div>
 
@@ -507,7 +521,7 @@ Rules:
                           </dl>
                         {%- else -%}
                           <span class="price price--end">
-                            {{ item.original_line_price | plus: item_addon_price | money }}
+                            {{ item.original_line_price | money }}
                           </span>
                         {%- endif -%}
 
