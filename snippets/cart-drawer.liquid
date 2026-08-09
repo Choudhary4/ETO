@@ -127,7 +127,35 @@
                       {%- endif -%}
                     {%- endfor -%}
 
-                    {%- for item in cart.items -%}
+{%- assign sortable_items = '' -%}
+{%- for item in cart.items -%}
+  {%- assign config_id = item.properties._config_id -%}
+  {%- if config_id == blank -%}
+    {%- assign config_id = 'z_no_config_' | append: forloop.index -%}
+  {%- endif -%}
+
+  {%- assign weight = '5' -%}
+  {%- assign title_down = item.product.title | downcase -%}
+  {%- if item.properties._is_addon != 'true' -%}
+    {%- assign weight = '1' -%}
+  {%- elsif item.product.tags contains 'prehang_service' or title_down contains 'pre-hanging' or title_down contains 'prehang' -%}
+    {%- assign weight = '2' -%}
+  {%- elsif title_down contains 'swing' or title_down contains 'handing' -%}
+    {%- assign weight = '3' -%}
+  {%- else -%}
+    {%- assign weight = '4' -%}
+  {%- endif -%}
+
+  {%- assign padded_index = forloop.index0 | prepend: '00' | slice: -3, 3 -%}
+  {%- assign sort_key = config_id | append: '_' | append: weight | append: '_' | append: padded_index -%}
+  {%- assign sortable_items = sortable_items | append: sort_key | append: ',' -%}
+{%- endfor -%}
+{%- assign sorted_keys = sortable_items | split: ',' | sort -%}
+
+                    {%- for key in sorted_keys -%}
+                      {%- if key == blank %}{% continue %}{% endif -%}
+                      {%- assign original_index = key | split: '_' | last | plus: 0 -%}
+                      {%- assign item = cart.items[original_index] -%}
                       {%- assign item_cfg = item.properties._config_id -%}
                       {%- comment -%} Addon items will now render as their own rows. {%- endcomment -%}
                       

@@ -511,6 +511,7 @@
           ZOHO BOOKS & CRM LIVE SYNC
         </div>
         {% if customer %}
+          <a href="{{ routes.account_url }}" class="eto-btn-logout" style="margin-right: 10px; background: transparent; border: 1px solid rgba(255,255,255,0.2);">My Account</a>
           <a href="{{ routes.account_logout_url }}" class="eto-btn-logout">Log out</a>
         {% else %}
           <a href="{{ routes.account_login_url }}?checkout_url=/pages/b2b-customer-portal" class="eto-btn-logout" style="background: var(--eto-primary); border-color: var(--eto-primary);">Log In</a>
@@ -624,7 +625,7 @@
                         {% endif %}
                         <span class="eto-badge info zoho-so-badge" data-zoho-so-id="{{ order.metafields.custom.zoho_salesorder_id }}">{{ so_display }}</span>
                       {% else %}
-                        <span class="eto-badge pending">Syncing Flow...</span>
+                        <span class="eto-badge pending shopify-syncing-badge" data-order-name="{{ order.name | replace: '#', '' }}">Syncing Flow...</span>
                       {% endif %}
                     </td>
                     <td><span class="eto-badge {% if order.financial_status_label == 'Paid' %}paid{% else %}pending{% endif %}">{{ order.financial_status_label }}</span></td>
@@ -684,9 +685,12 @@
           </a>
         </div>
         
-        {%- comment -%} Expose customer metafield as JS var for dynamic rendering {%- endcomment -%}
+        {%- comment -%} New Push Architecture: Read from 4 separate Shopify Customer Metafields {%- endcomment -%}
         <script>
-          var _shopifyCustomerNote = {% if customer and customer.metafields.custom.zoho_estimates_json.value != blank %}{{ customer.metafields.custom.zoho_estimates_json.value | json }}{% else %}null{% endif %};
+          var _mfEstimates = {% if customer and customer.metafields.custom.zoho_estimates != blank %}{{ customer.metafields.custom.zoho_estimates.value | json }}{% else %}null{% endif %};
+          var _mfInvoices = {% if customer and customer.metafields.custom.zoho_invoices != blank %}{{ customer.metafields.custom.zoho_invoices.value | json }}{% else %}null{% endif %};
+          var _mfSalesOrders = {% if customer and customer.metafields.custom.zoho_salesorders != blank %}{{ customer.metafields.custom.zoho_salesorders.value | json }}{% else %}null{% endif %};
+          var _mfPayments = {% if customer and customer.metafields.custom.zoho_payments != blank %}{{ customer.metafields.custom.zoho_payments.value | json }}{% else %}null{% endif %};
           {%- assign shopify_order_names = '' -%}
           {%- for order in customer.orders -%}
             {%- assign shopify_order_names = shopify_order_names | append: order.name | append: ',' -%}
@@ -1049,16 +1053,26 @@
       });
   }
 
-  // Render from customer.note immediately on page load (no webhook call needed!)
-  function renderFromNote() {
-    if (!_shopifyCustomerNote) return false;
+  // NEW: Render instantly from Shopify Customer Metafields (Push Architecture)
+  function renderFromMetafields() {
     try {
-      var noteObj = (typeof _shopifyCustomerNote === 'string') ? JSON.parse(_shopifyCustomerNote) : _shopifyCustomerNote;
-      var estimates = Array.isArray(noteObj) ? noteObj : (noteObj.estimates || []);
-      var invoices = Array.isArray(noteObj) ? [] : (noteObj.invoices || []);
+      // Parse each metafield independently
+      var estimates = [];
+      var invoices = [];
+      var salesorders = [];
+      var payments = [];
+      if (_mfEstimates) estimates = (typeof _mfEstimates === 'string') ? JSON.parse(_mfEstimates) : _mfEstimates;
+      if (_mfInvoices) invoices = (typeof _mfInvoices === 'string') ? JSON.parse(_mfInvoices) : _mfInvoices;
+      if (_mfSalesOrders) salesorders = (typeof _mfSalesOrders === 'string') ? JSON.parse(_mfSalesOrders) : _mfSalesOrders;
+      if (_mfPayments) payments = (typeof _mfPayments === 'string') ? JSON.parse(_mfPayments) : _mfPayments;
+      if (!Array.isArray(estimates)) estimates = [];
+      if (!Array.isArray(invoices)) invoices = [];
+      if (!Array.isArray(salesorders)) salesorders = [];
+      if (!Array.isArray(payments)) payments = [];
       
+      // --- ESTIMATES ---
+      var estContainer = document.getElementById('estimates-table-container');
       if (estimates.length > 0) {
-        var estContainer = document.getElementById('estimates-table-container');
         if (estContainer) {
           var estHtml = '<div class="eto-table-responsive"><table class="eto-table"><thead><tr><th>Estimate #</th><th>Date</th><th>Total Amount</th><th>Status</th><th>Actions</th></tr></thead><tbody>';
           estimates.forEach(function(est) {
@@ -1076,8 +1090,9 @@
           var kpi = document.getElementById('kpi-quotes-count');
           if(kpi) kpi.textContent = estimates.length + ' Quote' + (estimates.length > 1 ? 's' : '');
         }
-        
-        if (invoices.length > 0) {
+      }
+      // --- INVOICES ---
+      if (invoices.length > 0) {
           var totalBalance = 0;
           var invContainer = document.getElementById('invoices-table-container');
           if (invContainer) {
@@ -1086,12 +1101,18 @@
               var bal = parseFloat(inv.balance||0);
               totalBalance += bal;
               var statusClass = inv.status === 'paid' ? 'paid' : (inv.status === 'sent' ? 'pending' : 'overdue');
+              // Build action buttons
+              var actionBtns = '<a href="' + (getZohoIdFromUrl(inv.pdf_url) ? 'https://eto-pdf-proxy.aaron-3b7.workers.dev/?type=invoices&id=' + getZohoIdFromUrl(inv.pdf_url) : '#') + '" target="_blank" class="eto-action-btn eto-btn-outline" style="padding:4px 8px;font-size:12px; margin-right:4px;">📄 PDF</a>';
+              // Add Pay Now button if balance is due and payment URL exists
+              if (bal > 0 && inv.payment_url && inv.payment_url !== '') {
+                actionBtns += '<a href="' + inv.payment_url + '" target="_blank" class="eto-action-btn eto-btn-primary" style="padding:4px 10px;font-size:12px; background:#16a34a; border-color:#16a34a;">💳 Pay Now</a>';
+              }
               invHtml += '<tr><td><strong>' + (inv.invoice_number||'N/A') + '</strong></td>' +
                 '<td>' + (inv.date||'N/A') + '</td>' +
                 '<td><strong>$' + parseFloat(inv.total||0).toFixed(2) + '</strong></td>' +
                 '<td style="color:var(--eto-primary); font-weight:700;">$' + bal.toFixed(2) + '</td>' +
                 '<td><span class="eto-badge ' + statusClass + '">' + (inv.status||'unpaid').toUpperCase() + '</span></td>' +
-                '<td><a href="' + (getZohoIdFromUrl(inv.pdf_url) ? 'https://eto-pdf-proxy.aaron-3b7.workers.dev/?type=invoices&id=' + getZohoIdFromUrl(inv.pdf_url) : '#') + '" target="_blank" class="eto-action-btn eto-btn-outline" style="padding:4px 8px;font-size:12px;">📄 PDF</a></td></tr>';
+                '<td>' + actionBtns + '</td></tr>';
             });
             invHtml += '</tbody></table></div>';
             invContainer.innerHTML = invHtml;
@@ -1119,20 +1140,79 @@
               payBtn.setAttribute('onclick', "showEtoToast('No outstanding invoices pending payment.')");
             }
           }
-        }
-        
-        return true;
       }
-    } catch(e) { console.warn('Note render error:', e); }
-    return false;
+
+      // --- AUTO-MATCH SHOPIFY ORDERS WITH ZOHO SOs ---
+      if (salesorders.length > 0) {
+        var syncingBadges = document.querySelectorAll('.shopify-syncing-badge');
+        syncingBadges.forEach(function(badge) {
+          var orderName = badge.getAttribute('data-order-name');
+          if (orderName) {
+            // Find a Zoho SO that matches this Shopify order number
+            var matchedSO = salesorders.find(function(so) {
+               // Sometimes Zoho SO number or reference field contains the Shopify order number
+               var soNum = (so.salesorder_number || '').replace(/^(SO-|#)/i, '');
+               return soNum === orderName;
+            });
+            
+            if (matchedSO) {
+               badge.className = 'eto-badge info zoho-so-badge';
+               badge.textContent = matchedSO.salesorder_number || ('SO-' + orderName);
+            }
+          }
+        });
+      }
+
+      // --- SALES ORDERS (CUSTOM) ---
+      if (salesorders.length > 0) {
+        var soContainer = document.getElementById('salesorders-table-container');
+        if (soContainer) {
+          var customSO = salesorders.filter(function(so) {
+            var cleanNum = (so.salesorder_number || '').toString().replace(/^#/, '');
+            return !_existingShopifyOrders.some(function(sOrd) { return sOrd.toString().replace(/^#/, '') === cleanNum; });
+          });
+          if (customSO.length > 0) {
+            var soHtml = '<div class="eto-table-responsive"><table class="eto-table"><thead><tr><th>Sales Order #</th><th>Date</th><th>Total Amount</th><th>Status</th><th>Actions</th></tr></thead><tbody>';
+            customSO.forEach(function(so) {
+              soHtml += '<tr>' +
+                '<td><strong>' + (so.salesorder_number || 'SO-N/A') + '</strong></td>' +
+                '<td>' + (so.date || 'N/A') + '</td>' +
+                '<td><strong>$' + parseFloat(so.total || 0).toFixed(2) + '</strong></td>' +
+                '<td><span class="eto-badge pending">' + (so.status || 'open').toUpperCase() + '</span></td>' +
+                '<td><a href="' + (getZohoIdFromUrl(so.pdf_url) ? 'https://eto-pdf-proxy.aaron-3b7.workers.dev/?type=salesorders&id=' + getZohoIdFromUrl(so.pdf_url) : '#') + '" target="_blank" class="eto-action-btn eto-btn-outline" style="padding:4px 8px;font-size:12px;">📄 PDF</a></td>' +
+                '</tr>';
+            });
+            soHtml += '</tbody></table></div>';
+            soContainer.innerHTML = soHtml;
+          }
+        }
+      }
+
+      // --- PAYMENTS ---
+      if (payments.length > 0) {
+        var payContainer = document.getElementById('payments-table-container');
+        if (payContainer) {
+          var payHtml = '<div class="eto-table-responsive"><table class="eto-table"><thead><tr><th>Payment #</th><th>Date</th><th>Amount</th><th>Mode</th><th>Receipt</th></tr></thead><tbody>';
+          payments.forEach(function(pay) {
+            payHtml += '<tr>' +
+              '<td><strong>' + (pay.payment_number || 'PAY-N/A') + '</strong></td>' +
+              '<td>' + (pay.date || 'N/A') + '</td>' +
+              '<td><strong>$' + parseFloat(pay.amount || 0).toFixed(2) + '</strong></td>' +
+              '<td><span class="eto-badge paid">' + (pay.payment_mode || 'Cash').toUpperCase() + '</span></td>' +
+              '<td><a href="' + (getZohoIdFromUrl(pay.pdf_url) ? 'https://eto-pdf-proxy.aaron-3b7.workers.dev/?type=customerpayments&id=' + getZohoIdFromUrl(pay.pdf_url) : '#') + '" target="_blank" class="eto-action-btn eto-btn-outline" style="padding:4px 8px;font-size:12px;">📄 Receipt</a></td>' +
+              '</tr>';
+          });
+          payHtml += '</tbody></table></div>';
+          payContainer.innerHTML = payHtml;
+        }
+      }
+
+    } catch(e) { console.warn('Metafield render error:', e); }
   }
 
-  // Auto-fetch when page loads
+  // PUSH ARCHITECTURE: Render instantly from metafields on page load (zero API calls!)
   document.addEventListener("DOMContentLoaded", function() {
-    // First: render immediately from customer.note (instant, no API call)
-    var rendered = renderFromNote();
-    // Then: background sync with Zoho Flow webhook (updates data for next load)
-    fetchZohoData();
+    renderFromMetafields();
   });
 </script>
 

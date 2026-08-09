@@ -423,7 +423,7 @@ html body .shopify-section-group-header-group {
           <a href="/search" class="eto-utility-icon eto-search-icon-wrap" aria-label="Search">
             {% render 'icon-eto-search' %}
           </a>
-          <a href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}" class="eto-utility-icon eto-account-icon-wrap" aria-label="{% if customer %}My Account{% else %}Log In{% endif %}">
+          <a href="{% if customer %}/pages/b2b-customer-portal{% else %}{{ routes.account_login_url }}{% endif %}" class="eto-utility-icon eto-account-icon-wrap" aria-label="{% if customer %}My Account{% else %}Log In{% endif %}">
             {% render 'icon-eto-account' %}
           </a>
           <a href="{{ routes.cart_url }}" class="eto-utility-icon eto-cart-icon-wrap" aria-label="Cart">
