@@ -1,5 +1,5 @@
 .eto-product-card {
-  text-align: left;
+  text-align: center;
 }
 
 /* Title - clean, professional, handles long names */
@@ -17,6 +17,13 @@
   min-height: 38px;
   margin: 10px 0 4px 0 !important;
   padding: 0;
+  text-align: center !important;
+}
+
+.eto-product-card .card__information,
+.eto-product-card .card-information {
+  text-align: center !important;
+  align-items: center !important;
 }
 
 /* Title link - no underline, green on hover */
@@ -46,10 +53,10 @@
 .eto-product-card__prices {
   margin-top: 4px;
   margin-bottom: 12px;
-  text-align: center;
+  text-align: center !important;
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: center !important;
   align-items: baseline;
   gap: 6px;
 }
@@ -81,7 +88,7 @@
   text-transform: none;
   padding: 6px 20px;
   width: max-content;
-  margin: 6px auto 0;
+  margin: 6px auto 0 auto;
   text-decoration: none !important;
   text-decoration-line: none !important;
   font-family: 'Montserrat', sans-serif;

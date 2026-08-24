@@ -42,7 +42,7 @@
 
 .footer__content-bottom {
   border-top: solid 0.1rem rgba(var(--color-foreground), 0.08);
-  padding-top: 3rem;
+  padding-top: 0;
 }
 
 .footer__content-bottom:only-child {
@@ -291,8 +291,13 @@
 }
 
 .footer__copyright {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
   text-align: center;
-  margin-top: 1.5rem;
+  margin-top: 0;
 }
 
 @media screen and (min-width: 750px) {

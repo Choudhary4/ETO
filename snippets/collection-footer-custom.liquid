@@ -38,6 +38,35 @@
     color: #333;
     line-height: 1.6; 
   }
+  .collection-description-text.clamped {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+  }
+  .read-more-btn {
+    display: inline-flex;
+    align-items: center;
+    background: none;
+    border: none;
+    color: #666;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0;
+    margin-top: 12px;
+    text-transform: none;
+    font-family: inherit;
+  }
+  .read-more-btn svg {
+    width: 12px;
+    height: 12px;
+    margin-left: 6px;
+    transition: transform 0.2s;
+  }
+  .read-more-btn.expanded svg {
+    transform: rotate(180deg);
+  }
 </style>
 
 <!-- Detect selected category FIRST (before rendering title) -->
@@ -78,9 +107,17 @@
     <h2 class="collection-footer-title" id="js-footer-title">{{ display_title }} DOORS</h2>
     
     {%- if selected_category_desc != blank -%}
-    <div class="collection-description-text" id="js-footer-desc">
-      {{ selected_category_desc }}
-    </div>
+        <div class="collection-description-text clamped" id="js-footer-desc">
+          {%- if liquid_found_desc -%}
+            {{ selected_category_desc }}
+          {%- endif -%}
+        </div>
+        <button type="button" class="read-more-btn" id="js-read-more-btn" onclick="var d=this.previousElementSibling; if(d.classList.contains('clamped')){d.classList.remove('clamped'); this.classList.add('expanded'); this.innerHTML='Read less <svg viewBox=\'0 0 14 8\' fill=\'none\' xmlns=\'http://www.w3.org/2000/svg\'><path d=\'M1 1L7 7L13 1\' stroke=\'currentColor\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'/></svg>';}else{d.classList.add('clamped'); this.classList.remove('expanded'); this.innerHTML='Read more <svg viewBox=\'0 0 14 8\' fill=\'none\' xmlns=\'http://www.w3.org/2000/svg\'><path d=\'M1 1L7 7L13 1\' stroke=\'currentColor\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'/></svg>';}">
+          Read more
+          <svg viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1L7 7L13 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
     {%- elsif collection.description != blank -%}
     <div class="collection-description-text" id="js-footer-desc">
       {{ collection.description }}
@@ -108,7 +145,9 @@
   {%- endfor -%}
 
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    (function() {
+      // Logic for rendering description based on URL params
+      // Run immediately because if injected via AJAX, DOMContentLoaded has already passed.
       var params = new URLSearchParams(window.location.search);
       var categories = params.getAll('filter.p.m.custom.product_category');
       if (categories.length === 0) return;
@@ -133,6 +172,6 @@
           break;
         }
       }
-    });
+    })();
   </script>
 {%- endunless -%}

@@ -21,17 +21,7 @@
         </a>
 
         <div class="product-list-price-box">
-            {%- if card_product.compare_at_price > card_product.price -%}
-              <span class="list-price">
-                List Price: {{ card_product.compare_at_price | money }}
-              </span>
-            {%- else -%}
-              <!-- Stub logic to simulate a "List Price" if none exists, purely for visual matching if requested, otherwise standard -->
-              <span class="list-price">
-                  List Price: {{ card_product.price | times: 1.2 | money }}
-              </span>
-            {%- endif -%}
-            
+
             <div style="margin-top: 2px;">
                 Price For Door Only: 
                 <span class="special-price">

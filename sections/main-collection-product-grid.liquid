@@ -42,14 +42,27 @@ document.addEventListener('DOMContentLoaded', function() {
 {%- endif -%}
 
 {%- style -%}
+  @font-face {
+    font-family: 'MADE Mirage';
+    src: url('{{ "made-mirage-regular.otf" | asset_url }}') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'MADE Mirage';
+    src: url('{{ "made-mirage-thin.otf" | asset_url }}') format('opentype');
+    font-weight: 300;
+    font-style: normal;
+  }
+
   .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-top: 0px !important;
     padding-bottom: 0 !important;
   }
 
   @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
+      padding-top: 0px !important;
       padding-bottom: 0 !important;
     }
   }
@@ -63,17 +76,37 @@ document.addEventListener('DOMContentLoaded', function() {
       {%- assign selected_cat_name = filter.active_values.last.label -%}
     {%- endif -%}
   {%- endfor -%}
+  {%- assign formatted_cat_name = blank -%}
   {%- if selected_cat_name != blank -%}
-    {%- assign breadcrumb_title = selected_cat_name | remove: 'Nav_' | replace: 'Whiteoak', 'White Oak Doors' | replace: '_', ' ' | append: ' Home' -%}
+    {%- assign formatted_cat_name = selected_cat_name | remove: 'Nav_' | replace: 'Whiteoak', 'White Oak Doors' | replace: '_', ' ' -%}
+    {%- unless formatted_cat_name contains 'Door' or formatted_cat_name contains 'door' -%}
+      {%- assign formatted_cat_name = formatted_cat_name | append: ' Doors' -%}
+    {%- endunless -%}
+    {%- assign breadcrumb_title = formatted_cat_name | append: ' Home' -%}
   {%- else -%}
     {%- assign breadcrumb_title = collection.title -%}
   {%- endif -%}
   <div style="max-width: var(--eto-container-max); margin: 0 auto; padding: 0 var(--eto-margin-edge);">
-    <nav class="category-breadcrumb" aria-label="Breadcrumb" style="font-family: 'Montserrat', sans-serif; font-size: 15px; line-height: 1.5; color: #666; margin-top: 18px; margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid rgba(0, 0, 0, 0.3);">
+    <nav class="category-breadcrumb" aria-label="Breadcrumb" style="font-family: 'Montserrat', sans-serif; font-size: 15px; line-height: 1.5; color: #666; margin-top: 18px; margin-bottom: 25px; padding-bottom: 0;">
       <a href="/" style="color: #666; text-decoration: none;">Home</a>
       <span class="separator" style="margin: 0 8px; color: #666;">&rarr;</span>
       <span class="current" aria-current="page" id="js-breadcrumb-title" style="color: #000; font-weight: 600;">{{ breadcrumb_title }}</span>
     </nav>
+    
+    <div class="clean-collection-header" style="margin-bottom: 30px;">
+      <h1 style="font-family: 'MADE Mirage', serif; font-size: 42px; font-weight: 300; margin: 0 0 10px 0; color: #000; letter-spacing: 0;">
+        {%- if formatted_cat_name != blank -%}
+          {{ formatted_cat_name }}
+        {%- else -%}
+          {{ collection.title }}
+        {%- endif -%}
+      </h1>
+      {% if collection.description != blank %}
+        <div style="font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 300; color: #333; line-height: 1.5; max-width: 800px;">
+          {{ collection.description | strip_html | truncatewords: 30 }}
+        </div>
+      {% endif %}
+    </div>
   </div>
 
 <div class="section-{{ section.id }}-padding">  <div class="category-page-container">
@@ -245,39 +278,18 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
   </div>
 
-  <div class="eto-bottom-cta-section" style="position: sticky; bottom: 0; left: 0; right: 0; width: 100%; box-sizing: border-box; padding: 20px 20px; text-align: center; border-top: 1px solid #c8bfb5; border-bottom: 1px solid #c8bfb5; background: #f5f0eb; z-index: 100;">
+  <div class="eto-bottom-cta-section" style="position: sticky; bottom: 0; left: 0; right: 0; width: 100%; box-sizing: border-box; padding: 20px 20px; text-align: center; border-top: 1px solid #c8bfb5; border-bottom: 1px solid #c8bfb5; background: #f5f0eb; z-index: 2;">
     <p style="margin: 0 0 4px 0; font-size: 15px; line-height: 1.5; font-weight: 400; text-transform: uppercase; color: #000; font-family: 'Montserrat', sans-serif; letter-spacing: 0.05em;">CAN'T FIND WHAT YOU'RE LOOKING FOR? WE HAVE IT!!!</p>
     <p style="margin: 0; font-size: 15px; line-height: 1.5; font-weight: 700; text-transform: uppercase; color: #000; font-family: 'Montserrat', sans-serif; letter-spacing: 0.05em;">CALL OUR DOOR PROFESSIONALS (213) 622-2003</p>
   </div>
 
   {% render 'collection-footer-custom', collection: collection %}
   
+  
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Simple View Toggle
-        const viewBtns = document.querySelectorAll('.view-toggle-btn');
-        const gridView = document.querySelector('.view-mode-grid');
-        const listView = document.querySelector('.view-mode-list');
-
-        viewBtns.forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                e.preventDefault();
-                const mode = this.getAttribute('data-view');
-                
-                // Update active state
-                viewBtns.forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-
-                if (mode === 'grid') {
-                    if(gridView) gridView.style.display = 'flex';
-                    if(listView) listView.style.display = 'none';
-                } else {
-                    if(gridView) gridView.style.display = 'none';
-                    if(listView) listView.style.display = 'block';
-                }
-            });
-        });
         
+
         // Ensure sort form submits on change (Standard Shopify behavior sometimes relies on this)
         const sortSelect = document.getElementById('SortBy');
         if(sortSelect) {

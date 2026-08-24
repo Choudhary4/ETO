@@ -31,11 +31,11 @@ html body .shopify-section-group-header-group {
 .section-header { 
   width: 100%; 
   margin: 0; 
-  padding-top: 202px; /* Exactly 110 + 46 + 46 */
+  padding-top: 138px; /* Exactly 68 + 46 + 24 */
 }
 
 /* ===== TIER 1 & 2: BRAND & UTILITY ===== */
-.eto-top-unified-bar { background: #E6E2DF; width: 100%; height: 110px; border-top: 1px solid rgba(0, 0, 0, 0.1); border-bottom: 1px solid rgba(0, 0, 0, 0.1); box-sizing: border-box; }
+.eto-top-unified-bar { background: #E6E2DF; width: 100%; height: 68px; border-top: 1px solid rgba(0, 0, 0, 0.1); border-bottom: 1px solid rgba(0, 0, 0, 0.1); box-sizing: border-box; }
 .eto-top-unified-inner {
   max-width: var(--eto-container-max);
   margin: 0 auto;
@@ -56,6 +56,10 @@ html body .shopify-section-group-header-group {
 }
 .eto-top-center {
   flex: 0 0 auto;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .eto-utility-link {
   font-family: 'Montserrat', sans-serif;
@@ -118,7 +122,7 @@ html body .shopify-section-group-header-group {
 }
 
 /* (Brand section merged above) */
-.eto-brand-logo-link { text-decoration: none; display: inline-block; }
+.eto-brand-logo-link { text-decoration: none; display: flex; align-items: center; justify-content: center; height: 100%; }
 .eto-brand-name {
   font-family: 'EB Garamond', serif;
   font-size: 32px; font-weight: 500;
@@ -128,7 +132,7 @@ html body .shopify-section-group-header-group {
   margin: 0; line-height: 1.2;
 }
 .eto-brand-name a { color: inherit; text-decoration: none; }
-.eto-logo-img { height: 60px; width: 106px; display: block; margin: 0 auto; }
+.eto-logo-img { height: 48px; width: 85px; display: block; margin: 0 auto; }
 .eto-search-form-hidden { display: none; }
 
 /* ===== TIER 3: NAV BAR ===== */
@@ -150,9 +154,8 @@ html body .shopify-section-group-header-group {
   display: flex; align-items: center; gap: 8px;
   color: var(--eto-dark-charcoal); text-decoration: none;
   font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 15px;
-  background-color: #E0E0E0;
-  padding: 4px 12px;
-  border-radius: 6px;
+  background-color: transparent;
+  padding: 0;
   border: none;
 }
 @media (max-width: 1024px) {
@@ -252,7 +255,7 @@ html body .shopify-section-group-header-group {
   background: #E6E2DF;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
-  width: 100%; height: 46px;
+  width: 100%; height: 24px;
   display: flex; align-items: center; justify-content: center;
   padding: 0 var(--eto-margin-edge); text-align: center;
 }
@@ -288,9 +291,7 @@ html body .shopify-section-group-header-group {
   .eto-announce-text { font-size: 10px; line-height: 1.3; }
 }
 
-@media (min-width: 1921px) {
-  .eto-top-unified-inner, .eto-nav-inner { max-width: 95% !important; }
-}
+
 </style>
 
 <style>
@@ -493,54 +494,7 @@ html body .shopify-section-group-header-group {
               <a href="/pages/pros">Pros</a>
             </li>
             <li class="eto-menu-item">
-              <a href="/pages/contact">Contact <span class="arrow-right mobile-only-arrow">▶</span></a>
-              <ul class="eto-dropdown">
-                <li class="eto-dropdown-item"><a href="/pages/contact">Contact</a></li>
-                <li class="eto-dropdown-item">
-                  <a href="/pages/about-us">
-                    About <span class="arrow-right">▶</span>
-                  </a>
-                  <ul class="eto-flyout eto-dynamic-flyout">
-                    <li class="eto-dropdown-item"><a href="/pages/about-us?section=history">History</a></li>
-                    <li class="eto-dropdown-item"><a href="/pages/about-us?section=green">ETO Green</a></li>
-                    <li class="eto-dropdown-item"><a href="/pages/testimonials">Testimonials</a></li>
-                    <li class="eto-dropdown-item"><a href="/pages/about-us?section=why-buy">Why Buy From ETO</a></li>
-                    <li class="eto-dropdown-item">
-                      <a href="/pages/about-us?section=fire">Certifications <span class="arrow-right">▶</span></a>
-                      <ul class="eto-flyout eto-dynamic-flyout">
-                        <li class="eto-dropdown-item"><a href="/pages/about-us?section=impact">Impact Rating</a></li>
-                        <li class="eto-dropdown-item"><a href="/pages/about-us?section=fire">Fire Rating</a></li>
-                        <li class="eto-dropdown-item"><a href="/pages/about-us?section=energy">Energy Star</a></li>
-                        <li class="eto-dropdown-item"><a href="/pages/about-us?section=fsc">FSC Green</a></li>
-                        <li class="eto-dropdown-item"><a href="/pages/about-us?section=stc">STC Sound</a></li>
-                        <li class="eto-dropdown-item"><a href="/pages/about-us?section=nfrc">NFRC Efficiency</a></li>
-                      </ul>
-                    </li>
-                    <li class="eto-dropdown-item">
-                      <a href="/pages/portfolios">Portfolios <span class="arrow-right">▶</span></a>
-                      <ul class="eto-flyout eto-dynamic-flyout">
-                        <li class="eto-dropdown-item"><a href="/pages/customer-photos">Customer Photos</a></li>
-                        <li class="eto-dropdown-item"><a href="/pages/project-portfolios">Project Portfolios</a></li>
-                        <li class="eto-dropdown-item"><a href="/pages/press">Press</a></li>
-                        <li class="eto-dropdown-item"><a href="/pages/testimonials">Testimonials</a></li>
-                      </ul>
-                    </li>
-                    <li class="eto-dropdown-item">
-                      <a href="/pages/about-us?section=forms">Resources <span class="arrow-right">▶</span></a>
-                      <ul class="eto-flyout eto-dynamic-flyout">
-                        <li class="eto-dropdown-item"><a href="/pages/about-us?section=diy">DIY Instructions</a></li>
-                        <li class="eto-dropdown-item"><a href="/pages/about-us?section=diy-videos">DIY Videos</a></li>
-                        <li class="eto-dropdown-item"><a href="/pages/about-us?section=forms">Forms</a></li>
-                        <li class="eto-dropdown-item"><a href="/pages/about-us?section=warranty">Warranty</a></li>
-                        <li class="eto-dropdown-item"><a href="/pages/about-us?section=3d-modeling">3D Modeling</a></li>
-                        <li class="eto-dropdown-item"><a href="/pages/about-us?section=glass-options">Glass Options</a></li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-                <li class="eto-dropdown-item"><a href="/pages/file-a-claim">Claim</a></li>
-                <li class="eto-dropdown-item"><a href="/account">My Status</a></li>
-              </ul>
+              <a href="/pages/contact">Contact</a>
             </li>
           </ul>
         </nav>

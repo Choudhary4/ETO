@@ -89,7 +89,7 @@ ETO – CUSTOM FOOTER v2 (Matches client screenshot)
 /* ── Main Footer ─────────────────────────────────── */
 .eto-footer-main {
   background: #E6E2DF !important;
-  padding: 40px 0 32px !important;
+  padding: 10px 0 8px !important;
   color: #000000 !important;
   width: 100vw !important;
   max-width: none !important;
@@ -363,23 +363,28 @@ ETO – CUSTOM FOOTER v2 (Matches client screenshot)
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 10px;
+  flex-wrap: nowrap;
+  gap: 5px;
 }
 .eto-footer-copyright {
   font-family: 'Montserrat', sans-serif;
-  font-size: 13px;
+  font-size: 11px;
   color: #000000;
+  white-space: nowrap;
 }
 .eto-footer-links {
   display: flex;
-  gap: 24px;
+  gap: 6px;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  padding-right: 40px;
 }
 .eto-footer-links a {
   color: #000000;
   text-decoration: none;
+  white-space: nowrap;
   font-family: 'Montserrat', sans-serif;
-  font-size: 13px;
+  font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
   transition: color 0.2s;
@@ -410,17 +415,16 @@ ETO – CUSTOM FOOTER v2 (Matches client screenshot)
 }
 .eto-footer-disclaimer-inner a { color: #555; text-decoration: underline; }
 
-@media (min-width: 1921px) {
-  .eto-footer-inner,
-  .eto-footer-bottom-inner,
-  .eto-footer-disclaimer-inner {
-    max-width: 95% !important;
-  }
-  .eto-footer-inner {
-    grid-template-columns: 12vw 16vw minmax(0, 1fr) 22vw;
-    gap: 1vw;
-  }
+/* ── Chat Widget Fix ─────────────────────────────── */
+iframe#dummy-chat-button-iframe,
+iframe#shopify-chat,
+.shopify-chat,
+#chat-button,
+.chat-widget {
+  bottom: 50px !important;
 }
+
+
 
 /* ── Responsive ──────────────────────────────────── */
 @media (max-width: 1200px) {
@@ -550,7 +554,7 @@ ETO – CUSTOM FOOTER v2 (Matches client screenshot)
       <a href="/" class="eto-footer-logo" aria-label="ETO Doors">
         {% render 'icon-eto-logo' %}
       </a>
-      <p class="eto-footer-tagline">Timeless Craftsmanship.<br>Modern Function.</p>
+      <p class="eto-footer-tagline">Elevated Design.<br>Lasting Performance.</p>
       <div class="eto-footer-social">
         <!-- Facebook -->
         <a href="https://www.facebook.com/etodoors/" target="_blank" aria-label="Facebook">
@@ -591,7 +595,7 @@ ETO – CUSTOM FOOTER v2 (Matches client screenshot)
       </div>
       <div class="eto-contact-row">
         <svg class="eto-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-        <p>Mon – Fri 8AM – 5:30PM PST</p>
+        <p>Mon – Fri 8AM – 5:00pm</p>
       </div>
     </div>
 
@@ -678,22 +682,20 @@ ETO – CUSTOM FOOTER v2 (Matches client screenshot)
     <div class="eto-footer-copyright">
       © {{ 'now' | date: '%Y' }} {{ section.settings.copyright_text | default: 'ETO Doors Store. All Rights Reserved.' }}
     </div>
+    
+    <div class="eto-footer-disclaimer-inner" style="flex: 1; text-align: center; padding: 0 5px; margin: 0; font-size: 9px; white-space: nowrap;">
+      {% assign disclaimer_text = section.settings.disclaimer | default: 'By Using This Site You Agree To Our Terms & Conditions Of Use And Privacy Statement. ⚠ WARNING: Cancer And Reproductive Harm' %}
+      {{ disclaimer_text | replace: 'Cancer And Reproductive Harm', '<a href="https://www.p65warnings.ca.gov/" target="_blank">Cancer And Reproductive Harm</a>' | replace: 'Cancer and Reproductive Harm', '<a href="https://www.p65warnings.ca.gov/" target="_blank">Cancer and Reproductive Harm</a>' }}
+    </div>
+
     <div class="eto-footer-links">
       <a href="/pages/about-us">ABOUT</a>
       <a href="/pages/about-us?section=warranty">WARRANTY</a>
-      <a href="/pages/about-us?section=warranty">RETURNS</a>
+      <a href="/pages/about-us?section=returns">RETURNS</a>
       <a href="/pages/shipping-delivery">SHIPPING</a>
       <a href="/pages/about-us?section=brand">TERMS</a>
       <a href="/pages/about-us?section=brand">PRIVACY</a>
     </div>
-  </div>
-</div>
-
-<!-- Disclaimer -->
-<div class="eto-footer-disclaimer">
-  <div class="eto-footer-disclaimer-inner">
-    {% assign disclaimer_text = section.settings.disclaimer | default: 'By Using This Site You Agree To Our Terms & Conditions Of Use And Privacy Statement. ⚠ WARNING: Cancer And Reproductive Harm' %}
-    {{ disclaimer_text | replace: 'Cancer And Reproductive Harm', '<a href="https://www.p65warnings.ca.gov/" target="_blank">Cancer And Reproductive Harm</a>' | replace: 'Cancer and Reproductive Harm', '<a href="https://www.p65warnings.ca.gov/" target="_blank">Cancer and Reproductive Harm</a>' }}
   </div>
 </div>
 
@@ -737,7 +739,7 @@ ETO – CUSTOM FOOTER v2 (Matches client screenshot)
       "type": "text",
       "id": "hours",
       "label": "Business Hours",
-      "default": "Mon – Fri 8AM – 5:30PM PST"
+      "default": "Mon – Fri 8AM – 5:00pm"
     },
     {
       "type": "text",

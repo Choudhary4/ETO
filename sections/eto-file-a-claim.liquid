@@ -1,750 +1,607 @@
-<div class="eto-file-a-claim-page">
-  {{ 'component-door-categories.css' | asset_url | stylesheet_tag }}
-  
-  <!-- Breadcrumb -->
-  <nav class="eto-claim-breadcrumb">
-    <a href="/">Home</a>
-    <span>&gt;</span>
-    <span>claim</span>
-  </nav>
-  
-  <div class="eto-claim-wrapper">
-    
-    <main class="eto-claim-main">
-      <div class="eto-claim-header">
-        <h1>File a Claim</h1>
-      </div>
-      
-      <div class="eto-claim-content">
-        <div class="eto-claim-intro">
-          <p>To begin the claims process, please take a minute to complete the claims form below (including at least one picture).</p>
-          <p>Once submitted, an ETO Doors claims representative will contact you within 24 hours.<br>
-          Please note your claim number for future reference. We will work with you throughout the claims process to provide the fastest possible resolution.</p>
-          <p>Thank you for your patience.<br>
-          ETO Doors Claims Team.</p>
-        </div>
-        
-        {% form 'contact', id: 'claim-form', class: 'eto-claim-form' %}
-          <input type="hidden" name="contact[tags]" value="claim">
-          
-          <div class="eto-form-row">
-            <div class="eto-form-group">
-              <label for="claim-name">Name <span class="required">*</span></label>
-              <div class="eto-name-fields">
-                <div class="eto-name-field">
-                  <input type="text" id="claim-first-name" name="contact[first_name]" required>
-                  <span class="eto-field-label">First</span>
-                </div>
-                <div class="eto-name-field">
-                  <input type="text" id="claim-last-name" name="contact[last_name]" required>
-                  <span class="eto-field-label">Last</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="eto-form-group">
-            <label for="claim-email">Email <span class="required">*</span></label>
-            <input type="email" id="claim-email" name="contact[email]" required>
-          </div>
-          
-          <div class="eto-form-group">
-            <label for="claim-phone">Phone <span class="required">*</span></label>
-            <input type="tel" id="claim-phone" name="contact[phone]" required>
-          </div>
-          
-          <div class="eto-form-group">
-            <label for="claim-doors">Number of Doors <span class="required">*</span></label>
-            <input type="number" id="claim-doors" name="contact[number_of_doors]" min="1" required>
-          </div>
-          
-          <div class="eto-form-group">
-            <label for="claim-invoice">Invoice Number <span class="required">*</span></label>
-            <input type="text" id="claim-invoice" name="contact[invoice_number]" required>
-          </div>
-          
-          <div class="eto-form-group">
-            <label for="claim-cause">Cause of Damage <span class="required">*</span></label>
-            <select id="claim-cause" name="contact[cause_of_damage]" required>
-              <option value="">-Select-</option>
-              <option value="damaged_in_transit">Damaged in Transit</option>
-              <option value="wrong_size">Wrong Size</option>
-              <option value="missing_parts">Missing Parts</option>
-              <option value="production_issue">Production Issue</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-          
-          <div class="eto-form-group">
-            <label for="claim-description">Damage Description <span class="required">*</span></label>
-            <textarea id="claim-description" name="contact[body]" rows="5" required placeholder="Please describe the damage in detail..."></textarea>
-          </div>
-          
-          <div class="eto-form-group">
-            <label>Upload Images</label>
-            <div class="eto-file-upload">
-              <input type="file" id="claim-images" name="contact[images]" multiple accept="image/*">
-              <label for="claim-images" class="eto-file-label">
-                <span>Choose File(s)</span>
-                <span class="eto-upload-icon">⬆</span>
-              </label>
-              <div id="file-preview" class="eto-file-preview"></div>
-            </div>
-          </div>
-          
-          <div class="eto-form-group">
-            <label for="claim-captcha">Verification Code <span class="required">*</span></label>
-            <input type="text" id="claim-captcha" name="contact[verification]" placeholder="Enter the text in the box below" required>
-            <div class="eto-captcha-container">
-              <canvas id="captcha-canvas" width="150" height="50"></canvas>
-              <button type="button" id="refresh-captcha" class="eto-refresh-btn">↻</button>
-            </div>
-          </div>
-          
-          <div class="eto-form-buttons">
-            <button type="button" class="eto-btn-review" onclick="reviewForm()">Review</button>
-            <button type="submit" class="eto-btn-submit">Submit</button>
-          </div>
-        {% endform %}
-        
-        <div class="eto-claim-contact">
-          <h3>Phone and Email</h3>
-          <p>(888) DOOR-ETO<br>
-          Alternate:213-622-2003<br>
-          Fax:(213)226-4650<br>
-          Email:<a href="mailto:contact@etodoors.com">contact@etodoors.com</a></p>
-        </div>
-      </div>
-    </main>
-  </div>
-</div>
-
-<!-- Form Summary Modal -->
-<div id="review-modal" class="eto-modal" style="display: none;">
-  <div class="eto-modal-overlay" onclick="closeReviewModal()"></div>
-  <div class="eto-modal-content">
-    <div class="eto-modal-header">
-      <h2>Form Summary</h2>
-      <button type="button" class="eto-modal-close" onclick="closeReviewModal()">×</button>
-    </div>
-    <div class="eto-modal-body">
-      <table class="eto-summary-table">
-        <tbody id="summary-table-body">
-        </tbody>
-      </table>
-      <div id="review-images" class="eto-review-images"></div>
-    </div>
-  </div>
-</div>
-
-<!-- Success Modal -->
-<div id="success-modal" class="eto-modal" style="display: none;">
-  <div class="eto-modal-overlay"></div>
-  <div class="eto-modal-content eto-success-content">
-    <div class="eto-success-icon">
-      <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2">
-        <circle cx="12" cy="12" r="10" fill="none" stroke="#000000" stroke-width="2"/>
-        <path d="M9 12l2 2 4-4" stroke="#000000" stroke-width="2" fill="none"/>
-      </svg>
-    </div>
-    <h2 class="eto-success-title">Thank you! Your response has been submitted.</h2>
-    <button type="button" class="eto-add-another" onclick="addAnotherResponse()">+ Add another response</button>
-  </div>
-</div>
+{{ 'component-door-categories.css' | asset_url | stylesheet_tag }}
 
 <style>
-  .eto-file-a-claim-page {
-    font-family: sans-serif;
-    color: #333;
+  html {
+    scroll-padding-top: 180px;
+  }
+  :root {
+    --eto-red: #DE3C1E;
+    --eto-dark: #111111;
+    --eto-gray-light: #FAF9F7;
+    --eto-border: #E5E5E5;
+    --eto-text: #4A4A4A;
+    --eto-form-bg: #FFFFFF;
   }
   
-  .eto-claim-breadcrumb {
-    font-size: 12px;
-    padding: 15px 20px;
-    max-width: var(--eto-container-max);
+  .eto-claim-page-wrapper {
+    background-color: var(--eto-gray-light);
+    padding: 40px 20px;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  .eto-claim-container {
+    max-width: 1100px;
     margin: 0 auto;
   }
-  
-  .eto-claim-breadcrumb a {
-    color: #333;
-    text-decoration: none;
-  }
-  
-  .eto-claim-wrapper {
+
+  /* --- Top Section --- */
+  .eto-claim-top {
     display: flex;
-    max-width: var(--eto-container-max);
-    margin: 0 auto;
-    padding: 0 20px 40px;
-    gap: 30px;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: space-between;
+    margin-bottom: 30px;
   }
-  
-  .eto-claim-main {
-    flex: 1;
-  }
-  
-  .eto-claim-header {
-    background-color: #000000;
-    padding: 12px 20px;
-    margin-bottom: 20px;
-  }
-  
-  .eto-claim-header h1 {
-    color: #fff;
-    font-size: 18px;
-    font-weight: normal;
-    margin: 0;
-  }
-  
+
   .eto-claim-intro {
-    font-size: 12px;
-    line-height: 1.6;
-    margin-bottom: 25px;
-    border-left: 3px solid #ddd;
-    padding-left: 15px;
-  }
-  
-  .eto-claim-intro p {
-    margin: 0 0 10px;
-  }
-  
-  .eto-claim-form {
-    font-size: 12px;
-  }
-  
-  .eto-form-group {
-    margin-bottom: 15px;
-  }
-  
-  .eto-form-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: normal;
-  }
-  
-  .eto-form-group .required {
-    color: #c00;
-  }
-  
-  .eto-name-fields {
-    display: flex;
-    gap: 15px;
-  }
-  
-  .eto-name-field {
     flex: 1;
+    min-width: 300px;
+    max-width: 650px;
   }
-  
-  .eto-name-field input {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    font-size: 12px;
-  }
-  
-  .eto-field-label {
+
+  .eto-claim-pretitle {
+    color: var(--eto-red);
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
     display: block;
-    font-size: 11px;
-    color: #666;
-    margin-top: 3px;
+    margin-bottom: 10px;
   }
-  
-  .eto-form-group input[type="text"],
-  .eto-form-group input[type="email"],
-  .eto-form-group input[type="tel"],
-  .eto-form-group input[type="number"],
-  .eto-form-group select,
-  .eto-form-group textarea {
-    width: 100%;
-    max-width: 400px;
-    padding: 8px;
-    border: 1px solid #ccc;
-    font-size: 12px;
-    font-family: inherit;
+
+  .eto-claim-main-title {
+    font-size: 48px;
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--eto-dark);
+    margin: 0 0 15px 0;
+    letter-spacing: -1px;
   }
-  
-  .eto-form-group textarea {
-    resize: vertical;
-    max-width: 500px;
+
+  .eto-claim-desc {
+    font-size: 15px;
+    color: var(--eto-dark);
+    line-height: 1.5;
+    margin-bottom: 25px;
+    font-weight: 500;
   }
-  
-  .eto-file-upload {
-    position: relative;
-  }
-  
-  .eto-file-upload input[type="file"] {
-    position: absolute;
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
-  
-  .eto-file-label {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 8px 15px;
-    border: 1px solid #ccc;
-    cursor: pointer;
-    background: #fff;
-    font-size: 12px;
-  }
-  
-  .eto-upload-icon {
-    font-size: 14px;
-  }
-  
-  .eto-file-preview {
-    margin-top: 10px;
+
+  .eto-claim-actions {
     display: flex;
-    gap: 10px;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 15px;
     flex-wrap: wrap;
   }
-  
-  .eto-file-preview img {
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
-    border: 1px solid #ddd;
-  }
-  
-  .eto-captcha-container {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-top: 10px;
-  }
-  
-  #captcha-canvas {
-    border: 1px solid #ccc;
-    background: #fff;
-  }
-  
-  .eto-refresh-btn {
-    padding: 5px 10px;
-    border: 1px solid #ccc;
-    background: #f5f5f5;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  .eto-form-buttons {
-    margin-top: 25px;
-    display: flex;
-    gap: 10px;
-  }
-  
-  .eto-btn-review,
-  .eto-btn-submit {
-    padding: 10px 25px;
-    font-size: 13px;
+
+  .eto-btn-primary-red {
+    background-color: var(--eto-red);
+    color: #fff;
+    padding: 12px 24px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.2s;
     border: none;
     cursor: pointer;
+    display: inline-block;
   }
-  
-  .eto-btn-review {
-    background-color: #5b9bd5;
-    color: #fff;
+  .eto-btn-primary-red:hover { background-color: #C03015; color: #fff; }
+
+  .eto-claim-call-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--eto-dark);
+    font-weight: 600;
+    font-size: 16px;
+    text-decoration: none;
+    border-bottom: 2px solid var(--eto-dark);
+    padding-bottom: 2px;
   }
-  
-  .eto-btn-submit {
-    background-color: #000000;
-    color: #fff;
+
+  .eto-claim-subtext {
+    font-size: 13px;
+    color: var(--eto-text);
+    margin: 0;
   }
-  
-  .eto-claim-contact {
-    margin-top: 30px;
-    padding-top: 20px;
-    border-top: 1px solid #ddd;
-    font-size: 12px;
+
+  /* --- Before you begin --- */
+  .eto-claim-before {
+    flex: 0 0 380px;
+    background: transparent;
+    border: 1px solid #D1D1D1;
+    border-radius: 4px;
+    padding: 20px;
   }
-  
-  .eto-claim-contact h3 {
+
+  .eto-claim-before h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 0 15px 0;
+    color: var(--eto-dark);
+  }
+
+  .eto-before-item {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 12px;
+  }
+  .eto-before-item:last-of-type {
+    margin-bottom: 12px;
+  }
+
+  .eto-before-icon {
+    width: 24px; height: 24px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .eto-before-text-col {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .eto-before-label {
     font-size: 14px;
-    margin: 0 0 10px;
+    font-weight: 700;
+    color: var(--eto-dark);
+  }
+  .eto-before-desc {
+    font-size: 13px;
+    color: var(--eto-text);
+  }
+
+  .eto-before-footer {
+    font-size: 12px;
+    color: var(--eto-text);
+    padding-top: 15px;
+    border-top: 1px solid var(--eto-border);
+    margin-top: 10px;
+  }
+
+  /* --- Form Box --- */
+  .eto-claim-form-box {
+    background: var(--eto-gray-light);
+    border: 1px solid #D1D1D1;
+    border-radius: 4px;
+    padding: 30px;
+    margin-bottom: 30px;
+  }
+
+  .eto-form-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--eto-dark);
+    margin: 0 0 5px 0;
+  }
+  .eto-form-req-text {
+    font-size: 13px;
+    color: var(--eto-text);
+    margin: 0 0 25px 0;
+  }
+  .eto-form-req-text .req { color: var(--eto-red); }
+
+  .eto-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  .eto-form-grid.three-col {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .eto-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .eto-input-group.full-width {
+    grid-column: 1 / -1;
+  }
+
+  .eto-input-group label {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--eto-dark);
+  }
+  .eto-input-group label .req { color: var(--eto-red); }
+
+  .eto-input-group input,
+  .eto-input-group select,
+  .eto-input-group textarea {
+    scroll-margin-top: 160px;
+    padding: 10px;
+    border: 1px solid #D1D1D1;
+    border-radius: 4px;
+    font-size: 14px;
+    font-family: inherit;
+    background: #FFFFFF;
+  }
+  .eto-input-group textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+
+  .eto-input-group input:focus,
+  .eto-input-group select:focus,
+  .eto-input-group textarea:focus {
+    outline: none;
+    border-color: var(--eto-dark);
+  }
+
+  .eto-upload-box {
+    border: 1px dashed #D1D1D1;
+    border-radius: 4px;
+    padding: 30px;
+    text-align: center;
+    background: #FAF9F7;
+    margin-bottom: 25px;
+    position: relative;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .eto-upload-box:hover { background: #F0EFEA; }
+  
+  .eto-upload-box input[type="file"] {
+    position: absolute; top:0; left:0; width:100%; height:100%;
+    opacity: 0; cursor: pointer;
+  }
+
+  .eto-upload-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+  }
+  .eto-upload-icon {
+    width: 24px; height: 24px; color: var(--eto-dark);
+  }
+  .eto-upload-text {
+    font-size: 14px; color: var(--eto-dark); font-weight: 500;
+  }
+  .eto-upload-text span.red { color: var(--eto-red); text-decoration: underline; }
+  .eto-upload-subtext {
+    font-size: 12px; color: var(--eto-text); margin-top: 5px;
+  }
+
+  .eto-form-footer {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .eto-recaptcha-mock {
+    border: 1px solid #D1D1D1;
+    background: #F9F9F9;
+    padding: 10px 15px;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    height: 74px;
+    width: 300px;
+  }
+  .eto-footer-note {
+    font-size: 13px; color: var(--eto-dark); font-weight: 500;
+  }
+
+  /* --- What happens next --- */
+  .eto-next-section {
+    border: 1px solid #D1D1D1;
+    border-radius: 4px;
+    padding: 30px;
+    background: transparent;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .eto-next-section h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--eto-dark);
+    margin: 0 0 30px 0;
   }
   
-  .eto-claim-contact a {
-    color: #000000;
+  .eto-stepper {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+  }
+
+  .eto-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    text-align: left;
+    max-width: 250px;
   }
   
-  @media (max-width: 768px) {
-    .eto-claim-wrapper {
-      flex-direction: column;
-    }
-    
-    .eto-name-fields {
-      flex-direction: column;
-    }
+  .eto-step-num {
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    border: 1px solid #D1D1D1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--eto-dark);
+    flex-shrink: 0;
+  }
+  .eto-step-icon {
+    width: 40px; height: 40px;
+    flex-shrink: 0;
   }
   
-  /* Modal Styles */
-  .eto-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 9999;
+  .eto-step-text h4 {
+    font-size: 14px; font-weight: 700; margin: 0 0 5px 0; color: var(--eto-dark);
+  }
+  .eto-step-text p {
+    font-size: 13px; color: var(--eto-text); margin: 0; line-height: 1.4;
+  }
+
+  .eto-step-arrow {
+    margin-top: 15px;
+    color: #A0A0A0;
+  }
+
+  /* --- Bottom Help --- */
+  .eto-help-strip {
+    border: 1px solid #D1D1D1;
+    border-radius: 4px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    background: transparent;
+  }
+  .eto-help-icon-circle {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid #D1D1D1;
     display: flex;
     align-items: center;
     justify-content: center;
   }
-  
-  .eto-modal-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+  .eto-help-icon-circle svg {
+    width: 24px;
+    height: 24px;
   }
-  
-  .eto-modal-content {
-    position: relative;
-    background: #fff;
-    width: 90%;
-    max-width: 500px;
-    max-height: 80vh;
-    overflow-y: auto;
-    border-radius: 0;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  .eto-help-strip span {
+    font-size: 15px; font-weight: 700; color: var(--eto-dark);
   }
-  
-  .eto-modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .eto-modal-header h2 {
-    margin: 0;
-    font-size: 16px;
-    font-weight: normal;
-    color: #333;
-  }
-  
-  .eto-modal-close {
-    background: none;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-    color: #666;
-    padding: 0;
-    line-height: 1;
-  }
-  
-  .eto-modal-close:hover {
-    color: #333;
-  }
-  
-  .eto-modal-body {
-    padding: 20px;
-  }
-  
-  .eto-summary-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 13px;
-  }
-  
-  .eto-summary-table tr {
-    border-bottom: 1px solid #eee;
-  }
-  
-  .eto-summary-table td {
-    padding: 10px 5px;
-    vertical-align: top;
-  }
-  
-  .eto-summary-table td:first-child {
-    width: 40%;
-    color: #333;
-  }
-  
-  .eto-summary-table td:first-child .required {
-    color: #c00;
-  }
-  
-  .eto-summary-table td:last-child {
-    color: #666;
-  }
-  
-  /* Review Images */
-  .eto-review-images {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-top: 15px;
-    padding-top: 15px;
-    border-top: 1px solid #eee;
-  }
-  
-  .eto-review-images img {
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-  }
-  
-  /* Success Modal */
-  .eto-success-content {
-    text-align: center;
-    padding: 60px 40px;
-    background: #fff;
-    border: 1px solid #ddd;
-  }
-  
-  .eto-success-icon {
-    margin-bottom: 20px;
-  }
-  
-  .eto-success-title {
-    font-size: 20px;
-    font-weight: normal;
-    color: #555;
-    margin: 0 0 30px;
-  }
-  
-  .eto-add-another {
-    display: inline-block;
-    padding: 12px 24px;
-    border: 1px solid #000000;
-    background: #fff;
-    color: #000000;
-    font-size: 14px;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-  
-  .eto-add-another:hover {
-    background: #000000;
-    color: #fff;
+  .eto-help-strip a {
+    font-size: 15px; font-weight: 700; color: var(--eto-dark); text-decoration: none;
+    border-bottom: 2px solid var(--eto-dark); padding-bottom: 2px;
   }
 
-  @media screen and (min-width: 1921px) {
-    .eto-claim-wrapper, .eto-claim-breadcrumb { max-width: 85vw !important; padding-left: 2vw !important; padding-right: 2vw !important; }
-    .eto-claim-breadcrumb { font-size: clamp(12px, 1.2vw, 24px) !important; }
-    .eto-claim-header h1 { font-size: clamp(18px, 1.8vw, 36px) !important; }
-    .eto-claim-intro { font-size: clamp(12px, 1.2vw, 24px) !important; }
-    .eto-claim-form { font-size: clamp(12px, 1.2vw, 24px) !important; }
-    .eto-form-group label { font-size: clamp(12px, 1.2vw, 24px) !important; }
-    .eto-name-field input, .eto-form-group input[type="email"], .eto-form-group input[type="tel"], .eto-form-group input[type="number"], .eto-form-group input[type="text"], .eto-form-group select, .eto-form-group textarea { 
-      font-size: clamp(12px, 1.2vw, 24px) !important; 
-      padding: clamp(8px, 0.8vw, 16px) !important; 
-    }
-    .eto-field-label { font-size: clamp(11px, 1.1vw, 22px) !important; }
-    .eto-submit-btn { 
-      font-size: clamp(14px, 1.4vw, 28px) !important; 
-      padding: clamp(10px, 1vw, 20px) clamp(25px, 2.5vw, 50px) !important; 
-    }
-    .eto-modal-header h2 { font-size: clamp(16px, 1.6vw, 32px) !important; }
-    .eto-summary-table { font-size: clamp(13px, 1.3vw, 26px) !important; }
+  @media (max-width: 768px) {
+    .eto-claim-main-title { font-size: 36px; }
+    .eto-form-grid { grid-template-columns: 1fr !important; }
+    .eto-stepper { flex-direction: column; align-items: center; }
+    .eto-step-arrow { display: none; }
   }
 </style>
 
-<script>
-  // Generate CAPTCHA
-  function generateCaptcha() {
-    var canvas = document.getElementById('captcha-canvas');
-    if (!canvas) return;
-    var ctx = canvas.getContext('2d');
-    var chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-    var captcha = '';
+<div class="eto-claim-page-wrapper">
+  <div class="eto-claim-container">
     
-    ctx.fillStyle = '#fff';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    
-    ctx.font = 'bold 28px Arial';
-    ctx.fillStyle = '#333';
-    
-    for (var i = 0; i < 6; i++) {
-      captcha += chars.charAt(Math.floor(Math.random() * chars.length));
-    }
-    
-    // Add noise lines
-    for (var i = 0; i < 3; i++) {
-      ctx.strokeStyle = '#ddd';
-      ctx.beginPath();
-      ctx.moveTo(Math.random() * canvas.width, Math.random() * canvas.height);
-      ctx.lineTo(Math.random() * canvas.width, Math.random() * canvas.height);
-      ctx.stroke();
-    }
-    
-    ctx.fillText(captcha, 15, 35);
-    canvas.dataset.captcha = captcha;
-  }
-  
-  // Refresh captcha
-  document.addEventListener('DOMContentLoaded', function() {
-    generateCaptcha();
-    
-    var refreshBtn = document.getElementById('refresh-captcha');
-    if (refreshBtn) {
-      refreshBtn.addEventListener('click', generateCaptcha);
-    }
-    
-    // File preview
-    var fileInput = document.getElementById('claim-images');
-    if (fileInput) {
-      fileInput.addEventListener('change', function(e) {
-        var preview = document.getElementById('file-preview');
-        preview.innerHTML = '';
+    <!-- Top Section -->
+    <div class="eto-claim-top">
+      <div class="eto-claim-intro">
+        <span class="eto-claim-pretitle">PRODUCT SUPPORT</span>
+        <h1 class="eto-claim-main-title">Tell us what happened.<br>We'll help make it right.</h1>
+        <p class="eto-claim-desc">Complete the form below and include at least one clear photo.<br>Our product support team will contact you within one business day.</p>
         
-        Array.from(e.target.files).forEach(function(file) {
-          if (file.type.startsWith('image/')) {
-            var reader = new FileReader();
-            reader.onload = function(e) {
-              var img = document.createElement('img');
-              img.src = e.target.result;
-              preview.appendChild(img);
-            };
-            reader.readAsDataURL(file);
-          }
-        });
-      });
-    }
-    
-    // Form validation with captcha and success modal
-    var form = document.getElementById('claim-form');
-    if (form) {
-      form.addEventListener('submit', function(e) {
-        var canvas = document.getElementById('captcha-canvas');
-        var input = document.getElementById('claim-captcha');
-        
-        if (input.value.toUpperCase() !== canvas.dataset.captcha) {
-          e.preventDefault();
-          alert('Verification code is incorrect. Please try again.');
-          generateCaptcha();
-          input.value = '';
-          return;
-        }
-        
-        // Prevent default form submission
-        e.preventDefault();
-        
-        // Get file names for the email
-        var imageInput = document.getElementById('claim-images');
-        var fileNames = [];
-        if (imageInput.files.length > 0) {
-          Array.from(imageInput.files).forEach(function(file) {
-            fileNames.push(file.name);
-          });
-        }
-        
-        // Create form data without the file input (to avoid large payloads)
-        var formData = new FormData(form);
-        
-        // Remove fields that shouldn't be in email
-        formData.delete('contact[images]');
-        formData.delete('contact[verification]');
-        
-        if (fileNames.length > 0) {
-          formData.set('contact[uploaded_files]', fileNames.join(', '));
-        }
-        
-        // Submit form using fetch
-        fetch('/contact#claim-form', {
-          method: 'POST',
-          body: formData,
-          headers: {
-            'Accept': 'application/json, text/html'
-          }
-        }).then(function(response) {
-          if (response.ok || response.status === 302 || response.status === 200) {
-            // Show success modal
-            document.getElementById('success-modal').style.display = 'flex';
-          } else {
-            // Still show success (Shopify sometimes returns non-standard responses)
-            document.getElementById('success-modal').style.display = 'flex';
-          }
-        }).catch(function(error) {
-          // Show success anyway as form was likely submitted
-          document.getElementById('success-modal').style.display = 'flex';
-        });
-      });
-    }
-  });
-  
-  function reviewForm() {
-    var fields = [
-      { id: 'claim-first-name', label: 'Name', required: true, getValue: function() {
-        return document.getElementById('claim-first-name').value + ' ' + document.getElementById('claim-last-name').value;
-      }},
-      { id: 'claim-email', label: 'Email', required: true },
-      { id: 'claim-phone', label: 'Phone', required: true },
-      { id: 'claim-doors', label: 'Number of Doors', required: true },
-      { id: 'claim-invoice', label: 'Invoice Number', required: true },
-      { id: 'claim-cause', label: 'Cause of Damage', required: true, getValue: function() {
-        var select = document.getElementById('claim-cause');
-        return select.options[select.selectedIndex].text;
-      }},
-      { id: 'claim-description', label: 'Damage Description', required: true }
-    ];
-    
-    var tableBody = document.getElementById('summary-table-body');
-    tableBody.innerHTML = '';
-    
-    fields.forEach(function(field) {
-      var value = field.getValue ? field.getValue() : document.getElementById(field.id).value;
-      var row = document.createElement('tr');
-      row.innerHTML = '<td>' + field.label + (field.required ? ' <span class="required">*</span>' : '') + '</td><td>' + (value || '') + '</td>';
-      tableBody.appendChild(row);
-    });
-    
-    // Show image previews
-    var reviewImages = document.getElementById('review-images');
-    reviewImages.innerHTML = '';
-    
-    var imageInput = document.getElementById('claim-images');
-    if (imageInput.files.length > 0) {
-      var label = document.createElement('div');
-      label.style.width = '100%';
-      label.style.marginBottom = '10px';
-      label.style.fontWeight = 'bold';
-      label.innerHTML = 'Upload Images:';
-      reviewImages.appendChild(label);
+        <div class="eto-claim-actions">
+          <a href="#ClaimForm" class="eto-btn-primary-red">Start Your Claim</a>
+          <a href="tel:2136222003" class="eto-claim-call-link">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            Call (213) 622-2003
+          </a>
+        </div>
+        <p class="eto-claim-subtext">Have your invoice number and photos ready.</p>
+      </div>
       
-      Array.from(imageInput.files).forEach(function(file) {
-        if (file.type.startsWith('image/')) {
-          var reader = new FileReader();
-          reader.onload = function(e) {
-            var img = document.createElement('img');
-            img.src = e.target.result;
-            reviewImages.appendChild(img);
-          };
-          reader.readAsDataURL(file);
-        }
-      });
-    }
-    
-    document.getElementById('review-modal').style.display = 'flex';
-  }
-  
-  function closeReviewModal() {
-    document.getElementById('review-modal').style.display = 'none';
-  }
-  
-  function addAnotherResponse() {
-    // Hide success modal
-    document.getElementById('success-modal').style.display = 'none';
-    
-    // Reset form
-    var form = document.getElementById('claim-form');
-    form.reset();
-    
-    // Clear file preview
-    document.getElementById('file-preview').innerHTML = '';
-    
-    // Generate new captcha
-    generateCaptcha();
-    
-    // Scroll to top
-    window.scrollTo(0, 0);
-  }
-</script>
+      <div class="eto-claim-before">
+        <h3>Before you begin</h3>
+        
+        <div class="eto-before-item">
+          <div class="eto-before-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          </div>
+          <div class="eto-before-text-col">
+            <span class="eto-before-label">Invoice number</span>
+            <span class="eto-before-desc">Helps us locate your order</span>
+          </div>
+        </div>
+        
+        <div class="eto-before-item">
+          <div class="eto-before-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+          </div>
+          <div class="eto-before-text-col">
+            <span class="eto-before-label">Clear photos</span>
+            <span class="eto-before-desc">Include packaging and product damage</span>
+          </div>
+        </div>
+        
+        <div class="eto-before-item">
+          <div class="eto-before-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+          </div>
+          <div class="eto-before-text-col">
+            <span class="eto-before-label">Detailed description</span>
+            <span class="eto-before-desc">Tell us what happened and when</span>
+          </div>
+        </div>
+        
+        <div class="eto-before-footer">
+          At least one photo is required.
+        </div>
+      </div>
+    </div>
+
+    <!-- Form Section -->
+    <div class="eto-claim-form-box" id="ClaimForm">
+      <h2 class="eto-form-title">Submit a product support claim</h2>
+      <p class="eto-form-req-text">Required fields are marked <span class="req">*</span></p>
+
+      {%- form 'contact', id: 'ContactClaimForm' -%}
+        <input type="hidden" name="contact[tags]" value="claim">
+
+        {%- if form.posted_successfully? -%}
+          <div style="background: #e8f5e9; border: 1px solid #4caf50; padding: 20px; border-radius: 4px; margin-bottom: 20px;">
+            <h3 style="color: #2e7d32; margin: 0 0 10px 0;">Claim Submitted</h3>
+            <p style="margin: 0; color: #1b5e20;">Thank you! We've received your claim and our support team will be in touch within one business day.</p>
+          </div>
+          <style>
+            #ContactClaimForm .eto-form-grid, #ContactClaimForm .eto-upload-box, #ContactClaimForm .eto-form-footer { display: none; }
+          </style>
+        {%- elsif form.errors -%}
+          <div style="color: red; margin-bottom: 20px; font-size: 14px;">
+            {{ 'templates.contact.form.error_heading' | t }}<br>
+            {{ form.errors.translated_fields.email | capitalize }} {{ form.errors.messages.email }}
+          </div>
+        {%- endif -%}
+
+        <div class="eto-form-grid">
+          <div class="eto-input-group">
+            <label>First Name <span class="req">*</span></label>
+            <input type="text" name="contact[first_name]" placeholder="First name" required>
+          </div>
+          <div class="eto-input-group">
+            <label>Last Name <span class="req">*</span></label>
+            <input type="text" name="contact[last_name]" placeholder="Last name" required>
+          </div>
+          
+          <div class="eto-input-group">
+            <label>Email <span class="req">*</span></label>
+            <input type="email" name="contact[email]" placeholder="name@email.com" required>
+          </div>
+          <div class="eto-input-group">
+            <label>Phone <span class="req">*</span></label>
+            <input type="tel" name="contact[phone]" placeholder="(213) 622-2003" required>
+          </div>
+        </div>
+
+        <div class="eto-form-grid three-col">
+          <div class="eto-input-group">
+            <label>Invoice Number <span class="req">*</span></label>
+            <input type="text" name="contact[invoice_number]" placeholder="Enter invoice number" required>
+          </div>
+          <div class="eto-input-group">
+            <label>Number of Doors <span class="req">*</span></label>
+            <input type="text" name="contact[number_of_doors]" placeholder="Enter number of doors" required>
+          </div>
+          <div class="eto-input-group">
+            <label>Cause of Damage <span class="req">*</span></label>
+            <select name="contact[cause_of_damage]" required>
+              <option value="" disabled selected>Select cause</option>
+              <option value="Shipping or delivery damage">Shipping or delivery damage</option>
+              <option value="Manufacturing or material defect">Manufacturing or material defect</option>
+              <option value="Incorrect item or specifications">Incorrect item or specifications</option>
+              <option value="Missing parts or hardware">Missing parts or hardware</option>
+              <option value="Finish or appearance issue">Finish or appearance issue</option>
+              <option value="Installation-related damage">Installation-related damage</option>
+              <option value="Other / Not sure">Other / Not sure</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="eto-form-grid">
+          <div class="eto-input-group full-width">
+            <label>Damage Description <span class="req">*</span></label>
+            <textarea name="contact[body]" placeholder="Describe the damage, when it was discovered, and any relevant delivery details." required></textarea>
+          </div>
+        </div>
+
+        <div class="eto-input-group full-width" style="margin-bottom: 20px;">
+          <label>Upload photos <span class="req">*</span></label>
+          <div class="eto-upload-box">
+            <input type="file" name="contact[photos]" multiple accept="image/png, image/jpeg, application/pdf" required>
+            <div class="eto-upload-content">
+              <svg class="eto-upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg>
+              <div>
+                <div class="eto-upload-text">Drag and drop files here, or <span class="red">choose files</span></div>
+                <div class="eto-upload-subtext">JPG, PNG, or PDF &bull; At least one photo required</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="eto-form-footer">
+          <div class="eto-recaptcha-mock">
+            <input type="checkbox" style="width:24px; height:24px;" required>
+            <span style="font-size:14px; color:#555;">I'm not a robot</span>
+            <img src="https://www.gstatic.com/recaptcha/api2/logo_48.png" width="32" alt="reCAPTCHA" style="margin-left:auto;">
+          </div>
+          <button type="submit" class="eto-btn-primary-red">Submit Claim</button>
+          <span class="eto-footer-note">You'll receive a claim number for future reference.</span>
+        </div>
+      {%- endform -%}
+    </div>
+
+    <!-- What happens next -->
+    <div class="eto-next-section">
+      <h3>What happens next</h3>
+      <div class="eto-stepper">
+        
+        <div class="eto-step">
+          <div class="eto-step-num">1</div>
+          <svg class="eto-step-icon" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          <div class="eto-step-text">
+            <h4>Claim received</h4>
+            <p>We email your reference number.</p>
+          </div>
+        </div>
+        
+        <div class="eto-step-arrow">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </div>
+
+        <div class="eto-step">
+          <div class="eto-step-num">2</div>
+          <svg class="eto-step-icon" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+          <div class="eto-step-text">
+            <h4>Team review</h4>
+            <p>A specialist reviews your information.</p>
+          </div>
+        </div>
+        
+        <div class="eto-step-arrow">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </div>
+
+        <div class="eto-step">
+          <div class="eto-step-num">3</div>
+          <svg class="eto-step-icon" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          <div class="eto-step-text">
+            <h4>We follow up</h4>
+            <p>Expect contact within one business day.</p>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+
+    <!-- Bottom Help -->
+    <div class="eto-help-strip">
+      <div class="eto-help-icon-circle">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+      </div>
+      <span>Need help completing the form?</span>
+      <a href="tel:2136222003">Call (213) 622-2003</a>
+    </div>
+
+  </div>
+</div>
 
 {% schema %}
 {

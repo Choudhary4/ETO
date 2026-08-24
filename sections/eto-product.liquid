@@ -353,8 +353,14 @@ ETO Doors - Custom Product Page Layout
   background: #FAFAFA;
   border-radius: 12px;
   border: 1px solid #EBEBEB;
-  padding: 20px;
-  margin-bottom: 24px;
+  padding: 10px;
+  margin-bottom: 12px;
+}
+#eto-dynamic-options-container {
+  max-height: 280px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #B98E54 transparent;
 }
 .eto-config-row {
   display: flex;
@@ -454,20 +460,24 @@ ETO Doors - Custom Product Page Layout
   color: #555;
   margin: 0;
 }
+#eto-notes-container {
+  margin-top: 8px;
+}
 .eto-notes-input {
   width: 100%;
-  padding: 12px;
+  padding: 8px 12px;
   border: 1px solid #EBEBEB;
   border-radius: 8px;
-  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
   box-sizing: border-box;
 }
 .sizes-head {
   display: flex;
   align-items: center;
-  padding: 16px 0;
+  padding: 12px 0;
   border-bottom: 1px solid #EBEBEB;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 .sizes-head .label {
   display: flex;
@@ -1130,9 +1140,8 @@ ETO Doors - Custom Product Page Layout
 
 /* Action Buttons */
 .eto-qa-form-section {
-  margin-top: 20px;
-  padding-top: 20px;
-  border-top: 1px solid #e0e0e0;
+  margin-top: 10px;
+  padding-top: 10px;
 }
 
 .eto-qa-form-actions {
@@ -1140,7 +1149,7 @@ ETO Doors - Custom Product Page Layout
   flex-direction: column;
   align-items: center;
   gap: 12px;
-  margin-top: 30px;
+  margin-top: 10px;
   margin-bottom: 20px;
 }
 
@@ -1915,8 +1924,8 @@ ETO Doors - Custom Product Page Layout
   border-radius: 3px;
 }  /* Buybox */
   main.wrap .buybox{position:sticky !important;top:32px !important;align-self:start !important;font-family:'Inter', sans-serif;}
-  .buybox .card{background:#F3F0EA !important;border:1px solid #E7E2D8 !important;border-radius:14px !important;padding:18px !important;margin:0 !important;}
-  .buybox .price{font-family:'Lora', Georgia, 'Times New Roman', serif;font-weight:600;font-size:33px;color:#1F1D1A;line-height:1;}
+  .buybox .card{background:#F3F0EA !important;border:1px solid #E7E2D8 !important;border-radius:12px !important;padding:14px !important;margin:0 !important;}
+  .buybox .price{font-family:'Lora', Georgia, 'Times New Roman', serif;font-weight:600;font-size:26px;color:#1F1D1A;line-height:1;}
   .buybox .selected{display:flex;align-items:center;gap:7px;font-size:13px;color:#1F1D1A;font-weight:700 !important;margin-top:10px;}
   .buybox .selected *{font-weight:700 !important;}
   .buybox .selected .icon{width:16px;height:16px;color:#1F1D1A;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
@@ -1925,7 +1934,7 @@ ETO Doors - Custom Product Page Layout
   .buybox .ships .icon{width:18px;height:18px;color:#3F7D4F;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
   .buybox .customnote{font-size:12px;color:#8A8378;margin-top:7px;}
 
-  .buybox .qty-label{font-size:13px;color:#1F1D1A;margin:20px 0 8px;}
+  .buybox .qty-label{font-size:13px;color:#1F1D1A;margin:12px 0 6px;}
   .buybox .stepper{display:inline-flex;align-items:center;gap:8px;}
   .buybox .step{width:34px;height:34px;border:1px solid #E0D9CC !important;background:#fff !important;border-radius:8px !important;font-size:16px;color:#1F1D1A;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0 !important;box-shadow:none !important;}
   .buybox .step:hover{border-color:#B98E54 !important;}
@@ -1956,62 +1965,59 @@ ETO Doors - Custom Product Page Layout
     --serif:'Lora', Georgia, 'Times New Roman', serif; --sans:'Inter', system-ui, -apple-system, sans-serif;
   }
   .wrap{max-width:1180px;margin:0 auto;padding:0 28px;font-family:var(--sans);color:var(--body);line-height:1.5;}
-  .crumb{display:flex;align-items:center;gap:9px;font-size:13px;color:var(--muted);padding:20px 0;flex-wrap:wrap;}
+  .crumb{display:flex;align-items:center;gap:9px;font-size:13px;color:var(--muted);padding:0 0 10px 0;flex-wrap:wrap;}
   .crumb a{color:inherit;text-decoration:none;}
   .crumb a:hover{color:var(--oak);}
   .crumb .sep{color:#C7BFB1;}
   .crumb .current{color:var(--body);}
 
-  main.wrap .eto-new-product-grid{display:grid !important;grid-template-columns:minmax(0,0.9fr) minmax(0,1.35fr) 275px !important;gap:24px !important;align-items:start !important;padding-bottom:48px !important;}
-  main.wrap .eto-new-product-grid > .gallery { grid-column: 1 !important; grid-row: 1 !important; position: sticky !important; top: 170px !important; align-self: start !important; z-index: 2 !important; }
+  main.wrap .eto-new-product-grid{display:grid !important;grid-template-columns:minmax(0,0.75fr) minmax(0,1.8fr) 250px !important;gap:24px !important;align-items:start !important;padding-bottom:48px !important;}
+  main.wrap .eto-new-product-grid > .gallery { grid-column: 1 !important; grid-row: 1 !important; position: sticky !important; top: 120px !important; align-self: start !important; z-index: 2 !important; }
   main.wrap .eto-new-product-grid > .details { grid-column: 2 !important; grid-row: 1 !important; min-width: 0 !important; }
   main.wrap .eto-new-product-grid > .buybox { grid-column: 3 !important; grid-row: 1 !important; position: sticky !important; top: 170px !important; align-self: start !important; z-index: 2 !important; }
 
-  @media (min-width: 1921px) {
-    .wrap { max-width: 95% !important; padding: 0 2vw !important; }
-    main.wrap .eto-new-product-grid { grid-template-columns: minmax(400px, 550px) minmax(0, 1fr) 350px !important; gap: 40px !important; }
-  }
 
-  .gallery .hero{aspect-ratio:4/5;border-radius:12px;overflow:hidden;background:#ECE5DA;position:relative;display:flex;align-items:center;justify-content:center;padding:24px;}
-  .thumbs{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:12px;}
+  .gallery .hero{aspect-ratio:5/6;border-radius:12px;overflow:hidden;background:#ECE5DA;position:relative;display:flex;align-items:center;justify-content:center;padding:8px;}
+  .gallery .hero img{max-height: 100%; width: auto; object-fit: contain;}
+  .thumbs{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:6px;}
   .thumb{aspect-ratio:1/1;border-radius:8px;border:1px solid var(--tile-line);background:#EAE1D2;overflow:hidden;cursor:pointer;}
   .thumb.active{border-color:var(--oak);box-shadow:0 0 0 1px var(--oak);}
   .thumb.more{background:#EFE9DF;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--ink);font-size:13px;font-weight:600;gap:1px;cursor:pointer;}
   .thumb.more span{font-weight:400;font-size:12px;color:var(--muted);}
-  .zoomhint{display:flex;align-items:center;justify-content:center;gap:7px;font-size:14px;color:#7A7264;margin-top:18px;font-weight:500;}
-  .zoomhint .icon{width:16px;height:16px;stroke:currentColor;stroke-width:1.6;fill:none;color:#7A7264;}
+  .zoomhint{display:flex;align-items:center;justify-content:center;gap:7px;font-size:12px;color:#7A7264;margin-top:6px;font-weight:500;}
+  .zoomhint .icon{width:14px;height:14px;stroke:currentColor;stroke-width:1.6;fill:none;color:#7A7264;}
 
-  .eyebrow{display:inline-block;background:var(--banner);color:#6B6357;font-size:11px;font-weight:600;letter-spacing:.1em;padding:5px 10px;border-radius:5px;margin-bottom:14px;text-transform:uppercase;}
-  .title{font-family:var(--serif);font-weight:600;font-size:30px;line-height:1.25;color:var(--ink);margin-bottom:12px;margin-top:0;}
-  .lede{font-size:15px;color:var(--body);max-width:46ch;margin-bottom:26px;}
+  .eyebrow{display:inline-block;background:var(--banner);color:#6B6357;font-size:10px;font-weight:600;letter-spacing:.1em;padding:2px 4px;border-radius:5px;margin-bottom:4px;text-transform:uppercase;}
+  .title{font-family:var(--serif);font-weight:600;font-size:18px;line-height:1.2;color:var(--ink);margin-bottom:6px;margin-top:0;}
+  .lede{display:none;}
 
   /* sizes-head styling moved */
 
-  .size-grid{display:grid;grid-template-columns:repeat(4, 1fr);gap:9px;}
-  .size-tile{position:relative;text-align:center;align-items:center;background:var(--tile);border:1px solid var(--tile-line);border-radius:9px;padding:11px 8px;display:flex;flex-direction:column;gap:2px;transition:border-color .12s ease, box-shadow .12s ease;cursor:pointer;min-width:0; overflow:hidden;}
+  .size-grid{display:grid;grid-template-columns:repeat(4, 1fr);gap:4px;max-height:200px;overflow-y:auto;padding-right:4px;scrollbar-width:thin;scrollbar-color:var(--oak-soft) transparent;}
+  .size-tile{position:relative;text-align:center;align-items:center;background:var(--tile);border:1px solid var(--tile-line);border-radius:6px;padding:4px 2px;display:flex;flex-direction:column;gap:1px;transition:border-color .12s ease, box-shadow .12s ease;cursor:pointer;min-width:0; overflow:hidden;}
   .size-tile:hover{border-color:var(--oak-soft);}
   .size-tile.selected{border-color:var(--oak);box-shadow:0 0 0 1px var(--oak);background:var(--oak-tint);}
-  .size-tile .dim{font-size:14px;font-weight:500;color:var(--ink);white-space:nowrap !important;text-align:center;text-overflow:ellipsis;max-width:100%;}
-  .size-tile .price{font-size:13px;font-weight:500;color:var(--oak);}
+  .size-tile .dim{font-size:12px;font-weight:500;color:var(--ink);white-space:nowrap !important;text-align:center;text-overflow:ellipsis;max-width:100%;}
+  .size-tile .price{font-size:11px;font-weight:500;color:var(--oak);}
   .size-tile .check{position:absolute;top:-7px;right:-7px;width:20px;height:20px;border-radius:50%;background:var(--oak);color:#fff;display:none;align-items:center;justify-content:center;}
   .size-tile.selected .check{display:flex;}
   .size-tile .check .icon{width:12px;height:12px;stroke:#fff;stroke-width:2.4;fill:none;stroke-linecap:round;stroke-linejoin:round;}
 
-  .helper{display:flex;align-items:center;gap:18px;background:#EAE1D2 !important;border:1px solid #D8CDBA !important;border-radius:12px;padding:18px 20px;margin-top:20px;}
-  .helper .badge{width:56px;height:56px;border-radius:50%;background:#fff !important;color:#9A6B2F;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 2px 6px rgba(0,0,0,0.05);}
+  .helper{display:flex;align-items:center;gap:12px;background:#EAE1D2 !important;border:1px solid #D8CDBA !important;border-radius:10px;padding:10px 14px;margin-top:12px;}
+  .helper .badge{width:40px;height:40px;border-radius:50%;background:#fff !important;color:#9A6B2F;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 2px 6px rgba(0,0,0,0.05);}
   .helper .badge .icon{width:22px;height:22px;stroke:currentColor;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round;}
   .helper .copy{flex:1;}
-  .helper .copy strong{display:block;font-size:16px;color:#1F1D1A;font-weight:700;margin-bottom:4px;}
+  .helper .copy strong{display:block;font-size:14px;color:#1F1D1A;font-weight:700;margin-bottom:2px;}
   .helper .copy span{display:block;font-size:14px;color:#4A453E;line-height:1.45;max-width:none;}
-  .helper .check-btn{border:1px solid #D8CDBA;background:#fff;border-radius:8px;padding:12px 18px;font-size:14px;font-weight:600;color:#1F1D1A;white-space:nowrap;cursor:pointer;text-decoration:none;box-shadow:0 2px 6px rgba(0,0,0,0.05);}
+  .helper .check-btn{border:1px solid #D8CDBA;background:#fff;border-radius:8px;padding:9px 14px;font-size:13px;font-weight:600;color:#1F1D1A;white-space:nowrap;cursor:pointer;text-decoration:none;box-shadow:0 2px 6px rgba(0,0,0,0.05);}
   .helper .check-btn:hover{border-color:#D8CDBA;}
 
-  .features{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:20px;background:#F3F0EA !important;border:1px solid #E7E2D8;border-radius:12px;padding:32px 16px;}
-  .feature{display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;padding:0;}
-  .feature .ficon{width:40px;height:40px;display:flex;align-items:center;justify-content:center;}
+  .features{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px;background:#F3F0EA !important;border:1px solid #E7E2D8;border-radius:10px;padding:12px 10px;}
+  .feature{display:flex;flex-direction:column;align-items:center;text-align:center;gap:5px;padding:0;}
+  .feature .ficon{width:28px;height:28px;display:flex;align-items:center;justify-content:center;}
   .feature .ficon img{max-width:100%;max-height:100%;object-fit:contain;}
-  .feature .ficon .icon{width:28px;height:28px;stroke:currentColor;stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round;}
-  .feature p{font-size:13px;color:#4A453E;line-height:1.4;white-space:nowrap;margin:0;font-weight:500;}
+  .feature .ficon .icon{width:22px;height:22px;stroke:currentColor;stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round;}
+  .feature p{font-size:11px;color:#4A453E;line-height:1.3;white-space:nowrap;margin:0;font-weight:500;}
 
   /* Tabs */
   .tabs{background:#F3F0EA !important;border:1px solid #E7E2D8;border-radius:12px;padding:24px 32px;margin-top:20px;}
@@ -2061,15 +2067,17 @@ ETO Doors - Custom Product Page Layout
     .size-grid{grid-template-columns:repeat(2,1fr);}
     .features{grid-template-columns:repeat(2,1fr); padding: 20px 12px; gap: 12px;}
     .feature p{white-space:normal; font-size:12px;}
-    .title{font-size:24px; line-height: 1.3;}
-    .helper { flex-direction: column; text-align: center; padding: 16px; align-items: center; }
+    .title{font-size:20px; line-height: 1.3;}
+    .helper { flex-direction: column; text-align: center; padding: 12px; align-items: center; }
     .helper .copy span { max-width: 100%; }
     .tabs { padding: 16px; }
     .tablist { justify-content: flex-start; scrollbar-width: none; -webkit-overflow-scrolling: touch; padding-bottom: 2px; }
     .tablist::-webkit-scrollbar { display: none; }
     .tab { flex: 0 0 auto; padding: 15px 16px; font-size: 13px; }
     .thumbs { gap: 6px; }
-    .gallery .hero{padding:12px; border-radius: 8px;}
+    .gallery .hero{padding:8px; border-radius: 8px; max-height: 28vh; aspect-ratio: auto;}
+    .gallery .hero img{max-height: 100%; width: auto; object-fit: contain;}
+    .zoomhint { margin-top: 6px; font-size: 11px; }
   }
 
   /* ========================================= */
@@ -2077,8 +2085,8 @@ ETO Doors - Custom Product Page Layout
   /* ========================================= */
   .eto-new-tabs-section {
     max-width: 100%;
-    margin: 60px auto;
-    padding: 0 40px;
+    margin: 20px 0 0 0;
+    padding: 0;
   }
   .eto-new-tablist {
     display: flex;
@@ -2099,22 +2107,22 @@ ETO Doors - Custom Product Page Layout
     background: #fdfaf7;
     border: 1px solid #e0dcd5;
     border-bottom: none;
-    padding: 16px 32px;
+    padding: 8px 10px;
     font-family: var(--font-heading-family);
-    font-size: 14px;
+    font-size: 11px;
     font-weight: 500;
     color: var(--eto-soft-gray);
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 4px;
     border-radius: 8px 8px 0 0;
     transition: all 0.3s ease;
     white-space: nowrap;
     margin-right: -1px;
   }
   .eto-new-tablist .eto-tab-btn .material-symbols-outlined {
-    font-size: 18px;
+    font-size: 14px;
     color: inherit;
   }
   .eto-new-tablist .eto-tab-btn.active {
@@ -2133,7 +2141,7 @@ ETO Doors - Custom Product Page Layout
     background: #fff;
     border: 1px solid #eae4d9;
     border-radius: 0 8px 8px 8px;
-    padding: 40px;
+    padding: 16px;
     position: relative;
     box-shadow: 0 4px 12px rgba(0,0,0,0.02);
   }
@@ -2152,62 +2160,108 @@ ETO Doors - Custom Product Page Layout
     background: #fcf9f5;
     border: 1px solid #eae4d9;
     border-radius: 8px;
-    padding: 16px 24px;
-    margin-bottom: 32px !important;
+    padding: 8px 12px;
+    margin-bottom: 16px !important;
   }
   .eto-tab-warning-banner.style-light {
     justify-content: flex-start;
     gap: 12px;
   }
-  .eto-tab-warning-banner.style-light .material-symbols-outlined { color: #666; font-size: 22px; font-variation-settings: 'wght' 300; }
+  .eto-tab-warning-banner.style-light .material-symbols-outlined { color: #666; font-size: 18px; font-variation-settings: 'wght' 300; }
   .eto-warning-left {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
   }
-  .eto-tab-warning-banner .eto-warning-text { margin: 0; font-size: 13px !important; color: #444 !important; font-weight: 500; display: block !important; visibility: visible !important; }
-  .eto-tab-warning-banner a { color: #b6855b; text-decoration: underline; font-weight: 600; font-size: 13px; margin-left: 8px; }
-  .eto-tab-warning-banner a:hover { color: #9c6c43; }
+  .eto-warning-left .material-symbols-outlined { font-size: 16px; color: #555; }
+  .eto-tab-warning-banner p { margin: 0; font-size: 12px !important; color: #444 !important; font-weight: 500; display: block !important; visibility: visible !important; }
+  .eto-tab-warning-banner a { 
+    display: inline-block;
+    background: #b6855b;
+    color: #fff !important;
+    padding: 8px 16px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 12px;
+    margin-left: 12px;
+    transition: background 0.2s;
+    white-space: nowrap;
+  }
+  .eto-tab-warning-banner a:hover { background: #9c6c43; }
 
   /* Typography */
   .eto-tab-product-title {
     font-family: var(--font-heading-family);
-    font-size: 24px;
+    font-size: 18px;
     font-weight: 600;
-    margin: 0 0 12px 0;
+    margin: 0 0 16px 0;
     color: #111;
   }
   .eto-tab-product-desc {
-    font-size: 14px;
+    font-size: 13px;
     color: #555;
     line-height: 1.6;
-    margin-bottom: 40px;
-    max-width: 1000px;
+    margin-bottom: 32px;
+  }
+  .eto-tab-product-desc h1, 
+  .eto-tab-product-desc h2, 
+  .eto-tab-product-desc h3, 
+  .eto-tab-product-desc h4, 
+  .eto-tab-product-desc h5, 
+  .eto-tab-product-desc h6,
+  .eto-tab-product-desc strong,
+  .eto-tab-product-desc b {
+    font-size: 14px !important;
+    line-height: 1.4 !important;
+    margin-bottom: 8px !important;
+    margin-top: 16px !important;
+  }
+  .eto-tab-product-desc p,
+  .eto-tab-product-desc span,
+  .eto-tab-product-desc div,
+  .eto-tab-product-desc li {
+    font-size: 13px !important;
+    line-height: 1.6 !important;
+  }
+  .eto-tab-product-desc ul {
+    margin-top: 12px;
+    margin-bottom: 16px;
+    padding-left: 0;
+    list-style: none !important;
+  }
+  .eto-tab-product-desc ul li {
+    list-style: none !important;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 6px;
   }
   .eto-tab-title {
     font-family: var(--font-heading-family) !important;
-    font-size: 24px !important;
+    font-size: 14px !important;
     font-weight: 600 !important;
     color: #333 !important;
-    margin: 0 0 8px 0 !important;
+    margin: 0 0 4px 0 !important;
   }
   .eto-tab-subtitle {
-    font-size: 14px;
+    font-size: 11px;
     color: #666;
-    margin-bottom: 48px;
+    margin-bottom: 16px;
   }
 
   .eto-details-2col {
     display: grid;
-    grid-template-columns: 1fr clamp(350px, 25vw, 500px);
+    grid-template-columns: 1fr 320px;
     gap: 40px;
+    align-items: start;
   }
   .eto-details-left {
     max-width: 1000px;
   }
   .eto-details-left h4 { font-size: 16px; font-weight: 700; color: #111; margin: 0 0 12px 0; }
   .eto-details-left p { font-size: 13px; color: #555; line-height: 1.6; margin-bottom: 24px; }
-  .eto-checklist { list-style: none; padding: 0; margin: 0 0 24px 0; }
+  .eto-checklist { list-style: none !important; padding: 0; margin: 0 0 24px 0; }
   .eto-checklist li {
     display: flex;
     align-items: center;
@@ -2215,6 +2269,12 @@ ETO Doors - Custom Product Page Layout
     font-size: 13px;
     margin-bottom: 12px;
     color: #333;
+    list-style: none !important;
+  }
+  .eto-checklist li::before, .eto-checklist li::after, .eto-checklist li::marker,
+  .eto-tab-product-desc ul li::before, .eto-tab-product-desc ul li::after, .eto-tab-product-desc ul li::marker {
+    display: none !important;
+    content: none !important;
   }
   .eto-checklist li .material-symbols-outlined { color: #111; font-size: 18px; font-weight: 600; }
   .eto-view-full-link { color: #b6855b; font-weight: 600; font-size: 13px; text-decoration: underline; display: inline-block; margin-top: 16px; }
@@ -2255,17 +2315,17 @@ ETO Doors - Custom Product Page Layout
     background: #ffffff;
     border: 1px solid #f0eae1;
     border-radius: 8px;
-    padding: 24px 16px;
+    padding: 8px 4px;
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px;
+    gap: 0;
     box-shadow: 0 2px 8px rgba(0,0,0,0.02);
   }
-  .eto-feature-card .icon-large { font-size: 32px; color: #444; margin-bottom: 4px; font-variation-settings: 'wght' 200; }
-  .eto-feature-card strong { font-size: 13px; font-weight: 700; color: #111; }
-  .eto-feature-card span { font-size: 12px; color: #777; }
+  .eto-feature-card .icon-large { font-size: 24px; color: #444; margin-bottom: 2px; font-variation-settings: 'wght' 200; }
+  .eto-feature-card strong { font-size: 10px !important; line-height: 1.2 !important; font-weight: 700; color: #111; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; margin-bottom: 2px; }
+  .eto-feature-card span { font-size: 9px !important; line-height: 1.2 !important; color: #777; }
 
   /* Spec Tables */
   .eto-spec-tables {
@@ -2275,9 +2335,9 @@ ETO Doors - Custom Product Page Layout
     margin-bottom: 32px;
   }
   .eto-spec-table-container h4 {
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 700;
-    margin: 0 0 12px 0;
+    margin: 0 0 8px 0;
     padding-bottom: 0;
     border-bottom: none;
     color: #444;
@@ -2292,8 +2352,8 @@ ETO Doors - Custom Product Page Layout
     overflow: hidden;
   }
   .eto-spec-table td {
-    padding: 14px 20px;
-    font-size: 13px;
+    padding: 4px 6px;
+    font-size: 10px;
     border-bottom: 1px solid #f0eae1;
   }
   .eto-spec-table tr:last-child td { border-bottom: none; }
@@ -2307,26 +2367,26 @@ ETO Doors - Custom Product Page Layout
     margin-top: 24px;
     padding-top: 24px;
   }
-  .eto-spec-footer p { margin: 0; font-size: 13px; color: var(--eto-soft-gray); }
+  .eto-spec-footer p { margin: 0; font-size: 10px; color: var(--eto-soft-gray); }
 
   /* Leadtime Cards */
   .eto-leadtime-cards {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 32px;
-    margin-bottom: 40px !important;
+    gap: 16px;
+    margin-bottom: 24px !important;
   }
   .eto-leadtime-card {
     border: 1px solid #e8e2d7;
     border-radius: 6px;
-    padding: 24px 32px;
+    padding: 16px 20px;
     display: flex;
     align-items: center;
-    gap: 24px;
+    gap: 16px;
   }
   .door-icon-wrapper {
-    width: 72px;
-    height: 72px;
+    width: 48px;
+    height: 48px;
     background: #fbf9f6;
     border-radius: 50%;
     display: flex;
@@ -2334,11 +2394,11 @@ ETO Doors - Custom Product Page Layout
     justify-content: center;
     flex-shrink: 0;
   }
-  .eto-leadtime-card .door-icon { font-size: 40px; color: #333; }
+  .eto-leadtime-card .door-icon { font-size: 24px; color: #333; }
   .eto-leadtime-card-content { display: flex; flex-direction: column; }
-  .leadtime-label { font-size: 11px; font-weight: 700; color: #737373; letter-spacing: 0.5px; margin-bottom: 6px; text-transform: uppercase; }
-  .eto-leadtime-card-content strong { font-size: 24px; font-weight: 700; margin-bottom: 4px; color: #222; }
-  .eto-leadtime-card-content span:last-child { font-size: 12px; color: #666; }
+  .leadtime-label { font-size: 10px; font-weight: 700; color: #737373; letter-spacing: 0.5px; margin-bottom: 2px; text-transform: uppercase; }
+  .eto-leadtime-card-content strong { font-size: 16px; font-weight: 700; margin-bottom: 2px; color: #222; }
+  .eto-leadtime-card-content span:last-child { font-size: 11px; color: #666; }
 
   /* Magento Spec HTML Styles */
   .eto-magento-spec-html { font-size: 14px; color: var(--eto-soft-gray); line-height: 1.6; margin-top: 32px; }
@@ -2352,7 +2412,7 @@ ETO Doors - Custom Product Page Layout
     grid-template-columns: repeat(3, 1fr);
     align-items: flex-start;
     position: relative;
-    margin-bottom: 32px !important;
+    margin-bottom: 24px !important;
     padding: 0;
   }
   .progress-step {
@@ -2366,9 +2426,9 @@ ETO Doors - Custom Product Page Layout
   .progress-step:not(:last-child)::after {
     content: '';
     position: absolute;
-    top: 24px;
-    left: calc(50% + 32px);
-    width: calc(100% - 64px);
+    top: 18px;
+    left: calc(50% + 24px);
+    width: calc(100% - 48px);
     height: 1px;
     background: #e6dac8;
     z-index: 1;
@@ -2376,29 +2436,29 @@ ETO Doors - Custom Product Page Layout
   .progress-step:not(:last-child)::before {
     content: '';
     position: absolute;
-    top: 21px;
-    right: calc(-50% + 30px);
+    top: 15px;
+    right: calc(-50% + 22px);
     border-top: 4px solid transparent;
     border-bottom: 4px solid transparent;
     border-left: 5px solid #e6dac8;
     z-index: 2;
   }
   .step-icon-wrapper {
-    width: 48px;
-    height: 48px;
+    width: 36px;
+    height: 36px;
     background: #ffffff;
     border: 1px solid #e6dac8;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
     position: relative;
     z-index: 3;
   }
-  .step-icon-wrapper .material-symbols-outlined { color: #333 !important; font-size: 24px !important; }
-  .progress-step strong { font-size: 13px; font-weight: 600; color: #333; margin-bottom: 4px; }
-  .progress-step span:last-child { font-size: 12px; color: #737373; }
+  .step-icon-wrapper .material-symbols-outlined { color: #333 !important; font-size: 18px !important; }
+  .progress-step strong { font-size: 12px; font-weight: 600; color: #333; margin-bottom: 2px; }
+  .progress-step span:last-child { font-size: 11px; color: #737373; }
 
   .eto-shipping-footer {
     display: flex;
@@ -2407,7 +2467,7 @@ ETO Doors - Custom Product Page Layout
     margin-top: 0px;
   }
   .eto-policy-link {
-    font-size: 15px;
+    font-size: 13px;
     font-weight: 700;
     color: #111;
     text-decoration: none !important;
@@ -2419,11 +2479,11 @@ ETO Doors - Custom Product Page Layout
   .eto-btn-brown {
     background: #b6855b;
     color: #fff;
-    padding: 12px 32px;
+    padding: 10px 24px;
     border-radius: 6px;
     text-decoration: none;
     font-weight: 700;
-    font-size: 14px;
+    font-size: 13px;
     display: inline-block;
     transition: background 0.3s;
   }
@@ -2461,10 +2521,10 @@ ETO Doors - Custom Product Page Layout
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 24px;
+    padding: 12px 16px;
     background: none;
     border: none;
-    font-size: 15px;
+    font-size: 13px;
     font-weight: 500;
     color: var(--eto-dark-charcoal);
     cursor: pointer;
@@ -2475,20 +2535,21 @@ ETO Doors - Custom Product Page Layout
   }
   .faq-answer {
     display: none;
-    padding: 0 24px 24px 24px;
+    padding: 0 16px 16px 16px;
   }
-  .faq-answer p { margin: 0; font-size: 14px; color: var(--eto-soft-gray); line-height: 1.6; }
+  .faq-answer p { margin: 0; font-size: 12px; color: var(--eto-soft-gray); line-height: 1.6; }
 
   .eto-faq-cta {
     background: #f7f3ec;
     border-radius: 8px;
-    padding: 24px 32px;
+    padding: 16px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
   .cta-content { display: flex; align-items: center; gap: 12px; }
-  .cta-content .cta-icon { font-size: 28px; color: #D87732; }
+  .cta-content .cta-icon { font-size: 20px; color: #D87732; }
+  .cta-content strong { font-size: 14px; }
 
   /* Responsive */
   @media(max-width: 990px) {
@@ -2774,9 +2835,8 @@ ETO Doors - Custom Product Page Layout
       <div class="eto-config-card">
         <span class="eyebrow">{{ product_type_display }}</span>
         <h1 class="title">{{ product.title }}</h1>
-        <div class="lede">{{ product.description | strip_html | truncatewords: 30 }}</div>
 
-        <div class="sizes-head" style="border-top: 1px solid #EBEBEB; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+        <div class="sizes-head" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-top: 10px;">
           <span class="label">CHOOSE A SIZE <span id="eto-selected-size"></span></span>
           <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
             <button type="button" class="eto-config-edit" id="eto-size-edit-btn" style="display:none; margin-left: 0; white-space: nowrap;" onclick="etoEditSize()">EDIT</button>
@@ -2842,7 +2902,7 @@ ETO Doors - Custom Product Page Layout
       </div>
       </div>
       
-      <div id="eto-notes-container" style="display:none; margin-top:16px;">
+      <div id="eto-notes-container" style="display:none; margin-top:8px;">
         <input type="text" id="eto-notes" placeholder="Notes" class="eto-notes-input">
       </div>
 
@@ -2895,51 +2955,6 @@ ETO Doors - Custom Product Page Layout
           <p>Custom Sizes &amp;<br>Volume Discounts</p>
         </div>
       </div>
-    </section>
-
-    <aside class="buybox" aria-label="Purchase">
-      <div class="card">
-        <div class="price" id="boxPrice"><span id="eto-current-price">{{ product.price | money }}</span></div>
-        <div class="selected"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="8 12 11 15 16 9"/></svg><span id="boxSelected">{{ product.selected_or_first_available_variant.title }} selected</span></div>
-        <div class="ships"><svg class="icon" viewBox="0 0 24 24"><rect x="1" y="6" width="13" height="11" rx="1"/><path d="M14 9h4l3 3v5h-7z"/><circle cx="6" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg>Ships in 7–10 business days</div>
-        <p class="customnote">Custom sizes available</p>
-
-        <p class="qty-label">Quantity</p>
-        <div class="stepper">
-          <button type="button" class="step" aria-label="Decrease quantity" onclick="etoUpdateQty(-1)">&minus;</button>
-          <input type="text" class="qty-val" id="eto-quantity" value="1" min="1" readonly>
-          <button type="button" class="step" aria-label="Increase quantity" onclick="etoUpdateQty(1)">+</button>
-        </div>
-
-        {% if product.tags contains 'zoho_configurable' %}
-          {% render 'zoho-config-button', product: product %}
-        {% else %}
-        <form id="eto-product-form" action="/cart/add" method="post" onsubmit="return etoSidebarAddToCart(event)" style="margin: 0;">
-          <input type="hidden" name="id" id="eto-variant-id" value="{{ product.selected_or_first_available_variant.id }}">
-          <input type="hidden" name="quantity" id="eto-form-qty" value="1">
-          <button type="submit" class="btn btn-primary">Add to Cart</button>
-        </form>
-        {% endif %}
-
-        <a href="/pages/contact?product_name={{ product.title | url_encode }}&product_url={{ shop.url | append: product.url | url_encode }}" class="btn btn-outline">Request Volume Quote</a>
-        <a href="tel:{{ section.settings.phone | default: '(213) 622-2003' }}" class="btn btn-outline"><svg class="icon" viewBox="0 0 512 512" style="overflow:visible; fill:currentColor; stroke:none;"><path d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C12.1 30.2 0 46 0 64 0 311.4 200.6 512 448 512c18 0 33.8-12.1 38.6-29.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z"/></svg>Talk to a Door Expert</a>
-
-        <div class="callout">
-          <div class="num"><svg class="icon" viewBox="0 0 512 512" style="overflow:visible; fill:currentColor; stroke:none;"><path d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C12.1 30.2 0 46 0 64 0 311.4 200.6 512 448 512c18 0 33.8-12.1 38.6-29.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z"/></svg>{{ section.settings.phone | default: '(213) 622-2003' }}</div>
-          <div class="hours">Monday – Friday, 8am – 5pm PST</div>
-        </div>
-      </div>
-
-      <div class="assurance">
-        <svg class="icon" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><polyline points="9 12 11 14 15 10"/></svg>
-        <p>Built for lasting performance and backed by expert support.</p>
-      </div>
-    </aside>
-  </div>
-
-
-  <!-- ============ TABS ============ -->
-  <!-- ============ NEW TABS ============ -->
   <section class="eto-new-tabs-section" aria-label="More information">
     <div class="eto-new-tablist" role="tablist">
       <button class="eto-tab-btn active" data-tab="details" role="tab" onclick="etoShowTab('overview', this)"><span class="material-symbols-outlined">grid_on</span> Product Details</button>
@@ -2952,24 +2967,72 @@ ETO Doors - Custom Product Page Layout
       <!-- Product Details Tab -->
       <div id="tab-overview" class="tabpanel eto-tab-pane active" role="tabpanel">
         <div class="eto-tab-inner">
-          <div class="eto-tab-warning-banner">
-            <div class="eto-warning-left">
-              <span class="material-symbols-outlined">info</span>
-              <p>Doors arrive unfinished. Images may show a finished door.</p>
-            </div>
-            <a href="/pages/contact?product_name={{ product.title | url_encode }}&product_url={{ shop.url | append: product.url | url_encode }}">Request a Free Corner Sample</a>
-          </div>
-
-          <h3 class="eto-tab-product-title">{{ product.title }}</h3>
-          {% if product.metafields.custom.tab_overview != blank %}
-            <div class="eto-tab-product-desc">{{ product.metafields.custom.tab_overview.value }}</div>
-          {% else %}
-            <div class="eto-tab-product-desc">{{ product.description }}</div>
-          {% endif %}
-
           <div class="eto-details-2col">
             <div class="eto-details-left">
-              <h4>Why Choose the {{ product.title | split: ' ' | first }}</h4>
+              <div class="eto-tab-warning-banner">
+                <div class="eto-warning-left">
+                  <span class="material-symbols-outlined">info</span>
+                  <p>Doors arrive unfinished. Images may show a finished door.</p>
+                </div>
+                <a href="/pages/contact?product_name={{ product.title | url_encode }}&product_url={{ shop.url | append: product.url | url_encode }}">Request a Free Corner Sample</a>
+              </div>
+
+              <h3 class="eto-tab-product-title">{{ product.title }}</h3>
+              {% if product.metafields.custom.tab_overview != blank %}
+                <div class="eto-tab-product-desc">{{ product.metafields.custom.tab_overview.value }}</div>
+              {% else %}
+                <div class="eto-tab-product-desc">{{ product.description }}</div>
+              {% endif %}
+              
+              <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                  const desc = document.querySelector('.eto-tab-product-desc');
+                  if (desc && !desc.querySelector('p') && !desc.querySelector('ul')) {
+                    let html = desc.innerHTML;
+                    // Fix missing space issue
+                    html = html.replace(/processWe/g, 'process. We');
+                    
+                    // Convert benefits to a list
+                    if (html.includes('benefits including')) {
+                      const parts = html.split('benefits including');
+                      let intro = parts[0] + 'benefits including:';
+                      let rest = parts[1].trim();
+                      const endSentenceIdx = rest.indexOf('.');
+                      
+                      if (endSentenceIdx !== -1) {
+                        const listText = rest.substring(0, endSentenceIdx);
+                        const afterList = rest.substring(endSentenceIdx + 1);
+                        
+                        const items = listText.split(/(?:,| and )+/).filter(i => i.trim().length > 0);
+                        let ul = '<ul>';
+                        items.forEach(i => ul += '<li><span class="material-symbols-outlined" style="font-size:16px; margin-right:8px; vertical-align:middle; color:#d38b4a;">check_circle</span>' + i.trim() + '</li>');
+                        ul += '</ul>';
+                        
+                        html = intro + ul + afterList;
+                      }
+                    }
+                    
+                    // Split remaining text into paragraphs by sentences
+                    const segments = html.split(/(?<=\.)\s+/);
+                    if(segments.length > 3) {
+                      let formatted = '';
+                      let currentP = '';
+                      for(let i=0; i<segments.length; i++) {
+                        currentP += segments[i] + ' ';
+                        if(currentP.length > 150 || i === segments.length - 1 || segments[i].includes('</ul>')) {
+                          formatted += '<p>' + currentP.trim() + '</p>';
+                          currentP = '';
+                        }
+                      }
+                      desc.innerHTML = formatted;
+                    } else {
+                      desc.innerHTML = html;
+                    }
+                  }
+                });
+              </script>
+
+              <h4 style="margin-top: 32px; font-size: 16px;">Why Choose the {{ product.title | split: ' ' | first }}</h4>
               <p>Designed for those who value timeless style and reliable performance. Delivering a modern aesthetic with the durability and consistency you expect.</p>
               <ul class="eto-checklist">
                 <li><span class="material-symbols-outlined">check</span> Modern design</li>
@@ -3073,22 +3136,22 @@ ETO Doors - Custom Product Page Layout
 
           <div class="eto-spec-features">
             <div class="eto-feature-card">
-              <img src="{{ 'spec-icon-1.jpeg' | asset_url }}" alt="Wood Species" class="icon-large" style="width: 56px; height: 56px; object-fit: contain; margin-bottom: 8px; mix-blend-mode: multiply; filter: contrast(1.5) brightness(1.2) grayscale(1);">
+              <img src="{{ 'spec-icon-1.jpeg' | asset_url }}" alt="Wood Species" class="icon-large" style="width: 24px; height: 24px; object-fit: contain; margin-bottom: 2px; mix-blend-mode: multiply; filter: contrast(1.5) brightness(1.2) grayscale(1);">
               <strong>{{ spec_wood }}</strong>
               <span>Vertical grain</span>
             </div>
             <div class="eto-feature-card">
-              <img src="{{ 'spec-icon-2.svg' | asset_url }}" alt="Construction" class="icon-large" style="width: 56px; height: 56px; object-fit: contain; margin-bottom: 8px; mix-blend-mode: multiply; filter: contrast(1.5) brightness(1.2) grayscale(1);">
+              <img src="{{ 'spec-icon-2.svg' | asset_url }}" alt="Construction" class="icon-large" style="width: 24px; height: 24px; object-fit: contain; margin-bottom: 2px; mix-blend-mode: multiply; filter: contrast(1.5) brightness(1.2) grayscale(1);">
               <strong>{{ spec_construction }}</strong>
               <span>Solid construction</span>
             </div>
             <div class="eto-feature-card">
-              <img src="{{ 'spec-icon-4.jpeg' | asset_url }}" alt="Application" class="icon-large" style="width: 56px; height: 56px; object-fit: contain; margin-bottom: 8px; mix-blend-mode: multiply; filter: contrast(1.5) brightness(1.2) grayscale(1);">
+              <img src="{{ 'spec-icon-4.jpeg' | asset_url }}" alt="Application" class="icon-large" style="width: 24px; height: 24px; object-fit: contain; margin-bottom: 2px; mix-blend-mode: multiply; filter: contrast(1.5) brightness(1.2) grayscale(1);">
               <strong>{{ spec_application }}</strong>
               <span>Residential & commercial</span>
             </div>
             <div class="eto-feature-card">
-              <img src="{{ 'spec-icon-3.jpeg' | asset_url }}" alt="Warranty" class="icon-large" style="width: 56px; height: 56px; object-fit: contain; margin-bottom: 8px; mix-blend-mode: multiply; filter: contrast(1.5) brightness(1.2) grayscale(1);">
+              <img src="{{ 'spec-icon-3.jpeg' | asset_url }}" alt="Warranty" class="icon-large" style="width: 24px; height: 24px; object-fit: contain; margin-bottom: 2px; mix-blend-mode: multiply; filter: contrast(1.5) brightness(1.2) grayscale(1);">
               <strong>{{ spec_warranty }}</strong>
               <span>Limited warranty</span>
             </div>
@@ -3221,7 +3284,7 @@ ETO Doors - Custom Product Page Layout
 
           <div class="eto-faq-cta">
             <div class="cta-content">
-              <svg class="cta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" style="width: 44px; height: 44px; min-width: 44px;">
+              <svg class="cta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" style="width: 28px; height: 28px; min-width: 28px;">
                 <path d="M5 13V11a7 7 0 0 1 14 0v2" />
                 <rect x="3" y="11" width="4" height="6" rx="2" fill="currentColor" stroke="none" />
                 <rect x="17" y="11" width="4" height="6" rx="2" fill="currentColor" stroke="none" />
@@ -3236,6 +3299,48 @@ ETO Doors - Custom Product Page Layout
       </div>
     </div>
   </section>
+    </section>
+
+    <aside class="buybox" aria-label="Purchase">
+      <div class="card">
+        <div class="price" id="boxPrice"><span id="eto-current-price">{{ product.price | money }}</span></div>
+        <div class="selected"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="8 12 11 15 16 9"/></svg><span id="boxSelected">{{ product.selected_or_first_available_variant.title }} selected</span></div>
+        <div class="ships"><svg class="icon" viewBox="0 0 24 24"><rect x="1" y="6" width="13" height="11" rx="1"/><path d="M14 9h4l3 3v5h-7z"/><circle cx="6" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg>Ships in 7–10 business days</div>
+        <p class="customnote">Custom sizes available</p>
+
+        <p class="qty-label">Quantity</p>
+        <div class="stepper">
+          <button type="button" class="step" aria-label="Decrease quantity" onclick="etoUpdateQty(-1)">&minus;</button>
+          <input type="text" class="qty-val" id="eto-quantity" value="1" min="1" readonly>
+          <button type="button" class="step" aria-label="Increase quantity" onclick="etoUpdateQty(1)">+</button>
+        </div>
+
+        {% if product.tags contains 'zoho_configurable' %}
+          {% render 'zoho-config-button', product: product %}
+        {% else %}
+        <form id="eto-product-form" action="/cart/add" method="post" onsubmit="return etoSidebarAddToCart(event)" style="margin: 0;">
+          <input type="hidden" name="id" id="eto-variant-id" value="{{ product.selected_or_first_available_variant.id }}">
+          <input type="hidden" name="quantity" id="eto-form-qty" value="1">
+          <button type="submit" class="btn btn-primary">Add to Cart</button>
+        </form>
+        {% endif %}
+
+        <a href="/pages/contact?product_name={{ product.title | url_encode }}&product_url={{ shop.url | append: product.url | url_encode }}" class="btn btn-outline">Request Volume Quote</a>
+        <a href="tel:{{ section.settings.phone | default: '(213) 622-2003' }}" class="btn btn-outline"><svg class="icon" viewBox="0 0 512 512" style="overflow:visible; fill:currentColor; stroke:none;"><path d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C12.1 30.2 0 46 0 64 0 311.4 200.6 512 448 512c18 0 33.8-12.1 38.6-29.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z"/></svg>Talk to a Door Expert</a>
+
+        <div class="callout">
+          <div class="num"><svg class="icon" viewBox="0 0 512 512" style="overflow:visible; fill:currentColor; stroke:none;"><path d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C12.1 30.2 0 46 0 64 0 311.4 200.6 512 448 512c18 0 33.8-12.1 38.6-29.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z"/></svg>{{ section.settings.phone | default: '(213) 622-2003' }}</div>
+          <div class="hours">Monday – Friday, 8am – 5pm PST</div>
+        </div>
+      </div>
+
+      <div class="assurance">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><polyline points="9 12 11 14 15 10"/></svg>
+        <p>Built for lasting performance and backed by expert support.</p>
+      </div>
+    </aside>
+</div> <!-- closing eto-new-product-grid -->
+
 
   <!-- FAQ Toggle Script -->
   <script>
@@ -3289,7 +3394,7 @@ ETO Doors - Custom Product Page Layout
 <!-- ==============================================
      Reviews & Q&A Section (Always Visible at Bottom)
      ============================================== -->
-<div id="eto-reviews-section" class="eto-reviews-section-container" style="max-width: var(--eto-container-max); margin: 40px auto; padding: 40px var(--eto-margin-edge); border-top: 1px solid #e0e0e0;">
+<div id="eto-reviews-section" class="eto-reviews-section-container" style="max-width: var(--eto-container-max); margin: 20px auto 0 auto; padding: 24px var(--eto-margin-edge) 16px; border-top: 1px solid #e0e0e0;">
 
   <!-- Reviews/Questions Sub-tabs Nav -->
   {% capture judgeme_badge_html %}{{ product.metafields.judgeme.badge }}{% endcapture %}
@@ -3302,38 +3407,171 @@ ETO Doors - Custom Product Page Layout
     {% endif %}
   {% endif %}
 
-  <div class="eto-custom-stars" style="margin-bottom: 15px; min-height: 28px;">
-    {% if review_count > 0 %}
-      <style>
-        .eto-custom-stars .jdgm-prev-badge__text { display: none !important; }
-        .eto-custom-stars .jdgm-star { color: #000 !important; font-size: 28px !important; }
-        .eto-custom-stars .jdgm-widget { text-align: left !important; display: block !important; }
-      </style>
-      <div class='jdgm-widget jdgm-preview-badge' data-id='{{ product.id }}' data-auto-install='false'>
-        {{ product.metafields.judgeme.badge }}
+  <style>
+    .eto-rq-summary-box {
+      display: flex;
+      background: #FDFCF5; /* Very light yellowish creamy background */
+      border: 1px solid #e2ddd8;
+      border-radius: 6px;
+      padding: 16px;
+      margin-bottom: 0;
+    }
+    .eto-rq-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .eto-rq-col.reviews-col {
+      padding-right: 32px;
+      border-right: 1px solid #e2ddd8;
+    }
+    .eto-rq-col.questions-col {
+      padding-left: 32px;
+    }
+    .eto-rq-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .eto-rq-stars {
+      display: flex;
+      align-items: center;
+    }
+    .eto-rq-icon {
+      display: flex;
+      align-items: center;
+    }
+    .eto-rq-icon svg {
+      width: 22px;
+      height: 22px;
+    }
+    .eto-rq-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: #000;
+      margin-top: 2px;
+    }
+    .eto-rq-desc {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
+      color: #555;
+      margin: 0 0 16px 0;
+      line-height: 1.5;
+      max-width: 320px;
+    }
+    .eto-rq-btn {
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 6px 14px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      color: #333;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .eto-rq-btn:hover {
+      background: #f0f0f0;
+      border-color: #bbb;
+    }
+    @media (max-width: 768px) {
+      .eto-rq-summary-box {
+        flex-direction: column;
+        padding: 16px;
+      }
+      .eto-rq-col.reviews-col {
+        padding-right: 0;
+        padding-bottom: 24px;
+        border-right: none;
+        border-bottom: 1px solid #e2ddd8;
+        margin-bottom: 24px;
+      }
+      .eto-rq-col.questions-col {
+        padding-left: 0;
+      }
+    }
+  </style>
+
+  <div class="eto-rq-summary-box">
+    <!-- REVIEWS COLUMN -->
+    <div class="eto-rq-col reviews-col">
+      <div class="eto-rq-header">
+        <span class="eto-rq-stars">
+          {% if review_count > 0 %}
+            <div class='jdgm-widget jdgm-preview-badge' data-id='{{ product.id }}' data-auto-install='false'>
+              {{ product.metafields.judgeme.badge }}
+            </div>
+            <style>
+              .eto-rq-stars .jdgm-prev-badge__text { display: none !important; }
+              .eto-rq-stars .jdgm-star { color: #000 !important; font-size: 20px !important; }
+              .eto-rq-stars .jdgm-widget { text-align: left !important; display: block !important; margin:0;}
+            </style>
+          {% else %}
+            <span style="color: #a0a0a0; letter-spacing: 1px; font-size: 20px; line-height: 1;">&#9734;&#9734;&#9734;&#9734;&#9734;</span>
+          {% endif %}
+        </span>
+        <span class="eto-rq-title">Reviews ({% if review_count != blank %}{{ review_count }}{% else %}0{% endif %})</span>
       </div>
-    {% else %}
-      <div style="font-size: 28px; color: #a0a0a0; letter-spacing: 2px;">
-        &#9734;&#9734;&#9734;&#9734;&#9734;
+      <p class="eto-rq-desc">
+        {% if review_count > 0 %}
+          Read what our customers have to say about this door.
+        {% else %}
+          No reviews yet — be the first to share your experience.
+        {% endif %}
+      </p>
+      <button class="eto-rq-btn" onclick="openReviewsTab()">
+        {% if review_count > 0 %}Read reviews{% else %}Write a review{% endif %}
+      </button>
+    </div>
+
+    <!-- QUESTIONS COLUMN -->
+    <div class="eto-rq-col questions-col">
+      <div class="eto-rq-header">
+        <span class="eto-rq-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+          </svg>
+        </span>
+        <span class="eto-rq-title">Questions ({% if qa_count != blank %}{{ qa_count }}{% else %}0{% endif %})</span>
       </div>
-    {% endif %}
+      <p class="eto-rq-desc">
+        {% if qa_count > 0 %}
+          Browse answers or ask a new question about this door.
+        {% else %}
+          No questions yet — ask us anything about this door.
+        {% endif %}
+      </p>
+      <button class="eto-rq-btn" onclick="openQuestionsTab()">Ask a question</button>
+    </div>
   </div>
 
-
-
-  {% assign qa_list_val = product.metafields.custom.qa_list.value %}
-  {% assign qa_count = qa_list_val | size | default: 0 %}
-  <div class="eto-review-subtabs-nav">
-    <button class="eto-review-subtab-btn active" data-subtab="subtab-reviews" id="btn-subtab-reviews">
-      Reviews ({{ review_count }})
-    </button>
-    <button class="eto-review-subtab-btn" data-subtab="subtab-questions" id="btn-subtab-questions">
-      Questions ({{ qa_count }})
-    </button>
-  </div>
+  <script>
+    function openReviewsTab() {
+      document.getElementById('subtab-reviews').classList.add('active');
+      document.getElementById('subtab-questions').classList.remove('active');
+      const widget = document.getElementById('judgeme_product_reviews');
+      if(widget) {
+        // Try to click the "Write a review" button if it exists and count is 0
+        const writeBtn = widget.querySelector('.jdgm-write-rev-link');
+        {% if review_count == 0 %}
+          if(writeBtn) { writeBtn.click(); }
+        {% endif %}
+        widget.scrollIntoView({behavior: 'smooth', block: 'start'});
+      }
+    }
+    function openQuestionsTab() {
+      document.getElementById('subtab-questions').classList.add('active');
+      document.getElementById('subtab-reviews').classList.remove('active');
+      document.getElementById('subtab-questions').scrollIntoView({behavior: 'smooth', block: 'start'});
+    }
+  </script>
 
   <!-- SUBTAB 1: Judge.me Reviews Widget -->
-  <div id="subtab-reviews" class="eto-review-subtab-pane active">
+  <div id="subtab-reviews" class="eto-review-subtab-pane">
     <div style="clear:both"></div>
     <div id="judgeme_product_reviews" class="jdgm-widget jdgm-review-widget"
          data-product-title="{{ product.title | escape }}"
@@ -3388,6 +3626,35 @@ ETO Doors - Custom Product Page Layout
       </div>
     {% endif %}
 
+    <!-- Ask a Question Form -->
+    <div class="eto-qa-form-section">
+      <div class="eto-qa-form-actions" style="justify-content: center;">
+        <button class="eto-qa-write-btn" id="eto-ask-question-btn" onclick="document.getElementById('eto-qa-form-wrapper').classList.toggle('eto-qa-form-open')">Ask a Question</button>
+      </div>
+
+      <div id="eto-qa-form-wrapper" class="eto-qa-form-wrapper">
+        <h4 class="eto-qa-form-title">Ask a Question about {{ product.title }}</h4>
+        {% form 'contact' %}
+          <input type="hidden" name="contact[product]" value="{{ product.title }}">
+          <input type="hidden" name="contact[product_url]" value="{{ shop.url }}{{ product.url }}">
+          <input type="hidden" name="contact[type]" value="Product Question">
+          <div class="eto-qa-form-row">
+            <label class="eto-qa-label">Your Name *</label>
+            <input type="text" name="contact[name]" class="eto-qa-input" placeholder="Enter your name" required>
+          </div>
+          <div class="eto-qa-form-row">
+            <label class="eto-qa-label">Your Email *</label>
+            <input type="email" name="contact[email]" class="eto-qa-input" placeholder="Enter your email" required>
+          </div>
+          <div class="eto-qa-form-row">
+            <label class="eto-qa-label">Your Question *</label>
+            <textarea name="contact[body]" class="eto-qa-textarea" placeholder="Type your question here..." rows="4" required></textarea>
+          </div>
+          <button type="submit" class="eto-qa-submit-btn">Submit Question</button>
+        {% endform %}
+      </div>
+    </div>
+
   </div>
   <!-- End Subtab Questions -->
 
@@ -3422,34 +3689,7 @@ ETO Doors - Custom Product Page Layout
     }
   </style>
 
-  <!-- Ask a Question / Write Review Buttons (Always visible) -->
-  <div class="eto-qa-form-section">
-    <div class="eto-qa-form-actions" style="justify-content: center;">
-      <button class="eto-qa-write-btn" id="eto-ask-question-btn" onclick="document.getElementById('eto-qa-form-wrapper').classList.toggle('eto-qa-form-open')">Ask a Question</button>
-    </div>
 
-    <div id="eto-qa-form-wrapper" class="eto-qa-form-wrapper">
-      <h4 class="eto-qa-form-title">Ask a Question about {{ product.title }}</h4>
-      {% form 'contact' %}
-        <input type="hidden" name="contact[product]" value="{{ product.title }}">
-        <input type="hidden" name="contact[product_url]" value="{{ shop.url }}{{ product.url }}">
-        <input type="hidden" name="contact[type]" value="Product Question">
-        <div class="eto-qa-form-row">
-          <label class="eto-qa-label">Your Name *</label>
-          <input type="text" name="contact[name]" class="eto-qa-input" placeholder="Enter your name" required>
-        </div>
-        <div class="eto-qa-form-row">
-          <label class="eto-qa-label">Your Email *</label>
-          <input type="email" name="contact[email]" class="eto-qa-input" placeholder="Enter your email" required>
-        </div>
-        <div class="eto-qa-form-row">
-          <label class="eto-qa-label">Your Question *</label>
-          <textarea name="contact[body]" class="eto-qa-textarea" placeholder="Type your question here..." rows="4" required></textarea>
-        </div>
-        <button type="submit" class="eto-qa-submit-btn">Submit Question</button>
-      {% endform %}
-    </div>
-  </div>
 
 </div>
 

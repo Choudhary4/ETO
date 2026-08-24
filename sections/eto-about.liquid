@@ -222,42 +222,6 @@
   border-color: #333333;
 }
 
-@media screen and (min-width: 1921px) {
-  .eto-about-container { max-width: 85vw !important; padding: clamp(20px, 2vw, 40px) !important; }
-  .eto-breadcrumb-container { max-width: 85vw !important; padding: clamp(15px, 1.5vw, 30px) 2vw 0 !important; }
-  .eto-breadcrumb { font-size: clamp(13px, 1.2vw, 26px); }
-  
-  .eto-about-hero { height: clamp(380px, 30vw, 1200px) !important; }
-  .eto-about-hero-text h2 { font-size: clamp(34px, 3vw, 68px); }
-  
-  .eto-about-img { height: clamp(180px, 15vw, 600px) !important; }
-  .eto-about-title { font-size: clamp(15px, 1.4vw, 30px); }
-  .eto-about-desc { font-size: clamp(13px, 1.2vw, 26px); }
-  .eto-read-more { font-size: clamp(16px, 1.5vw, 32px); }
-  
-  .eto-section-title { font-size: clamp(20px, 1.8vw, 40px); }
-  .eto-text-p { font-size: clamp(13px, 1.2vw, 26px); }
-  
-  .eto-form-label { font-size: clamp(13px, 1.2vw, 26px); margin-bottom: clamp(5px, 0.5vw, 10px); }
-  .eto-form-input, .eto-form-textarea { 
-    padding: clamp(8px, 0.8vw, 16px) !important; 
-    font-size: clamp(14px, 1.3vw, 28px) !important; 
-  }
-  .eto-date-input { width: clamp(35px, 3.5vw, 70px) !important; padding: clamp(4px, 0.4vw, 8px) !important; font-size: clamp(13px, 1.2vw, 26px) !important; }
-  .eto-date-sub { font-size: clamp(10px, 0.9vw, 20px); }
-  
-  .eto-radio-label { font-size: clamp(13px, 1.2vw, 26px); }
-  
-  .eto-submit-btn { 
-    padding: clamp(10px, 1vw, 20px) clamp(25px, 2.5vw, 50px) !important; 
-    font-size: clamp(14px, 1.3vw, 28px) !important; 
-  }
-
-  /* Scale text for hidden tabs (Impact, Brand, Price Guarantee, etc) */
-  #eto-about-default-content h2, #eto-about-default-content h3, #eto-impact-content h2, #eto-impact-content h3, #eto-brand-content h3, #eto-price-guarantee-content h2, #eto-price-guarantee-content h3, #eto-press-content h3, #eto-forms-content h3, #eto-warranty-content h3, #eto-diy-videos-content h2, #eto-diy-videos-content h3, #eto-3d-modeling-content h2, #eto-3d-modeling-content h3 { font-size: clamp(16px, 1.6vw, 32px) !important; margin-bottom: clamp(5px, 0.5vw, 10px) !important; }
-  
-  #eto-impact-content div, #eto-impact-content strong, #eto-forms-content ul, #eto-warranty-content div, #eto-3d-modeling-content p, #eto-3d-modeling-content div, #eto-3d-modeling-content a { font-size: clamp(13px, 1.3vw, 26px) !important; line-height: 1.6; }
-}
 </style>
 
 <div class="eto-breadcrumb-container">
@@ -274,41 +238,47 @@
     
     <div id="eto-about-default-content">
       <!-- Hero -->
-      <div class="eto-about-hero" style="background-image: url({{ 'Cover-Image.jpg' | file_url }}); background-size: cover; background-position: center;">
+      <div class="eto-about-hero" style="background-image: url({{ 'about-hero-image.jpeg' | asset_url }}); background-size: cover; background-position: center;">
         <div class="eto-about-hero-text">
           <h2>OPENINGS PERFECTED.</h2>
           <h2>ETO DOORS SINCE 2005</h2>
         </div>
       </div>
 
+      <!-- Why Choose -->
+      <div class="eto-text-section" style="text-align: center; margin-top: 40px; margin-bottom: 30px;">
+        <h2 class="eto-section-title" style="margin-bottom: 10px;">Why Choose ETO Doors</h2>
+        <p class="eto-text-p" style="font-size: 15px;">Quality, responsible choices, and experience you can trust.</p>
+      </div>
+
       <!-- 3 Col Grid -->
       <div class="eto-about-grid">
         <div class="eto-about-col">
-          <img src="{{ 'about-p-1.jpg' | file_url }}" alt="Why Buy ETO" class="eto-about-img">
-          <h3 class="eto-about-title">WHY BUY ETO</h3>
-          <p class="eto-about-desc">With over one million doors sold and over 100,000 satisfied customers, our track record speaks for itself. Since 2005, ETO Doors has been supplying high end doors to some of the largest...</p>
+          <img src="{{ 'about-p-1.jpg' | file_url }}" alt="Proven Quality" class="eto-about-img">
+          <h3 class="eto-about-title">PROVEN QUALITY</h3>
+          <p class="eto-about-desc">More than one million doors sold to homeowners, builders, architects, and designers.</p>
           <a href="#" onclick="showWhyBuy(event)" class="eto-read-more">Read more...</a>
         </div>
         <div class="eto-about-col">
-          <img src="{{ 'about-p-2.jpg' | file_url }}" alt="ETO Green" class="eto-about-img">
-          <h3 class="eto-about-title">ETO GREEN</h3>
-          <p class="eto-about-desc">ETO Doors Corp. is a partner in working towards a "Green" environment. ETO Doors Corp. is pleased to announce its new initiatives to make our company a greener environmental-...</p>
+          <img src="{{ 'about-p-2.jpg' | file_url }}" alt="Responsible Materials" class="eto-about-img">
+          <h3 class="eto-about-title">RESPONSIBLE MATERIALS</h3>
+          <p class="eto-about-desc">Thoughtfully sourced materials and energy-efficient options for better-performing spaces.</p>
           <a href="#" onclick="showEtoGreen(event)" class="eto-read-more">Read more...</a>
         </div>
         <div class="eto-about-col">
-          <img src="{{ 'about-p-3.jpg' | file_url }}" alt="ETO Brand" class="eto-about-img">
-          <h3 class="eto-about-title">ETO BRAND AND HISTORY</h3>
-          <p class="eto-about-desc">ETO Doors was founded in 2005 on the principles of maintaining a vast stock of high end custom doors at the lowest possible prices in the market...</p>
+          <img src="{{ 'about-p-3.jpg' | file_url }}" alt="Experience Since 2005" class="eto-about-img">
+          <h3 class="eto-about-title">EXPERIENCE SINCE 2005</h3>
+          <p class="eto-about-desc">A trusted source for interior, exterior, and specialty doors for residential and commercial projects.</p>
           <a href="#" onclick="showEtoBrand(event)" class="eto-read-more">Read more...</a>
         </div>
       </div>
 
       <!-- Text Content -->
       <div class="eto-text-section">
-        <h2 class="eto-section-title">About Us</h2>
-        <p class="eto-text-p">Established in 2005, ETO Doors manufactures and sells entryways for residential and commercial spaces. With more than a million doors sold to customers with a wide range of budgets, ETO knows how to deliver the door perfect for your needs and taste. Our catalog of interior and exterior doors, garage doors, sidelites, transoms, and hardware come to consumers at unbeatable prices.</p>
-        <p class="eto-text-p">To keep the people important to you safe at home or in the workspace, ETO carries fire and impact rated doors in a range of options and styles. Our promise of greener living means we also carry Energy Star rated doors, and we're also certified by the Forest Stewardship Council, making us one of only a handful of door manufacturers that guarantees accountability in managing where we source our wood.</p>
-        <p class="eto-text-p">In addition to our online store, ETO Doors has showrooms in Los Angeles, Las Vegas, and New York. To learn more about us, click on informational tabs in the footer, check us out on Facebook, Twitter, YouTube, Pinterest, Google+, Houzz.com, or visit our <strong>Contact</strong> page to sign up for our newsletter or ask a question with a guaranteed quick response. You may also engage our Live Customer Support at the lower right-hand corner of any page.</p>
+        <h2 class="eto-section-title">About ETO Doors</h2>
+        <p class="eto-text-p">Since 2005, ETO Doors has helped homeowners, builders, architects, and designers find distinctive doors for residential and commercial spaces. With more than one million doors sold, we combine an extensive product selection with knowledgeable support to help customers choose the right door for their project, style, and budget.</p>
+        <p class="eto-text-p">Our collection includes interior and exterior doors, French doors, fiberglass doors, commercial doors, sidelites, transoms, and hardware. We also offer select fire-rated, impact-rated, ENERGY STAR-certified, and FSC-approved options for projects with specific safety, performance, or sustainability requirements.</p>
+        <p class="eto-text-p">Customers can explore our selection online and connect with an ETO Doors specialist for personalized assistance with product selection, sizing, and ordering. Visit our <strong>Contact</strong> page or use live chat to speak with our team.</p>
       </div>
 
 
@@ -1894,209 +1864,9 @@
          <p>Please fill out all the information and return them to us or transmit them via fax to: <span style="font-weight: bold;">(213) 226-4650</span></p>
       </div>
 
-     <div id="eto-warranty-content" style="display: none; color: #333; font-family: sans-serif; line-height: 1.6;">
-        <div style="text-align: center; margin-bottom: 30px;">
-           <span style="border-bottom: 1px solid #000; padding-bottom: 2px;">Interior and Exterior Door Slab and System 1-Year Limited Warranty</span>
-        </div>
+          {% render 'eto-warranty-content' %}
 
-        <p style="font-weight: bold; margin-bottom: 15px;">OUR WARRANTY TO YOU...</p>
-
-        <p style="margin-bottom: 15px;"><strong>IMPORTANT NOTICE: Read this entire ETO Doors Limited Warranty and Limitation of Liability ("Limited Warranty") before purchasing or installing this product. By installing or using this product you are acknowledging that this Limited Warranty is part of the terms of sale.</strong><br>
-        <em>A Delivery Release must be faxed to ETO within 72 hours of receiving doors to validate warranty.</em></p>
-
-        <p style="font-weight: bold; margin-bottom: 15px;">WHAT THIS WARRANTY COVERS</p>
-
-        <p style="margin-bottom: 20px;">This Limited Warranty applies only to ETO Doors (ETO) wood entry doors, interior doors, door frames, sidelights and transoms ("Covered Products"). ETO makes the following exclusive express Limited Warranties for ETO Wood Door System products installed within the United States and Canada, subject to the stated conditions and limitations. This Limited Warranty is not transferable.</p>
-
-        <p style="font-weight: bold; margin-bottom: 10px;">I. Non-glass Materials & Workmanship One-Year (1-Year) Nontransferable Limited Warranty.</p>
-        <p style="margin-bottom: 20px;">ETO warrants that the non-glass components of its Wood Doors shall be free of manufacturing defects in material or workmanship that significantly impair their proper operation and function for one (1) year from the date of sale. Should the warranted wood door be found to contain defects in materials or workmanship as installed in its original door opening occurring within one (1) year from the date of sale by ETO, ETO shall, and at its sole option: 1) repair or replace: defects, material or workmanship that significantly impairs the proper operation and function or 2) refund the original purchase price. Grilles or any other alterations not installed by ETO may void this warranty. This Limited Warranty on Non-glass Components does not apply to hardware finishes.</p>
-
-        <p style="font-weight: bold; margin-bottom: 10px;">II. Non-decorative and Decorative Glass One-Year (1-Year) Limited Warranty.</p>
-        <p style="margin-bottom: 20px;">ETO warrants that all the glass (clear insulated and decorative insulated) shall be free from premature failure or permanent material obstruction of vision due to a failure of the glass seal for one (1) year from the date of sale by ETO. If ETO is given notice of a glass defect occurring within one (1) year of the date of sale by ETO, ETO shall, at its sole option: 1) repair or replace the defective glass or 2) refund the original purchase price.</p>
-
-        <p style="margin-bottom: 20px;"><strong>NOTE: ETO cannot under any circumstances be responsible for installation, repainting, refinishing or other similar activities necessary to complete the replacement or any cost associated with the resolve of glass claims.</strong></p>
-
-        <p style="margin-bottom: 30px;">ETO will furnish the insulated glass only free of charge, F.O.B. the original point of delivery. Cracked or broken glass is not covered by the warranty. Decorative glass that is hand crafted may vary from one lite to another and contain variations in color, size, glass clarity and welded joints may differ. These are not defects. Tempered glass contains varying degrees of distortions. These distortions may affect view and are not considered a defect. All glass should be cleaned with mild soap & water only. All other solutions could cause damage or seal failure. Do not allow metal parts of cleaning equipment to contact glass.</p>
-
-        <p style="font-weight: bold; margin-bottom: 15px;">III. Important Notes and Requirements For Your Warranty:</p>
-        <div style="margin-bottom: 30px;">
-           <p style="margin-bottom: 10px;"><strong>1. NOTE: EXCEPT AS OTHERWISE EXPRESSLY PROVIDED HEREIN, ETO SHALL NOT PAY FOR THE COST OF LABOR, INSTALLATION, FINISHING, PAINTING, SHIPPING ETC. OF THE REPLACEMENT OF THE ORIGINAL DOOR OR FOR ANY OTHER COST RELATING TO THE REPLACEMENT OF THE DOOR, ALL OF THESE COSTS DESCRIBED SHALL BE THE SOLE RESPONSIBILITY OF THE PERSON MAKING THE WARRANTY CLAIM.</strong></p>
-           <p style="margin-bottom: 10px;"><strong>2. NOTE:</strong> Since many minor flaws can be repaired or corrected, all items should be inspected thoroughly for such defects upon receipt and before machining. Please be aware that the machining of a door, sidelight or transom constitutes acceptance of the product as it was received by our customer. Any minor flaws or defects that may exist at the time of machining will not be considered as defective product or claimable once machining has been completed. So, please inspect all items thoroughly before the machining process takes place. These doors are shipped to you unsealed and unfinished, so we do not warrant against the natural characteristics of the wood which may occur in the various conditions encountered from our plant to your finished opening. Because the wood can respond in different ways to the variety of atmospheric and environmental conditions, it is imperative that special attention is given to the door and the necessary care and effort taken to protect the door in the unfinished state to minimize the potential for problems.</p>
-           <p style="margin-bottom: 10px;"><strong>3. NOTE:</strong> Doors must be installed providing protection from exposure, typically with a standard overhang extending outward a distance equal to one-half its height from the bottom of the door up to the overhang to be covered by this warranty.</p>
-           <p style="margin-bottom: 10px;"><strong>4. NOTE:</strong> Any deterioration caused by failure to finish and seal all exposed surfaces and edges of the door within 48 hours of delivery are not covered by this warranty. For continued protection, the finish needs to be maintained yearly.</p>
-           <p style="margin-bottom: 10px;"><strong>5. NOTE:</strong> Please comply with all of the handling and finishing instructions completely to validate the warranty. The product must be hand- sanded before finishing.</p>
-           <p style="margin-bottom: 10px;"><strong>6. NOTE: ETO is not responsible for or makes no warranty as to:</strong> Any visible defect or mistake in shipment reported to ETO Doors <span style="text-decoration: underline;">more than 24 hours after receipt</span> or after the product is machined or installed.</p>
-           <p style="margin-bottom: 10px;">Without the notation "Potential Damage, Subject To Inspection" on the delivery receipt, ETO doors cannot guarantee reimbursement in case of shipping damage.</p>
-           <p style="margin-bottom: 10px;"><strong>7. NOTE:</strong> All doors must be finished within 48 hours of receiving the door and due to the hygroscopic nature of lumber should not be stored in an unfinished state beyond this period.</p>
-           <p style="margin-bottom: 10px;"><strong>8. NOTE:</strong> Doors must be stored flat on a level surface in a dry, well ventilated building at least 4" above the ground and covered to avoid direct sunlight, as well as moisture, dirt and dust.</p>
-           <p style="margin-bottom: 10px;"><strong>9. NOTE:</strong> ETO may charge a fee for on-site product inspections that will only be reimbursed to the customer if a valid claim under this warranty exists.</p>
-           <p style="margin-bottom: 10px;"><strong>10. NOTE:</strong> DO NOT ATTEMPT TO RETURN ANY ITEMS WITHOUT PRIOR <strong>WRITTEN</strong> AUTHORIZATION FROM ETO DOORS.</p>
-        </div>
-
-        <p style="font-weight: bold; margin-bottom: 15px;">IV. Important Handling, Finishing and Installation Instructions:</p>
-        <div style="margin-bottom: 30px;">
-           <p style="margin-bottom: 10px;">1. Most finishes on exterior doors deteriorate relatively quickly. To insure exterior doors receive the protection required, inspect the condition of exterior finish at least once a year and refinish as often as needed to maintain the protective stability of the finish.</p>
-           <p style="margin-bottom: 10px;">2. Entrance doors shall always be shipped and stored vertically (not leaning).</p>
-           <p style="margin-bottom: 10px;">3. Doors shall not be exposed to excessive heat, dryness, humidity or direct sunlight prior to finishing.</p>
-           <p style="margin-bottom: 10px;">4. Handle door with clean gloves and do not drag doors across each other or other surfaces.</p>
-           <p style="margin-bottom: 10px;">5. If doors are stored on the job site for more than 7 days, all exposed surfaces and edges of the door must be finished and sealed — even if stored out of the elements.</p>
-           <p style="margin-bottom: 10px;">6. All hardware locations, preparations and methods of installation must be appropriate for the specific door.</p>
-           <p style="margin-bottom: 10px;">7. All doors 7' and under must have three hinges. Doors over 7' must have four hinges. (Exception: 8' Round Top will have three hinges)</p>
-           <p style="margin-bottom: 10px;">8. Prior to finishing, remove all handling marks with 150-grit or finer sandpaper and remove all sanding dust.</p>
-           <p style="margin-bottom: 10px;">9. Apply sealer, primer or first coat of required finish immediately after fitting, cutting for hardware, etc., and before the installation of hardware.</p>
-           <p style="margin-bottom: 10px;"><strong>10. ALL EXPOSED SURFACES OF THE DOOR MUST BE SEALED, INCLUDING THE TOP, BOTTOM, SIDE EDGES AND THE HARDWARE CUTOUTS.</strong></p>
-           <p style="margin-bottom: 10px;">11. NOTE: An interior-grade lacquer is NOT a satisfactory product for exterior use.</p>
-           <p style="margin-bottom: 10px;">12. All exterior surfaces — including the top, bottom and sides of the door — must be finish coated with a good quality exterior- grade paint or top coat. <strong>(AT LEAST 3 COATS OF EXTERIOR GRADE TOP COAT WITH A UV INHIBITOR MUST BE APPLIED.)</strong></p>
-           <p style="margin-bottom: 10px;">13. In order not to induce warpage or excessive deterioration of your door, avoid using dark stains or paints on the door surfaces exposed to direct sunlight.</p>
-        </div>
-
-        <p style="font-weight: bold; margin-bottom: 15px;">V. Conditions Applicable to All Sales and Limited Warranties</p>
-        <p style="margin-bottom: 20px;"><strong>Limitation of Warranty. FAILURE TO COMPLY WITH ETO HANDLING, FINISHING, INSTALLATION AND MAINTENANCE INSTRUCTIONS VOIDS ALL WARRANTIES UNLESS IT IS CLEARLY ESTABLISHED BY THE BUYER OR USER OF THE PRODUCT THAT THE DEFECT OR FAILURE IS UNRELATED TO SUCH NONCOMPLIANCE.</strong> These warranties do not extend to the use of Covered Products under abnormal conditions, conditions that exceed the stated performance parameters of the product as provided on the product labeling or under conditions not reasonably foreseeable to, or beyond the control of ETO. Buyer and User assume the risk of any such use. This Limited Warranty is the exclusive warranty for ETO wood door products.</p>
-        
-        <p style="margin-bottom: 20px;"><strong>NEITHER ETO NOR SELLER MAKE ANY OTHER WARRANTIES, EXPRESS OR IMPLIED, INCLUDING ANY WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE OR OTHERWISE. NO IMPLIED WARRANTY SHALL EXTEND BEYOND THE PERIODS COVERED BY THIS EXPRESS LIMITED WARRANTY.</strong> This disclaimer of implied warranties may be limited or ineffective if you are a consumer, as that term is defined by the Magnuson Moss Act, 15 U.S.C. § 2301, in which case the duration of any implied warranties shall be one (1) years from the date of sale by ETO or its authorized dealer. Some states do not allow limitations on how long an implied warranty lasts for consumers, so the above limitation may not apply to you, in which event the manner of presenting any claim thereon shall be the same as provided in the express warranties stated herein. This Limited Warranty gives you specific legal rights, and you may have additional rights, which vary from state to state.</p>
-
-        <p style="margin-bottom: 30px;"><strong>THE REMEDIES FOR THE BUYER DESCRIBED IN THIS LIMITED WARRANTY ARE EXCLUSIVE</strong> and take the place of any other remedy. The liability of the Manufacturer, whether in contract or tort, under warranty, product liability, or otherwise, will not go beyond the Manufacturer's obligation to repair or replace, at its option, as described above. THE MANUFACTURER WILL NOT UNDER ANY CIRCUMSTANCES BE LIABLE FOR SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES, including (but not limited to) damage or loss of other property or equipment, personal injury, loss of profits or revenues, business or service interruptions, cost of capital cost of purchase or replacement of other goods, or claims of third parties for any of the foregoing.</p>
-
-        <p style="font-weight: bold; margin-bottom: 15px;">VI. Allocation of Risks of ETO Wood Door Systems Performance.</p>
-        <p style="margin-bottom: 20px;">Because all construction must anticipate some water infiltration, it is important that the wall system be designed and constructed to properly manage moisture. ETO Corporation is not responsible for claims or damages caused by anticipated or unanticipated water infiltration; deficiencies in building design, construction and maintenance; failure to install ETO wood door products in accordance with ETO Installation Instructions; or the use of ETO wood door products in barrier wall systems, which do not allow for proper management of moisture within the wall system (see the following).</p>
-        <p style="margin-bottom: 20px;">The determination of the suitability of all building components, including the use of ETO Door products, as well as the design and installation of flashing and sealing systems, is the responsibility of Buyer or User, the architect, contractor, installer or other construction professional and is not the responsibility of ETO. All risks related to building design and construction or the maintenance, installation, and use of ETO wood door products shall be assumed by Buyer and/or User.</p>
-        <p style="margin-bottom: 30px;"><strong>IMPORTANT NOTICE— ETO wood door products should not be used in barrier wall systems, which do not allow for proper management of moisture within the wall systems, such as Exterior Insulation Finish Systems, (EIFS) (also known as synthetic stucco) or similar systems. Except in the states of California, New Mexico, Arizona, Nevada, Utah and Colorado, ETO makes <strong>no warranty</strong> of any kind on and assumes no responsibility for ETO wood doors installed in barrier wall systems. In the states listed above, the installation of ETO products in EIFS or similar barrier systems must be in accordance with ETO's instructions for that type of construction.</strong></p>
-
-        <p style="font-weight: bold; margin-bottom: 15px;">VII. Limitation of Liability.</p>
-        <p style="margin-bottom: 30px;">This Limited Warranty sets forth the maximum liability for our products. <strong>IN NO EVENT (INCLUDING WHERE THIS LIMITED WARRANTY IS DEEMED NOT TO APPLY TO THE SALE OR PRODUCT IN QUESTION) SHALL ETO BE LIABLE FOR ANY INCIDENTAL, CONSEQUENTIAL OR SPECIAL DAMAGES RESULTING FROM THE SALE, INSTALLATION OR USE OF ANY ETO PRODUCTS.</strong> Some states do not allow the exclusion or limitation of Incidental or consequential damages for consumers, so the above limitation or exclusion may not apply to you.</p>
-
-        <p style="font-weight: bold; margin-bottom: 15px;">VIII. Limitation of Remedy.</p>
-        <p style="margin-bottom: 30px;"><strong>THE EXCLUSIVE REMEDY OF THE BUYER OR USER, AND THE SOLE LIABILITY OF ETO AND SELLER FOR ANY AND ALL CLAIMS, LOSSES, INJURIES OR DAMAGES (INCLUDING CLAIMS BASED ON BREACH OF WARRANTY, CONTRACT, NEGLIGENCE, TORT, STRICT LIABILITY OR OTHERWISE) RESULTING FROM THE SALE, INSTALLATION OR USE OF THESE PRODUCTS, SHALL BE, AT THE OPTION OF ETO, TO REPAIR OR REPLACEMENT OF THE PRODUCT OR THE RETURN OF THE ORIGINAL PURCHASE PRICE OF THE PRODUCT, AS PROVIDED HEREIN. <span style="text-decoration: underline;">IN NO EVENT SHALL THE LIABILITY OF ETO OR SELLER EXCEED THE PRICE PAID FOR THE PRODUCT.</span></strong></p>
-        
-        <p style="margin-bottom: 20px;">Replacement product shall be a reasonably similar current product and may not exactly match the original. Even where ETO chooses to repair or replace product within one (1) year of the date of sale, the costs covered by this warranty do not include any labor or material costs associated with finishing space surrounding or adjacent to the repaired or replaced product including furnishing any trim or other carpentry work. Replacement product provided pursuant to this Limited Warranty shall be subject to the applicable ETO Product Limited Warranty only for the remainder of the original warranty period on the product being replaced. If ETO or Seller provides any of the remedies identified in the Limited Warranties above (i.e., repair, replacement of product or refund of the purchase price), then Buyer and/or User agree that this limitation of remedy shall not have failed of its essential purpose.</p>
-
-        <p style="font-weight: bold; margin-bottom: 15px;">IX. Transferability</p>
-        <p style="margin-bottom: 30px;">ETO grants this warranty only to the original purchaser of the door and the original purchaser of the building where the door was installed. THIS WARRANTY IS NOT TRANSFERABLE.</p>
-        
-        <p style="font-weight: bold; text-decoration: underline; margin-bottom: 15px;">DISCLAIMER: WHAT THIS WARRANTY DOES NOT COVER</p>
-        <p style="font-weight: bold; margin-bottom: 15px;">ETO is not responsible for or makes no warranty to:</p>
-        <p style="margin-bottom: 20px;">I. Product failure, loss or damage due to:</p>
-        <ul style="list-style-type: disc; padding-left: 20px; margin-bottom: 20px;">
-           <li>Normal wear from product usage or age, including normal wear and tear of weatherstrip.</li>
-           <li>Warpage of any door not exceeding 1/4" on 6-8" High Doors and 7/16" on doors up to 8'-0 high in plane of the door itself. All doors taller than 8' height are NOT warranted against warpage.</li>
-           <li>Warranty is null and void if deterioration occurs due to the failure to finish and seal all exposed surfaces and edges of the door within 48 hours of delivery.</li>
-           <li>Damages caused by failure of Homeowner to annually (or sooner) re-finish all doors, sidelights and frames, if necessary, by lightly sanding and re-coating with clear exterior-grade top coat that contains UV protection.</li>
-           <li>ETO wood entry door used with any storm door.</li>
-           <li>Doors finished or painted Black (or any Dark Color) with any sun exposure.</li>
-           <li>Improper storage, handling, installation, finishing, use, modification or maintenance.</li>
-           <li>Mechanical abrasion to finishes.</li>
-           <li>Expansion of bottom rail due to climate conditions is not considered a defect</li>
-           <li>Panel misalignment or shrinkage is not considered a defect.</li>
-           <li>Slight movement of floating panels up to 3/16" are not considered a defect</li>
-           <li>Cracks that are less than 1/16" in width and less than 2" in length are not considered a defect.</li>
-           <li>The discoloration or rusting of decorative metal accent options, (Grilles, Clavos, etc.) are not considered a defect.</li>
-           <li>Structural settlement, movement or vibration.</li>
-           <li>Product or finishes exposed to excessive localized heat, high-moisture environments (including pools, hot tubs and greenhouses) or water leakage.</li>
-           <li>Normal wear, fading or discoloration of finish from product usage, age or exposure to direct sunlight.</li>
-           <li>Products (panel, moldings, light rims and frame) not properly finished within 48 hours of delivery.</li>
-           <li>Acts of G-d.</li>
-           <li>Acid rain or other corrosive elements.</li>
-           <li>Salt spray, including exposure to coastal weather conditions.</li>
-           <li>Accidents, including accidental glass breakage.</li>
-           <li>Application of after-market window films to glass surfaces.</li>
-           <li>Damage caused by inappropriate finishes, solvents, brickwash or cleaning chemicals.</li>
-           <li>Glass breakage, not the fault of ETO that results in seal failure.</li>
-           <li>Damage to glass as a result of installation at elevations above 4,000 feet.</li>
-           <li>Damage caused by high in-home humidity (condensation, frost and mold).</li>
-           <li>Accident, misuse, abuse, alterations, improper handling, operation or cleaning.</li>
-           <li>Products subjected to conditions outside product design limitations.</li>
-           <li>Improperly installed security systems.</li>
-           <li>Products with modifications that are not approved by ETO Corporation.</li>
-           <li>Hardware finishes including decorative metal accent options (clavos, hinge straps, etc.) and wrought iron.</li>
-           <li>ETO doors, transoms and sidelights installed in non-ETO frames; the purchase, damage, repair or replacement of non-ETO products.</li>
-           <li>Finishing or modifying the structure containing repaired or replaced product.</li>
-           <li>The purchase, damage, repair or replacement of non-ETO products.</li>
-           <li>Products that have not been paid for in full.</li>
-        </ul>
-
-        <p style="font-weight: bold; margin-bottom: 15px;">II. Minor imperfections in the product:</p>
-        <ul style="list-style-type: disc; padding-left: 20px; margin-bottom: 20px;">
-           <li>Minor imperfections in the panel and/or frame graining or color.</li>
-           <li>Variations in wood grain, color, texture or natural characteristics.</li>
-           <li>Variations or unsatisfactory results in gloss levels, texture or appearance resulting from the field application of paint or other finishing material.</li>
-           <li>Minor imperfections in glass that do not affect the product's structural integrity or significantly obscure vision (including textures, swirls and air bubbles in decorative glass).</li>
-           <li>Minor variations in glass color.</li>
-        </ul>
-
-        <p style="font-weight: bold; margin-bottom: 15px;">III. Additionally, ETO is not responsible for or makes no warranty to:</p>
-        <ul style="list-style-type: disc; padding-left: 20px; margin-bottom: 20px;">
-             <li>Rustic alder surface checks which are less than 1/8" in width and 5" long.</li>
-             <li>Variation in thickness, width, or length less than the industry standards.</li>
-             <li>Damage resulting from attempts to repair doors by persons other than ETO Doors or its designated representative. Knot size, shape or placement or any natural variation in color or texture of the wood.</li>
-             <li>Knife, molder or shaper marks which do not impair the dimensional integrity of the door.</li>
-             <li>Damage caused by or resulting from improper machining by the pre-hanger.</li>
-             <li>Warping of any door, not exceeding 1/4" on 6'-8" High Doors and 7/16" on doors up to 8'-0 high in plane of the door itself</li>
-             <li>Problems due to misuse or abuse of the door.</li>
-             <li>Variation or unsatisfactory results in sheen or texture resulting from the field application of paint, stain or lacquer or any other finishing material or damage caused by extreme temperature.</li>
-             <li>Expansion and contraction of the door and other changes in form due to environmental conditions, including without limitation changes in moisture, temperature and humidity.</li>
-             <li>Panel shrinkage and misalignment, which leaves an unstained line along the edge of the panel (may be caused by fluctuations or differences in temperature and humidity).</li>
-             <li>Bowing or misalignment in the frame or jamb in which the door panel is hung, problems related to water and/or air infiltration due to improper assembly or installation.</li>
-             <li>Improper installation of hardware.</li>
-             <li>Discoloration or rusting caused by decorative metal accent options (such as grilles, clavos, straps, etc.) or hardware or inserts (such as locksets, door handles, strikes, etc.).</li>
-             <li>Using an interior door in an exterior application.</li>
-             <li>Door installed in a building before mudding and taping is dried and complete.</li>
-             <li>Acceptable characteristics include variations in color, stain, wood grain, grain appearance, unlimited tight knots and unlimited worm holes. These variations in the product are completely normal.</li>
-             <li>Modifying a ETO Door will also void the warranty. Modifying includes excessive trimming, removing panels, v-grooving damage (v-grooves in excess of 3/8" wide and 3/16" deep), and distressing damage. Allowable trimming on a ETO Door is 1/2" from the sides of the door and the top of the door and 1" from the bottom of the door.</li>
-             <li>Any visible defect or mistake in shipment reported to ETO Doors more than 24 hours after receipt or after the product is machined or installed.</li>
-        </ul>
-
-        <p style="margin-bottom: 10px;"><strong>Bowing Checking and Warping:</strong> Exposure to the environment may cause bowing checking and/or cracking. These are not defects. They are only unforeseen and uncontrollable characteristics of natural wood. It is the sole responsibility of the buyer and the end user to select the type of material and/or door that will offer the best results and longevity in each climate and/or environment.</p>
-        
-        <p style="font-weight: bold; margin-bottom: 15px;">VI. Installation inconsistent with ETO Installation Instructions:</p>
-        <ul style="list-style-type: disc; padding-left: 20px; margin-bottom: 30px;">
-           <li>Damage resulting in whole or in part from installation inconsistent with ETO's Installation Instructions.</li>
-           <li>Altered or reinstalled products.</li>
-           <li>Products used in non-vertical glazing applications.</li>
-           <li>Combinations not built by ETO or not built in accordance with ETO's recommendations for mulling and combining ETO products.</li>
-        </ul>
-        
-        <div style="text-align: center; margin-bottom: 30px;">
-           <span style="border-bottom: 1px solid #000; padding-bottom: 2px; font-weight: bold;">ADDITIONAL WARRANTY INFORMATION</span>
-        </div>
-
-        <p style="font-weight: bold; margin-bottom: 10px;">I. NFRC Standards.</p>
-        <p style="margin-bottom: 20px;">ETO products labeled with the National Fenestration Rating Council (NFRC) Energy Performance label are tested in accordance with NFRC standards. NFRC ratings are based on a combination of computer simulations and physical testing of product samples. For details on NFRC energy performance ratings, go to NFRC.org.</p>
-
-        <p style="font-weight: bold; margin-bottom: 10px;">II. Entire Agreement.</p>
-        <p style="margin-bottom: 20px;">With the exception of a written statement signed by an authorized ETO representative, this Limited Warranty and all terms contained herein constitutes the entire agreement between ETO/Seller and Buyer/User. This Limited Warranty, including all Limitations of Liability contained herein, are made a part of any such written agreement, unless expressly excluded therein. By purchasing or using the product covered by this Limited Warranty, Buyer and User agree that they are not relying on any oral statements made by anyone that are in any way contrary to this Limited Warranty.</p>
-
-        <p style="font-weight: bold; margin-bottom: 10px;">III. No Amendment Except in Writing.</p>
-        <p style="margin-bottom: 20px;">ETO and Seller offer this product, and Buyer and User accept it, subject to the foregoing Warranty, which may be modified only by written agreement signed by a duly authorized representative of ETO.</p>
-
-        <p style="font-weight: bold; margin-bottom: 10px;">IV. Venue and Choice of Law</p>
-        <p style="margin-bottom: 20px;">Any persons and entities that choose to enforce this warranty agree that all matters, disputes, or transactions arising from the use of this warranty shall be governed by California law and shall be within the exclusive jurisdiction of courts state and federal courts located in Los Angeles, California. Any dispute under this agreement shall have venue in the courts of Los Angeles, CA.</p>
-
-        <p style="font-weight: bold; margin-bottom: 10px;">V. Severability</p>
-        <p style="margin-bottom: 20px;">If any part of this warranty is unlawful, void or unenforceable, that part will be deemed severable and will not affect the validity and enforceability of remaining provisions. ETO Doors Corp. may revise this warranty at any time by updating this page.</p>
-
-        <p style="font-weight: bold; margin-bottom: 15px;">VI. CLAIMS UNDER THESE WARRANTIES</p>
-
-        <p style="margin-bottom: 10px;"><strong>Prompt Notice of Claim.</strong></p>
-        <p style="margin-bottom: 20px;">Within the warranty period, Buyer or User shall notify ETO immediately and in no case more than one (1) year after any defect or other basis of a claim covered by these Limited Warranties is discovered or should have been discovered. Any claims otherwise covered by the foregoing warranties, but for which ETO did not receive notice within one (1) year from the time the problem first became known, shall be barred.</p>
-
-        <p style="font-weight: bold; text-decoration: underline; margin-bottom: 15px;">Additional Claims Related Issues and Policies:</p>
-        <p style="margin-bottom: 10px;"><strong><span style="text-decoration: underline;">Missing Items</span>:</strong> All missing items or incomplete deliveries must be reported within 48 hours, or (2) days from receipt of material. ETO Doors cannot be responsible for materials lost, stolen, or damaged while on site. We will reject all claims for missing items after 48 hours of receipt.</p>
-        <p style="margin-bottom: 10px;"><strong><span style="text-decoration: underline;">Product Damage (not visible from outside packaging)</span>:</strong> All product damage must be reported within 48 hours, or (2) days from receipt of material. Customer is not to stain, prep, or modify damaged product whatsoever; any modification made to a damaged item will render a claim null and void.</p>
-        <p style="margin-bottom: 10px;"><strong><span style="text-decoration: underline;">Freight Damage and Handling</span>:</strong> Any package, crate, pallet, or parcel that is visibly damaged, or the contents within appear to be damaged in freight must be marked on the bill of landing at the time the material is received and delivery from carrier is to be refused.</p>
-
-        <p style="font-weight: bold; text-decoration: underline; margin-bottom: 10px;">Limited Warranty Claim Procedure.</p>
-        <p style="margin-bottom: 10px;">Claims under these Limited Warranties may be made in writing to <strong>ETO Corporation, Claims Department ETO Doors 1340 E. 6th Street, Los Angeles, CA 90021</strong>, or by calling for service at 213-622-2003. Claims to ETO should include the following information:</p>
-        <ul style="list-style-type: none; padding-left: 0; margin-bottom: 20px;">
-           <li>Claimant's name, address and phone number, and the installation address (if different);</li>
-           <li>A description of the product, purchase price, date and location of purchase, and copies of invoices;</li>
-           <li>A description of the product concerns (photos may be included); and</li>
-           <li>A brief summary of attempts made to address the concerns.</li>
-           <li>A completed ETO Doors Claim's Form</li>
-        </ul>
-
-        <p style="font-weight: bold; margin-bottom: 10px;">V. INQUIRIES.</p>
-        <p>If you have any questions regarding any portion of this Warranty, or if you wish to inquire, regarding rights of use not explicitly granted herein, please direct questions via email to sales@etodoors.com.</p>
-     </div>
+          {% render 'eto-returns-content' %}
 
      <div id="eto-3d-modeling-content" style="display: none; color: #000; font-family: sans-serif;">
         <h2 style="font-size: 14px; font-weight: bold; margin-bottom: 5px;">3D Modeling by ETO Doors</h2>
@@ -2665,6 +2435,7 @@
     document.getElementById('eto-diy-videos-content').style.display = 'none';
     document.getElementById('eto-forms-content').style.display = 'block';
     document.getElementById('eto-warranty-content').style.display = 'none';
+    document.getElementById('eto-returns-content').style.display = 'none';
     document.getElementById('eto-3d-modeling-content').style.display = 'none';
 
     var breadcrumb = document.querySelector('.eto-breadcrumb');
@@ -2693,11 +2464,41 @@
     document.getElementById('eto-diy-videos-content').style.display = 'none';
     document.getElementById('eto-forms-content').style.display = 'none';
     document.getElementById('eto-warranty-content').style.display = 'block';
+    document.getElementById('eto-returns-content').style.display = 'none';
     document.getElementById('eto-3d-modeling-content').style.display = 'none';
 
     var breadcrumb = document.querySelector('.eto-breadcrumb');
     if(breadcrumb) {
         breadcrumb.innerHTML = '<a href="/">Home</a> <span>&gt;</span> Warranty';
+    }
+    
+    window.scrollTo(0, 0);
+  }
+
+  function showEtoReturns(e) {
+    if (e) e.preventDefault();
+    document.getElementById('eto-about-default-content').style.display = 'none';
+    document.getElementById('eto-why-buy-content').style.display = 'none';
+    document.getElementById('eto-green-content').style.display = 'none';
+    document.getElementById('eto-brand-content').style.display = 'none';
+    document.getElementById('eto-impact-content').style.display = 'none';
+    document.getElementById('eto-fire-content').style.display = 'none';
+    document.getElementById('eto-energy-content').style.display = 'none';
+    document.getElementById('eto-fsc-content').style.display = 'none';
+    document.getElementById('eto-stc-content').style.display = 'none';
+    document.getElementById('eto-price-guarantee-content').style.display = 'none';
+    document.getElementById('eto-press-content').style.display = 'none';
+    document.getElementById('eto-affiliations-content').style.display = 'none';
+    document.getElementById('eto-diy-content').style.display = 'none';
+    document.getElementById('eto-diy-videos-content').style.display = 'none';
+    document.getElementById('eto-forms-content').style.display = 'none';
+    document.getElementById('eto-warranty-content').style.display = 'none';
+    document.getElementById('eto-returns-content').style.display = 'block';
+    document.getElementById('eto-3d-modeling-content').style.display = 'none';
+
+    var breadcrumb = document.querySelector('.eto-breadcrumb');
+    if(breadcrumb) {
+        breadcrumb.innerHTML = '<a href="/">Home</a> <span>&gt;</span> Returns';
     }
     
     window.scrollTo(0, 0);
@@ -2721,6 +2522,7 @@
     document.getElementById('eto-diy-videos-content').style.display = 'none';
     document.getElementById('eto-forms-content').style.display = 'none';
     document.getElementById('eto-warranty-content').style.display = 'none';
+    document.getElementById('eto-returns-content').style.display = 'none';
     document.getElementById('eto-glass-options-content').style.display = 'none';
     document.getElementById('eto-3d-modeling-content').style.display = 'block';
 
@@ -2750,6 +2552,7 @@
     document.getElementById('eto-diy-videos-content').style.display = 'none';
     document.getElementById('eto-forms-content').style.display = 'none';
     document.getElementById('eto-warranty-content').style.display = 'none';
+    document.getElementById('eto-returns-content').style.display = 'none';
     document.getElementById('eto-3d-modeling-content').style.display = 'none';
     document.getElementById('eto-glass-options-content').style.display = 'block';
 
@@ -2782,6 +2585,9 @@
                 break;
             case 'warranty':
                 showEtoWarranty();
+                break;
+            case 'returns':
+                showEtoReturns();
                 break;
             case 'diy':
                 showEtoDIY();

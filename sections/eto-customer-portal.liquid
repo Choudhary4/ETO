@@ -599,7 +599,7 @@
                 <tr>
                   <th>Order #</th>
                   <th>Date</th>
-                  <th>Synced Zoho Books SO</th>
+
                   <th>Payment Status</th>
                   <th>Fulfillment</th>
                   <th>Total Amount</th>
@@ -611,23 +611,7 @@
                   <tr>
                     <td><strong><a href="https://shopify.com/{{ shop.id }}/account/orders/{{ order.id }}" style="color: var(--eto-primary); text-decoration: none;">{{ order.name }}</a></strong></td>
                     <td>{{ order.created_at | time_tag: format: 'date' }}</td>
-                    <td>
-                      {% if order.metafields.custom.zoho_salesorder_number != blank %}
-                        <span class="eto-badge info zoho-so-badge" data-zoho-so-id="{{ order.metafields.custom.zoho_salesorder_id }}">{{ order.metafields.custom.zoho_salesorder_number }}</span>
-                      {% elsif order.metafields.custom.zoho_estimate_number != blank %}
-                        <span class="eto-badge info zoho-so-badge" data-zoho-so-id="{{ order.metafields.custom.zoho_salesorder_id }}">{{ order.metafields.custom.zoho_estimate_number }}</span>
-                      {% elsif order.metafields.custom.zoho_salesorder_id != blank %}
-                        {% assign so_val = order.metafields.custom.zoho_salesorder_id | string | remove: 'SO-' | remove: '#' %}
-                        {% if so_val.size > 10 %}
-                          {% assign so_display = so_val | slice: -5, 5 | prepend: 'SO-' %}
-                        {% else %}
-                          {% assign so_display = so_val | prepend: 'SO-' %}
-                        {% endif %}
-                        <span class="eto-badge info zoho-so-badge" data-zoho-so-id="{{ order.metafields.custom.zoho_salesorder_id }}">{{ so_display }}</span>
-                      {% else %}
-                        <span class="eto-badge pending shopify-syncing-badge" data-order-name="{{ order.name | replace: '#', '' }}">Syncing Flow...</span>
-                      {% endif %}
-                    </td>
+
                     <td><span class="eto-badge {% if order.financial_status_label == 'Paid' %}paid{% else %}pending{% endif %}">{{ order.financial_status_label }}</span></td>
                     <td>{{ order.fulfillment_status_label }}</td>
                     <td><strong>{{ order.total_net_amount | money_with_currency }}</strong></td>
@@ -689,6 +673,7 @@
         <script>
           var _mfEstimates = {% if customer and customer.metafields.custom.zoho_estimates != blank %}{{ customer.metafields.custom.zoho_estimates.value | json }}{% else %}null{% endif %};
           var _mfInvoices = {% if customer and customer.metafields.custom.zoho_invoices != blank %}{{ customer.metafields.custom.zoho_invoices.value | json }}{% else %}null{% endif %};
+          var _mfRetainers = {% if customer and customer.metafields.custom.zoho_retainerinvoices != blank %}{{ customer.metafields.custom.zoho_retainerinvoices.value | json }}{% else %}null{% endif %};
           var _mfSalesOrders = {% if customer and customer.metafields.custom.zoho_salesorders != blank %}{{ customer.metafields.custom.zoho_salesorders.value | json }}{% else %}null{% endif %};
           var _mfPayments = {% if customer and customer.metafields.custom.zoho_payments != blank %}{{ customer.metafields.custom.zoho_payments.value | json }}{% else %}null{% endif %};
           {%- assign shopify_order_names = '' -%}
@@ -974,6 +959,17 @@
         }
 
         // 2. Populate Invoices Table
+        // Retainer invoices now come from dedicated zoho_retainerinvoices metafield
+        // Remove any retainers accidentally mixed into zoho_invoices to avoid duplication
+        if (data.invoices && data.invoices.length > 0) {
+            data.invoices = data.invoices.filter(function(inv) {
+                return inv.pdf_type !== 'retainerinvoices' && inv.invoice_number.indexOf('(Deposit)') === -1;
+            });
+        }
+        // Add retainers from dedicated metafield directly into invoices list
+        if (data.retainers && data.retainers.length > 0) {
+            data.invoices = (data.invoices || []).concat(data.retainers);
+        }
         var invContainer = document.getElementById("invoices-table-container");
         if (invContainer && data.invoices) {
           if (data.invoices.length > 0) {
@@ -986,7 +982,7 @@
                 '<td><strong>$' + parseFloat(inv.total || 0).toFixed(2) + '</strong></td>' +
                 '<td style="color:var(--eto-primary); font-weight:700;">$' + parseFloat(inv.balance || 0).toFixed(2) + '</td>' +
                 '<td><span class="eto-badge ' + (inv.status == 'paid' ? 'paid' : 'overdue') + '">' + (inv.status || 'unpaid').toUpperCase() + '</span></td>' +
-                '<td><a href="' + (getZohoIdFromUrl(inv.pdf_url) ? 'https://eto-pdf-proxy.aaron-3b7.workers.dev/?type=invoices&id=' + getZohoIdFromUrl(inv.pdf_url) : '#') + '" target="_blank" class="eto-action-btn eto-btn-outline" style="padding:4px 8px; font-size:12px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 4px; vertical-align: text-bottom;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg> Download PDF</a></td>' +
+                '<td><a href="' + (getZohoIdFromUrl(inv.pdf_url) ? 'https://eto-pdf-proxy.aaron-3b7.workers.dev/?type=' + (inv.pdf_type || 'invoices') + '&id=' + getZohoIdFromUrl(inv.pdf_url) : '#') + '" target="_blank" class="eto-action-btn eto-btn-outline" style="padding:4px 8px; font-size:12px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 4px; vertical-align: text-bottom;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg> Download PDF</a></td>' +
                 '</tr>';
             });
             invHtml += '</tbody></table></div>';
@@ -1010,7 +1006,7 @@
                 '<td>' + (pay.date || 'N/A') + '</td>' +
                 '<td><strong>$' + parseFloat(pay.amount || 0).toFixed(2) + '</strong></td>' +
                 '<td><span class="eto-badge paid">' + (pay.payment_mode || 'Cash').toUpperCase() + '</span></td>' +
-                '<td><a href="' + (getZohoIdFromUrl(pay.pdf_url) ? 'https://eto-pdf-proxy.aaron-3b7.workers.dev/?type=customerpayments&id=' + getZohoIdFromUrl(pay.pdf_url) : '#') + '" target="_blank" class="eto-action-btn eto-btn-outline" style="padding:4px 8px; font-size:12px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 4px; vertical-align: text-bottom;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg> Download Receipt</a></td>' +
+                '<td><a href="' + (getZohoIdFromUrl(pay.pdf_url) ? 'https://eto-pdf-proxy.aaron-3b7.workers.dev/?type=' + (pay.pdf_type || 'customerpayments') + '&id=' + getZohoIdFromUrl(pay.pdf_url) : '#') + '" target="_blank" class="eto-action-btn eto-btn-outline" style="padding:4px 8px; font-size:12px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 4px; vertical-align: text-bottom;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg> Download Receipt</a></td>' +
                 '</tr>';
             });
             payHtml += '</tbody></table></div>';
@@ -1059,16 +1055,28 @@
       // Parse each metafield independently
       var estimates = [];
       var invoices = [];
+      var retainers = [];
       var salesorders = [];
       var payments = [];
       if (_mfEstimates) estimates = (typeof _mfEstimates === 'string') ? JSON.parse(_mfEstimates) : _mfEstimates;
       if (_mfInvoices) invoices = (typeof _mfInvoices === 'string') ? JSON.parse(_mfInvoices) : _mfInvoices;
+      if (_mfRetainers) retainers = (typeof _mfRetainers === 'string') ? JSON.parse(_mfRetainers) : _mfRetainers;
       if (_mfSalesOrders) salesorders = (typeof _mfSalesOrders === 'string') ? JSON.parse(_mfSalesOrders) : _mfSalesOrders;
       if (_mfPayments) payments = (typeof _mfPayments === 'string') ? JSON.parse(_mfPayments) : _mfPayments;
       if (!Array.isArray(estimates)) estimates = [];
       if (!Array.isArray(invoices)) invoices = [];
+      if (!Array.isArray(retainers)) retainers = [];
       if (!Array.isArray(salesorders)) salesorders = [];
       if (!Array.isArray(payments)) payments = [];
+      
+      // Remove any retainer invoices that may have been mixed into zoho_invoices
+      // They now have their own dedicated zoho_retainerinvoices metafield
+      invoices = invoices.filter(function(inv) {
+          return inv.pdf_type !== 'retainerinvoices' && inv.invoice_number.indexOf('(Deposit)') === -1;
+      });
+      
+      // Append ALL retainers from dedicated metafield into the Invoices table
+      invoices = invoices.concat(retainers);
       
       // --- ESTIMATES ---
       var estContainer = document.getElementById('estimates-table-container');
@@ -1094,6 +1102,7 @@
       // --- INVOICES ---
       if (invoices.length > 0) {
           var totalBalance = 0;
+
           var invContainer = document.getElementById('invoices-table-container');
           if (invContainer) {
             var invHtml = '<div class="eto-table-responsive"><table class="eto-table"><thead><tr><th>Invoice #</th><th>Date</th><th>Total Amount</th><th>Balance Due</th><th>Status</th><th>Actions</th></tr></thead><tbody>';
@@ -1102,7 +1111,7 @@
               totalBalance += bal;
               var statusClass = inv.status === 'paid' ? 'paid' : (inv.status === 'sent' ? 'pending' : 'overdue');
               // Build action buttons
-              var actionBtns = '<a href="' + (getZohoIdFromUrl(inv.pdf_url) ? 'https://eto-pdf-proxy.aaron-3b7.workers.dev/?type=invoices&id=' + getZohoIdFromUrl(inv.pdf_url) : '#') + '" target="_blank" class="eto-action-btn eto-btn-outline" style="padding:4px 8px;font-size:12px; margin-right:4px;">📄 PDF</a>';
+              var actionBtns = '<a href="' + (getZohoIdFromUrl(inv.pdf_url) ? 'https://eto-pdf-proxy.aaron-3b7.workers.dev/?type=' + (inv.pdf_type || 'invoices') + '&id=' + getZohoIdFromUrl(inv.pdf_url) : '#') + '" target="_blank" class="eto-action-btn eto-btn-outline" style="padding:4px 8px;font-size:12px; margin-right:4px;">📄 PDF</a>';
               // Add Pay Now button if balance is due and payment URL exists
               if (bal > 0 && inv.payment_url && inv.payment_url !== '') {
                 actionBtns += '<a href="' + inv.payment_url + '" target="_blank" class="eto-action-btn eto-btn-primary" style="padding:4px 10px;font-size:12px; background:#16a34a; border-color:#16a34a;">💳 Pay Now</a>';
@@ -1164,8 +1173,8 @@
       }
 
       // --- SALES ORDERS (CUSTOM) ---
+      var soContainer = document.getElementById('salesorders-table-container');
       if (salesorders.length > 0) {
-        var soContainer = document.getElementById('salesorders-table-container');
         if (soContainer) {
           var customSO = salesorders.filter(function(so) {
             var cleanNum = (so.salesorder_number || '').toString().replace(/^#/, '');
@@ -1184,8 +1193,12 @@
             });
             soHtml += '</tbody></table></div>';
             soContainer.innerHTML = soHtml;
+          } else {
+            soContainer.innerHTML = '<div class="eto-empty-state" style="padding:30px;"><div class="eto-empty-text">No custom Zoho Books Sales Orders found.</div></div>';
           }
         }
+      } else if (soContainer) {
+        soContainer.innerHTML = '<div class="eto-empty-state" style="padding:30px;"><div class="eto-empty-text">No custom Zoho Books Sales Orders found.</div></div>';
       }
 
       // --- PAYMENTS ---
@@ -1199,7 +1212,7 @@
               '<td>' + (pay.date || 'N/A') + '</td>' +
               '<td><strong>$' + parseFloat(pay.amount || 0).toFixed(2) + '</strong></td>' +
               '<td><span class="eto-badge paid">' + (pay.payment_mode || 'Cash').toUpperCase() + '</span></td>' +
-              '<td><a href="' + (getZohoIdFromUrl(pay.pdf_url) ? 'https://eto-pdf-proxy.aaron-3b7.workers.dev/?type=customerpayments&id=' + getZohoIdFromUrl(pay.pdf_url) : '#') + '" target="_blank" class="eto-action-btn eto-btn-outline" style="padding:4px 8px;font-size:12px;">📄 Receipt</a></td>' +
+              '<td><a href="' + (getZohoIdFromUrl(pay.pdf_url) ? 'https://eto-pdf-proxy.aaron-3b7.workers.dev/?type=' + (pay.pdf_type || 'customerpayments') + '&id=' + getZohoIdFromUrl(pay.pdf_url) : '#') + '" target="_blank" class="eto-action-btn eto-btn-outline" style="padding:4px 8px;font-size:12px;">📄 Receipt</a></td>' +
               '</tr>';
           });
           payHtml += '</tbody></table></div>';
