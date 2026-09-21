@@ -166,6 +166,21 @@ body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
   margin-top: var(--spacing-sections-mobile);
 }
 
+/* Accessibility: Minimum Touch Targets (M-10) */
+@media screen and (max-width: 749px) {
+  button, 
+  .button,
+  .eto-qty-btn,
+  .eto-pg-btn,
+  .ficon,
+  .thumb,
+  .eto-variant-chip,
+  [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
 @media screen and (min-width: 750px) {
   .section+.section {
     margin-top: var(--spacing-sections-desktop);
@@ -3672,3 +3687,7 @@ div[data-option-type="radio"] label,
 .bcpo-options-container label {
   background-color: #ffffff !important;
 }
+
+/* Global zoom out removed - was causing right-side gap */
+/* Content now fills full screen width */
+.shopify-policy__container { max-width: 1050px !important; }

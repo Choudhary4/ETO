@@ -363,7 +363,7 @@ ETO – CUSTOM FOOTER v2 (Matches client screenshot)
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   gap: 5px;
 }
 .eto-footer-copyright {
@@ -374,20 +374,28 @@ ETO – CUSTOM FOOTER v2 (Matches client screenshot)
 }
 .eto-footer-links {
   display: flex;
-  gap: 6px;
+  gap: 0;
   flex-wrap: nowrap;
   justify-content: flex-end;
-  padding-right: 40px;
+  padding-right: 10px;
 }
 .eto-footer-links a {
   color: #000000;
   text-decoration: none;
   white-space: nowrap;
   font-family: 'Montserrat', sans-serif;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
   text-transform: uppercase;
   transition: color 0.2s;
+  display: inline-flex;
+  align-items: center;
+}
+.eto-footer-links a:not(:last-child)::after {
+  content: "|";
+  margin: 0 6px;
+  color: #000000;
+  font-weight: 400;
 }
 .eto-footer-links a:hover { color: #555; }
 
@@ -516,7 +524,21 @@ iframe#shopify-chat,
   .eto-footer-bottom-inner {
     flex-direction: column;
     text-align: center;
-    gap: 16px;
+    gap: 10px;
+    padding: 0 16px;
+  }
+  .eto-footer-disclaimer-inner {
+    width: 100%;
+    max-width: 100%;
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    font-size: 10px;
+    padding: 0 8px;
+  }
+  .eto-footer-copyright {
+    white-space: normal;
+    text-align: center;
   }
   .eto-footer-links {
     justify-content: center;
@@ -580,7 +602,7 @@ iframe#shopify-chat,
       <h4>Contact Us</h4>
       <div class="eto-contact-row">
         <svg class="eto-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.22 2.18 2 2 0 012.18 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 7.09a16 16 0 006 6l.46-.46a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/></svg>
-        <p><a href="tel:2136222003">213-622-2003</a></p>
+        <p><a href="javascript:void(0)">213-622-2003</a></p>
       </div>
       <div class="eto-contact-row">
         <svg class="eto-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
@@ -591,7 +613,7 @@ iframe#shopify-chat,
       </div>
       <div class="eto-contact-row">
         <svg class="eto-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        <p><a href="mailto:sales@etodoors.com">sales@etodoors.com</a></p>
+        <p><a href="mailto:{{ section.settings.contact_email | default: 'contact@etodoors.com' }}">{{ section.settings.contact_email | default: 'contact@etodoors.com' }}</a></p>
       </div>
       <div class="eto-contact-row">
         <svg class="eto-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
@@ -680,21 +702,24 @@ iframe#shopify-chat,
 <div class="eto-footer-bottom">
   <div class="eto-footer-bottom-inner">
     <div class="eto-footer-copyright">
-      © {{ 'now' | date: '%Y' }} {{ section.settings.copyright_text | default: 'ETO Doors Store. All Rights Reserved.' }}
+      © {{ 'now' | date: '%Y' }} {{ section.settings.copyright_text | default: 'ETO Doors Corp. All Rights Reserved.' }}
     </div>
     
-    <div class="eto-footer-disclaimer-inner" style="flex: 1; text-align: center; padding: 0 5px; margin: 0; font-size: 9px; white-space: nowrap;">
-      {% assign disclaimer_text = section.settings.disclaimer | default: 'By Using This Site You Agree To Our Terms & Conditions Of Use And Privacy Statement. ⚠ WARNING: Cancer And Reproductive Harm' %}
-      {{ disclaimer_text | replace: 'Cancer And Reproductive Harm', '<a href="https://www.p65warnings.ca.gov/" target="_blank">Cancer And Reproductive Harm</a>' | replace: 'Cancer and Reproductive Harm', '<a href="https://www.p65warnings.ca.gov/" target="_blank">Cancer and Reproductive Harm</a>' }}
+    <div class="eto-footer-disclaimer-inner" style="flex: 1; text-align: center; padding: 0 10px; margin: 0; font-size: 9px; white-space: normal; line-height: 1.2; word-wrap: break-word; overflow-wrap: break-word; min-width: 0;">
+      By using this site you agree to our <a href="/policies/terms-of-service" style="color:inherit;text-decoration:underline;">Terms &amp; Conditions of Use</a> and <a href="/policies/privacy-policy" style="color:inherit;text-decoration:underline;">Privacy Statement</a>. ⚠ WARNING: <a href="https://www.p65warnings.ca.gov/" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">Cancer and Reproductive Harm</a>
     </div>
 
     <div class="eto-footer-links">
       <a href="/pages/about-us">ABOUT</a>
-      <a href="/pages/about-us?section=warranty">WARRANTY</a>
-      <a href="/pages/about-us?section=returns">RETURNS</a>
-      <a href="/pages/shipping-delivery">SHIPPING</a>
-      <a href="/pages/about-us?section=brand">TERMS</a>
-      <a href="/pages/about-us?section=brand">PRIVACY</a>
+      <a href="/pages/warranty">WARRANTY</a>
+      <a href="/policies/refund-policy">RETURNS</a>
+      <a href="/policies/shipping-policy">SHIPPING</a>
+      <a href="/policies/terms-of-service">TERMS</a>
+      <a href="/policies/privacy-policy">PRIVACY</a>
+      <a href="/pages/do-not-sell-or-share-my-personal-information">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 3px;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+        YOUR PRIVACY CHOICES
+      </a>
     </div>
   </div>
 </div>
@@ -745,7 +770,7 @@ iframe#shopify-chat,
       "type": "text",
       "id": "email",
       "label": "Email Address",
-      "default": "sales@etodoors.com"
+      "default": "contact@etodoors.com"
     },
     {
       "type": "header",
@@ -761,7 +786,7 @@ iframe#shopify-chat,
       "type": "text",
       "id": "copyright_text",
       "label": "Copyright Text",
-      "default": "ETO Doors Store. All Rights Reserved."
+      "default": "ETO Doors Corp. All Rights Reserved."
     }
   ]
 }

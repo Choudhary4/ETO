@@ -546,6 +546,7 @@
               <div class="loading-overlay gradient"></div>
               <ul class="eto-search-grid" role="list">
                 {%- for item in search.results -%}
+                  {% if item.object_type == 'product' and item.tags contains 'hidden_addon' %}{% continue %}{% endif %}
                   {% if item.object_type == 'product' and item.handle == 'custom-door-add-on' %}{% continue %}{% endif %}
                   <li>
                     {%- case item.object_type -%}

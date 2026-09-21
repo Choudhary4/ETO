@@ -1,0 +1,500 @@
+{% schema %}
+{
+  "name": "ETO Privacy Policy",
+  "settings": [],
+  "presets": [{ "name": "ETO Privacy Policy" }]
+}
+{% endschema %}
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:wght@400;600&display=swap');
+
+  html, body {
+    scroll-behavior: smooth !important;
+  }
+
+  #eto-privacy-page {
+    background: #f6faff;
+    font-family: 'Source Serif 4', serif;
+    color: #141d23;
+    margin: 0 calc(-50vw + 50%);
+    width: 100vw;
+    padding: 60px 0;
+  }
+  .eto-priv-container {
+    display: flex;
+    max-width: 1440px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 20px;
+  }
+  .eto-priv-sidebar {
+    width: 350px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 20px;
+    height: calc(100vh - 40px);
+    overflow-y: auto;
+    padding: 40px 20px;
+    border-right: 1px solid rgba(197, 198, 202, 0.4);
+    background: #ffffff;
+    margin-top: 40px;
+    border-radius: 8px;
+  }
+  .eto-priv-sidebar-header h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: #0c1014;
+    margin-bottom: 4px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .eto-priv-sidebar-header p {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #44474a;
+    margin-bottom: 24px;
+  }
+  .eto-priv-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .eto-priv-nav-link {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #44474a;
+    text-decoration: none;
+    padding: 10px 16px;
+    border-left: 3px solid transparent;
+    transition: all 0.2s ease;
+    display: block;
+  }
+  .eto-priv-nav-link:hover {
+    background: #ecf5fe;
+    color: #0c1014;
+  }
+  .eto-priv-nav-link.active {
+    border-left-color: #c2b59b;
+    background: #ecf5fe;
+    color: #c2b59b;
+    font-weight: 700;
+  }
+  .eto-priv-main {
+    flex: 1;
+    padding: 40px;
+    background: rgba(225, 227, 228, 0.1);
+  }
+  .eto-priv-card {
+    max-width: 1050px;
+    margin: 0 auto;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 32px rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(197, 198, 202, 0.3);
+    padding: 60px;
+  }
+  .eto-priv-card-header {
+    margin-bottom: 50px;
+  }
+  .eto-priv-card-header h1 {
+    font-family: 'Inter', sans-serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: #0c1014;
+    position: relative;
+    display: inline-block;
+    margin-bottom: 16px;
+    letter-spacing: -1px;
+  }
+  .eto-priv-underline {
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: #c2b59b;
+    border-radius: 2px;
+  }
+  .eto-priv-date {
+    font-family: 'Source Serif 4', serif;
+    font-style: italic;
+    color: #75777b;
+    font-size: 16px;
+    margin-top: 8px;
+  }
+  .eto-priv-section {
+    margin-bottom: 48px;
+    scroll-margin-top: 180px;
+  }
+  .eto-priv-section h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: #0c1014;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(197, 198, 202, 0.3);
+  }
+  .eto-priv-section p {
+    font-size: 17px;
+    line-height: 1.8;
+    color: #333;
+    margin-bottom: 16px;
+  }
+  .eto-priv-section ul {
+    list-style-type: disc;
+    padding-left: 24px;
+    margin-bottom: 20px;
+  }
+  .eto-priv-section li {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #333;
+    margin-bottom: 8px;
+  }
+  .eto-priv-section strong, .eto-priv-section b {
+    font-weight: 600;
+    color: #111;
+  }
+  .eto-priv-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 15px;
+  }
+  .eto-priv-table th {
+    background: #f6faff;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #44474a;
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 2px solid #c2b59b;
+  }
+  .eto-priv-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(197, 198, 202, 0.3);
+    vertical-align: top;
+    line-height: 1.6;
+    color: #333;
+  }
+  .eto-priv-table tr:last-child td {
+    border-bottom: none;
+  }
+  @media (max-width: 991px) {
+    .eto-priv-sidebar { display: none; }
+    .eto-priv-main { padding: 20px; }
+    .eto-priv-card { padding: 30px; }
+    .eto-priv-table { font-size: 13px; }
+  }
+</style>
+
+<div id="eto-privacy-page">
+  <div class="eto-priv-container">
+
+    <!-- Sidebar -->
+    <aside class="eto-priv-sidebar">
+      <div class="eto-priv-sidebar-header">
+        <h2>Legal Sections</h2>
+        <p>Privacy Policy</p>
+      </div>
+      <nav class="eto-priv-nav">
+        <a class="eto-priv-nav-link active" href="#priv-1" onclick="event.preventDefault(); setActive(this); smoothPrivScroll(document.getElementById('priv-1'), 1400);">1. About This Policy</a>
+        <a class="eto-priv-nav-link" href="#priv-2" onclick="event.preventDefault(); setActive(this); smoothPrivScroll(document.getElementById('priv-2'), 1400);">2. Personal Information We Collect</a>
+        <a class="eto-priv-nav-link" href="#priv-3" onclick="event.preventDefault(); setActive(this); smoothPrivScroll(document.getElementById('priv-3'), 1400);">3. Why We Use Your Information</a>
+        <a class="eto-priv-nav-link" href="#priv-4" onclick="event.preventDefault(); setActive(this); smoothPrivScroll(document.getElementById('priv-4'), 1400);">4. How We Share Your Information</a>
+        <a class="eto-priv-nav-link" href="#priv-5" onclick="event.preventDefault(); setActive(this); smoothPrivScroll(document.getElementById('priv-5'), 1400);">5. Sale and Sharing of Personal Information</a>
+        <a class="eto-priv-nav-link" href="#priv-6" onclick="event.preventDefault(); setActive(this); smoothPrivScroll(document.getElementById('priv-6'), 1400);">6. Cookies and Tracking Technologies</a>
+        <a class="eto-priv-nav-link" href="#priv-7" onclick="event.preventDefault(); setActive(this); smoothPrivScroll(document.getElementById('priv-7'), 1400);">7. Email, Phone Calls, and Text Messages</a>
+        <a class="eto-priv-nav-link" href="#priv-8" onclick="event.preventDefault(); setActive(this); smoothPrivScroll(document.getElementById('priv-8'), 1400);">8. Your Privacy Rights</a>
+        <a class="eto-priv-nav-link" href="#priv-9" onclick="event.preventDefault(); setActive(this); smoothPrivScroll(document.getElementById('priv-9'), 1400);">9. How to Opt Out of Advertising</a>
+        <a class="eto-priv-nav-link" href="#priv-10" onclick="event.preventDefault(); setActive(this); smoothPrivScroll(document.getElementById('priv-10'), 1400);">10. How Long We Keep Information</a>
+        <a class="eto-priv-nav-link" href="#priv-11" onclick="event.preventDefault(); setActive(this); smoothPrivScroll(document.getElementById('priv-11'), 1400);">11. How We Protect Information</a>
+        <a class="eto-priv-nav-link" href="#priv-12" onclick="event.preventDefault(); setActive(this); smoothPrivScroll(document.getElementById('priv-12'), 1400);">12. Children</a>
+        <a class="eto-priv-nav-link" href="#priv-13" onclick="event.preventDefault(); setActive(this); smoothPrivScroll(document.getElementById('priv-13'), 1400);">13. Where Your Information Is Held</a>
+        <a class="eto-priv-nav-link" href="#priv-14" onclick="event.preventDefault(); setActive(this); smoothPrivScroll(document.getElementById('priv-14'), 1400);">14. Other Websites</a>
+        <a class="eto-priv-nav-link" href="#priv-15" onclick="event.preventDefault(); setActive(this); smoothPrivScroll(document.getElementById('priv-15'), 1400);">15. Changes & How to Reach Us</a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="eto-priv-main">
+      <div class="eto-priv-card">
+        <header class="eto-priv-card-header">
+          <h1>
+            Privacy Policy
+            <span class="eto-priv-underline"></span>
+          </h1>
+          <p class="eto-priv-date">Last updated: August 26, 2026</p>
+        </header>
+
+        <div id="priv-1" class="eto-priv-section">
+          <h2>1. About This Policy</h2>
+          <p>ETO Doors Corp. ("ETO Doors," "we," "us," or "our") respects your privacy. This Privacy Policy explains what personal information we collect when you visit www.etodoors.com or contact us, why we collect it, who we share it with, how long we keep it, and the choices and rights you have.</p>
+          <p>This Policy covers www.etodoors.com and any related pages and services we operate (the "Site"), along with orders, quotes, and customer service handled by phone, email, or text. It does not cover the practices of companies we do not own or control.</p>
+          <p>This Policy is also our Notice at Collection under California law. We provide it at or before the point where we collect personal information from you.</p>
+          <p><b>Relationship to our Terms of Use.</b> Our Terms of Use govern your use of the Site generally. This Privacy Policy governs how we handle personal information. If the two conflict on a privacy matter, this Privacy Policy controls.</p>
+          <p>This Policy is a notice, not a contract. Reading it does not waive any right you have under privacy law, and nothing here limits rights that cannot be limited by agreement.</p>
+        </div>
+
+        <div id="priv-2" class="eto-priv-section">
+          <h2>2. Personal Information We Collect</h2>
+          <p><b>We collect the categories of personal information listed below. "Personal information" means information that identifies, relates to, or could reasonably be linked with you or your household — which includes things like your email address, IP address, and device identifiers, not only your name.</b></p>
+          <table class="eto-priv-table">
+            <thead>
+              <tr><th>Category</th><th>Examples</th><th>Where it comes from</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Identifiers</td><td>Name, billing and delivery address, email address, phone number, account username, IP address, device and cookie identifiers</td><td>You, and automatically from your device</td></tr>
+              <tr><td>Customer records</td><td>Contact details, payment card token and last four digits, billing history</td><td>You, and our payment processor</td></tr>
+              <tr><td>Commercial information</td><td>Quotes requested, estimates, orders placed, products viewed or considered, delivery history, returns and claims</td><td>You, and our order systems</td></tr>
+              <tr><td>Internet and network activity</td><td>Pages viewed, search terms used on the Site, clickstream and navigation data, referring site, interactions with our emails and ads</td><td>Automatically, through cookies and similar technologies</td></tr>
+              <tr><td>Approximate location</td><td>General location inferred from IP address; delivery ZIP code used for freight quoting</td><td>Automatically, and from you</td></tr>
+              <tr><td>Trade and professional information</td><td>Company name, trade role, contractor license number, resale or tax exemption certificate</td><td>You, if you open a trade account</td></tr>
+              <tr><td>Audio and visual</td><td>Photographs you send with a damage claim or product review; recordings of customer service calls, disclosed to you at the start of each call</td><td>You</td></tr>
+              <tr><td>Inferences</td><td>Product and style preferences, project type, likely purchase interest</td><td>Derived from the categories above</td></tr>
+            </tbody>
+          </table>
+          <p><b>Sensitive personal information. We do not seek to collect sensitive personal information as California law defines it. We do not retain full payment card numbers or security codes — payment card details are captured and processed by our payment processor, and we retain only a token and the last four digits. If you open a trade account, a resale or tax exemption certificate you provide may contain a taxpayer identification number, which we use only for tax compliance and do not use to infer anything about you.</b></p>
+          <p>If you choose not to provide the information we need to process an order, we will not be able to complete your purchase or create your account.</p>
+        </div>
+
+        <div id="priv-3" class="eto-priv-section">
+          <h2>3. Why We Use Your Information</h2>
+          <p>We use personal information for these business purposes:</p>
+          <ul>
+            <li>Quoting, processing, and fulfilling your orders, including shipping, delivery scheduling, returns, and warranty claims</li>
+            <li>Processing payments and verifying your payment method and identity</li>
+            <li>Providing customer service and responding to your questions</li>
+            <li>Sending transactional messages — order confirmations, estimates, invoices, delivery notices, and service updates</li>
+            <li>Sending marketing communications where you have opted in, and measuring how they perform</li>
+            <li>Operating, securing, testing, and improving the Site and our products and services</li>
+            <li>Personalizing what you see, including product recommendations and relevant advertising</li>
+            <li>Detecting and preventing fraud, abuse, and credit risk</li>
+            <li>Keeping records required for tax, accounting, insurance, and legal purposes, and complying with law</li>
+          </ul>
+          <p>We do not use or disclose sensitive personal information for purposes beyond those permitted under California law, so we are not required to offer a "Limit the Use of My Sensitive Personal Information" option.</p>
+          <p><b>We do not use your personal information to train artificial intelligence or machine learning models, and we do not permit our service providers to do so with information they process for us.</b></p>
+        </div>
+
+        <div id="priv-4" class="eto-priv-section">
+          <h2>4. How We Share Your Information</h2>
+          <p>We disclose personal information to the categories of recipients below. Each is bound by contract to use it only for the purposes we specify.</p>
+          <table class="eto-priv-table">
+            <thead>
+              <tr><th>Who we share with</th><th>What they receive</th><th>Why</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Freight carriers and delivery companies</td><td>Name, delivery address, phone number, order contents</td><td>To schedule and complete your delivery</td></tr>
+              <tr><td>Payment processors and financial institutions</td><td>Payment and billing details, order amount</td><td>To process payment and detect fraud</td></tr>
+              <tr><td>Technology and hosting providers</td><td>Account, order, and site activity data</td><td>To run the Site, our order systems, and our email and text messaging</td></tr>
+              <tr><td>Analytics providers</td><td>Site activity, device and cookie identifiers, IP address</td><td>To measure and improve how the Site performs</td></tr>
+              <tr><td>Advertising partners</td><td>Device and cookie identifiers, site activity, and in some cases a hashed email address</td><td>To show you our ads on other sites and measure whether they work</td></tr>
+              <tr><td>Professional advisers and insurers</td><td>Only what is relevant to a specific matter</td><td>Legal, accounting, audit, and insurance purposes</td></tr>
+              <tr><td>Law enforcement and government</td><td>What a valid legal process requires</td><td>To comply with law, court orders, and subpoenas</td></tr>
+              <tr><td>A buyer or successor</td><td>Customer and order records</td><td>If we are involved in a merger, acquisition, financing, or sale of assets</td></tr>
+            </tbody>
+          </table>
+          <p>We may also disclose personal information where we reasonably believe it is necessary to protect our legal rights, to investigate actual or threatened harmful conduct, or to protect the rights, property, or safety of our customers, our staff, or the public.</p>
+          <p><b>We do not disclose personal information to third parties for their own independent marketing purposes.</b></p>
+        </div>
+
+        <div id="priv-5" class="eto-priv-section">
+          <h2>5. Sale and Sharing of Personal Information</h2>
+          <p><b>We do not sell your personal information for money, and we never have.</b></p>
+          <p><b>However, California law defines "sharing" broadly. When our advertising partners set cookies or pixels on the Site that let them recognize your device and show you our ads elsewhere, that counts as "sharing personal information for cross-context behavioral advertising" — even though no money changes hands. Because we use those advertising technologies, we treat this activity as sharing and we give you the right to opt out of it.</b></p>
+          <p>The categories we share for advertising are device and cookie identifiers, internet and network activity, approximate location, and in some cases a hashed email address. We share these with advertising and analytics partners. See Section 9 for how to opt out.</p>
+          <p><b>We do not knowingly sell or share the personal information of anyone under 16 years of age.</b></p>
+        </div>
+
+        <div id="priv-6" class="eto-priv-section">
+          <h2>6. Cookies and Tracking Technologies</h2>
+          <p>Cookies are small files stored on your device. We and our partners also use pixels, tags, web beacons, and similar technologies. We use them for four purposes:</p>
+          <table class="eto-priv-table">
+            <thead>
+              <tr><th>Type</th><th>What it does</th><th>Can you turn it off?</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Strictly necessary</td><td>Keeps you logged in, holds your cart, processes checkout, protects against fraud</td><td>No — the Site will not function without these</td></tr>
+              <tr><td>Functional</td><td>Remembers your preferences, such as saved ZIP code or recently viewed products</td><td>Yes, through your browser or our cookie settings</td></tr>
+              <tr><td>Analytics</td><td>Measures traffic, page performance, and how people navigate the Site</td><td>Yes, through our cookie settings or an opt-out signal</td></tr>
+              <tr><td>Advertising</td><td>Lets advertising partners recognize your device and show you our ads on other sites</td><td>Yes — see Section 9</td></tr>
+            </tbody>
+          </table>
+          <p><b>Global Privacy Control. If your browser or extension sends a Global Privacy Control (GPC) signal, we treat it as a valid request to opt out of the sharing of personal information from that browser. You do not need to do anything else on this Site for that browser.</b></p>
+          <p>You can also block or delete cookies through your browser settings. If you block strictly necessary cookies, you will not be able to shop on the Site.</p>
+          <p>We do not currently respond to browser "Do Not Track" signals, which have no agreed standard. We do honor Global Privacy Control, as described above.</p>
+        </div>
+
+        <div id="priv-7" class="eto-priv-section">
+          <h2>7. Email, Phone Calls, and Text Messages</h2>
+          <p><b>Email</b></p>
+          <p>We send transactional email about your quotes, orders, deliveries, and account. These are part of the service and are not marketing.</p>
+          <p><b>We send marketing email only if you have opted in. Every marketing email includes an unsubscribe link, and we honor unsubscribe requests promptly. Unsubscribing from marketing does not stop transactional email about an order you have placed.</b></p>
+          <p><b>Text messages (SMS and MMS)</b></p>
+          <p>If you give us your mobile number and ask us to text you — for example during a phone call, or by texting us first — you consent to receive conversational text messages from ETO Doors about your inquiry, including product information, quotes, and follow-ups.</p>
+          <p><b>Message frequency varies depending on your interaction with us. Message and data rates may apply. Reply STOP to opt out at any time. Reply HELP for assistance.</b></p>
+          <p>We do not send unsolicited text messages. We text you only after you request it or give consent.</p>
+          <p><b>Marketing text messages are sent only with your separate express written consent, given through a dedicated opt-in that is not bundled with any other agreement.</b></p>
+          <p><b>We do not sell, rent, or share your mobile phone number or your SMS consent data with third parties for their marketing or promotional purposes. Your mobile number is shared only with the service providers needed to deliver the messages you asked for, and only for that operational purpose. Mobile opt-in data is never shared for advertising and is excluded from the sharing described in Section 5.</b></p>
+          <p><b>Phone calls</b></p>
+          <p>We and our carriers may call you about a quote, an order, or a delivery appointment.</p>
+          <p><b>We record our customer service calls for quality assurance, training, and dispute resolution. An automated message at the start of every call tells you the call is being recorded. If you prefer not to be recorded, you can ask us to continue by email instead.</b></p>
+          <p><b>We do not capture payment card numbers or security codes in a call recording. Where we take a card payment by phone, recording is paused while the card details are given.</b></p>
+        </div>
+
+        <div id="priv-8" class="eto-priv-section">
+          <h2>8. Your Privacy Rights</h2>
+          <p><b>California residents have the rights below under the California Consumer Privacy Act. We extend these rights to all of our customers regardless of where you live.</b></p>
+          <ul>
+            <li>Right to know — what personal information we have collected about you, where we got it, why we collected it, who we disclosed it to, and to receive a copy</li>
+            <li>Right to delete — ask us to delete personal information we collected from you, subject to legal exceptions such as completing a transaction or keeping tax records</li>
+            <li>Right to correct — ask us to fix inaccurate personal information</li>
+            <li>Right to opt out of sharing — stop the sharing of your personal information for cross-context behavioral advertising</li>
+            <li>Right to non-discrimination — we will not deny you goods or services, charge you a different price, or give you a lower quality of service because you exercised a privacy right</li>
+            <li>Right to appeal — if we deny your request, you may ask us to reconsider</li>
+          </ul>
+          <p><b>How to submit a request. Email contact@etodoors.com, call (213) 622-2003, or write to the address in Section 15. Tell us which right you are exercising.</b></p>
+          <p>Verifying your request. To protect your information, we need to verify your identity before acting on a request to know, delete, or correct. We will usually ask you to confirm details we already hold, such as an order number and the email address on the order. We will not ask you for information beyond what we need to verify you, and we will not create a new account to do it.</p>
+          <p><b>Timing. We confirm receipt within 10 business days and respond within 45 calendar days. If we need more time, we will tell you and may take up to 45 additional days. Opt-out requests are honored within 15 business days.</b></p>
+          <p>Authorized agents. You may use an authorized agent to submit a request. We will ask for written permission signed by you, and we may still ask you to verify your identity directly with us.</p>
+          <p>There is no charge to submit a request. We may decline a request that is manifestly unfounded or excessive, and we will explain why.</p>
+        </div>
+
+        <div id="priv-9" class="eto-priv-section">
+          <h2>9. How to Opt Out of Advertising</h2>
+          <p>You have three ways to opt out of the sharing described in Section 5:</p>
+          <ul>
+            <li>Use the "Your Privacy Choices" link, shown with the California opt-out icon, in the footer of every page of the Site. This is the fastest method and does not require an account.</li>
+            <li>Turn on Global Privacy Control in your browser or install an extension that sends the signal. We honor it automatically for that browser.</li>
+            <li>Email contact@etodoors.com and ask us to opt you out.</li>
+          </ul>
+          <p>An opt-out made through the footer link or Global Privacy Control applies to the browser and device you used. If you clear your cookies, use a different browser, or use a different device, you will need to opt out again there, because the opt-out itself is stored in a cookie.</p>
+          <p>Opting out of advertising does not stop us from showing you ads. It stops advertising partners from using your information to target them.</p>
+          <p>You can also opt out of interest-based advertising across many companies at once through the Digital Advertising Alliance at optout.aboutads.info and the Network Advertising Initiative at optout.networkadvertising.org. Those are industry tools we do not control.</p>
+        </div>
+
+        <div id="priv-10" class="eto-priv-section">
+          <h2>10. How Long We Keep Information</h2>
+          <p>We keep personal information only as long as we need it for the purpose we collected it, or as long as the law requires. Our general retention periods:</p>
+          <table class="eto-priv-table">
+            <thead>
+              <tr><th>Type of information</th><th>How long we keep it</th><th>Why</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Order and transaction records</td><td>seven (7) years after the order</td><td>Tax, accounting, warranty, and potential claims</td></tr>
+              <tr><td>Account information</td><td>While your account is active, then two (2) years</td><td>To maintain your account and order history</td></tr>
+              <tr><td>Quotes and estimates not converted to orders</td><td>two (2) years</td><td>To follow up and to honor a quote if you return</td></tr>
+              <tr><td>Customer service correspondence</td><td>three (3) years</td><td>To resolve disputes and improve service</td></tr>
+              <tr><td>Marketing contact lists</td><td>Until you unsubscribe, then a suppression record indefinitely</td><td>To honor your unsubscribe request</td></tr>
+              <tr><td>Website analytics data</td><td>twenty-six (26) months</td><td>Trend analysis and Site improvement</td></tr>
+              <tr><td>SMS consent records</td><td>four (4) years after consent is withdrawn</td><td>To evidence consent if a complaint arises</td></tr>
+              <tr><td>Call recordings, where made</td><td>twelve (12) months</td><td>Quality assurance and dispute resolution</td></tr>
+            </tbody>
+          </table>
+          <p>When a retention period ends, we delete the information or de-identify it so it can no longer reasonably be linked to you. Information you post publicly, such as a product review, may remain visible indefinitely.</p>
+        </div>
+
+        <div id="priv-11" class="eto-priv-section">
+          <h2>11. How We Protect Information</h2>
+          <p>We use administrative, technical, and physical safeguards designed to protect personal information, including encryption of data in transit using current TLS, encryption of sensitive data at rest, access controls that limit staff access to what their role requires, and regular review of our security practices.</p>
+          <p><b>We do not store full payment card numbers or security codes on our systems. Payment card data is handled by a PCI DSS compliant payment processor.</b></p>
+          <p>No system is completely secure, and we cannot guarantee absolute security. You are responsible for keeping your account password confidential and for activity that occurs under your account. Tell us immediately at contact@etodoors.com if you believe your account has been accessed without authorization.</p>
+          <p><b>If a breach affects your personal information, we will notify you as required by California Civil Code section 1798.82 and other applicable law.</b></p>
+        </div>
+
+        <div id="priv-12" class="eto-priv-section">
+          <h2>12. Children</h2>
+          <p>The Site is intended for adults. We do not direct the Site to children, and we do not knowingly collect personal information from anyone under 13 without verifiable parental consent, consistent with the Children's Online Privacy Protection Act.</p>
+          <p>We also do not knowingly sell or share the personal information of consumers under 16 years of age.</p>
+          <p>If you believe a child has given us personal information, contact contact@etodoors.com and we will delete it promptly.</p>
+        </div>
+
+        <div id="priv-13" class="eto-priv-section">
+          <h2>13. Where Your Information Is Held</h2>
+          <p>ETO Doors is a United States corporation and our systems and service providers are located in the United States. If you access the Site or place an order from outside the United States, your information will be transferred to and processed in the United States, where data protection laws may differ from those in your country.</p>
+          <p>We market and sell primarily within the United States. If you are in the European Economic Area or the United Kingdom, you may have additional rights under the GDPR or UK GDPR, including rights of access, rectification, erasure, restriction, portability, and objection. Contact contact@etodoors.com to exercise them and we will respond in accordance with applicable law.</p>
+        </div>
+
+        <div id="priv-14" class="eto-priv-section">
+          <h2>14. Other Websites</h2>
+          <p>The Site links to websites we do not operate. We are not responsible for their content or their privacy practices, and this Policy does not apply to them. We recommend reading the privacy policy of any site you visit. Following a link is at your own risk.</p>
+        </div>
+
+        <div id="priv-15" class="eto-priv-section">
+          <h2>15. Changes to This Policy and How to Reach Us</h2>
+          <p><b>We may update this Policy. When we do, we will change the "Last updated" date at the top of the page and post the revised Policy here. If we make a material change to how we handle personal information we already hold, we will provide notice before that change takes effect.</b></p>
+          <p>You can always find the current version by following the "Privacy" link in the footer of any page.</p>
+          <p>This Policy is governed by the laws of the State of California, without regard to its conflict of laws provisions.</p>
+          <p><b>Questions, requests, and complaints:</b></p>
+          <ul>
+            <li>Privacy questions, rights requests, and all other inquiries: contact@etodoors.com or (213) 622-2003</li>
+            <li>Shipping and delivery questions: shipping@etodoors.com</li>
+          </ul>
+          <p><b>Please write "Privacy Request" in the subject line so your message is routed correctly. Privacy rights requests carry response deadlines that start when the message arrives, whether or not it is recognized as a request.</b></p>
+          <p>Or write to us at:</p>
+          <p><b>ETO Doors Corp.</b><br>Attn: Privacy<br>1340 E. 6th Street #105<br>Los Angeles, CA 90021</p>
+          <p>We will investigate your question, respond to your inquiry, and work to resolve any privacy concern. If you need this Policy in an alternative accessible format, contact us and we will provide one.</p>
+        </div>
+
+      </div>
+    </main>
+  </div>
+</div>
+
+<script>
+  function setActive(el) {
+    document.querySelectorAll('.eto-priv-nav-link').forEach(function(link) {
+      link.classList.remove('active');
+    });
+    el.classList.add('active');
+  }
+
+  function smoothPrivScroll(element, duration) {
+    if (!element) return;
+    var headerOffset = 180;
+    var start = window.scrollY;
+    var target = element.getBoundingClientRect().top + window.scrollY - headerOffset;
+    var change = target - start;
+    var startTime = null;
+
+    function easeInOutQuint(t) {
+      return t < 0.5 ? 16 * t * t * t * t * t : 1 - Math.pow(-2 * t + 2, 5) / 2;
+    }
+
+    function step(timestamp) {
+      if (!startTime) startTime = timestamp;
+      var elapsed = timestamp - startTime;
+      var progress = Math.min(elapsed / duration, 1);
+      var ease = easeInOutQuint(progress);
+      window.scrollTo({ top: start + change * ease, behavior: 'instant' });
+      if (progress < 1) requestAnimationFrame(step);
+    }
+
+    requestAnimationFrame(step);
+  }
+
+  // Bust parent container max-width constraint
+  document.addEventListener('DOMContentLoaded', function() {
+    var section = document.getElementById('eto-privacy-page');
+    if (section) {
+      var parent = section.parentElement;
+      while (parent && parent !== document.body) {
+        var style = window.getComputedStyle(parent);
+        if (style.maxWidth && style.maxWidth !== 'none') {
+          parent.style.maxWidth = 'none';
+          parent.style.overflow = 'visible';
+        }
+        parent = parent.parentElement;
+      }
+    }
+  });
+</script>

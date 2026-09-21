@@ -1,0 +1,261 @@
+<style>
+  .do-not-sell-wrapper {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 20px;
+    font-family: 'Montserrat', sans-serif;
+    color: #333;
+    line-height: 1.6;
+  }
+  .do-not-sell-wrapper h1 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #111;
+  }
+  .do-not-sell-wrapper h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-top: 40px;
+    margin-bottom: 15px;
+    color: #111;
+  }
+  .do-not-sell-wrapper p {
+    margin-bottom: 15px;
+    font-size: 15px;
+  }
+  .do-not-sell-wrapper ul {
+    margin-bottom: 15px;
+    padding-left: 20px;
+    font-size: 15px;
+  }
+  .do-not-sell-wrapper a {
+    color: #E55300;
+    text-decoration: underline;
+  }
+  /* Table styling */
+  .do-not-sell-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 30px 0;
+  }
+  .do-not-sell-table th, .do-not-sell-table td {
+    border: 1px solid #ccc;
+    padding: 12px;
+    text-align: left;
+    vertical-align: top;
+    font-size: 14px;
+  }
+  .do-not-sell-table th {
+    background: #f4f4f4;
+    font-weight: 700;
+    color: #111;
+  }
+  /* Control Panel styling */
+  .dns-control-panel {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 24px;
+    margin: 30px 0;
+  }
+  .dns-status {
+    font-size: 16px;
+    margin-bottom: 15px;
+    font-weight: 500;
+  }
+  .dns-btn {
+    background: #E55300;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 4px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-family: 'Montserrat', sans-serif;
+  }
+  .dns-btn:hover {
+    background: #cc4a00;
+  }
+  .dns-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    color: #666;
+  }
+  .dns-link-btn {
+    display: block;
+    margin-top: 15px;
+    color: #E55300;
+    text-decoration: underline;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+  }
+  .dns-noscript {
+    background: #fff3cd;
+    color: #856404;
+    padding: 15px;
+    border: 1px solid #ffeeba;
+    border-radius: 4px;
+    margin: 30px 0;
+    font-size: 14px;
+  }
+</style>
+
+<div class="do-not-sell-wrapper">
+  <h1>Do Not Sell or Share My Personal Information</h1>
+  <p>ETO Doors Corp. does not sell your personal information for money, and never has.</p>
+  <p>We do share it in one specific way, and California law gives you the right to stop it. When you visit www.etodoors.com, our advertising partners place cookies and pixels that let them recognize your browser and show you ETO Doors ads on other websites. Under the California Consumer Privacy Act, that counts as sharing personal information for cross-context behavioral advertising — even though no money changes hands.</p>
+  <p>You can stop it below. No account, no form, no email address required.</p>
+  <p>You reached this page from the Your Privacy Choices link in our footer, shown with the California opt-out icon. That link appears on every page of our site.</p>
+  
+  <h2>Opt out on this browser</h2>
+  
+  <noscript>
+    <div class="dns-noscript">
+      JavaScript is turned off in this browser, so the button below will not work. Email <a href="mailto:contact@etodoors.com">contact@etodoors.com</a> with the subject <strong>Do Not Sell or Share Request</strong> and we will process your opt-out manually.
+    </div>
+  </noscript>
+
+  <div class="dns-control-panel" id="dns-control-panel" style="display: none;">
+    <div id="dns-status-text" class="dns-status"></div>
+    <button id="dns-action-btn" class="dns-btn"></button>
+    <button id="dns-undo-btn" class="dns-link-btn" style="display: none;">Allow sharing again on this browser</button>
+  </div>
+
+  <h2>What opting out does, and does not do</h2>
+  <table class="do-not-sell-table">
+    <thead>
+      <tr>
+        <th>What opting out does</th>
+        <th>What opting out does not do</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Stops advertising partners from receiving information about your activity on our site</td>
+        <td>Stop you from seeing ETO Doors ads — you may still see them, just not targeted to you</td>
+      </tr>
+      <tr>
+        <td>Stops us from using your activity to target ads to you elsewhere</td>
+        <td>Delete personal information we already hold</td>
+      </tr>
+      <tr>
+        <td>Takes effect immediately and stays in effect on this browser</td>
+        <td>Unsubscribe you from our email or text messages</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Affect your orders, pricing, or service in any way</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>This opt-out applies to this browser</h2>
+  <p>Your choice is stored in a cookie on the device and browser you are using right now. You will need to opt out again if you:</p>
+  <ul>
+    <li>Use a different browser, phone, tablet, or computer</li>
+    <li>Browse in a private or incognito window</li>
+    <li>Clear your cookies or site data</li>
+  </ul>
+  <p><strong>A faster way to cover every site at once.</strong> If you turn on Global Privacy Control in your browser, we honor it automatically — you never have to visit this page. So do many other companies.</p>
+  <p>It is built into Brave and Firefox (Settings &gt; Privacy &amp; Security &gt; "Tell websites not to sell or share my data") and available as an extension for Chrome, Edge, and Safari.</p>
+
+  <h2>Apply this to your account records</h2>
+  <p>The button above covers advertising on this browser. If you would also like us to apply your opt-out to the account and order records we hold under your name, email <a href="mailto:contact@etodoors.com">contact@etodoors.com</a> with the subject line <strong>"Do Not Sell or Share Request"</strong>, or call <strong>(213) 622-2003</strong>.</p>
+  <p>We will confirm receipt within 10 business days and act on your request within 15 business days.</p>
+
+  <h2>Your other privacy rights</h2>
+  <p>Opting out of sharing is one of several rights available to you. You may also ask us to tell you what personal information we hold about you, to correct it, or to delete it, and you may appeal if we deny a request. Section 8 of our Privacy Policy explains each right and how to exercise it.</p>
+  <p>You may use an authorized agent to submit a request on your behalf. We will ask for written permission signed by you, and we may still ask you to verify your identity with us directly.</p>
+  <p>We will never charge you a different price, refuse to sell to you, or give you a lower level of service because you exercised a privacy right.</p>
+
+  <h2>Questions</h2>
+  <p>Email <a href="mailto:contact@etodoors.com">contact@etodoors.com</a> or call <strong>(213) 622-2003</strong>.</p>
+  <p>ETO Doors Corp.<br>
+  Attn: Privacy<br>
+  1340 E. 6th Street #105<br>
+  Los Angeles, CA 90021</p>
+  <p><em>For screen reader problems or difficulty using this page, please call (213) 622-2003 and we will process your request over the phone.</em></p>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var panel = document.getElementById('dns-control-panel');
+  var statusText = document.getElementById('dns-status-text');
+  var actionBtn = document.getElementById('dns-action-btn');
+  var undoBtn = document.getElementById('dns-undo-btn');
+  
+  if (!panel) return;
+  panel.style.display = 'block';
+
+  var COOKIE_NAME = 'eto_opt_out';
+
+  function getCookie(name) {
+    var v = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+    return v ? v[2] : null;
+  }
+
+  function setCookie(name, value, days) {
+    var d = new Date;
+    d.setTime(d.getTime() + 24*60*60*1000*days);
+    document.cookie = name + "=" + value + ";path=/;expires=" + d.toGMTString() + ";SameSite=Strict";
+  }
+
+  function isGPCEnabled() {
+    return navigator.globalPrivacyControl === true;
+  }
+
+  function renderState() {
+    if (isGPCEnabled()) {
+      statusText.innerHTML = 'You are opted out. Your browser is sending a Global Privacy Control signal, which we honor automatically. No further action is needed on this browser.';
+      actionBtn.innerText = 'Already opted out via Global Privacy Control';
+      actionBtn.disabled = true;
+      undoBtn.style.display = 'none';
+    } else if (getCookie(COOKIE_NAME) === 'true') {
+      statusText.innerHTML = 'You are opted out on this browser. We are no longer sharing your personal information with advertising partners from this browser.';
+      actionBtn.innerText = 'Opted out';
+      actionBtn.disabled = true;
+      undoBtn.style.display = 'inline-block';
+    } else {
+      statusText.innerHTML = 'You are not currently opted out. Advertising partners may recognize this browser.';
+      actionBtn.innerText = 'Opt out of sharing on this browser';
+      actionBtn.disabled = false;
+      undoBtn.style.display = 'none';
+    }
+  }
+
+  actionBtn.addEventListener('click', function() {
+    if (!actionBtn.disabled) {
+      setCookie(COOKIE_NAME, 'true', 365);
+      // Optional: Trigger Shopify Consent API
+      if (window.Shopify && window.Shopify.customerPrivacy) {
+        window.Shopify.customerPrivacy.setTrackingConsent(false, function() {});
+      }
+      renderState();
+    }
+  });
+
+  undoBtn.addEventListener('click', function() {
+    setCookie(COOKIE_NAME, 'false', -1); // expire cookie
+    if (window.Shopify && window.Shopify.customerPrivacy) {
+      window.Shopify.customerPrivacy.setTrackingConsent(true, function() {});
+    }
+    renderState();
+  });
+
+  renderState();
+});
+</script>
+
+{% schema %}
+{
+  "name": "Do Not Sell Page",
+  "settings": []
+}
+{% endschema %}

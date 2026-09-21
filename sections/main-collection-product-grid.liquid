@@ -1,5 +1,6 @@
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+  // Sort form
   var sortForm = document.getElementById('FacetSortForm');
   if (sortForm) {
     var sortSelect = sortForm.querySelector('select[name="sort_by"]');
@@ -86,51 +87,50 @@ document.addEventListener('DOMContentLoaded', function() {
   {%- else -%}
     {%- assign breadcrumb_title = collection.title -%}
   {%- endif -%}
-  <div style="max-width: var(--eto-container-max); margin: 0 auto; padding: 0 var(--eto-margin-edge);">
-    <nav class="category-breadcrumb" aria-label="Breadcrumb" style="font-family: 'Montserrat', sans-serif; font-size: 15px; line-height: 1.5; color: #666; margin-top: 18px; margin-bottom: 25px; padding-bottom: 0;">
-      <a href="/" style="color: #666; text-decoration: none;">Home</a>
-      <span class="separator" style="margin: 0 8px; color: #666;">&rarr;</span>
-      <span class="current" aria-current="page" id="js-breadcrumb-title" style="color: #000; font-weight: 600;">{{ breadcrumb_title }}</span>
-    </nav>
+<div>  <div class="category-page-container">
     
-    <div class="clean-collection-header" style="margin-bottom: 30px;">
-      <h1 style="font-family: 'MADE Mirage', serif; font-size: 42px; font-weight: 300; margin: 0 0 10px 0; color: #000; letter-spacing: 0;">
-        {%- if formatted_cat_name != blank -%}
-          {{ formatted_cat_name }}
-        {%- else -%}
-          {{ collection.title }}
-        {%- endif -%}
-      </h1>
-      {% if collection.description != blank %}
-        <div style="font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 300; color: #333; line-height: 1.5; max-width: 800px;">
-          {{ collection.description | strip_html | truncatewords: 30 }}
+    <div class="left-column-wrapper">
+      <!-- Breadcrumb and Title (Now inside left column to stick with sidebar) -->
+      <div style="padding-top: 12px; padding-bottom: 20px;">
+        <nav class="category-breadcrumb" aria-label="Breadcrumb" style="font-family: 'Montserrat', sans-serif; font-size: 13px; line-height: 1.5; color: #666; margin-top: 0; margin-bottom: 0; padding-bottom: 0;">
+          <a href="/" style="color: #666; text-decoration: none;">Home</a>
+          <span class="separator" style="margin: 0 6px; color: #666;">&rarr;</span>
+          <span class="current" aria-current="page" id="js-breadcrumb-title" style="color: #000; font-weight: 600;">{{ breadcrumb_title }}</span>
+        </nav>
+        <div class="clean-collection-header" style="margin-bottom: 0;">
+          <h1 style="font-family: 'MADE Mirage', serif; font-size: 28px; font-weight: 300; margin: 0; color: #000; letter-spacing: 0;">
+            {%- if formatted_cat_name != blank -%}
+              {{ formatted_cat_name }}
+            {%- else -%}
+              {{ collection.title }}
+            {%- endif -%}
+          </h1>
         </div>
-      {% endif %}
-    </div>
-  </div>
+      </div>
 
-<div class="section-{{ section.id }}-padding">  <div class="category-page-container">
-    <div class="mobile-filter-trigger large-up-hide">
-       <button class="button button--full-width button--secondary" onclick="document.body.classList.add('overflow-hidden'); document.querySelector('.mobile-filter-drawer').classList.add('active');" style="margin-bottom: 20px; text-transform: uppercase; font-weight: bold;">
-         Filters & Categories
-       </button>
+      <div class="mobile-filter-trigger large-up-hide">
+         <button class="button button--full-width button--secondary" onclick="document.body.classList.add('overflow-hidden'); document.querySelector('.mobile-filter-drawer').classList.add('active');" style="margin-bottom: 20px; text-transform: uppercase; font-weight: bold;">
+           Filters & Categories
+         </button>
+      </div>
+      
+      {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
+        <aside
+          aria-labelledby="verticalTitle"
+          class="category-sidebar facets-wrapper{% unless section.settings.enable_filtering %} facets-wrapper--no-filters{% endunless %}"
+          id="main-collection-filters"
+          data-id="{{ section.id }}"
+        >
+          {% render 'facets',
+            results: collection,
+            enable_filtering: section.settings.enable_filtering,
+            enable_sorting: section.settings.enable_sorting,
+            filter_type: 'vertical',
+            paginate: paginate
+          %}
+        </aside>
+      {%- endif -%}
     </div>
-    {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
-      <aside
-        aria-labelledby="verticalTitle"
-        class="category-sidebar facets-wrapper{% unless section.settings.enable_filtering %} facets-wrapper--no-filters{% endunless %}"
-        id="main-collection-filters"
-        data-id="{{ section.id }}"
-      >
-        {% render 'facets',
-          results: collection,
-          enable_filtering: section.settings.enable_filtering,
-          enable_sorting: section.settings.enable_sorting,
-          filter_type: 'vertical',
-          paginate: paginate
-        %}
-      </aside>
-    {%- endif -%}
 
     <div class="main-content">
       <!-- Custom Header Removed -->
@@ -179,7 +179,7 @@ document.addEventListener('DOMContentLoaded', function() {
               {%- endfor -%}
 
               {%- for product in collection.products -%}
-                {% if product.handle == 'custom-door-add-on' %}{% continue %}{% endif %}
+                {% if product.tags contains 'hidden_addon' or product.handle == 'custom-door-add-on' %}{% continue %}{% endif %}
                 
                 {%- comment -%} HOTFIX: Verify Application Filter against Metafield directly due to Stale Index {%- endcomment -%}
                 {%- assign app_filter_pass = true -%}
@@ -234,7 +234,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <!-- List View (Hidden by default) -->
             <div class="product-list-view-container view-mode-list" style="display: none;">
                 {%- for product in collection.products -%}
-                    {% if product.handle == 'custom-door-add-on' %}{% continue %}{% endif %}
+                    {% if product.tags contains 'hidden_addon' or product.handle == 'custom-door-add-on' %}{% continue %}{% endif %}
                     
                     {%- assign app_filter_pass = true -%}
                     {%- for filter in collection.filters -%}
@@ -278,9 +278,8 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
   </div>
 
-  <div class="eto-bottom-cta-section" style="position: sticky; bottom: 0; left: 0; right: 0; width: 100%; box-sizing: border-box; padding: 20px 20px; text-align: center; border-top: 1px solid #c8bfb5; border-bottom: 1px solid #c8bfb5; background: #f5f0eb; z-index: 2;">
-    <p style="margin: 0 0 4px 0; font-size: 15px; line-height: 1.5; font-weight: 400; text-transform: uppercase; color: #000; font-family: 'Montserrat', sans-serif; letter-spacing: 0.05em;">CAN'T FIND WHAT YOU'RE LOOKING FOR? WE HAVE IT!!!</p>
-    <p style="margin: 0; font-size: 15px; line-height: 1.5; font-weight: 700; text-transform: uppercase; color: #000; font-family: 'Montserrat', sans-serif; letter-spacing: 0.05em;">CALL OUR DOOR PROFESSIONALS (213) 622-2003</p>
+  <div class="eto-bottom-cta-section" style="position: sticky; bottom: 0; left: 0; right: 0; width: 100%; box-sizing: border-box; padding: 12px 20px; text-align: center; border-top: 1px solid #c8bfb5; background: #f5f0eb; z-index: 2;">
+    <p style="margin: 0; font-size: 14px; line-height: 1.4; font-weight: 400; text-transform: uppercase; color: #000; font-family: 'Montserrat', sans-serif; letter-spacing: 0.04em;">CAN'T FIND WHAT YOU'RE LOOKING FOR? WE HAVE IT &nbsp;|&nbsp; <strong style="font-size: 15px;">CALL OUR DOOR PROFESSIONALS (213) 622-2003</strong></p>
   </div>
 
   {% render 'collection-footer-custom', collection: collection %}

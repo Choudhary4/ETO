@@ -1538,31 +1538,72 @@ ETO Doors - Custom Product Page Layout
   height: 100%;
   object-fit: contain;
 }
-@media (max-width: 768px) {
+@media (max-width: 990px) {
+  .eto-lightbox-overlay {
+    align-items: flex-start;
+  }
   .eto-lightbox-modal {
     flex-direction: column;
-    max-height: 90vh;
+    width: 100%;
+    max-width: 100%;
+    height: 100vh;
+    max-height: 100vh;
+    border-radius: 0;
+  }
+  .eto-lightbox-close {
+    top: 14px;
+    right: 14px;
+    font-size: 14px;
+    background: rgba(255,255,255,0.85);
+    border-radius: 20px;
+    padding: 4px 10px;
+  }
+  .eto-lightbox-main-img {
+    flex: 1 1 0%;
+    min-height: 0;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    background: #fff;
+    width: 100%;
+  }
+  .eto-lightbox-main-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+  .eto-zoom-lens, .eto-zoom-result {
+    display: none !important;
   }
   .eto-lightbox-sidebar {
     width: 100%;
+    height: auto;
+    flex-shrink: 0;
     border-left: none;
     border-top: 1px solid #eee;
-    padding: 15px;
+    padding: 10px 12px;
     flex-direction: row;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
+    align-items: center;
+    overflow-x: auto;
+    overflow-y: hidden;
+    gap: 8px;
+    justify-content: flex-start;
   }
   .eto-lightbox-title {
-    width: 100%;
-    margin-bottom: 8px;
+    display: none;
   }
-  .eto-lightbox-main-img {
-    min-height: 250px;
-    padding: 20px;
+  .eto-lightbox-thumbs {
+    flex-wrap: nowrap;
+    flex-direction: row;
+    gap: 8px;
   }
-  .eto-lightbox-main-img img {
-    max-height: 40vh;
+  .eto-lightbox-thumb {
+    flex-shrink: 0;
+    width: 52px;
+    height: 52px;
   }
 }
 
@@ -2060,7 +2101,7 @@ ETO Doors - Custom Product Page Layout
   @media (max-width:768px){
     .wrap { padding: 0 16px; }
     main.wrap .eto-new-product-grid{grid-template-columns:1fr !important; gap: 24px !important;}
-    main.wrap .eto-new-product-grid > .gallery { grid-column: 1 !important; grid-row: 1 !important; }
+    main.wrap .eto-new-product-grid > .gallery { grid-column: 1 !important; grid-row: 1 !important; position: static !important; }
     main.wrap .eto-new-product-grid > .details { grid-column: 1 !important; grid-row: 2 !important; }
     main.wrap .eto-new-product-grid > .buybox { grid-column: 1 !important; grid-row: 3 !important; margin-top: 0; }
     .buybox .card{max-width:100%;}
@@ -2075,8 +2116,8 @@ ETO Doors - Custom Product Page Layout
     .tablist::-webkit-scrollbar { display: none; }
     .tab { flex: 0 0 auto; padding: 15px 16px; font-size: 13px; }
     .thumbs { gap: 6px; }
-    .gallery .hero{padding:8px; border-radius: 8px; max-height: 28vh; aspect-ratio: auto;}
-    .gallery .hero img{max-height: 100%; width: auto; object-fit: contain;}
+    .gallery .hero{padding:8px; border-radius: 8px; aspect-ratio: 4/5; height: auto;}
+    .gallery .hero img{max-height: 100%; width: 100% !important; height: 100% !important; object-fit: contain;}
     .zoomhint { margin-top: 6px; font-size: 11px; }
   }
 
@@ -2121,6 +2162,12 @@ ETO Doors - Custom Product Page Layout
     white-space: nowrap;
     margin-right: -1px;
   }
+  @media (max-width: 768px) {
+    .eto-new-tablist .eto-tab-btn {
+      flex: 0 0 auto !important;
+      padding: 8px 16px;
+    }
+  }
   .eto-new-tablist .eto-tab-btn .material-symbols-outlined {
     font-size: 14px;
     color: inherit;
@@ -2155,6 +2202,8 @@ ETO Doors - Custom Product Page Layout
   /* Warning Banner */
   .eto-tab-warning-banner {
     display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
     justify-content: space-between;
     align-items: center;
     background: #fcf9f5;
@@ -2251,13 +2300,12 @@ ETO Doors - Custom Product Page Layout
   }
 
   .eto-details-2col {
-    display: grid;
-    grid-template-columns: 1fr 320px;
-    gap: 40px;
-    align-items: start;
+    display: block;
   }
   .eto-details-left {
-    max-width: 1000px;
+    min-width: 0;
+    word-break: break-word;
+    overflow-wrap: break-word;
   }
   .eto-details-left h4 { font-size: 16px; font-weight: 700; color: #111; margin: 0 0 12px 0; }
   .eto-details-left p { font-size: 13px; color: #555; line-height: 1.6; margin-bottom: 24px; }
@@ -2280,10 +2328,22 @@ ETO Doors - Custom Product Page Layout
   .eto-view-full-link { color: #b6855b; font-weight: 600; font-size: 13px; text-decoration: underline; display: inline-block; margin-top: 16px; }
 
   .eto-details-right {
+    float: right;
+    width: 320px;
+    margin-left: 40px;
+    margin-bottom: 20px;
     background: #FCF9F5;
     border: 1px solid #eae4d9;
     border-radius: 8px;
     padding: 32px;
+  }
+  @media (max-width: 768px) {
+    .eto-details-right {
+      float: none;
+      width: 100%;
+      margin-left: 0;
+      padding: 20px;
+    }
   }
   .eto-details-right h4 { font-size: 16px; font-weight: 700; color: #111; margin: 0 0 20px 0; }
   .eto-options-list { list-style: none; padding: 0; margin: 0; }
@@ -2485,6 +2545,7 @@ ETO Doors - Custom Product Page Layout
     font-weight: 700;
     font-size: 13px;
     display: inline-block;
+    text-align: center;
     transition: background 0.3s;
   }
   .eto-btn-brown:hover { background: #9c6c43; color: #fff; }
@@ -2565,11 +2626,11 @@ ETO Doors - Custom Product Page Layout
       align-items: flex-start;
       gap: 16px;
     }
-    .progress-line { display: none; }
-    .eto-shipping-progress { flex-direction: column; gap: 24px; padding: 0; }
+    .progress-step:not(:last-child)::after, .progress-step:not(:last-child)::before { display: none; }
+    .eto-shipping-progress { display: flex; flex-direction: column; gap: 24px; padding: 0; }
     .progress-step { width: 100%; flex-direction: row; text-align: left; gap: 16px; }
     .step-icon-wrapper { margin-bottom: 0; }
-    .eto-shipping-footer, .eto-faq-cta {
+    .eto-shipping-footer, .eto-faq-cta, .eto-spec-footer {
       flex-direction: column;
       align-items: stretch;
       gap: 16px;
@@ -2599,7 +2660,7 @@ ETO Doors - Custom Product Page Layout
   </div>
 </div>
 
-<main class="wrap">
+<main class="wrap" style="margin-top: 30px;">
   <!-- Breadcrumb -->
   <nav class="crumb" id="eto-dynamic-breadcrumb" aria-label="Breadcrumb">
     <a href="/">Home</a>
@@ -2781,15 +2842,15 @@ ETO Doors - Custom Product Page Layout
           <div id="eto-zoom-lens" class="eto-zoom-lens"></div>
 
           {% if product.metafields.custom.product_image_url != blank %}
-            <img id="eto-featured-img" src="{{ product.metafields.custom.product_image_url }}" alt="{{ product.title }}" style="width: 100%; height: 100%; object-fit: contain; cursor: zoom-in;" onclick="etoOpenLightbox(this.src)">
+            <img id="eto-featured-img" src="{{ product.metafields.custom.product_image_url }}" alt="{{ product.title }}" style="width: 100%; height: 100%; object-fit: contain; cursor: zoom-in;">
           {% elsif product.featured_image %}
-            <img id="eto-featured-img" src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title }}" style="width: 100%; height: 100%; object-fit: contain; cursor: zoom-in;" onclick="etoOpenLightbox(this.src)">
+            <img id="eto-featured-img" src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title }}" style="width: 100%; height: 100%; object-fit: contain; cursor: zoom-in;">
           {% else %}
             {{ 'product-1' | placeholder_svg_tag }}
           {% endif %}
       </div>
       
-      <div class="thumbs" id="eto-lightbox-thumbs">
+      <div class="thumbs" id="eto-gallery-thumbs">
         {% if product.metafields.custom.product_image_url != blank %}
           <div class="thumb active" onclick="etoChangeImage('{{ product.metafields.custom.product_image_url }}', this)">
             <img src="{{ product.metafields.custom.product_image_url }}" alt="{{ product.title }}" style="width: 100%; height: 100%; object-fit: contain;">
@@ -2798,7 +2859,7 @@ ETO Doors - Custom Product Page Layout
         
         {% for image in product.images limit: 5 %}
           <div class="thumb {% if forloop.first and product.metafields.custom.product_image_url == blank %}active{% endif %}" onclick="etoChangeImage('{{ image | image_url: width: 600 }}', this)">
-            <img src="{{ image | image_url: width: 100 }}" alt="{{ product.title }}" style="width: 100%; height: 100%; object-fit: contain; mix-blend-mode: darken; padding: 4px;">
+            <img src="{{ image | image_url: width: 600 }}" alt="{{ product.title }}" style="width: 100%; height: 100%; object-fit: contain; mix-blend-mode: darken; padding: 4px;">
           </div>
         {% endfor %}
       </div>
@@ -2928,15 +2989,6 @@ ETO Doors - Custom Product Page Layout
         ]
       </script>
 
-      <div class="helper">
-        <div class="badge"><svg class="icon" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="8" rx="1"/><line x1="7" y1="8" x2="7" y2="12"/><line x1="11" y1="8" x2="11" y2="13"/><line x1="15" y1="8" x2="15" y2="12"/><line x1="19" y1="8" x2="19" y2="13"/></svg></div>
-        <div class="copy">
-          <strong>Not sure which size you need?</strong>
-          <span>Send us your rough opening measurements and we'll help confirm the right fit.</span>
-        </div>
-        <a href="javascript:void(0);" class="check-btn" style="text-decoration:none;cursor:pointer;" onclick="openSizeCalculatorModal(); return false;">Check My Size</a>
-      </div>
-
       <div class="features">
         <div class="feature">
           <div class="ficon"><img src="{{ 'icon-white-oak.png' | asset_url }}" alt="Engineered White Oak Veneer" loading="lazy"></div>
@@ -2976,7 +3028,15 @@ ETO Doors - Custom Product Page Layout
                 </div>
                 <a href="/pages/contact?product_name={{ product.title | url_encode }}&product_url={{ shop.url | append: product.url | url_encode }}">Request a Free Corner Sample</a>
               </div>
-
+            <div class="eto-details-right">
+              <h4>Options &amp; Services</h4>
+              <ul class="eto-options-list">
+                <li><img src="{{ 'options-icon-1.jpeg' | asset_url }}" alt="Fire Rating" style="width: 24px; height: 24px; object-fit: contain; mix-blend-mode: multiply; filter: contrast(1.5) brightness(1.2) grayscale(1);"> 20-Minute Fire Rating</li>
+                <li><img src="{{ 'options-icon-2.jpeg' | asset_url }}" alt="Pre-Hanging" style="width: 24px; height: 24px; object-fit: contain; mix-blend-mode: multiply; filter: contrast(1.5) brightness(1.2) grayscale(1);"> Pre-Hanging Available</li>
+                <li><img src="{{ 'options-icon-3.jpeg' | asset_url }}" alt="Corner Sample" style="width: 24px; height: 24px; object-fit: contain; mix-blend-mode: multiply; filter: contrast(1.5) brightness(1.2) grayscale(1);"> Free Corner Sample</li>
+                <li><img src="{{ 'options-icon-4.jpeg' | asset_url }}" alt="Volume Pricing" style="width: 24px; height: 24px; object-fit: contain; mix-blend-mode: multiply; filter: contrast(1.5) brightness(1.2) grayscale(1);"> Pro Volume Pricing</li>
+              </ul>
+            </div>
               <h3 class="eto-tab-product-title">{{ product.title }}</h3>
               {% if product.metafields.custom.tab_overview != blank %}
                 <div class="eto-tab-product-desc">{{ product.metafields.custom.tab_overview.value }}</div>
@@ -3041,15 +3101,6 @@ ETO Doors - Custom Product Page Layout
                 <li><span class="material-symbols-outlined">check</span> Competitive nationwide pricing</li>
               </ul>
               <a href="javascript:void(0)" onclick="etoShowTab('specification', document.querySelector('[data-tab=\'fit\']'))" class="eto-view-full-link">View full product details</a>
-            </div>
-            <div class="eto-details-right">
-              <h4>Options &amp; Services</h4>
-              <ul class="eto-options-list">
-                <li><img src="{{ 'options-icon-1.jpeg' | asset_url }}" alt="Fire Rating" style="width: 24px; height: 24px; object-fit: contain; mix-blend-mode: multiply; filter: contrast(1.5) brightness(1.2) grayscale(1);"> 20-Minute Fire Rating</li>
-                <li><img src="{{ 'options-icon-2.jpeg' | asset_url }}" alt="Pre-Hanging" style="width: 24px; height: 24px; object-fit: contain; mix-blend-mode: multiply; filter: contrast(1.5) brightness(1.2) grayscale(1);"> Pre-Hanging Available</li>
-                <li><img src="{{ 'options-icon-3.jpeg' | asset_url }}" alt="Corner Sample" style="width: 24px; height: 24px; object-fit: contain; mix-blend-mode: multiply; filter: contrast(1.5) brightness(1.2) grayscale(1);"> Free Corner Sample</li>
-                <li><img src="{{ 'options-icon-4.jpeg' | asset_url }}" alt="Volume Pricing" style="width: 24px; height: 24px; object-fit: contain; mix-blend-mode: multiply; filter: contrast(1.5) brightness(1.2) grayscale(1);"> Pro Volume Pricing</li>
-              </ul>
             </div>
           </div>
         </div>
@@ -3311,9 +3362,12 @@ ETO Doors - Custom Product Page Layout
         <p class="qty-label">Quantity</p>
         <div class="stepper">
           <button type="button" class="step" aria-label="Decrease quantity" onclick="etoUpdateQty(-1)">&minus;</button>
-          <input type="text" class="qty-val" id="eto-quantity" value="1" min="1" readonly>
+          <input type="text" class="qty-val" id="eto-quantity" value="1" min="1"
+            data-max="{% if product.selected_or_first_available_variant.inventory_management == 'shopify' and product.selected_or_first_available_variant.inventory_policy == 'deny' %}{{ product.selected_or_first_available_variant.inventory_quantity | at_least: 1 }}{% else %}9999{% endif %}"
+            readonly>
           <button type="button" class="step" aria-label="Increase quantity" onclick="etoUpdateQty(1)">+</button>
         </div>
+        <p id="eto-qty-max-msg" style="font-size:11px;color:#c0392b;margin:4px 0 0;display:none;"></p>
 
         {% if product.tags contains 'zoho_configurable' %}
           {% render 'zoho-config-button', product: product %}
@@ -3337,6 +3391,20 @@ ETO Doors - Custom Product Page Layout
       <div class="assurance">
         <svg class="icon" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><polyline points="9 12 11 14 15 10"/></svg>
         <p>Built for lasting performance and backed by expert support.</p>
+      </div>
+
+      <div class="size-help-box" style="margin-top: 20px; border: 3px solid #e8e0d8; border-radius: 12px; padding: 28px 20px; text-align: center; background: #fbf9f6; box-shadow: 0 2px 12px rgba(0,0,0,0.05);">
+        <div style="margin-bottom: 14px; display: flex; justify-content: center;">
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 48px; height: 48px; transform: rotate(-45deg); color: #222;">
+            <rect x="2" y="16" width="44" height="16" rx="3" stroke="currentColor" stroke-width="2.2" fill="none"/>
+            <line x1="10" y1="16" x2="10" y2="22" stroke="currentColor" stroke-width="2"/>
+            <line x1="18" y1="16" x2="18" y2="20" stroke="currentColor" stroke-width="2"/>
+            <line x1="26" y1="16" x2="26" y2="22" stroke="currentColor" stroke-width="2"/>
+            <line x1="34" y1="16" x2="34" y2="20" stroke="currentColor" stroke-width="2"/>
+          </svg>
+        </div>
+        <strong style="display: block; margin-bottom: 16px; font-size: 17px; font-weight: 800; color: #1a1a1a; line-height: 1.3;">Need Help Choosing a Size?</strong>
+        <button type="button" onclick="openSizeCalculatorModal();" style="width: 100%; padding: 14px; border: 3px solid #df5e36; background: #ffffff; color: #df5e36; font-weight: 700; font-size: 15px; border-radius: 8px; cursor: pointer; transition: all 0.2s; letter-spacing: 0.01em;">Calculate My Size</button>
       </div>
     </aside>
 </div> <!-- closing eto-new-product-grid -->
@@ -3754,7 +3822,7 @@ ETO Doors - Custom Product Page Layout
      ============================================== -->
   <div class="eto-bottom-cta-section" style="width: 100vw !important; max-width: none !important; position: relative !important; left: 50% !important; right: 50% !important; margin-left: -50vw !important; margin-right: -50vw !important; box-sizing: border-box !important; padding: 25px 0; border-top: 1px solid #a89f95; border-bottom: 1px solid #a89f95; background: transparent;">
     <div style="max-width: var(--eto-container-max); margin: 0 auto; padding: 0 var(--eto-margin-edge); text-align: center;">
-      <p style="margin: 0; font-size: 21px; line-height: 31px; font-weight: 400; text-transform: uppercase; color: #000; font-family: 'Montserrat', sans-serif;">CAN'T FIND WHAT YOU'RE LOOKING FOR? WE HAVE IT!!!</p>
+      <p style="margin: 0; font-size: 21px; line-height: 31px; font-weight: 400; text-transform: uppercase; color: #000; font-family: 'Montserrat', sans-serif;">CAN'T FIND WHAT YOU'RE LOOKING FOR? WE HAVE IT</p>
       <p style="margin: 0; font-size: 21px; line-height: 31px; font-weight: 700; text-transform: uppercase; color: #000; font-family: 'Montserrat', sans-serif;">CALL OUR DOOR PROFESSIONALS (213) 622-2003</p>
     </div>
   </div>
@@ -3781,7 +3849,7 @@ function etoUpdateTotalPrice() {
 // Change main image on thumbnail click
 function etoChangeImage(src, thumb) {
   document.getElementById('eto-featured-img').src = src;
-  document.querySelectorAll('.eto-gallery-thumb').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('#eto-gallery-thumbs .thumb').forEach(t => t.classList.remove('active'));
   thumb.classList.add('active');
 }
 
@@ -3883,7 +3951,7 @@ function etoBuildDynamicOptions() {
     
     if (iconFilename) {
       const baseAssetUrl = "{{ 'PLACEHOLDER' | asset_url }}";
-      iconPlaceholder.innerHTML = `<img src="${baseAssetUrl.replace('PLACEHOLDER', iconFilename)}" style="width:38px;height:38px;object-fit:contain;filter:drop-shadow(0.5px 0px 0px #333) drop-shadow(0px 0.5px 0px #333);" />`;
+      iconPlaceholder.innerHTML = `<img src="${baseAssetUrl.replace('PLACEHOLDER', iconFilename)}" alt="Option Icon" style="width:38px;height:38px;object-fit:contain;filter:drop-shadow(0.5px 0px 0px #333) drop-shadow(0px 0.5px 0px #333);" />`;
     } else {
       iconPlaceholder.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" style="width:38px;height:38px;opacity:0.7;"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="12" r="1.5"></circle><line x1="13" y1="12" x2="16.5" y2="12"></line></svg>`;
     }
@@ -4059,6 +4127,10 @@ function etoPopulateDynamicOptionValues(container, values, groupIndex, groupTitl
     // Strip existing price tags from the string like ` (+$199)` so it doesn't double print
     let displayTitle = val.title.replace(/\s*\(\+\$?\d+(?:\.\d+)?\)\s*/g, '').trim();
     
+    // Resize all option thumbnails — Shopify CDN serves resized versions via &width=
+    // Without this, the Jamb Oak image alone is 12 MB (2000×2000px) loaded at 72px display size
+    if (imageUrl) imageUrl = imageUrl + '&width=400';
+
     let innerHTML = '';
     if (hasImage) {
         container.classList.add('eto-has-images');
@@ -4515,136 +4587,88 @@ function etoAddToCart() {
     }
   });
 
-  // Add main door to cart
+  let itemsToAdd = [];
+
+  const SWING_VARIANTS = {
+    // WP1L Single Doors
+    'Left Hand Inswing (LH)': 51862357180556,
+    'Right Hand Inswing (RH)': 51862363963532,
+    'Left Hand Outswing (RHR)': 51862372745356,
+    'Right Hand Outswing (LHR)': 51862399451276,
+    
+    // WP1L Double Doors
+    'Active Left Inswing': 51862743613580,
+    'Active Right Inswing': 51862793683084,
+    'Active Left Outswing': 51862806331532,
+    'Active Right Outswing': 51862912401548,
+    
+    // Bailey Single Doors (Mapped to same variants)
+    'Left Inswing': 51862357180556,
+    'Right Inswing': 51862363963532,
+    'Left Outswing': 51862372745356,
+    'Right Outswing': 51862399451276,
+    
+    // EX-WP1L Double Doors (Mapped to same variants)
+    'Left Hand Active (LH-A)': 51862743613580,
+    'Right Hand Active (RH-A)': 51862793683084,
+    'Left Hand Outswing Active (RHR-A)': 51862806331532,
+    'Right Hand Outswing Active (LHR-A)': 51862912401548,
+    
+    // Special/Closet Doors
+    'Closet Door Ball Catch Prep No Bore': 51863523393676
+  };
+
+  // 1. SWING
+  let handingVal = addonProperties['_Handing'] || addonProperties['Handing'];
+  if (handingVal && SWING_VARIANTS[handingVal]) {
+    let swingVariantId = SWING_VARIANTS[handingVal];
+    let swingProperties = {
+      '_config_id': uniqueConfigId,
+      '_is_addon': 'true',
+      '_is_swing': 'true'
+    };
+    itemsToAdd.push({
+      id: swingVariantId,
+      quantity: quantity,
+      properties: swingProperties
+    });
+  }
+
+  // 2. PRE-HANGING
+  if (addonDollars > 0) {
+    let prehangName = properties['_zoho_prehang_name'] || 'PH1-E';
+    let selectedVariantId = PREHANG_VARIANTS[prehangName] || PREHANG_VARIANTS['PH1-E'];
+    
+    addonProperties['_config_id'] = uniqueConfigId;
+    addonProperties['_is_addon'] = 'true';
+    addonProperties['Custom Options Total (per item)'] = '$' + addonDollars + '.00';
+    addonProperties['_zoho_prehang_name'] = prehangName;
+    
+    if (addonProperties['Handing'] && SWING_VARIANTS[addonProperties['Handing']]) {
+      addonProperties['_Handing'] = addonProperties['Handing'];
+      delete addonProperties['Handing'];
+    }
+    
+    itemsToAdd.push({
+      id: selectedVariantId,
+      quantity: addonDollars * quantity,
+      properties: addonProperties
+    });
+  }
+
+  // 3. MAIN DOOR
+  itemsToAdd.push({
+    id: variantId,
+    quantity: quantity,
+    properties: properties
+  });
+
   fetch('/cart/add.js', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ id: variantId, quantity: quantity, properties: properties })
+    body: JSON.stringify({ items: itemsToAdd })
   })
   .then(r => r.json())
-  .then(function() {
-    if (addonDollars > 0) {
-      // Select the correct variant ID based on the prehang name (fallback to first one if missing)
-      let prehangName = properties['_zoho_prehang_name'] || 'PH1-E';
-      let selectedVariantId = PREHANG_VARIANTS[prehangName] || PREHANG_VARIANTS['PH1-E'];
-      
-      addonProperties['_config_id'] = uniqueConfigId;
-      addonProperties['_is_addon'] = 'true';
-      addonProperties['Custom Options Total (per item)'] = '$' + addonDollars + '.00';
-      addonProperties['_zoho_prehang_name'] = prehangName;
-      
-      const SWING_VARIANTS = {
-        // WP1L Single Doors
-        'Left Hand Inswing (LH)': 51862357180556,
-        'Right Hand Inswing (RH)': 51862363963532,
-        'Left Hand Outswing (RHR)': 51862372745356,
-        'Right Hand Outswing (LHR)': 51862399451276,
-        
-        // WP1L Double Doors
-        'Active Left Inswing': 51862743613580,
-        'Active Right Inswing': 51862793683084,
-        'Active Left Outswing': 51862806331532,
-        'Active Right Outswing': 51862912401548,
-        
-        // Bailey Single Doors (Mapped to same variants)
-        'Left Inswing': 51862357180556,
-        'Right Inswing': 51862363963532,
-        'Left Outswing': 51862372745356,
-        'Right Outswing': 51862399451276,
-        
-        // EX-WP1L Double Doors (Mapped to same variants)
-        'Left Hand Active (LH-A)': 51862743613580,
-        'Right Hand Active (RH-A)': 51862793683084,
-        'Left Hand Outswing Active (RHR-A)': 51862806331532,
-        'Right Hand Outswing Active (LHR-A)': 51862912401548,
-        
-        // Special/Closet Doors
-        'Closet Door Ball Catch Prep No Bore': 51863523393676
-      };
-      
-      // Hide Handing from the Pre-hung description ONLY if it's now its own line item
-      if (addonProperties['Handing'] && SWING_VARIANTS[addonProperties['Handing']]) {
-        addonProperties['_Handing'] = addonProperties['Handing'];
-        delete addonProperties['Handing'];
-      }
-
-      // Add the Custom Door Add-on product at quantity = (add-on price per door * quantity of doors)
-      return fetch('/cart/add.js', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          id: selectedVariantId,
-          quantity: addonDollars * quantity,
-          properties: addonProperties
-        })
-      }).then(r => {
-        if(!r.ok) {
-           return r.json().then(err => {
-             alert('Add-on product failed to add! Error: ' + err.description + '\n(Check if Dummy product variant ID is correct and has stock)');
-             throw new Error(err.description);
-           });
-        }
-        return r.json();
-      });
-    }
-  })
-  .then(function() {
-    const SWING_VARIANTS = {
-      // WP1L Single Doors
-      'Left Hand Inswing (LH)': 51862357180556,
-      'Right Hand Inswing (RH)': 51862363963532,
-      'Left Hand Outswing (RHR)': 51862372745356,
-      'Right Hand Outswing (LHR)': 51862399451276,
-      
-      // WP1L Double Doors
-      'Active Left Inswing': 51862743613580,
-      'Active Right Inswing': 51862793683084,
-      'Active Left Outswing': 51862806331532,
-      'Active Right Outswing': 51862912401548,
-      
-      // Bailey Single Doors (Mapped to same variants)
-      'Left Inswing': 51862357180556,
-      'Right Inswing': 51862363963532,
-      'Left Outswing': 51862372745356,
-      'Right Outswing': 51862399451276,
-      
-      // EX-WP1L Double Doors (Mapped to same variants)
-      'Left Hand Active (LH-A)': 51862743613580,
-      'Right Hand Active (RH-A)': 51862793683084,
-      'Left Hand Outswing Active (RHR-A)': 51862806331532,
-      'Right Hand Outswing Active (LHR-A)': 51862912401548,
-      
-      // Special/Closet Doors
-      'Closet Door Ball Catch Prep No Bore': 51863523393676
-    };
-    
-    let handingVal = addonProperties['_Handing'] || addonProperties['Handing'];
-    if (handingVal && SWING_VARIANTS[handingVal]) {
-      let swingVariantId = SWING_VARIANTS[handingVal];
-      let swingProperties = {
-        '_config_id': uniqueConfigId,
-        '_is_addon': 'true',
-        '_is_swing': 'true'
-      };
-      
-      return fetch('/cart/add.js', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          id: swingVariantId,
-          quantity: quantity,
-          properties: swingProperties
-        })
-      }).then(r => {
-        if(!r.ok) {
-           return r.json().then(err => {
-             console.error('Swing product failed to add', err);
-           });
-        }
-        return r.json();
-      });
-    }
-  })
   .then(function() {
     window.location.href = '/cart';
   })
@@ -4816,22 +4840,42 @@ function etoSidebarAddToCart(event) {
   return false;
 }
 
-// Update quantity
+// Update quantity — respects Shopify inventory ceiling (Option B: strict stock)
 function etoUpdateQty(delta) {
   const input = document.getElementById('eto-quantity');
+  const maxQty = parseInt(input.dataset.max) || 50;
   let val = parseInt(input.value) + delta;
   if (val < 1) val = 1;
+  if (val > maxQty) {
+    val = maxQty;
+    const msg = document.getElementById('eto-qty-max-msg');
+    if (msg) {
+      msg.textContent = 'Maximum available quantity is ' + maxQty + '.';
+      msg.style.display = 'block';
+      setTimeout(function() { msg.style.display = 'none'; }, 3000);
+    }
+  }
   input.value = val;
   document.getElementById('eto-form-qty').value = val;
   etoUpdateTotalPrice();
 }
 
-// Keep form qty in sync
+// Keep form qty in sync — also enforce max on manual input
 const etoQtyInput = document.getElementById('eto-quantity');
 if (etoQtyInput) {
   etoQtyInput.addEventListener('change', function() {
+    const maxQty = parseInt(this.dataset.max) || 50;
     let val = parseInt(this.value);
     if (isNaN(val) || val < 1) val = 1;
+    if (val > maxQty) {
+      val = maxQty;
+      const msg = document.getElementById('eto-qty-max-msg');
+      if (msg) {
+        msg.textContent = 'Maximum available quantity is ' + maxQty + '.';
+        msg.style.display = 'block';
+        setTimeout(function() { msg.style.display = 'none'; }, 3000);
+      }
+    }
     this.value = val;
     const qtyField = document.getElementById('eto-form-qty');
     if (qtyField) qtyField.value = val;
@@ -5008,7 +5052,7 @@ document.addEventListener('DOMContentLoaded', function() {
      if(typeof originalChangeImage === 'function') originalChangeImage(newSrc, thumb);
      // Or just do our update logic here if original is simple
      document.getElementById('eto-featured-img').src = newSrc;
-     document.querySelectorAll('.eto-gallery-thumb').forEach(t => t.classList.remove('active'));
+     document.querySelectorAll('#eto-gallery-thumbs .thumb').forEach(t => t.classList.remove('active'));
      thumb.classList.add('active');
      
      // Update background immediately
@@ -5055,16 +5099,7 @@ document.addEventListener('DOMContentLoaded', function() {
       etoOpenLightbox(this.src);
     });
   }
-  // Also open lightbox when clicking on gallery thumbnails
-  document.querySelectorAll('.eto-gallery-thumb').forEach(function(t) {
-    t.addEventListener('click', function() {
-      var img = this.querySelector('img');
-      if (img) {
-        var src = document.getElementById('eto-featured-img').src;
-        etoOpenLightbox(src);
-      }
-    });
-  });
+
 });
 </script>
 

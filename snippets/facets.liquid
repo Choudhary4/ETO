@@ -264,7 +264,7 @@
                         >
                           {%- for value in sorted_values -%}
                             {% liquid
-                              assign input_id = 'Filter-' | append: filter.param_name | escape | append: '-' | append: filter.param_name
+                              assign input_id = 'Filter-' | append: filter.param_name | escape | append: '-' | append: forloop.index
                               assign is_disabled = false
                               if value.count == 0 and value.active == false
                                 assign is_disabled = true
@@ -499,7 +499,7 @@
                         >
                           {%- for value in sorted_values -%}
                             {% liquid
-                              assign input_id = 'Filter-' | append: filter.param_name | escape | append: '-' | append: filter.param_name
+                              assign input_id = 'Filter-' | append: filter.param_name | escape | append: '-' | append: forloop.index
                               assign is_disabled = false
                               if value.count == 0 and value.active == false
                                 assign is_disabled = true

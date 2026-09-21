@@ -35,18 +35,95 @@
             "text": "Always inspect your door upon arrival before signing the delivery receipt."
           }
         },
-        "process": {
+        "section_1": {
           "type": "content_section",
           "settings": {
-            "heading": "Our Shipping Process",
-            "content": "<p>When you order an ETO Door, we treat it like the piece of fine furniture it is. Each door is crated or palletized with protective cushioning. Once your shipment leaves our facility, you'll receive a tracking number via email.</p><p>For residential deliveries, the freight carrier will contact you via phone to schedule a delivery appointment. Please ensure someone is present to inspect and receive the shipment.</p>"
+            "heading": "1. Overview",
+            "content": "<p>ETO Doors Corp. (\"ETO Doors,\" \"we,\" \"us\") ships from our warehouse in Los Angeles, California to residential and commercial addresses throughout the contiguous United States. Depending on the size and weight of your order, we ship by freight truck (common carrier) or by small-parcel carrier (UPS or FedEx). Local pickup is also available.</p><p>This policy explains what you will pay, how delivery works, what you are responsible for on the day of delivery, and how to handle damage or shortages. Placing an order with ETO Doors means you accept the terms below.</p><p>This policy applies to shipping and delivery only. Returns, refunds, cancellations, and warranty coverage are governed by our separate Return Policy and Warranty terms.</p>"
           }
         },
-        "inspection_details": {
+        "section_2": {
           "type": "content_section",
           "settings": {
-            "heading": "Critical Inspection Guidelines",
-            "content": "<p><strong>DO NOT SIGN</strong> for your shipment until you have inspected the exterior for damage. If you see any signs of impact, puncture, or crushing, please note it clearly on the driver's Bill of Lading (BOL).</p><p>If the door is visibly damaged beyond repair, you may refuse the shipment. Taking photos of the crate before unloading is highly recommended for insurance purposes.</p>"
+            "heading": "2. Shipping Charges",
+            "content": "<p><b>Shipping, crating, and handling charges are quoted per order. Your estimate will show the exact shipping and crating amount for your order before you pay.</b></p><p>To request a shipping quote at any time, send us your delivery ZIP code and the list of products you are considering, and your salesperson will provide a written quote.</p><ul><li>Oversized doors — wider than 42 inches or taller than 94 inches</li><li>Overweight doors, including iron and steel doors</li><li>Large-quantity orders</li><li>Locations a 53-foot trailer cannot easily and directly access</li><li>Deliveries requiring a liftgate, inside delivery, or delivery appointment window</li></ul><p>All doors ship on a secure pallet system designed to protect the product in transit.</p>"
+          }
+        },
+        "section_3": {
+          "type": "content_section",
+          "settings": {
+            "heading": "3. Truck (Freight) Delivery",
+            "content": "<p>Freight shipments move through contracted common carriers. Once your order ships, we will send you the carrier name, contact information, and a tracking number.</p><p>The carrier will call you at the phone number on your order to arrange a delivery appointment. Standard delivery hours are 8:00 a.m. to 5:00 p.m. local time, Monday through Friday.</p><p><b>All freight deliveries are curbside only.</b> The driver will not carry the shipment up steps, through doorways, into a garage, or into any room. <b>Doors are heavy and are shipped on pallets. We strongly recommend having 2 to 3 people available at delivery.</b></p>"
+          }
+        },
+        "section_4": {
+          "type": "content_section",
+          "settings": {
+            "heading": "4. Small-Parcel Delivery",
+            "content": "<p>Hardware, samples, and other small items ship via UPS or FedEx.</p><p>Small-parcel shipments are sent signature-required unless we tell you otherwise, so someone must be available to receive and sign for the package.</p><p>We do not ship to P.O. boxes. We are not able to ship to APO, FPO, or DPO addresses.</p>"
+          }
+        },
+        "section_5": {
+          "type": "content_section",
+          "settings": {
+            "heading": "5. Will Call (Local Pickup)",
+            "content": "<p>You may pick up your order at our Los Angeles facility:</p><p><b>ETO Doors Corp.</b><br>1340 E. 6th Street<br>Los Angeles, CA 90021</p><p>Pickups are by appointment during our regular business hours. Orders are released only to the purchaser or an authorized representative named on the order, and photo identification is required.</p><p>Completed orders are held free of charge for five (5) business days. After that, storage is charged at $100 per week.</p>"
+          }
+        },
+        "section_6": {
+          "type": "content_section",
+          "settings": {
+            "heading": "6. Where We Ship",
+            "content": "<p>We ship to nearly any residential or commercial address in the contiguous 48 states.</p><p><b>We do not ship to Alaska, Hawaii, Puerto Rico, or other U.S. territories.</b></p><p>International orders: we do ship internationally on a quoted basis. Contact us for details and rates. Brokerage fees, customs duties, and local taxes may apply and are the sole responsibility of the purchaser.</p>"
+          }
+        },
+        "section_7": {
+          "type": "content_section",
+          "settings": {
+            "heading": "7. Order Processing and Lead Times",
+            "content": "<p>Orders are processed and shipped Monday through Friday, excluding holidays.</p><p>Your order is first reviewed by our Accounting Department to confirm the order is accurate, the payment method is valid, and you are authorized to use it. Credit card processing can take up to 3 business days.</p><p><b>Total time to delivery = payment authorization + order processing + carrier transit time.</b></p><p>To check the status of your order, call Customer Service at (213) 622-2003 or email contact@etodoors.com.</p>"
+          }
+        },
+        "section_8": {
+          "type": "content_section",
+          "settings": {
+            "heading": "8. Changes to Delivery Address or Date",
+            "content": "<p>Any change to your delivery address or delivery date must be submitted to us in writing and must be received before your order ships. Once an order has been tendered to the carrier, we cannot guarantee that a change can be made.</p><p>If the address supplied is incorrect, you are responsible for any carrier reconsignment, redelivery, or return charges that result.</p>"
+          }
+        },
+        "section_9": {
+          "type": "content_section",
+          "settings": {
+            "heading": "9. Payments to Carriers",
+            "content": "<p><b>ETO Doors pays the shipping and delivery vendors directly. You do not owe the driver or the carrier anything at the time of delivery.</b></p><p>If you choose to pay a driver or carrier directly for any additional service, you do so at your own discretion and expense.</p>"
+          }
+        },
+        "section_10": {
+          "type": "content_section",
+          "settings": {
+            "heading": "10. Inspection, Damage, and Claims",
+            "content": "<p><b>What you do at delivery determines whether a damage claim can be paid. Please read this section before your delivery appointment.</b></p><p>You must inspect the shipment for shortages and damage while the driver is still on site. Count the pieces against the delivery receipt and check every door before you release the driver.</p><p><b>If you find damage or a shortage:</b></p><ul><li>Note it on the carrier's delivery receipt before signing</li><li>If the damage is severe, refuse the damaged piece or the entire shipment</li><li>Photograph the packaging, the pallet, and the damage before moving anything</li><li>Contact us at (213) 622-2003 or shipping@etodoors.com the same day</li></ul><p>Report concealed damage to us in writing within five (5) business days of delivery. <b>Installing or using a door is acceptance of that door. No damage claim can be made after installation.</b></p>"
+          }
+        },
+        "section_11": {
+          "type": "content_section",
+          "settings": {
+            "heading": "11. Inaccessible Delivery Addresses",
+            "content": "<p><b>If the delivery address you provide is inaccessible or invalid, you remain responsible for the full purchase order amount plus any additional delivery, storage, return, and redelivery charges the carrier assesses.</b></p><p><b>We strongly advise against picking up your order from a freight terminal. ETO Doors is not liable for damage to product picked up outside of the scheduled delivery.</b></p>"
+          }
+        },
+        "section_12": {
+          "type": "content_section",
+          "settings": {
+            "heading": "12. Limitation of Liability",
+            "content": "<p><b>All items are sold under a shipment contract. Risk of loss and title pass to you when the goods are tendered to the carrier.</b></p><p><b>ETO Doors' liability for a shipment is limited to the damages recorded on the carrier's delivery receipt at the time of delivery. To the fullest extent permitted by law, ETO Doors is not liable for personal injury, property damage, installation or labor costs, or any indirect, incidental, or consequential damages. Our total liability will not exceed the purchase price of the affected product.</b></p>"
+          }
+        },
+        "section_13": {
+          "type": "content_section",
+          "settings": {
+            "heading": "13. Questions",
+            "content": "<p>Shipping policy questions: shipping@etodoors.com</p><p>Order status and customer service: contact@etodoors.com or (213) 622-2003</p><p>Or write to us at:</p><p><b>ETO Doors Corp.</b><br>Attn: Shipping Department<br>1340 E. 6th Street #105<br>Los Angeles, CA 90021</p><p><b>ETO DOORS SHIPPING DEPARTMENT</b></p>"
           }
         }
       },
@@ -55,12 +132,23 @@
         "freight",
         "pickup",
         "inspection",
-        "process",
-        "inspection_details"
+        "section_1",
+        "section_2",
+        "section_3",
+        "section_4",
+        "section_5",
+        "section_6",
+        "section_7",
+        "section_8",
+        "section_9",
+        "section_10",
+        "section_11",
+        "section_12",
+        "section_13"
       ],
       "settings": {
         "title": "Shipping & Delivery",
-        "subtitle": "Receiving your artisan doors with care and precision."
+        "subtitle": "Everything you need to know about receiving your artisan doors."
       }
     }
   },

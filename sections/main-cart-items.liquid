@@ -170,7 +170,7 @@ Rules:
     {%- if other_item.properties._config_id == item_cfg -%}
       {%- assign linked_keys_string = linked_keys_string | append: other_item.key | append: ',' -%}
       {%- if other_item.properties._is_addon != 'true' -%}
-        {%- assign linked_door_title = other_item.variant.sku | default: other_item.product.title -%}
+        {%- assign linked_door_title = other_item.product.title | default: other_item.variant.sku -%}
         {%- assign linked_door_qty = other_item.quantity -%}
       {%- endif -%}
     {%- endif -%}
@@ -210,7 +210,7 @@ Rules:
                       {%- endif -%}
 
                       <a href="{{ item.url }}" class="cart-item__name h4 break">
-                        {{ item.variant.sku | default: item.product.title | escape }}
+                        {{ item.product.title | escape }}
                         {%- if is_prehang and linked_door_title != blank -%}
                           for {{ linked_door_title }}
                         {%- endif -%}
@@ -220,6 +220,9 @@ Rules:
                           - {{ item.properties['Door Configuration'] }}
                         {%- endif -%}
                       </a>
+                      {%- if item.variant.sku != blank -%}
+                        <p class="cart-item__sku" style="font-size:12px;color:#888;margin:2px 0 0;">SKU: {{ item.variant.sku | escape }}</p>
+                      {%- endif -%}
 
                       {%- comment -%} Price hidden from description - shown in TOTAL column {%- endcomment -%}
 

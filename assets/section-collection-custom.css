@@ -1,13 +1,12 @@
-
-
 /* --- Layout --- */
 .category-page-container {
   display: flex;
   flex-direction: column;
-  max-width: var(--eto-container-max);
-  margin: 0 auto;
-  padding: 0 var(--eto-margin-edge);
+  max-width: 1800px !important;
+  margin: 30px auto 0;
+  padding: 0 40px;
   overflow: visible !important;
+  position: relative;
 }
 
 @media screen and (min-width: 1000px) {
@@ -16,23 +15,26 @@
     gap: 30px;
   }
 
-  .category-sidebar {
+  .left-column-wrapper {
     width: 300px;
     flex-shrink: 0;
     position: -webkit-sticky;
     position: sticky;
-    top: 220px;
+    top: 140px !important;
     height: max-content;
-    max-height: calc(100vh - 180px);
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow: visible;
     z-index: 1;
     align-self: flex-start;
+  }
+
+  .category-sidebar {
+    width: 100%;
   }
 
   .category-sidebar::-webkit-scrollbar {
     width: 4px;
   }
+
   .category-sidebar::-webkit-scrollbar-thumb {
     background: #e2e2e2;
     border-radius: 4px;
@@ -46,9 +48,20 @@
   .main-content::-webkit-scrollbar {
     width: 5px;
   }
+
   .main-content::-webkit-scrollbar-thumb {
     background: #c5beb3;
     border-radius: 4px;
+  }
+
+  /* Override Dawn's inner facets-wrapper sticky — 
+     category-sidebar is the sticky parent, so inner should be static */
+  .category-sidebar .facets-vertical .facets-wrapper,
+  .category-sidebar .facets-wrapper {
+    position: static !important;
+    top: auto !important;
+    max-height: none !important;
+    overflow-y: visible !important;
   }
 }
 
@@ -287,18 +300,23 @@ details:not([open]) .facets__summary .icon-minus {
   background-color: #2b5b16 !important;
 }
 
+.product-card-wrapper .eto-product-card__fast-quote {
+  margin-top: 6px;
+}
+
 /* Constrain Product Card Image Height in Collection Grid */
 .main-content .card__media {
-  max-height: 140px !important;
+  max-height: 160px !important;
   overflow: hidden;
 }
+
 .card-wrapper .card__media img {
-  max-height: 140px;
   width: 100%;
   object-fit: contain;
   transform: scale(1.0);
   transition: transform 0.3s ease;
 }
+
 .card-wrapper:hover .card__media img {
   transform: scale(1.05);
 }
@@ -399,19 +417,20 @@ details:not([open]) .facets__summary .icon-minus {
 
 /* --- Toolbar --- */
 .listing-controls-bar {
-  background-color: #E6E2DF; /* Beige color requested */
-  padding: 12px 25px; /* Tighten padding */
-  height: 87px;
+  background-color: #E6E2DF;
+  /* Beige color requested */
+  padding: 4px 16px;
+  height: auto;
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
-  align-items: stretch;
+  align-items: center;
   font-family: 'Montserrat', sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 18px;
   border: none;
-  margin-bottom: 20px;
+  margin-bottom: 4px;
   color: #000;
 }
 
@@ -511,12 +530,14 @@ details:not([open]) .facets__summary .icon-minus {
   .listing-controls-bar {
     height: auto;
     flex-direction: row;
-    flex-wrap: wrap; /* allow wrapping so it doesn't get cut off */
+    flex-wrap: wrap;
+    /* allow wrapping so it doesn't get cut off */
     gap: 8px;
     padding: 8px 10px;
     font-size: 10px;
     align-items: center;
-    justify-content: center; /* center items when they wrap */
+    justify-content: center;
+    /* center items when they wrap */
   }
 
   .listing-controls-left {
@@ -825,6 +846,7 @@ details:not([open]) .facets__summary .icon-minus {
     display: none !important;
   }
 }
+
 /* --- Sidebar "SHOP BY" UI matching Figma --- */
 .facets__heading--vertical.shop-by-title {
   background-color: #E6E2DF;
@@ -840,8 +862,10 @@ details:not([open]) .facets__summary .icon-minus {
 
 .active-facets-desktop {
   margin-bottom: 0 !important;
-  padding-bottom: 5px !important; /* Reduced */
+  padding-bottom: 5px !important;
+  /* Reduced */
 }
+
 .active-facets-vertical-filter {
   margin-bottom: 0 !important;
   padding-bottom: 0 !important;
@@ -856,18 +880,21 @@ details:not([open]) .facets__summary .icon-minus {
 }
 
 .facets__disclosure-vertical summary.facets__summary {
-  padding: 10px 0px 18px 0px !important; /* Removed left/right padding */
-  margin: 0 !important; /* Force no margin */
+  padding: 10px 0px 18px 0px !important;
+  /* Removed left/right padding */
+  margin: 0 !important;
+  /* Force no margin */
   font-family: 'Montserrat', sans-serif !important;
   font-size: 18px !important;
   color: #000 !important;
-  list-style: none !important; /* Hide default triangle */
+  list-style: none !important;
+  /* Hide default triangle */
   background: transparent !important;
   border: none !important;
 }
 
 /* Override Dawn's default margin on the summary div */
-.facets__disclosure-vertical summary.facets__summary > div {
+.facets__disclosure-vertical summary.facets__summary>div {
   width: 100% !important;
   margin: 0 !important;
   padding: 0 !important;
@@ -881,7 +908,8 @@ details:not([open]) .facets__summary .icon-minus {
   font-weight: 400 !important;
   font-size: 18px !important;
   color: #000 !important;
-  text-transform: none !important; /* Force Title Case */
+  text-transform: none !important;
+  /* Force Title Case */
   letter-spacing: normal !important;
 }
 
@@ -894,10 +922,11 @@ details:not([open]) .facets__summary .icon-minus {
   justify-content: center !important;
 }
 
-details[open] > summary .icon-plus {
+details[open]>summary .icon-plus {
   display: none !important;
 }
-details:not([open]) > summary .icon-minus {
+
+details:not([open])>summary .icon-minus {
   display: none !important;
 }
 
@@ -905,6 +934,7 @@ details:not([open]) > summary .icon-minus {
 .facets__disclosure-vertical summary.facets__summary .icon-caret {
   display: none !important;
 }
+
 /* Show Remove all under Shop By */
 .active-facets__button-wrapper.custom-remove-all {
   display: block !important;
@@ -914,16 +944,20 @@ details:not([open]) > summary .icon-minus {
   color: #000 !important;
   font-family: 'Montserrat', sans-serif !important;
   font-size: 14px !important;
-  text-decoration: none !important; /* Force NO text decoration to avoid double lines */
-  border-bottom: 1px solid #000 !important; /* Use border for single clean line */
+  text-decoration: none !important;
+  /* Force NO text decoration to avoid double lines */
+  border-bottom: 1px solid #000 !important;
+  /* Use border for single clean line */
   background: transparent !important;
   box-shadow: none !important;
   display: inline-block !important;
   padding-bottom: 1px !important;
 }
+
 .custom-clean-link.no-underline {
   border-bottom: none !important;
 }
+
 .custom-clean-link::after,
 .custom-clean-link::before {
   display: none !important;
@@ -940,13 +974,14 @@ details:not([open]) > summary .icon-minus {
 .product-grid-container .grid--collection,
 #product-grid {
   display: grid !important;
-  gap: 24px !important;
+  row-gap: 8px !important;
+  column-gap: 16px !important;
   grid-template-columns: repeat(2, 1fr) !important;
   margin: 0 !important;
   padding: 0 !important;
 }
 
-.product-grid-container .grid__item {
+#product-grid .grid__item {
   width: 100% !important;
   max-width: 100% !important;
   margin: 0 !important;
@@ -954,29 +989,27 @@ details:not([open]) > summary .icon-minus {
 }
 
 @media screen and (min-width: 750px) {
-  .product-grid-container .grid--collection,
   #product-grid {
     grid-template-columns: repeat(3, 1fr) !important;
   }
 }
 
 @media screen and (min-width: 1000px) {
-  .product-grid-container .grid--collection,
   #product-grid {
     grid-template-columns: repeat(5, 1fr) !important;
   }
-  
+
   /* Sidebar Width */
   .category-sidebar {
     width: 300px !important;
     padding-right: 20px;
   }
-  
+
   .facets__item {
     padding: 0 !important;
     margin: 0 !important;
   }
-  
+
   .facet-checkbox {
     padding: 6px 0 !important;
   }
@@ -984,11 +1017,14 @@ details:not([open]) > summary .icon-minus {
 
 /* Compact Toolbar */
 .listing-controls-bar {
-  padding: 8px 12px !important;
-  margin-bottom: 20px !important;
-  min-height: 40px !important;
+  padding: 4px 12px !important;
+  margin-bottom: 4px !important;
+  min-height: 30px !important;
 }
-.listing-controls-bar select, .listing-controls-bar label, .listing-controls-bar span {
+
+.listing-controls-bar select,
+.listing-controls-bar label,
+.listing-controls-bar span {
   font-size: 13px !important;
 }
 
@@ -996,12 +1032,6 @@ details:not([open]) > summary .icon-minus {
 #product-grid.grid {
   margin: 0 !important;
   padding: 0 !important;
-  row-gap: 24px !important;
+  row-gap: 12px !important;
   column-gap: 24px !important;
-}
-#product-grid .grid__item {
-  margin: 0 !important;
-  padding: 0 !important;
-  width: 100% !important;
-  max-width: 100% !important;
 }

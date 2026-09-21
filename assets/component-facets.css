@@ -1163,9 +1163,9 @@ input.mobile-facets__checkbox {
   .facets-vertical .facets-wrapper {
     padding-right: 2rem;
     position: sticky;
-    top: 150px;
+    top: 20px;
     align-self: flex-start;
-    max-height: calc(100vh - 170px);
+    max-height: calc(100vh - 40px);
     overflow-y: auto;
     z-index: 3;
   }

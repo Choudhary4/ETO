@@ -4,7 +4,7 @@
   </div>
   <a href="/collections/all?filter.p.m.custom.product_category=Interior" class="eto-white-oak-section" aria-label="Interior Doors">
     <div class="eto-white-oak-mobile-img-wrap">
-      <img src="https://cdn.shopify.com/s/files/1/0672/8781/0188/files/white-oak-banner.png?v=1786884271" class="eto-white-oak-mobile-img" alt="White Oak Doors">
+      <img src="{{ 'Hero_Banner_Updated_v01.webp' | asset_url }}" class="eto-white-oak-mobile-img" alt="White Oak Doors">
     </div>
   </a>
 
@@ -28,7 +28,7 @@
         </svg>
       </div>
       <h3 class="eto-wo-vp-title">DIRECT PRICING</h3>
-      <p class="eto-wo-vp-text">Bye Manufacturer Direct.<br>No Middleman Markup.</p>
+      <p class="eto-wo-vp-text">Buy Manufacturer Direct.<br>No Middleman Markup.</p>
     </div>
     <div class="eto-wo-vp-item">
       <div class="eto-wo-vp-icon">
@@ -49,7 +49,7 @@
         </svg>
       </div>
       <h3 class="eto-wo-vp-title">IN-STOCK INVENTORY</h3>
-      <p class="eto-wo-vp-text">40,000+ Doors Ready.<br>Fast Fulfillment Nationwide.</p>
+      <p class="eto-wo-vp-text">40,000+ Configurations Available.<br>Fast Fulfillment Nationwide.</p>
     </div>
     <div class="eto-wo-vp-item">
       <div class="eto-wo-vp-icon">
@@ -113,7 +113,7 @@
         </svg>
       </div>
       <h3 class="eto-wo-vp-title">NATIONWIDE SHIPPING</h3>
-      <p class="eto-wo-vp-text">All 50 States + Interational.<br>Home Or Office Delivery.</p>
+      <p class="eto-wo-vp-text">All 50 States.<br>Call for International Quotes.</p>
     </div>
   </div>
 </div>
@@ -131,7 +131,8 @@
 .eto-white-oak-wrapper {
   width: 100%;
   background-color: #d1cbc6;
-  height: calc(100vh - 138px);
+  height: calc(100vh - 220px);
+  min-height: 400px;
   display: flex;
   flex-direction: column;
 }
@@ -151,7 +152,7 @@
   min-height: 200px;
   background-color: transparent;
   background-image: 
-    url('https://cdn.shopify.com/s/files/1/0672/8781/0188/files/white-oak-banner.png?v=1786884271'),
+    url('{{ "Hero_Banner_Updated_v01.webp" | asset_url }}'),
     linear-gradient(to bottom, transparent calc(100% - 6px), rgba(0,0,0,0.15) calc(100% - 6px), rgba(0,0,0,0.15) calc(100% - 4px), transparent calc(100% - 4px));
   background-size: contain, 100% 100%;
   background-position: center bottom, center top;
@@ -169,8 +170,8 @@
 
 .eto-white-oak-title {
   font-family: 'MADE Mirage', serif;
-  font-size: 36px;
-  line-height: 40px;
+  font-size: 30px;
+  line-height: 36px;
   font-weight: 400;
   color: var(--eto-dark-charcoal);
   letter-spacing: normal;
@@ -184,10 +185,10 @@
   background-color: #d1cbc6;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 20px;
+  gap: 15px;
   max-width: var(--eto-container-max);
   margin: 0 auto;
-  padding: 16px var(--eto-margin-edge) 20px;
+  padding: 10px var(--eto-margin-edge) 12px;
 }
 .eto-wo-vp-item {
   display: flex;
@@ -196,10 +197,10 @@
   text-align: center;
 }
 .eto-wo-vp-icon {
-  width: 28px;
-  height: 28px;
+  width: 22px;
+  height: 22px;
   color: #9B8C83;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 .eto-wo-vp-icon svg {
   width: 100%;
@@ -207,20 +208,20 @@
 }
 .eto-wo-vp-title {
   font-family: 'Montserrat', sans-serif;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
   color: #9B8C83;
-  margin: 0 0 4px 0;
+  margin: 0 0 2px 0;
   letter-spacing: normal;
-  line-height: 20px;
+  line-height: 16px;
 }
 .eto-wo-vp-text {
   font-family: 'Montserrat', sans-serif;
-  font-size: 15px;
+  font-size: 10px;
   font-weight: 400;
   color: #9B8C83;
   margin: 0;
-  line-height: 20px;
+  line-height: 14px;
 }
 
 @media (min-width: 1921px) {
@@ -242,7 +243,7 @@
     display: none;
   }
   .eto-white-oak-title {
-    font-size: 54px;
+    font-size: 42px;
     line-height: 1.2;
   }
   .eto-wo-vp-grid {
@@ -283,7 +284,7 @@
   .eto-wo-vp-grid { bottom: 6%; gap: 5px; }
 }
 
-@media (max-width: 990px) {
+@media (max-width: 670px) {
   .eto-white-oak-wrapper {
     min-height: calc(100vh - 100px);
     justify-content: flex-start;
@@ -298,7 +299,7 @@
     position: relative;
     /* Re-declare background-image to ensure the line is visible on mobile too */
     background-image: 
-      url('https://cdn.shopify.com/s/files/1/0672/8781/0188/files/white-oak-banner.png?v=1786884271'),
+      url('{{ "Hero_Banner_Updated_v01.webp" | asset_url }}'),
       linear-gradient(to bottom, transparent calc(100% - 6px), rgba(0,0,0,0.15) calc(100% - 6px), rgba(0,0,0,0.15) calc(100% - 4px), transparent calc(100% - 4px)) !important;
   }
   .eto-white-oak-mobile-img-wrap {

@@ -114,6 +114,12 @@
   display: inline-block;
   margin-top: 5px;
 }
+.eto-col-highlight {
+  font-size: 13px;
+  color: #DAA520; /* Goldenrod color */
+  font-weight: 600;
+  margin-top: 5px;
+}
 
 /* Text Content */
 .eto-text-section {
@@ -257,19 +263,19 @@
           <img src="{{ 'about-p-1.jpg' | file_url }}" alt="Proven Quality" class="eto-about-img">
           <h3 class="eto-about-title">PROVEN QUALITY</h3>
           <p class="eto-about-desc">More than one million doors sold to homeowners, builders, architects, and designers.</p>
-          <a href="#" onclick="showWhyBuy(event)" class="eto-read-more">Read more...</a>
+          <p class="eto-col-highlight">1M+ doors sold</p>
         </div>
         <div class="eto-about-col">
           <img src="{{ 'about-p-2.jpg' | file_url }}" alt="Responsible Materials" class="eto-about-img">
           <h3 class="eto-about-title">RESPONSIBLE MATERIALS</h3>
           <p class="eto-about-desc">Thoughtfully sourced materials and energy-efficient options for better-performing spaces.</p>
-          <a href="#" onclick="showEtoGreen(event)" class="eto-read-more">Read more...</a>
+          <p class="eto-col-highlight">Greener building options</p>
         </div>
         <div class="eto-about-col">
           <img src="{{ 'about-p-3.jpg' | file_url }}" alt="Experience Since 2005" class="eto-about-img">
           <h3 class="eto-about-title">EXPERIENCE SINCE 2005</h3>
           <p class="eto-about-desc">A trusted source for interior, exterior, and specialty doors for residential and commercial projects.</p>
-          <a href="#" onclick="showEtoBrand(event)" class="eto-read-more">Read more...</a>
+          <p class="eto-col-highlight">Serving customers since 2005</p>
         </div>
       </div>
 
@@ -447,66 +453,617 @@
     </div>
 
     <!-- Hidden ETO Brand Content -->
-    <div id="eto-brand-content" style="display: none;">
-       <h3 style="font-size: 20px; color: #333; font-weight: bold; margin-bottom: 15px;">Our 300,000 Sq/Ft State of the Art Door Manufacturing Facility</h3>
-       
-       <div style="overflow: hidden; margin-bottom: 20px;">
-          <img src="{{ 'imagine1123.jpg' | file_url }}" alt="ETO Manufacturing Facility" style="float: left; max-width: 350px; margin: 0 20px 15px 0;">
-          
-          <p class="eto-text-p">ETO Doors was founded in 2005 on the principles of maintaining a vast stock of high end custom doors at the lowest possible prices in the market. The founders of our door company recognized a market need for a dependable source for top quality doors that can be delivered to the customer within days, not months.</p>
-          
-          <p class="eto-text-p">Since our inception, we have consistently added thousands of additional doors in new models and sizes to our inventory every month to meet customer demands. Today ETO has the ability to fulfill virtually any door needs for any residential or commercial project, and customers can read ETO Doors reviews online to get the inside information on their favorite brands.</p>
-          
-          <p class="eto-text-p">ETO Doors Corp. was one of the first <strong>door manufacturers</strong> to offer a <strong>full</strong> line of doors online. We pride <strong>ourselves</strong> on a great selection of front door systems, wood doors, exterior doors, entry doors, interior doors, french doors and custom doors. Our vast stock of doors and aggressive industry leading prices (available due to our large volume of sales) have attributed to success/growth of our business. ETO has become the industry-leader in quality, design and creation of customized wooden doors.</p>
-          
-          <p class="eto-text-p">Each member of our staff has been thoroughly trained and is a knowledgeable door professional. Our three hundred thousand square-foot state-of-the-art facility located in downtown Los Angeles includes the latest pre-hanging machinery available in door technology today.</p>
-          
-          <p class="eto-text-p">Perhaps what differentiates ETO most from other door companies is our constant pursuit to offer industry leading doors constructions for prices below wholesale. Our nationwide presence and the sale of thousands of doors every month allow us to provide the highest quality products at the guaranteed lowest price, nationwide.</p>
-       </div>
+    
 
-       <!-- ETO Green Section -->
-       <h3 style="font-size: 18px; color: #333; font-weight: bold; margin-bottom: 15px;">ETO Green</h3>
-       <div style="overflow: hidden; margin-bottom: 30px;">
-          <img src="{{ 'doorstore.jpg' | file_url }}" alt="ETO Green Door" style="float: left; max-width: 280px; margin: 0 20px 15px 0;">
-          
-          <p class="eto-text-p">Please be assured that ETO Doors Corp. is committed to the protection of the Rain Forest. Strict compliance is maintained with all foreign government regulations to protect the Rain Forest. None of the timber used to produce ETO Doors is listed as endangered.</p>
-          
-          <p class="eto-text-p">ETO Doors is a partner in working towards a "Green" environment. All of our Brazilian Mahogany doors are produced from sustainable wood products and are supplied from re-harvesting plants in South America.</p>
-          
-          <p class="eto-text-p">ETO Doors has provided doors to numerous projects nationwide that have been "LEED" Certified (Platinum: the highest level of Green Certification attainable).</p>
-          
-          <p class="eto-text-p">At ETO Doors we believe our reputation rests on every door we sell. We take pride in offering a "1 Year Manufacturer's Warranty" on all of our doors. ETO Doors also offers a formal best price guarantee.</p>
-       </div>
 
-       <!-- Separator -->
-       <hr style="border: none; border-top: 1px solid #ccc; margin: 30px 0;">
 
-       <h3 style="font-size: 18px; color: #333; font-weight: bold; margin-bottom: 10px;">Promise to Our Customers and ETO Doors Reviews</h3>
-       <p class="eto-text-p">We believe that our future growth and success will be founded on total customer satisfaction. We invite you to visit our office and showroom in Downtown Los Angeles or visit us online at <strong>www.etodoors.com</strong>. We will be happy to help with anything from placing an order to sharing customer reviews.</p>
-       
-       <p class="eto-text-p" style="font-weight: bold; margin-top: 15px;">We are looking forward to hearing from you.</p>
-       <p class="eto-text-p" style="font-weight: bold;">ETO Doors Corp. Team</p>
+<div id="eto-brand-content" style="display: none;">
+  
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:wght@400;600&display=swap');
 
-       <!-- Banners -->
-       <div style="margin: 30px 0; text-align: center;">
-         <img src="{{ 'custom-door-banner.jpg' | file_url }}" alt="ETO Custom Doors Program" style="max-width: 100%;">
-       </div>
-       <div style="text-align: center; margin-bottom: 20px;">
-         <p style="font-weight: bold; margin-bottom: 10px;">As Featured on:</p>
-         <a href="#" onclick="showEtoPress(event)">
-           <img src="{{ 'logo-blog-home-2.jpg' | file_url }}" alt="Featured On" style="max-width: 100%; border: 0;">
-         </a>
-       </div>
-       <div style="text-align: center; margin-bottom: 20px;">
-         <p style="font-weight: bold; margin-bottom: 10px;">Proud Members of:</p>
-         <img src="{{ 'logo-block-home.png' | file_url }}" alt="Proud Members" style="max-width: 100%;">
-       </div>
-       <div style="text-align: center; margin-bottom: 30px;">
-         <img src="{{ 'masterspec-logo.png' | file_url }}" alt="MasterSpec" style="max-width: 100%;">
-       </div>
-    </div>
+  html, body {
+    scroll-behavior: smooth !important;
+  }
 
-     <!-- Hidden Impact Rating Content -->
+  #eto-brand-content {
+    background: #f6faff;
+    font-family: 'Source Serif 4', serif;
+    color: #141d23;
+  }
+  .eto-terms-container {
+    display: flex;
+    max-width: 1440px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .eto-terms-sidebar {
+    width: 350px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 20px;
+    height: calc(100vh - 40px);
+    overflow-y: auto;
+    padding: 40px 20px;
+    border-right: 1px solid rgba(197, 198, 202, 0.4);
+    background: #ffffff;
+    margin-top: 40px;
+    border-radius: 8px;
+  }
+  .eto-terms-sidebar-header h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: #0c1014;
+    margin-bottom: 4px;
+    letter-spacing: 1px;
+  }
+  .eto-terms-sidebar-header p {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #44474a;
+    margin-bottom: 24px;
+  }
+  .eto-terms-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .eto-nav-link {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #44474a;
+    text-decoration: none;
+    padding: 10px 16px;
+    border-left: 3px solid transparent;
+    transition: all 0.2s ease;
+  }
+  .eto-nav-link:hover {
+    background: #ecf5fe;
+    color: #0c1014;
+  }
+  .eto-nav-link.active {
+    border-left-color: #c2b59b;
+    background: #ecf5fe;
+    color: #c2b59b;
+    font-weight: 700;
+  }
+  .eto-terms-main {
+    flex: 1;
+    padding: 40px;
+    background: rgba(225, 227, 228, 0.1);
+  }
+  .eto-terms-card {
+    max-width: 1050px;
+    margin: 0 auto;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 32px rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(197, 198, 202, 0.3);
+    padding: 60px;
+  }
+  .eto-terms-header {
+    margin-bottom: 50px;
+  }
+  .eto-terms-header h1 {
+    font-family: 'Inter', sans-serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: #0c1014;
+    position: relative;
+    display: inline-block;
+    margin-bottom: 16px;
+    letter-spacing: -1px;
+  }
+  .eto-terms-underline {
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: #c2b59b;
+    border-radius: 2px;
+  }
+  .eto-terms-date {
+    font-family: 'Source Serif 4', serif;
+    font-style: italic;
+    color: #75777b;
+    font-size: 16px;
+  }
+  .eto-section {
+    margin-bottom: 48px;
+    scroll-margin-top: 180px;
+  }
+  .eto-section h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: #0c1014;
+    margin-bottom: 20px;
+  }
+  .eto-p {
+    font-size: 17px;
+    line-height: 1.8;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  .eto-ul {
+    list-style-type: disc;
+    padding-left: 24px;
+    margin-bottom: 24px;
+  }
+  .eto-li {
+    font-size: 17px;
+    line-height: 1.8;
+    color: #333;
+    margin-bottom: 8px;
+  }
+  .eto-strong {
+    font-weight: 600;
+    color: #111;
+  }
+  @media (max-width: 991px) {
+    .eto-terms-sidebar {
+      display: none;
+    }
+    .eto-terms-main {
+      padding: 20px;
+    }
+    .eto-terms-card {
+      padding: 30px;
+    }
+  }
+</style>
+
+  <div class="eto-terms-container">
+    
+<aside class="eto-terms-sidebar">
+  <div class="eto-terms-sidebar-header">
+    <h2>LEGAL SECTIONS</h2>
+    <p>Terms of Use</p>
+  </div>
+  <nav class="eto-terms-nav">
+
+    <a class="eto-nav-link active" href="#section1" onclick="event.preventDefault(); document.querySelectorAll('.eto-nav-link').forEach(el=>el.classList.remove('active')); this.classList.add('active'); smoothScrollTo(document.getElementById('section1'), 1400);">
+      1. Acceptance of These Terms
+    </a>
+    <a class="eto-nav-link" href="#section2" onclick="event.preventDefault(); document.querySelectorAll('.eto-nav-link').forEach(el=>el.classList.remove('active')); this.classList.add('active'); smoothScrollTo(document.getElementById('section2'), 1400);">
+      2. Who May Use the Site
+    </a>
+    <a class="eto-nav-link" href="#section3" onclick="event.preventDefault(); document.querySelectorAll('.eto-nav-link').forEach(el=>el.classList.remove('active')); this.classList.add('active'); smoothScrollTo(document.getElementById('section3'), 1400);">
+      3. Changes to These Terms and to the Site
+    </a>
+    <a class="eto-nav-link" href="#section4" onclick="event.preventDefault(); document.querySelectorAll('.eto-nav-link').forEach(el=>el.classList.remove('active')); this.classList.add('active'); smoothScrollTo(document.getElementById('section4'), 1400);">
+      4. Other Policies That Apply to You
+    </a>
+    <a class="eto-nav-link" href="#section5" onclick="event.preventDefault(); document.querySelectorAll('.eto-nav-link').forEach(el=>el.classList.remove('active')); this.classList.add('active'); smoothScrollTo(document.getElementById('section5'), 1400);">
+      5. Your Account
+    </a>
+    <a class="eto-nav-link" href="#section6" onclick="event.preventDefault(); document.querySelectorAll('.eto-nav-link').forEach(el=>el.classList.remove('active')); this.classList.add('active'); smoothScrollTo(document.getElementById('section6'), 1400);">
+      6. Limited License to Use the Site
+    </a>
+    <a class="eto-nav-link" href="#section7" onclick="event.preventDefault(); document.querySelectorAll('.eto-nav-link').forEach(el=>el.classList.remove('active')); this.classList.add('active'); smoothScrollTo(document.getElementById('section7'), 1400);">
+      7. Restrictions on Use
+    </a>
+    <a class="eto-nav-link" href="#section8" onclick="event.preventDefault(); document.querySelectorAll('.eto-nav-link').forEach(el=>el.classList.remove('active')); this.classList.add('active'); smoothScrollTo(document.getElementById('section8'), 1400);">
+      8. Intellectual Property
+    </a>
+    <a class="eto-nav-link" href="#section9" onclick="event.preventDefault(); document.querySelectorAll('.eto-nav-link').forEach(el=>el.classList.remove('active')); this.classList.add('active'); smoothScrollTo(document.getElementById('section9'), 1400);">
+      9. Product Information, Images, Pricing, and Availability
+    </a>
+    <a class="eto-nav-link" href="#section10" onclick="event.preventDefault(); document.querySelectorAll('.eto-nav-link').forEach(el=>el.classList.remove('active')); this.classList.add('active'); smoothScrollTo(document.getElementById('section10'), 1400);">
+      10. Orders and Order Acceptance
+    </a>
+    <a class="eto-nav-link" href="#section11" onclick="event.preventDefault(); document.querySelectorAll('.eto-nav-link').forEach(el=>el.classList.remove('active')); this.classList.add('active'); smoothScrollTo(document.getElementById('section11'), 1400);">
+      11. Measurements, Building Codes, and Permits
+    </a>
+    <a class="eto-nav-link" href="#section12" onclick="event.preventDefault(); document.querySelectorAll('.eto-nav-link').forEach(el=>el.classList.remove('active')); this.classList.add('active'); smoothScrollTo(document.getElementById('section12'), 1400);">
+      12. Storage of Completed Orders
+    </a>
+    <a class="eto-nav-link" href="#section13" onclick="event.preventDefault(); document.querySelectorAll('.eto-nav-link').forEach(el=>el.classList.remove('active')); this.classList.add('active'); smoothScrollTo(document.getElementById('section13'), 1400);">
+      13. Risk of Loss and Title
+    </a>
+    <a class="eto-nav-link" href="#section14" onclick="event.preventDefault(); document.querySelectorAll('.eto-nav-link').forEach(el=>el.classList.remove('active')); this.classList.add('active'); smoothScrollTo(document.getElementById('section14'), 1400);">
+      14. Reviews, Comments, and Other Submissions
+    </a>
+    <a class="eto-nav-link" href="#section15" onclick="event.preventDefault(); document.querySelectorAll('.eto-nav-link').forEach(el=>el.classList.remove('active')); this.classList.add('active'); smoothScrollTo(document.getElementById('section15'), 1400);">
+      15. Copyright Complaints (DMCA)
+    </a>
+    <a class="eto-nav-link" href="#section16" onclick="event.preventDefault(); document.querySelectorAll('.eto-nav-link').forEach(el=>el.classList.remove('active')); this.classList.add('active'); smoothScrollTo(document.getElementById('section16'), 1400);">
+      16. Links to Other Websites
+    </a>
+    <a class="eto-nav-link" href="#section17" onclick="event.preventDefault(); document.querySelectorAll('.eto-nav-link').forEach(el=>el.classList.remove('active')); this.classList.add('active'); smoothScrollTo(document.getElementById('section17'), 1400);">
+      17. Electronic Communications and Consent to Contact
+    </a>
+    <a class="eto-nav-link" href="#section18" onclick="event.preventDefault(); document.querySelectorAll('.eto-nav-link').forEach(el=>el.classList.remove('active')); this.classList.add('active'); smoothScrollTo(document.getElementById('section18'), 1400);">
+      18. Privacy
+    </a>
+    <a class="eto-nav-link" href="#section19" onclick="event.preventDefault(); document.querySelectorAll('.eto-nav-link').forEach(el=>el.classList.remove('active')); this.classList.add('active'); smoothScrollTo(document.getElementById('section19'), 1400);">
+      19. Accessibility
+    </a>
+    <a class="eto-nav-link" href="#section20" onclick="event.preventDefault(); document.querySelectorAll('.eto-nav-link').forEach(el=>el.classList.remove('active')); this.classList.add('active'); smoothScrollTo(document.getElementById('section20'), 1400);">
+      20. Disclaimer of Warranties
+    </a>
+    <a class="eto-nav-link" href="#section21" onclick="event.preventDefault(); document.querySelectorAll('.eto-nav-link').forEach(el=>el.classList.remove('active')); this.classList.add('active'); smoothScrollTo(document.getElementById('section21'), 1400);">
+      21. Limitation of Liability
+    </a>
+    <a class="eto-nav-link" href="#section22" onclick="event.preventDefault(); document.querySelectorAll('.eto-nav-link').forEach(el=>el.classList.remove('active')); this.classList.add('active'); smoothScrollTo(document.getElementById('section22'), 1400);">
+      22. Indemnification
+    </a>
+    <a class="eto-nav-link" href="#section23" onclick="event.preventDefault(); document.querySelectorAll('.eto-nav-link').forEach(el=>el.classList.remove('active')); this.classList.add('active'); smoothScrollTo(document.getElementById('section23'), 1400);">
+      23. Dispute Resolution, Binding Arbitration, and Class Action Waiver
+    </a>
+    <a class="eto-nav-link" href="#section24" onclick="event.preventDefault(); document.querySelectorAll('.eto-nav-link').forEach(el=>el.classList.remove('active')); this.classList.add('active'); smoothScrollTo(document.getElementById('section24'), 1400);">
+      24. Governing Law and Venue
+    </a>
+    <a class="eto-nav-link" href="#section25" onclick="event.preventDefault(); document.querySelectorAll('.eto-nav-link').forEach(el=>el.classList.remove('active')); this.classList.add('active'); smoothScrollTo(document.getElementById('section25'), 1400);">
+      25. Termination
+    </a>
+    <a class="eto-nav-link" href="#section26" onclick="event.preventDefault(); document.querySelectorAll('.eto-nav-link').forEach(el=>el.classList.remove('active')); this.classList.add('active'); smoothScrollTo(document.getElementById('section26'), 1400);">
+      26. Force Majeure
+    </a>
+    <a class="eto-nav-link" href="#section27" onclick="event.preventDefault(); document.querySelectorAll('.eto-nav-link').forEach(el=>el.classList.remove('active')); this.classList.add('active'); smoothScrollTo(document.getElementById('section27'), 1400);">
+      27. General Provisions
+    </a>
+    <a class="eto-nav-link" href="#section28" onclick="event.preventDefault(); document.querySelectorAll('.eto-nav-link').forEach(el=>el.classList.remove('active')); this.classList.add('active'); smoothScrollTo(document.getElementById('section28'), 1400);">
+      28. How to Contact Us
+    </a></nav></aside>
+    
+<main class="eto-terms-main">
+  <div class="eto-terms-card">
+    <header class="eto-terms-header">
+      <h1>
+        Terms of Use
+        <span class="eto-terms-underline"></span>
+      </h1>
+      <p class="eto-terms-date">Last Updated: August 25, 2026</p>
+    </header>
+    <div class="eto-terms-content">
+
+      <section id="section1" class="eto-section">
+        <h2>1. Acceptance of These Terms</h2>
+        <div class="eto-section-body">
+          <p class="eto-p"><strong class="eto-strong">Please read these Terms of Use carefully before using this site.</strong></p>
+<p class="eto-p">These Terms of Use ("Terms") govern your access to and use of www.etodoors.com and any related pages, tools, and services we operate (the "Site"). The Site is operated by ETO Doors Corp. ("ETO Doors," "we," "us," or "our"). "You" and "User" mean the person or entity accessing the Site.</p>
+<p class="eto-p">By accessing or using the Site, you agree to these Terms and to all applicable laws. If you do not agree to any part of these Terms, do not use the Site.</p>
+<p class="eto-p"><strong class="eto-strong">Notice of arbitration and class action waiver. Section 23 requires most disputes between you and ETO Doors to be resolved by binding individual arbitration rather than in court, and waives your right to participate in a class action. Section 23 also explains how to opt out of arbitration within 30 days. Please read it carefully.</strong></p>
+<p class="eto-p">These Terms are the only agreement we enter into with you through the Site. No other agreement or obligation is created by your use of the Site, and no attempt to create one will be effective.</p>
+        </div>
+      </section>
+    
+      <section id="section2" class="eto-section">
+        <h2>2. Who May Use the Site</h2>
+        <div class="eto-section-body">
+          <p class="eto-p">You may use the Site only if you are at least 18 years old and able to enter into a binding contract. If you use the Site on behalf of a company, contractor, or other organization, you represent that you are authorized to bind that entity to these Terms, and "you" means both you and that entity.</p>
+<p class="eto-p">You agree not to use the Site for any purpose that is unlawful or prohibited by these Terms.</p>
+        </div>
+      </section>
+    
+      <section id="section3" class="eto-section">
+        <h2>3. Changes to These Terms and to the Site</h2>
+        <div class="eto-section-body">
+          <p class="eto-p">We may modify these Terms at any time. When we do, we will update the "Last updated" date at the top of this page. Material changes will be posted on the Site before they take effect. Your continued use of the Site after a change takes effect means you accept the revised Terms. Please review these Terms periodically.</p>
+<p class="eto-p">We may also change, suspend, or discontinue any part of the Site, including any product listing, price, drawing, or specification, at any time and without notice. We may correct any error or omission on the Site at any time.</p>
+        </div>
+      </section>
+    
+      <section id="section4" class="eto-section">
+        <h2>4. Other Policies That Apply to You</h2>
+        <div class="eto-section-body">
+          <p class="eto-p">The following policies are part of these Terms and are incorporated by reference. Please read them:</p>
+<ul class="eto-ul">
+  <li class="eto-li">Shipping Policy — how orders ship, curbside delivery terms, inspection, and damage claims</li>
+  <li class="eto-li">Return Policy — returns, restocking, refunds, and cancellations</li>
+  <li class="eto-li">Limited Warranty — product warranty coverage and exclusions</li>
+  <li class="eto-li">Privacy Policy — how we collect, use, and share personal information</li>
+</ul>
+<p class="eto-p">If a purchase-specific document conflicts with these Terms, the purchase-specific document controls for that purchase. Any purchase you make is also subject to the quotation, estimate, invoice, or sales order for that purchase.</p>
+        </div>
+      </section>
+    
+      <section id="section5" class="eto-section">
+        <h2>5. Your Account</h2>
+        <div class="eto-section-body">
+          <p class="eto-p">Some features of the Site require an account. You agree to provide accurate and current information, to keep your password confidential, and to be responsible for all activity under your account. Notify us promptly at contact@etodoors.com if you believe your account has been accessed without authorization.</p>
+<p class="eto-p">You may not share your account, create an account using a false identity, or maintain more than one account without our permission. We may suspend or terminate an account at any time for violation of these Terms.</p>
+        </div>
+      </section>
+    
+      <section id="section6" class="eto-section">
+        <h2>6. Limited License to Use the Site</h2>
+        <div class="eto-section-body">
+          <p class="eto-p">Subject to these Terms, ETO Doors grants you a limited, revocable, non-exclusive, non-transferable license to view the Site and to display, download, and print individual pages for either of the following purposes:</p>
+<ul class="eto-ul">
+  <li class="eto-li">Your own personal, non-commercial use; or</li>
+  <li class="eto-li">Evaluating, specifying, promoting, or reselling ETO Doors products — for example, a contractor, architect, designer, or dealer sharing our product pages, drawings, or specifications with a client or with their own project team.</li>
+</ul>
+<p class="eto-p">This license applies only if you do not modify the materials and you keep all copyright, trademark, and other proprietary notices intact.</p>
+<p class="eto-p">All rights not expressly granted are reserved. This license does not transfer any ownership in the Site or its content, and it terminates automatically if you breach these Terms.</p>
+        </div>
+      </section>
+    
+      <section id="section7" class="eto-section">
+        <h2>7. Restrictions on Use</h2>
+        <div class="eto-section-body">
+          <p class="eto-p">Except as Section 6 permits, you may not copy, modify, distribute, transmit, display, perform, reproduce, publish, license, create derivative works from, transfer, or sell any content, software, product listing, or service from the Site without our prior written permission.</p>
+<p class="eto-p">You also agree not to:</p>
+<ul class="eto-ul">
+  <li class="eto-li">Use any robot, spider, scraper, crawler, or other automated means to access, monitor, index, or copy the Site or its content, except for search engine crawlers obeying our robots.txt file</li>
+  <li class="eto-li">Use the Site, or any content, image, drawing, specification, price, or review from it, to train, fine-tune, or ground any machine learning or artificial intelligence model, or to build any dataset for that purpose</li>
+  <li class="eto-li">Collect or harvest product data, pricing, or images for a competing catalog, price-comparison service, or resale listing without our written permission</li>
+  <li class="eto-li">Circumvent, disable, or interfere with any security feature, rate limit, or access control on the Site</li>
+  <li class="eto-li">Introduce any virus, malware, or other harmful code, or take any action that imposes an unreasonable load on our infrastructure</li>
+  <li class="eto-li">Frame, mirror, or deep-link the Site in a way that misrepresents its source or our relationship with you</li>
+  <li class="eto-li">Attempt to gain unauthorized access to any account, system, or data connected to the Site</li>
+</ul>
+<p class="eto-p">We may block or terminate access for any violation of this section, and we may pursue any remedy available at law.</p>
+        </div>
+      </section>
+    
+      <section id="section8" class="eto-section">
+        <h2>8. Intellectual Property</h2>
+        <div class="eto-section-body">
+          <p class="eto-p">All content on the Site — including text, graphics, logos, button icons, photographs, product images, drawings, specifications, audio, video, and software — is owned or licensed by ETO Doors and is protected by United States and international copyright laws. The compilation of all content on the Site, meaning its collection, arrangement, and assembly, is the exclusive property of ETO Doors.</p>
+<p class="eto-p">"ETO Doors," the ETO Doors logo, and other names, logos, and service marks displayed on the Site are trademarks of ETO Doors. You may not use any of our trademarks, logos, or meta tags for any purpose outside the limited license in Section 6, and you may not use them in a way that is likely to cause confusion about the source of goods or about any affiliation with us.</p>
+<p class="eto-p">Third-party names and marks appearing on the Site are the property of their respective owners.</p>
+        </div>
+      </section>
+    
+      <section id="section9" class="eto-section">
+        <h2>9. Product Information, Images, Pricing, and Availability</h2>
+        <div class="eto-section-body">
+          <p class="eto-p">We work hard to describe and display our products accurately, and we improve our product information continuously. Even so, we do not guarantee that any description, image, drawing, specification, price, or availability statement on the Site is accurate, complete, current, or error-free.</p>
+<p class="eto-p"><strong class="eto-strong">Wood, veneer, glass, and finish products vary naturally in grain, color, and texture. Screen and monitor settings also affect how color appears. Product images on the Site are representative and are not an exact match for the item you receive. If exact color or grain match matters to your project, request a physical sample before ordering.</strong></p>
+<p class="eto-p">Prices and promotions are subject to change without notice and apply only while displayed. Prices on the Site do not include shipping, crating, taxes, or accessorial charges. Shipping and crating are quoted per order and shown on your estimate before you pay, as described in our Shipping Policy.</p>
+<p class="eto-p"><strong class="eto-strong">Pricing and description errors. If a product is listed at an incorrect price, or with an incorrect description, image, or specification, we reserve the right to refuse or cancel any order for that product, whether or not the order has been confirmed and whether or not your payment method has been charged. If your payment method has already been charged and we cancel the order, we will issue a refund in the amount charged.</strong></p>
+        </div>
+      </section>
+    
+      <section id="section10" class="eto-section">
+        <h2>10. Orders and Order Acceptance</h2>
+        <div class="eto-section-body">
+          <p class="eto-p"><strong class="eto-strong">Product listings and quotations on the Site are invitations to place an order, not offers to sell. Your order is an offer to buy. We accept your order only when we send you a written order confirmation or ship the products, whichever happens first. An order acknowledgment, a payment authorization, or an emailed receipt is not by itself acceptance of your order.</strong></p>
+<p class="eto-p">We may refuse, limit, or cancel any order for any lawful reason, including a suspected fraudulent order, a quantity that exceeds normal retail purchase, an error covered by Section 9, or an inability to verify your billing or shipping information. We may also require voice confirmation before processing a payment.</p>
+<p class="eto-p">Custom-configured and made-to-order products may not be cancellable once production begins. Cancellation rights and any restocking charge are governed by our Return Policy and by your sales order.</p>
+<p class="eto-p">You are responsible for any applicable sales or use tax. Where we are required to collect tax, it will be shown on your estimate or invoice.</p>
+        </div>
+      </section>
+    
+      <section id="section11" class="eto-section">
+        <h2>11. Measurements, Building Codes, and Permits</h2>
+        <div class="eto-section-body">
+          <p class="eto-p"><strong class="eto-strong">You are solely responsible for verifying all measurements, sizes, swing, handing, and configuration before placing an order.</strong></p>
+<p class="eto-p">Building codes, energy codes, fire ratings, egress requirements, wind-load requirements, and permitting rules vary substantially by state, county, and municipality, and they change over time. ETO Doors does not warrant that any product or any information on the Site complies with the codes, ordinances, or regulations that apply to your specific application or jurisdiction, unless we have agreed otherwise in writing.</p>
+<p class="eto-p">You are responsible for confirming code compliance, obtaining any required permits and approvals, and having products installed by a qualified professional in accordance with the manufacturer's instructions. Improper measurement, specification, or installation is not covered by our warranty.</p>
+<p class="eto-p">Any reliance you place on materials from the Site is at your own risk, except as otherwise required by law.</p>
+        </div>
+      </section>
+    
+      <section id="section12" class="eto-section">
+        <h2>12. Storage of Completed Orders</h2>
+        <div class="eto-section-body">
+          <p class="eto-p">We will notify you once your order is finalized and ready for delivery or pickup. We store a completed order at no charge for five (5) business days after that notice. After five business days, storage is charged at $100.00 per week until the order is delivered or picked up.</p>
+<p class="eto-p">Storage charges are due before the order is released. If a completed order remains unclaimed and unpaid for storage for more than ninety (90) days after our notice, we may treat the order as abandoned and dispose of the products, and you will remain responsible for the purchase price and accrued storage charges.</p>
+        </div>
+      </section>
+    
+      <section id="section13" class="eto-section">
+        <h2>13. Risk of Loss and Title</h2>
+        <div class="eto-section-body">
+          <p class="eto-p">All items purchased from the Site are sold under a shipment contract. Risk of loss and title pass to you when the products are tendered to the carrier. Our Shipping Policy explains how to inspect a shipment and how we assist with carrier damage claims; that assistance does not change when risk of loss passes to you.</p>
+        </div>
+      </section>
+    
+      <section id="section14" class="eto-section">
+        <h2>14. Reviews, Comments, and Other Submissions</h2>
+        <div class="eto-section-body">
+          <p class="eto-p">You may submit reviews, comments, questions, photographs, suggestions, and other content ("Submissions"). You are solely responsible for your Submissions, including their legality, accuracy, and appropriateness.</p>
+<p class="eto-p">You agree that your Submissions will not:</p>
+<ul class="eto-ul">
+  <li class="eto-li">Be illegal, obscene, threatening, harassing, defamatory, or invasive of privacy</li>
+  <li class="eto-li">Infringe any copyright, trademark, patent, trade secret, or other right of any third party</li>
+  <li class="eto-li">Contain software viruses, political campaigning, commercial solicitation, chain letters, mass mailings, or spam</li>
+  <li class="eto-li">Use a false email address, impersonate any person or entity, or otherwise misrepresent the origin of the content</li>
+  <li class="eto-li">Contain personal information about another person without their consent</li>
+</ul>
+<p class="eto-p">By submitting content, you grant ETO Doors and its affiliates a non-exclusive, royalty-free, perpetual, irrevocable, worldwide, and fully sublicensable right to use, reproduce, modify, adapt, publish, translate, create derivative works from, distribute, and display that content in any media, and to use the name you submit with it. This license includes the right to use any idea, concept, know-how, or technique in a Submission for any purpose, including developing, manufacturing, and marketing products and services.</p>
+<p class="eto-p">You represent and warrant that you own or control all rights in your Submissions, that the content is accurate, and that it does not violate these Terms or injure any person or entity. You agree to indemnify ETO Doors and its affiliates for all claims arising from your Submissions.</p>
+<p class="eto-p"><strong class="eto-strong">Submissions are not confidential and not proprietary. Do not send us confidential information through a review, comment, or other public Submission.</strong></p>
+<p class="eto-p">We may monitor, edit, refuse to post, or remove any Submission at our sole discretion, but we have no obligation to do so. We do not adopt or endorse any Submission, and Submissions do not reflect the views of ETO Doors.</p>
+<p class="eto-p">Personal information you provide to us when placing an order, registering an account, or contacting us is handled in accordance with our Privacy Policy, not this section.</p>
+        </div>
+      </section>
+    
+      <section id="section15" class="eto-section">
+        <h2>15. Copyright Complaints (DMCA)</h2>
+        <div class="eto-section-body">
+          <p class="eto-p">We respect the intellectual property rights of others. If you believe content on the Site infringes your copyright, send a written notice to our designated agent containing all of the following:</p>
+<ul class="eto-ul">
+  <li class="eto-li">Your physical or electronic signature</li>
+  <li class="eto-li">Identification of the copyrighted work you claim has been infringed</li>
+  <li class="eto-li">Identification of the material you claim is infringing, with enough detail for us to locate it, including the URL</li>
+  <li class="eto-li">Your name, mailing address, telephone number, and email address</li>
+  <li class="eto-li">A statement that you have a good faith belief the use is not authorized by the copyright owner, its agent, or the law</li>
+  <li class="eto-li">A statement, under penalty of perjury, that the information in your notice is accurate and that you are the copyright owner or authorized to act on the owner's behalf</li>
+</ul>
+<p class="eto-p"><strong class="eto-strong">Designated Copyright Agent:</strong></p>
+
+<p class="eto-p">Attn: DMCA Agent</p>
+<p class="eto-p">1340 E. 6th Street #105</p>
+<p class="eto-p">Los Angeles, CA 90021</p>
+<p class="eto-p">Email: legal@etodoors.com</p>
+<p class="eto-p">Phone: (213) 622-2003</p>
+<p class="eto-p">We may remove or disable access to allegedly infringing material and may terminate the accounts of repeat infringers. If you believe your material was removed in error, you may submit a counter-notice to the same agent.</p>
+        </div>
+      </section>
+    
+      <section id="section16" class="eto-section">
+        <h2>16. Links to Other Websites</h2>
+        <div class="eto-section-body">
+          <p class="eto-p">The Site may link to websites operated by others. We do not control those sites and are not responsible for their content, products, services, or privacy practices, and their quality and reliability may change without notice.</p>
+<p class="eto-p">A link is not an endorsement, and it does not imply any sponsorship, affiliation, or association with the linked site's owner or operator, or that we are authorized to use any trade name, trademark, logo, or seal appearing on that site. You access linked sites at your own risk.</p>
+        </div>
+      </section>
+    
+      <section id="section17" class="eto-section">
+        <h2>17. Electronic Communications and Consent to Contact</h2>
+        <div class="eto-section-body">
+          <p class="eto-p">By using the Site, placing an order, or providing us your contact information, you consent to receive communications from us electronically — including order confirmations, estimates, invoices, delivery notices, legal notices, and changes to these Terms — by email, through your account, or by posting on the Site. You agree that electronic communications satisfy any legal requirement that a communication be in writing.</p>
+<p class="eto-p">You also agree that we and our carriers and service providers may contact you at the phone number you provide, including by call and text message, for order, delivery scheduling, and service purposes. Message and data rates may apply. Marketing text messages are sent only with your separate express written consent, and you may opt out at any time by replying STOP. Opting out of marketing messages does not stop transactional messages about an order you have placed.</p>
+<p class="eto-p">You may withdraw consent to receive electronic communications by contacting us at contact@etodoors.com, but we may not be able to process your order or provide the Site to you if you do.</p>
+        </div>
+      </section>
+    
+      <section id="section18" class="eto-section">
+        <h2>18. Privacy</h2>
+        <div class="eto-section-body">
+          <p class="eto-p">Our Privacy Policy explains what personal information we collect, how we use and share it, how we use cookies and similar technologies, and the choices available to you, including the rights of California residents under the California Consumer Privacy Act. Our Privacy Policy is incorporated into these Terms by reference. Please review it.</p>
+        </div>
+      </section>
+    
+      <section id="section19" class="eto-section">
+        <h2>19. Accessibility</h2>
+        <div class="eto-section-body">
+          <p class="eto-p">ETO Doors is committed to making the Site usable by people of all abilities, and we work toward conformance with the Web Content Accessibility Guidelines (WCAG) 2.1 Level AA.</p>
+<p class="eto-p">If you have difficulty using any part of the Site, or if you would like assistance placing an order or accessing product information in another format, contact us at contact@etodoors.com or (213) 622-2003 and we will work with you to provide the information or complete the transaction. We welcome feedback on accessibility.</p>
+        </div>
+      </section>
+    
+      <section id="section20" class="eto-section">
+        <h2>20. Disclaimer of Warranties</h2>
+        <div class="eto-section-body">
+          <p class="eto-p"><strong class="eto-strong">EXCEPT FOR ANY WRITTEN EXPRESS WARRANTY PROVIDED WITH AN ETO DOORS PRODUCT, THE SITE AND ALL MATERIALS, DRAWINGS, SPECIFICATIONS, PRODUCTS, AND OTHER RESOURCES AVAILABLE THROUGH THE SITE ARE PROVIDED "AS IS" AND "AS AVAILABLE," WITHOUT WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED, TO THE FULLEST EXTENT PERMITTED BY APPLICABLE LAW.</strong></p>
+<p class="eto-p"><strong class="eto-strong">ETO DOORS DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND NON-INFRINGEMENT. ETO DOORS DOES NOT WARRANT THAT THE SITE WILL BE UNINTERRUPTED, SECURE, OR ERROR-FREE, THAT DEFECTS WILL BE CORRECTED, OR THAT THE SITE OR ITS SERVERS ARE FREE OF VIRUSES OR OTHER HARMFUL COMPONENTS THAT MAY AFFECT YOUR EQUIPMENT, NETWORK, OR SOFTWARE.</strong></p>
+<p class="eto-p"><strong class="eto-strong">ETO DOORS MAKES NO REPRESENTATION REGARDING THE CORRECTNESS, ACCURACY, RELIABILITY, OR COMPLETENESS OF ANY MATERIAL, DRAWING, SPECIFICATION, IMAGE, PRICE, OR AVAILABILITY STATEMENT ON THE SITE, AND YOU ASSUME THE ENTIRE COST OF ANY NECESSARY SERVICING, REPAIR, OR CORRECTION, TO THE EXTENT PERMITTED BY LAW.</strong></p>
+<p class="eto-p"><strong class="eto-strong">SOME JURISDICTIONS DO NOT ALLOW THE EXCLUSION OF CERTAIN WARRANTIES, SO SOME OF THE ABOVE EXCLUSIONS MAY NOT APPLY TO YOU. NOTHING IN THESE TERMS LIMITS ANY WARRANTY OR REMEDY THAT CANNOT BE LIMITED UNDER APPLICABLE LAW.</strong></p>
+        </div>
+      </section>
+    
+      <section id="section21" class="eto-section">
+        <h2>21. Limitation of Liability</h2>
+        <div class="eto-section-body">
+          <p class="eto-p"><strong class="eto-strong">TO THE FULLEST EXTENT PERMITTED BY LAW, ETO DOORS WILL NOT BE LIABLE TO YOU OR ANYONE ELSE FOR ANY INCIDENTAL, CONSEQUENTIAL, SPECIAL, INDIRECT, EXEMPLARY, OR PUNITIVE DAMAGES — INCLUDING LOST PROFITS, LOST BUSINESS, PROJECT DELAY COSTS, LABOR OR INSTALLATION COSTS, OR DAMAGES RESULTING FROM INCONVENIENCE, DELAY, OR LOSS OF USE OF INFORMATION — ARISING OUT OF OR RELATED TO THE SITE, EVEN IF CAUSED BY OUR NEGLIGENCE AND EVEN IF WE HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.</strong></p>
+<p class="eto-p"><strong class="eto-strong">OUR TOTAL LIABILITY FOR ALL CLAIMS ARISING OUT OF OR RELATED TO YOUR USE OF THE SITE WILL NOT EXCEED ONE HUNDRED DOLLARS ($100.00).</strong></p>
+<p class="eto-p"><strong class="eto-strong">THIS SECTION LIMITS LIABILITY ARISING FROM THE SITE ITSELF. CLAIMS RELATING TO A PRODUCT YOU PURCHASED ARE GOVERNED INSTEAD BY OUR SHIPPING POLICY, RETURN POLICY, AND LIMITED WARRANTY, AND BY THE SALES DOCUMENTS FOR THAT PURCHASE.</strong></p>
+<p class="eto-p"><strong class="eto-strong">SOME JURISDICTIONS DO NOT ALLOW THE EXCLUSION OR LIMITATION OF INCIDENTAL OR CONSEQUENTIAL DAMAGES, SO THE ABOVE MAY NOT APPLY TO YOU IN WHOLE OR IN PART.</strong></p>
+<p class="eto-p">Any claim arising out of or related to your use of the Site must be brought within one (1) year after the claim arose, or it is permanently barred, except where a longer period is required by law.</p>
+        </div>
+      </section>
+    
+      <section id="section22" class="eto-section">
+        <h2>22. Indemnification</h2>
+        <div class="eto-section-body">
+          <p class="eto-p">You agree to indemnify, defend, and hold harmless ETO Doors and its affiliates, officers, employees, and agents from and against any and all claims, losses, liabilities, costs, and expenses, including reasonable attorneys' fees, arising from: your breach of these Terms; your Submissions; your violation of any third party's trademark, copyright, proprietary, or privacy rights; or your violation of any applicable federal, state, or local law, regulation, or ordinance. This obligation survives termination of these Terms.</p>
+        </div>
+      </section>
+    
+      <section id="section23" class="eto-section">
+        <h2>23. Dispute Resolution, Binding Arbitration, and Class Action Waiver</h2>
+        <div class="eto-section-body">
+          <p class="eto-p"><strong class="eto-strong">PLEASE READ THIS SECTION CAREFULLY. IT AFFECTS YOUR LEGAL RIGHTS, INCLUDING YOUR RIGHT TO FILE A LAWSUIT IN COURT AND TO HAVE A JURY HEAR YOUR CLAIMS.</strong></p>
+<p class="eto-p"><strong class="eto-strong">Informal resolution first</strong></p>
+<p class="eto-p">Before starting an arbitration or a lawsuit, you agree to contact us at legal@etodoors.com with a written description of your dispute and the relief you seek, and to give us sixty (60) days to resolve it informally. Most disputes are resolved this way.</p>
+<p class="eto-p"><strong class="eto-strong">Agreement to arbitrate</strong></p>
+<p class="eto-p">If we cannot resolve a dispute informally, you and ETO Doors agree that any dispute, claim, or controversy arising out of or relating to these Terms, the Site, or any product or service purchased through the Site will be resolved by binding individual arbitration administered by the American Arbitration Association under its Consumer Arbitration Rules, rather than in court. The Federal Arbitration Act governs the interpretation and enforcement of this section.</p>
+<p class="eto-p">The arbitration will be held in Los Angeles County, California, or, at your election, by telephone or video, or in the county where you reside. The arbitrator may award any relief a court could award to you individually, and the arbitrator's award may be entered as a judgment in any court of competent jurisdiction.</p>
+<p class="eto-p"><strong class="eto-strong">Class action waiver</strong></p>
+<p class="eto-p"><strong class="eto-strong">YOU AND ETO DOORS AGREE THAT EACH MAY BRING CLAIMS AGAINST THE OTHER ONLY IN AN INDIVIDUAL CAPACITY, AND NOT AS A PLAINTIFF OR CLASS MEMBER IN ANY PURPORTED CLASS, COLLECTIVE, CONSOLIDATED, OR REPRESENTATIVE PROCEEDING. THE ARBITRATOR MAY NOT CONSOLIDATE MORE THAN ONE PERSON'S CLAIMS OR PRESIDE OVER ANY CLASS OR REPRESENTATIVE PROCEEDING. IF THIS CLASS ACTION WAIVER IS FOUND UNENFORCEABLE AS TO A PARTICULAR CLAIM, THAT CLAIM WILL PROCEED IN COURT AND ALL OTHER CLAIMS WILL REMAIN IN ARBITRATION.</strong></p>
+<p class="eto-p"><strong class="eto-strong">Exceptions</strong></p>
+<p class="eto-p">Either party may bring an individual claim in small claims court if it qualifies. Either party may also seek injunctive or equitable relief in court to protect intellectual property rights or to stop unauthorized access to or use of the Site. Nothing in this section prevents you from reporting a matter to a government agency.</p>
+<p class="eto-p"><strong class="eto-strong">Your right to opt out</strong></p>
+<p class="eto-p"><strong class="eto-strong">You may opt out of this arbitration agreement by sending written notice to legal@etodoors.com, or to ETO Doors Corp., Attn: Legal, 1340 E. 6th Street #105, Los Angeles, CA 90021, within thirty (30) days after you first accept these Terms. Your notice must include your name, the email address on your account or order, and a clear statement that you want to opt out of arbitration. Opting out does not affect any other part of these Terms, and we will not retaliate against you for opting out.</strong></p>
+<p class="eto-p">If we materially change this Section 23 in the future, you may reject the change by notifying us in writing within thirty (30) days of the change, in which case the version of this section in effect immediately before the change will continue to apply to you.</p>
+        </div>
+      </section>
+    
+      <section id="section24" class="eto-section">
+        <h2>24. Governing Law and Venue</h2>
+        <div class="eto-section-body">
+          <p class="eto-p">These Terms and your use of the Site are governed by the laws of the State of California and applicable federal law of the United States, without regard to conflict of laws principles.</p>
+<p class="eto-p">For any dispute not subject to arbitration under Section 23, you and ETO Doors consent to the exclusive jurisdiction and venue of the state and federal courts located in Los Angeles County, California, and each party waives any objection to that venue.</p>
+<p class="eto-p">We make no representation that the Site or its content is appropriate or available for use outside the United States. Use of the Site is unauthorized in any jurisdiction that does not give full effect to every provision of these Terms, including the warranty disclaimers, liability limitations, and dispute resolution provisions above. You are responsible for compliance with the laws that apply to you.</p>
+        </div>
+      </section>
+    
+      <section id="section25" class="eto-section">
+        <h2>25. Termination</h2>
+        <div class="eto-section-body">
+          <p class="eto-p">We may suspend or terminate your access to the Site, and your license under Section 6, immediately and without notice if you fail to comply with any provision of these Terms.</p>
+<p class="eto-p">On termination, you must stop using the Site and stop using and distributing any content obtained from it. Any license granted by these Terms terminates immediately. Sections that by their nature should survive — including Sections 8, 13, 14, 20, 21, 22, 23, 24, and 27 — survive termination.</p>
+        </div>
+      </section>
+    
+      <section id="section26" class="eto-section">
+        <h2>26. Force Majeure</h2>
+        <div class="eto-section-body">
+          <p class="eto-p">Neither party is liable for any failure or delay in performance caused by an event beyond its reasonable control, including acts of God, fire, flood, earthquake, severe weather, epidemic, war, terrorism, civil unrest, labor dispute, carrier or supplier failure, port or rail disruption, material shortage, utility or telecommunications failure, cyberattack, tariff or import restriction, or governmental action. Delivery dates and lead times are estimates and are extended by the duration of any such event.</p>
+        </div>
+      </section>
+    
+      <section id="section27" class="eto-section">
+        <h2>27. General Provisions</h2>
+        <div class="eto-section-body">
+          <p class="eto-p">Entire agreement. These Terms, together with the policies incorporated in Section 4, are the entire agreement between you and ETO Doors regarding the Site, and supersede all prior or contemporaneous communications and proposals, whether electronic, oral, or written.</p>
+<p class="eto-p">Modification. No modification of these Terms is effective unless authorized by ETO Doors in writing or signed by an ETO Doors officer.</p>
+<p class="eto-p">No waiver. Our failure to enforce any provision is not a waiver of that provision or of any future breach.</p>
+<p class="eto-p">Severability. If any provision of these Terms is held invalid or unenforceable, that provision will be limited or replaced by a valid, enforceable provision that most closely matches its intent, and the remaining provisions will stay in full force.</p>
+<p class="eto-p">Assignment. You may not assign or transfer these Terms without our written consent. We may assign these Terms in connection with a merger, acquisition, reorganization, or sale of assets.</p>
+<p class="eto-p">No agency. No joint venture, partnership, employment, or agency relationship exists between you and ETO Doors as a result of these Terms or your use of the Site.</p>
+<p class="eto-p">Compliance with law. Nothing in these Terms limits our right to comply with law enforcement requests or legal requirements relating to your use of the Site or to information we collect about that use.</p>
+<p class="eto-p">Records. A printed version of these Terms and of any notice given electronically is admissible in judicial or administrative proceedings to the same extent as other business records originally generated and maintained in printed form.</p>
+<p class="eto-p">Headings. Headings are for reference only and have no legal effect.</p>
+        </div>
+      </section>
+    
+      <section id="section28" class="eto-section">
+        <h2>28. How to Contact Us</h2>
+        <div class="eto-section-body">
+          <p class="eto-p">Questions about these Terms, or about rights of use not expressly granted here:</p>
+<ul class="eto-ul">
+  <li class="eto-li">Legal, intellectual property, and DMCA notices: legal@etodoors.com</li>
+  <li class="eto-li">Customer service and order questions: contact@etodoors.com or (213) 622-2003</li>
+  <li class="eto-li">Shipping questions: shipping@etodoors.com</li>
+</ul>
+<p class="eto-p">Written notices to ETO Doors must be sent to:</p>
+
+<p class="eto-p">Attn: Legal Department</p>
+<p class="eto-p">1340 E. 6th Street #105</p>
+<p class="eto-p">Los Angeles, CA 90021</p>
+        </div>
+      </section>
+    </div></div></main>
+  </div>
+  <script>
+    function smoothScrollTo(element, duration) {
+      if (!element) return;
+      var headerOffset = 180;
+      var start = window.scrollY;
+      var target = element.getBoundingClientRect().top + window.scrollY - headerOffset;
+      var change = target - start;
+      var startTime = null;
+      
+      function easeInOutQuint(t) {
+        return t < 0.5 ? 16 * t * t * t * t * t : 1 - Math.pow(-2 * t + 2, 5) / 2;
+      }
+      
+      function step(timestamp) {
+        if (!startTime) startTime = timestamp;
+        var elapsed = timestamp - startTime;
+        var progress = Math.min(elapsed / duration, 1);
+        var ease = easeInOutQuint(progress);
+        window.scrollTo({ top: start + change * ease, behavior: 'instant' });
+        if (progress < 1) requestAnimationFrame(step);
+      }
+      
+      requestAnimationFrame(step);
+    }
+  </script>
+</div>
+
+    <!-- Hidden Impact Rating Content -->
      <div id="eto-impact-content" style="display: none; font-family: var(--font-body-family);">
         <div class="nfrc-container">
             <!-- Top Section -->
@@ -2199,6 +2756,12 @@
     document.getElementById('eto-impact-content').style.display = 'none';
     document.getElementById('eto-fire-content').style.display = 'none';
     document.getElementById('eto-energy-content').style.display = 'none';
+    
+    var container = document.querySelector('.eto-about-container');
+    if (container) {
+      container.style.maxWidth = 'none';
+      container.style.padding = '0';
+    }
     
     var breadcrumb = document.querySelector('.eto-breadcrumb');
     if(breadcrumb) {

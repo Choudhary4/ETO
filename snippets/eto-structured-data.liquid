@@ -1,0 +1,176 @@
+{% comment %}
+  eto-structured-data.liquid
+  Injects JSON-LD structured data for Google Rich Results & Merchant Center.
+  Render this snippet once in theme.liquid before </body>.
+  Covers: Organization, WebSite, Product, Offer, BreadcrumbList, CollectionPage
+{% endcomment %}
+
+{% comment %} ── 1. Organization — rendered on every page ─────────────────── {% endcomment %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": {{ shop.name | json }},
+  "url": {{ shop.url | json }},
+  "logo": {
+    "@type": "ImageObject",
+    "url": "{{ 'ETO-Logo.svg' | asset_url }}"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+1-213-622-2003",
+    "contactType": "customer service",
+    "areaServed": "US",
+    "availableLanguage": "English"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "1340 E. 6th Street",
+    "addressLocality": "Los Angeles",
+    "addressRegion": "CA",
+    "postalCode": "90021",
+    "addressCountry": "US"
+  },
+  "sameAs": [
+    "https://www.facebook.com/etodoors",
+    "https://www.instagram.com/etodoors",
+    "https://www.youtube.com/@etodoors"
+  ]
+}
+</script>
+
+{% comment %} ── 2. WebSite + Sitelinks Searchbox — homepage only ─────────── {% endcomment %}
+{% if request.page_type == 'index' %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": {{ shop.name | json }},
+  "url": {{ shop.url | json }},
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "{{ shop.url }}/search?q={search_term_string}"
+    },
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+{% endif %}
+
+{% comment %} ── 3. Product + Offer + BreadcrumbList — product pages ──────── {% endcomment %}
+{% if request.page_type == 'product' %}
+  {% assign current_variant = product.selected_or_first_available_variant %}
+  {% if current_variant.available %}
+    {% assign availability = "https://schema.org/InStock" %}
+  {% else %}
+    {% assign availability = "https://schema.org/OutOfStock" %}
+  {% endif %}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": {{ product.title | json }},
+  "description": {{ product.description | strip_html | truncate: 500 | json }},
+  "url": "{{ shop.url }}{{ product.url }}",
+  "sku": {{ current_variant.sku | default: current_variant.id | json }},
+  "brand": {
+    "@type": "Brand",
+    "name": {{ product.vendor | default: shop.name | json }}
+  },
+  {% if product.featured_image %}
+  "image": [
+    "{{ product.featured_image | image_url: width: 1200 }}"
+    {% for image in product.images limit: 4 offset: 1 %}
+    ,"{{ image | image_url: width: 1200 }}"
+    {% endfor %}
+  ],
+  {% endif %}
+  "offers": {
+    "@type": "Offer",
+    "url": "{{ shop.url }}{{ product.url }}",
+    "priceCurrency": {{ cart.currency.iso_code | json }},
+    "price": {{ current_variant.price | divided_by: 100.0 | json }},
+    "priceValidUntil": "{{ 'now' | date: '%Y' | plus: 1 }}-12-31",
+    "availability": {{ availability | json }},
+    "itemCondition": "https://schema.org/NewCondition",
+    "seller": {
+      "@type": "Organization",
+      "name": {{ shop.name | json }}
+    }
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": {{ shop.url | json }}
+    }
+    {% if collection %}
+    ,{
+      "@type": "ListItem",
+      "position": 2,
+      "name": {{ collection.title | json }},
+      "item": "{{ shop.url }}{{ collection.url }}"
+    }
+    ,{
+      "@type": "ListItem",
+      "position": 3,
+      "name": {{ product.title | json }},
+      "item": "{{ shop.url }}{{ product.url }}"
+    }
+    {% else %}
+    ,{
+      "@type": "ListItem",
+      "position": 2,
+      "name": {{ product.title | json }},
+      "item": "{{ shop.url }}{{ product.url }}"
+    }
+    {% endif %}
+  ]
+}
+</script>
+{% endif %}
+
+{% comment %} ── 4. CollectionPage + BreadcrumbList — collection pages ─────── {% endcomment %}
+{% if request.page_type == 'collection' %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": {{ collection.title | json }},
+  "description": {{ collection.description | strip_html | truncate: 300 | default: collection.title | json }},
+  "url": "{{ shop.url }}{{ collection.url }}"
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": {{ shop.url | json }}
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": {{ collection.title | json }},
+      "item": "{{ shop.url }}{{ collection.url }}"
+    }
+  ]
+}
+</script>
+{% endif %}

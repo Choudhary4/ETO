@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "main": {
+      "type": "eto-privacy-policy",
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}

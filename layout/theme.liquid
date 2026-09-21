@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="format-detection" content="telephone=no">
     <meta name="theme-color" content="">
     <link rel="canonical" href="{{ canonical_url }}">
 
@@ -69,9 +70,31 @@
       {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
     </title>
 
-    {% if page_description %}
-      <meta name="description" content="{{ page_description | escape }}">
-    {% endif %}
+    {%- assign smart_description = page_description -%}
+
+    {%- comment -%} Fix product description duplication (M-02) {%- endcomment -%}
+    {%- if request.page_type == 'product' -%}
+      {%- assign desc_start = product.description | strip_html | truncate: 30, '' | downcase -%}
+      {%- assign title_start = product.title | downcase | truncate: 30, '' -%}
+      {%- if page_description == blank or desc_start contains title_start or title_start contains desc_start -%}
+        {%- assign smart_description = "Shop the " | append: product.title | append: " at ETO Doors. Premium quality doors, custom sizes available. Ships direct to your jobsite." -%}
+      {%- endif -%}
+    {%- endif -%}
+
+    {%- comment -%} Fallbacks for missing descriptions (M-02) {%- endcomment -%}
+    {%- if smart_description == blank -%}
+      {%- if request.page_type == 'collection' -%}
+        {%- assign smart_description = "Browse our " | append: collection.title | append: " collection at ETO Doors. Find the perfect high-quality door for your next project." -%}
+      {%- elsif request.page_type == 'page' -%}
+        {%- assign smart_description = "Read about " | append: page.title | append: " at ETO Doors. We provide premium interior and exterior doors with nationwide shipping." -%}
+      {%- else -%}
+        {%- assign smart_description = "Shop premium interior and exterior doors at ETO Doors. Custom sizes available. Fast shipping direct to your jobsite." -%}
+      {%- endif -%}
+    {%- endif -%}
+
+    {%- if smart_description != blank -%}
+      <meta name="description" content="{{ smart_description | escape | truncate: 160 }}">
+    {%- endif -%}
 
     {% render 'meta-tags' %}
 
@@ -573,5 +596,7 @@
     <!--Start of CallRail Script-->
     <script type="text/javascript" src="//cdn.callrail.com/companies/296026134/1ba5a5dea3b5ca7d72c5/12/swap.js"></script>
     <!--End of CallRail Script-->
+    {% comment %} ── Structured Data / JSON-LD (M-01) ── {% endcomment %}
+    {% render 'eto-structured-data' %}
   </body>
 </html>

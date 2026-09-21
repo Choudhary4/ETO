@@ -233,6 +233,32 @@
     color: #444;
   }
   .eto-delivery-text p { margin-bottom: 20px; }
+  .eto-delivery-text ul {
+    margin-bottom: 20px;
+    padding-left: 20px;
+    list-style-type: disc;
+  }
+  .eto-delivery-text li {
+    margin-bottom: 10px;
+  }
+  .eto-delivery-text h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+    color: #2d2d2d;
+  }
+  .eto-delivery-text h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background: #c2b59b;
+  }
 
   @media (max-width: 991px) {
     .eto-delivery-grid { grid-template-columns: repeat(2, 1fr); margin-top: 20px; }
@@ -240,6 +266,165 @@
   @media (max-width: 576px) {
     .eto-delivery-grid { grid-template-columns: 1fr; }
     .eto-delivery-hero h1 { font-size: 32px; }
+  }
+  /* Premium Document UI Styles */
+  html, body {
+    scroll-behavior: smooth !important;
+  }
+  #eto-shipping-document {
+    background: #f6faff;
+    font-family: 'Source Serif 4', serif;
+    color: #141d23;
+    margin: 0 calc(-50vw + 50%);
+    width: 100vw;
+    padding: 60px 0;
+  }
+  .eto-document-container {
+    display: flex;
+    max-width: 1440px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 20px;
+  }
+  .eto-document-sidebar {
+    width: 350px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 20px;
+    height: calc(100vh - 40px);
+    overflow-y: auto;
+    padding: 40px 20px;
+    border-right: 1px solid rgba(197, 198, 202, 0.4);
+    background: #ffffff;
+    margin-top: 40px;
+    border-radius: 8px;
+  }
+  .eto-document-sidebar-header h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: #0c1014;
+    margin-bottom: 4px;
+    letter-spacing: 1px;
+  }
+  .eto-document-sidebar-header p {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #44474a;
+    margin-bottom: 24px;
+  }
+  .eto-document-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .eto-nav-link {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #44474a;
+    text-decoration: none;
+    padding: 10px 16px;
+    border-left: 3px solid transparent;
+    transition: all 0.2s ease;
+  }
+  .eto-nav-link:hover {
+    background: #ecf5fe;
+    color: #0c1014;
+  }
+  .eto-nav-link.active {
+    border-left-color: #c2b59b;
+    background: #ecf5fe;
+    color: #c2b59b;
+    font-weight: 700;
+  }
+  .eto-document-main {
+    flex: 1;
+    padding: 40px;
+    background: rgba(225, 227, 228, 0.1);
+  }
+  .eto-document-card {
+    max-width: 1050px;
+    margin: 0 auto;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 32px rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(197, 198, 202, 0.3);
+    padding: 60px;
+  }
+  .eto-document-header {
+    margin-bottom: 50px;
+  }
+  .eto-document-header h1 {
+    font-family: 'Inter', sans-serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: #0c1014;
+    position: relative;
+    display: inline-block;
+    margin-bottom: 16px;
+    letter-spacing: -1px;
+    text-transform: none;
+  }
+  .eto-document-underline {
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: #c2b59b;
+    border-radius: 2px;
+  }
+  .eto-document-date {
+    font-family: 'Source Serif 4', serif;
+    font-style: italic;
+    color: #75777b;
+    font-size: 16px;
+  }
+  .eto-section {
+    margin-bottom: 48px;
+    scroll-margin-top: 180px;
+  }
+  .eto-section h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: #0c1014;
+    margin-bottom: 20px;
+  }
+  .eto-section-body p {
+    font-size: 17px;
+    line-height: 1.8;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  .eto-section-body ul {
+    list-style-type: disc;
+    padding-left: 24px;
+    margin-bottom: 24px;
+  }
+  .eto-section-body li {
+    font-size: 17px;
+    line-height: 1.8;
+    color: #333;
+    margin-bottom: 8px;
+  }
+  .eto-section-body strong, .eto-section-body b {
+    font-weight: 600;
+    color: #111;
+  }
+  @media (max-width: 991px) {
+    .eto-document-sidebar {
+      display: none;
+    }
+    .eto-document-main {
+      padding: 20px;
+    }
+    .eto-document-card {
+      padding: 30px;
+    }
   }
 </style>
 
@@ -274,16 +459,92 @@
     {% endfor %}
   </div>
 
-  <div class="eto-delivery-content-wrap">
-    {% for block in section.blocks %}
-      {% if block.type == 'content_section' %}
-        <div class="eto-delivery-block" {{ block.shopify_attributes }}>
-          <h2>{{ block.settings.heading }}</h2>
-          <div class="eto-delivery-text">
-            {{ block.settings.content }}
+  <div id="eto-shipping-document">
+    <div class="eto-document-container">
+      <aside class="eto-document-sidebar">
+        <div class="eto-document-sidebar-header">
+          <h2>LEGAL SECTIONS</h2>
+          <p>Shipping Policy</p>
+        </div>
+        <nav class="eto-document-nav">
+          {% assign is_first = true %}
+          {% for block in section.blocks %}
+            {% if block.type == 'content_section' %}
+              <a class="eto-nav-link {% if is_first %}active{% endif %}" href="#section-{{ block.id }}" onclick="event.preventDefault(); document.querySelectorAll('.eto-nav-link').forEach(el=>el.classList.remove('active')); this.classList.add('active'); smoothScrollTo(document.getElementById('section-{{ block.id }}'), 1400);">
+                {{ block.settings.heading }}
+              </a>
+              {% assign is_first = false %}
+            {% endif %}
+          {% endfor %}
+        </nav>
+      </aside>
+
+      <main class="eto-document-main">
+        <div class="eto-document-card">
+          <header class="eto-document-header">
+            <h1>
+              Shipping & Delivery
+              <span class="eto-document-underline"></span>
+            </h1>
+          </header>
+          <div class="eto-document-content">
+            {% for block in section.blocks %}
+              {% if block.type == 'content_section' %}
+                <section id="section-{{ block.id }}" class="eto-section" {{ block.shopify_attributes }}>
+                  {% if block.settings.heading != blank %}
+                    <h2>{{ block.settings.heading }}</h2>
+                  {% endif %}
+                  <div class="eto-section-body">
+                    {{ block.settings.content }}
+                  </div>
+                </section>
+              {% endif %}
+            {% endfor %}
           </div>
         </div>
-      {% endif %}
-    {% endfor %}
+      </main>
+    </div>
   </div>
+
+  <script>
+    function smoothScrollTo(element, duration) {
+      if (!element) return;
+      var headerOffset = 180;
+      var start = window.scrollY;
+      var target = element.getBoundingClientRect().top + window.scrollY - headerOffset;
+      var change = target - start;
+      var startTime = null;
+      
+      function easeInOutQuint(t) {
+        return t < 0.5 ? 16 * t * t * t * t * t : 1 - Math.pow(-2 * t + 2, 5) / 2;
+      }
+      
+      function step(timestamp) {
+        if (!startTime) startTime = timestamp;
+        var elapsed = timestamp - startTime;
+        var progress = Math.min(elapsed / duration, 1);
+        var ease = easeInOutQuint(progress);
+        window.scrollTo({ top: start + change * ease, behavior: 'instant' });
+        if (progress < 1) requestAnimationFrame(step);
+      }
+      
+      requestAnimationFrame(step);
+    }
+
+    // Bust parent container max-width constraint
+    document.addEventListener('DOMContentLoaded', function() {
+      var section = document.getElementById('eto-shipping-document');
+      if (section) {
+        var parent = section.parentElement;
+        while (parent && parent !== document.body) {
+          var style = window.getComputedStyle(parent);
+          if (style.maxWidth && style.maxWidth !== 'none') {
+            parent.style.maxWidth = 'none';
+            parent.style.overflow = 'visible';
+          }
+          parent = parent.parentElement;
+        }
+      }
+    });
+  </script>
 </div>

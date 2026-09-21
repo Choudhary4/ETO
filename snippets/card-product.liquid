@@ -36,6 +36,11 @@
     elsif card_product.featured_media and media_aspect_ratio == 'adapt'
       assign ratio = card_product.featured_media.aspect_ratio
     endif
+
+    if card_product.metafields.custom.product_image_url != blank
+      assign ratio = 0.45
+    endif
+
     if ratio == 0 or ratio == null
       assign ratio = 1
     endif
